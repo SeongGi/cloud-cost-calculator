@@ -43,6 +43,8 @@ def build_model() -> ChatOllama:
         reasoning=False,
         num_ctx=int(os.environ.get("OLLAMA_NUM_CTX", "4096")),
         keep_alive=os.environ.get("OLLAMA_KEEP_ALIVE", "30m"),
+        # A stuck local call must end so the visitor gets an answer (cold load is ~85 s).
+        client_kwargs={"timeout": float(os.environ.get("OLLAMA_TIMEOUT_S", "140"))},
     )
 
 

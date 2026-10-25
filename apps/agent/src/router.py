@@ -79,7 +79,10 @@ def gemini_model(key: str, model: str) -> ChatGoogleGenerativeAI:
             _models.clear()  # a new key or model replaces the old client
             # max_retries=1 is a single attempt (0 would mean the SDK default of several retries
             # with backoff, so a visitor could wait minutes before the local fallback).
-            llm = ChatGoogleGenerativeAI(model=model, google_api_key=key, temperature=0, max_retries=1, timeout=30)
+            # Whole responses, not token streams: with streamed parallel tool calls a run once never
+            # finished; Gemini answers in about a second, so streaming adds little.
+            llm = ChatGoogleGenerativeAI(model=model, google_api_key=key, temperature=0, max_retries=1, timeout=30,
+                                         disable_streaming=True)
             _models[(key, model)] = llm
         return llm
 

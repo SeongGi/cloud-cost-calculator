@@ -7,6 +7,7 @@ import { AnswerMarkdown } from "@/components/chat/answer-markdown";
 import { useCostTool } from "@/hooks/use-cost-tool";
 import { useTheme } from "@/hooks/use-theme";
 import { describeError } from "@/lib/errors";
+import { clearChat, loadChat, saveChat } from "@/lib/chat-store";
 
 function newThreadId(): string {
   // crypto.randomUUID needs a secure context; plain-HTTP LAN access falls back to getRandomValues.
@@ -25,9 +26,19 @@ const EXAMPLES = [
 ];
 
 export default function HomePage() {
+  // The thread id is the agent's memory key. It is decided after mount (from this browser's saved
+  // chat or new) and handed to CopilotKit, which then loads that thread's history itself.
+  const [threadId, setThreadId] = useState<string | null>(null);
+  useEffect(() => {
+    setThreadId(loadChat()?.threadId ?? newThreadId());
+  }, []);
+  return threadId ? <Chat key={threadId} threadId={threadId} onNewChat={() => { clearChat(); setThreadId(newThreadId()); }} /> : null;
+}
+
+function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void }) {
   useCostTool();
   useConfigureSuggestions({ suggestions: EXAMPLES, available: "before-first-message" });
-  const { agent } = useAgent();
+  const { agent } = useAgent({ threadId });
   const { copilotkit } = useCopilotKit();
   const { resolved, setTheme } = useTheme();
   const [error, setError] = useState<string | null>(null);
@@ -53,18 +64,35 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, [latestQuestion]);
 
+  // If CopilotKit's own history load came back empty (e.g. the app server restarted), draw the
+  // earlier answers from this browser's copy. Only when nothing is shown, so nothing is doubled.
   useEffect(() => {
+    const timer = setTimeout(() => {
+      const saved = loadChat();
+      if (saved?.threadId === threadId && !agent.isRunning && agent.messages.length === 0 && saved.messages.length) {
+        agent.setMessages(saved.messages as typeof agent.messages);
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [agent, threadId]);
+
+  useEffect(() => {
+    const save = () => {
+      if (agent.messages.length) saveChat(threadId, agent.messages);
+    };
     const subscription = agent.subscribe({
       onRunInitialized: () => setError(null),
       onRunFinishedEvent: () => setError(null),
+      // Save once per answer, not on every streamed token.
+      onRunFinalized: save,
+      onRunFailed: save,
     });
     return () => subscription.unsubscribe();
-  }, [agent]);
+  }, [agent, threadId]);
 
   const newChat = () => {
-    agent.setMessages([]);
-    agent.threadId = newThreadId();
     setError(null);
+    onNewChat();
   };
 
   const retry = async () => {
@@ -102,6 +130,7 @@ export default function HomePage() {
         )}
         <div className="chat-content" ref={chatRoot}>
           <CopilotChat
+            threadId={threadId}
             autoScroll={false}
             scrollView={ReaderScrollView}
             messageView={{ assistantMessage: { markdownRenderer: AnswerMarkdown } }}
@@ -113,7 +142,7 @@ export default function HomePage() {
             labels={{
               welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
               chatInputPlaceholder: "예: AWS t3.medium 2대, S3 500GB",
-              chatDisclaimerText: "공개 가격표의 온디맨드 정가 기준입니다. 로컬 AI라 첫 답변까지 10초~1분 걸릴 수 있습니다.",
+              chatDisclaimerText: "공개 가격표의 온디맨드 정가 기준입니다. 대화는 이 브라우저에 30일 보관되며 '새 대화'를 누르면 지워집니다.",
             }}
           />
         </div>

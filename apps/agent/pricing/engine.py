@@ -56,8 +56,9 @@ STOPWORDS = {
 # Engine words map to a service and also act as spec hints (e.g. "postgresql" -> rds + postgres).
 ENGINE_ALIASES = {
     "aws": {"postgresql": ("rds", "postgres"), "postgres": ("rds", "postgres"), "mysql": ("rds", "mysql"),
-            "aurora mysql": ("aurora", "mysql"), "redis": ("elasticache", "")},
-    "azure": {"postgres": ("postgresql", ""), "mssql": ("sql_database", ""), "redis": ("redis", "")},
+            "aurora mysql": ("aurora", "mysql"), "redis": ("elasticache", ""), "vpn": ("vpn", "")},
+    "azure": {"postgres": ("postgresql", ""), "mssql": ("sql_database", ""), "redis": ("redis", ""),
+              "vpn": ("vpn_gateway", "")},
     "gcp": {"postgresql": ("cloudsql", "postgres"), "postgres": ("cloudsql", "postgres"), "mysql": ("cloudsql", "mysql"),
             "redis": ("memorystore", ""), "storage": ("gcs", ""), "object storage": ("gcs", ""), "vm": ("gce", ""),
             "compute": ("gce", ""), "load balancing": ("cloud_lb", "")},
@@ -202,7 +203,9 @@ def resolve_service(cloud: str, name: str, catalog: dict) -> tuple[str | None, s
     """Return (service id, extra spec hint)."""
     n = re.sub(r"[\s_-]+", " ", (name or "").strip().lower())
     services = {it["service"] for it in catalog["items"].values()}
-    candidates = [n, re.sub(r"^(amazon|aws|azure|microsoft|google|gcp|google cloud) ", "", n)]
+    bare = re.sub(r"^(amazon|aws|azure|microsoft|google cloud|google|gcp) ", "", n)
+    # "cloud vpn" said in an Azure conversation still means that cloud's VPN.
+    candidates = [n, bare, re.sub(r"^cloud ", "", bare)]
     labels = {SERVICE_LABEL[svc].lower(): svc for svc in services if svc in SERVICE_LABEL}
     for c in candidates:
         if c in labels:

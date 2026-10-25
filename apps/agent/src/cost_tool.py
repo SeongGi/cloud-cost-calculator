@@ -3,13 +3,16 @@ quantities; prices and totals come from pricing.engine."""
 
 import json
 import logging
+import re
 from typing import Annotated, Any, Literal
 
 from langchain_core.tools import tool
 from langgraph.prebuilt import InjectedState
 from pydantic import BaseModel, Field, field_validator
 
-from pricing.engine import CLOUDS, estimate, service_menu
+from langchain_core.messages import ToolMessage
+
+from pricing.engine import CLOUDS, CatalogUnavailable, estimate, load_catalog, resolve_service, service_menu
 
 log = logging.getLogger(__name__)
 
@@ -50,9 +53,80 @@ def last_user_text(state: dict) -> str:
     return ""
 
 
+# Words that make a question continue the previous estimate ("여기에 VPN 추가하면", "MySQL 빼고").
+FOLLOW_UP = re.compile(
+    r"여기에|거기에|이거에|이것에|위\s*구성|앞\s*구성|기존|추가|더하|더\s*넣|포함|빼|제외|없애|삭제|바꾸|바꿔|변경|"
+    r"늘리|늘려|줄이|줄여|대신|전체|합쳐|같이|그대로|으로\s*하면|로\s*하면")
+CLOUD_WORDS = {"aws": r"aws|아마존|amazon", "azure": r"azure|애저|microsoft", "gcp": r"gcp|구글|google|지씨피"}
+
+
+def previous_request(state: dict, cloud: str | None = None) -> dict | None:
+    """The request behind the latest successful estimate (of `cloud`, when given). Recognized by
+    its content, not the tool name: messages restored from the browser arrive without a name."""
+    for message in reversed(state.get("messages", [])):
+        if not isinstance(message, ToolMessage) or not isinstance(message.content, str):
+            continue
+        try:
+            req = (json.loads(message.content) or {}).get("request") or {}
+        except (TypeError, ValueError, AttributeError):
+            continue
+        if req.get("items") and (cloud is None or req.get("cloud") == cloud):
+            return req
+    return None
+
+
+def named_clouds(text: str) -> set[str]:
+    return {c for c, pattern in CLOUD_WORDS.items() if re.search(pattern, text, re.IGNORECASE)}
+
+
+def resolves_on(cloud: str, items: list[dict]) -> bool:
+    """Every item names a service of this cloud's catalog."""
+    try:
+        catalog = load_catalog(cloud)
+    except CatalogUnavailable:
+        return False
+    return all(resolve_service(cloud, i["service"], catalog)[0] for i in items)
+
+
+def _norm_spec(spec: str | None) -> str:
+    return re.sub(r"[\s_\-.]+", "", (spec or "").lower())
+
+
+def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[str]) -> tuple[list[dict], list[str]]:
+    """Previous items updated by the new ones and minus the removed services. A change goes to the
+    line with the same service and spec, else to the only line of that service, else it is added.
+    Returns the items and the removal names that matched nothing (so the answer can say so)."""
+    try:
+        catalog = load_catalog(cloud)
+    except CatalogUnavailable:
+        return base + changes, list(remove)
+
+    def key(name: str) -> str:
+        return resolve_service(cloud, name, catalog)[0] or name.strip().lower()
+
+    merged = [dict(i) for i in base]
+    unmatched = []
+    for name in remove:
+        kept = [m for m in merged if key(m["service"]) != key(name)]
+        if len(kept) == len(merged):
+            unmatched.append(name)
+        merged = kept
+    for change in changes:
+        same = [m for m in merged if key(m["service"]) == key(change["service"])]
+        exact = [m for m in same if change.get("spec") and _norm_spec(m.get("spec")) == _norm_spec(change["spec"])]
+        target = exact[0] if exact else (same[0] if len(same) == 1 and not (change.get("spec") and same[0].get("spec")) else None)
+        if target is None:
+            merged.append(dict(change))
+        else:
+            target.update({k: v for k, v in change.items() if v is not None and k != "service"})
+    return merged, unmatched
+
+
 class EstimateArgs(BaseModel):
     cloud: Literal["aws", "azure", "gcp"]
-    items: list[Item] = Field(description="계산할 서비스 목록")
+    items: list[Item] = Field(default_factory=list, description="계산할 서비스 목록. 이어지는 질문이면 새로 말한 서비스만 넣어도 된다")
+    follow_up: bool | None = Field(default=None, description="앞에서 계산한 구성에 더하거나 바꾸거나 빼는 질문이면 true, 새 구성이면 false")
+    remove: list[str] = Field(default_factory=list, description="이어지는 질문에서 빼라고 한 서비스 이름")
     region: str | None = Field(default=None, description="사용자가 말한 리전만. 예: ap-northeast-2, koreacentral, asia-northeast3, 서울")
     state: Annotated[dict, InjectedState] = Field(default_factory=dict)
 
@@ -71,15 +145,40 @@ TOOL_DESCRIPTION = (
 
 
 @tool(args_schema=EstimateArgs, return_direct=True, description=TOOL_DESCRIPTION)
-def estimate_cost(cloud: str, items: list[Item], region: str | None = None, state: dict | None = None) -> str:
-    log.info("estimate_cost args cloud=%s region=%s items=%s", cloud, region,
+def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | None = None,
+                  follow_up: bool | None = None, remove: list[str] | None = None, state: dict | None = None) -> str:
+    items, remove, state = items or [], remove or [], state or {}
+    log.info("estimate_cost args cloud=%s region=%s follow_up=%s remove=%s items=%s", cloud, region, follow_up, remove,
              [i.model_dump(exclude_none=True) if isinstance(i, BaseModel) else i for i in items])
+    text = last_user_text(state)
     try:
         parsed = parse_items([i.model_dump() if isinstance(i, BaseModel) else i for i in items])
-        result = estimate(cloud, parsed, region, user_text=last_user_text(state or {}))
+        said = named_clouds(text)
+        prev = previous_request(state, next(iter(said)) if len(said) == 1 else None)
+        # A follow-up keeps the earlier configuration even when the model sends only the change.
+        # The code decides from the words too, so a model that forgets the flag still gets it right;
+        # a different cloud counts only when the user named it or the new services belong to it.
+        merge = False
+        if prev is not None and follow_up is not False and not (said - {prev["cloud"]}):
+            same_cloud = cloud == prev["cloud"] or (not said and resolves_on(prev["cloud"], parsed))
+            merge = same_cloud and (follow_up is True or bool(remove) or bool(FOLLOW_UP.search(text)))
+        notes = []
+        if merge:
+            cloud = prev["cloud"]
+            region = region or prev.get("region")
+            parsed, unmatched = merge_items(cloud, prev["items"], parsed, remove)
+            notes.append("앞에서 계산한 구성에 이번 요청(추가·변경·제외)을 반영해 전체를 다시 계산했습니다.")
+            if unmatched:
+                notes.append(f"앞 구성에 없어 빼지 못한 서비스: {', '.join(unmatched)}")
+        if not parsed:
+            raise ValueError("계산할 서비스가 없습니다")
+        result = estimate(cloud, parsed, region, user_text=text)
+        result["notes"] = notes + result.get("notes", [])
+        # The resolved items travel with the result so the next follow-up can build on them.
+        result["request"] = {"cloud": cloud, "region": region, "items": parsed}
     except (ValueError, TypeError) as exc:
         log.warning("estimate_cost rejected arguments: %s", exc)
         result = {"state": "invalid_arguments", "cloud": cloud, "message": str(exc),
-                  "lines": [], "excluded": [], "notes": [], "total_cents": 0}
-    result["request"] = {"cloud": cloud, "region": region}
+                  "lines": [], "excluded": [], "notes": [], "total_cents": 0,
+                  "request": {"cloud": cloud, "region": region}}
     return json.dumps(result, ensure_ascii=False)

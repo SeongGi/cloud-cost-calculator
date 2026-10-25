@@ -17,12 +17,13 @@ from pricing.paths import refresh_enabled
 from pricing.refresh import start_scheduler
 from src import settings
 from src.admin import api as admin_api
-from src.bounded_memory_saver import BoundedMemorySaver
 from src.compact import CompactToolResults
 from src.concurrency import RunLimiter
 from src.cost_tool import estimate_cost
 from src.llm import build_model, warm_up
 from src.prompt import SYSTEM_PROMPT
+from src.guard import ResponseGuard
+from src.persistent_saver import PersistentMemorySaver, default_path
 from src.router import LLMRouter
 
 load_dotenv()
@@ -34,9 +35,9 @@ model = build_model()
 graph = create_agent(
     model=model,
     tools=TOOLS,
-    middleware=[CopilotKitMiddleware(), CompactToolResults(), LLMRouter()],
+    middleware=[CopilotKitMiddleware(), CompactToolResults(), ResponseGuard(), LLMRouter()],
     system_prompt=SYSTEM_PROMPT,
-    checkpointer=BoundedMemorySaver(max_threads=200),
+    checkpointer=(memory := PersistentMemorySaver(default_path())),
 )
 
 
@@ -48,7 +49,10 @@ async def lifespan(_: FastAPI):
         asyncio.get_running_loop().run_in_executor(None, warm_up, model)
     if refresh_enabled():
         start_scheduler(int(os.getenv("PRICE_REFRESH_HOUR_KST", "4")))
-    yield
+    try:
+        yield
+    finally:
+        memory.close()  # keep the last answers of every conversation across restarts
 
 
 app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
