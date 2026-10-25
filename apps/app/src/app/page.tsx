@@ -7,6 +7,7 @@ import { AnswerMarkdown } from "@/components/chat/answer-markdown";
 import { useCostTool } from "@/hooks/use-cost-tool";
 import { useTheme } from "@/hooks/use-theme";
 import { describeError } from "@/lib/errors";
+import { SITE } from "@/lib/site";
 import { currentThread, deleteChat, listChats, loadMessages, saveChat, setCurrent, type ChatSummary } from "@/lib/chat-store";
 
 function newThreadId(): string {
@@ -36,8 +37,35 @@ export default function HomePage() {
     setCurrent(id);
     setThreadId(id);
   };
-  if (!threadId) return <div className="chat-app" />;
+  if (!threadId) return <Intro />;
   return <Chat key={threadId} threadId={threadId} onOpen={open} onNewChat={() => open(newThreadId())} />;
+}
+
+// The chat needs the browser (its thread id lives there), so the server sends this introduction:
+// the same header and the welcome text with example questions, which the chat then replaces.
+function Intro() {
+  return (
+    <div className="chat-app">
+      <header className="chat-header">
+        <span className="chat-name">{SITE.name}</span>
+      </header>
+      <main id="main-content" className="chat-main chat-intro">
+        <h1>AWS·Azure·GCP 월 비용을 말로 계산하세요</h1>
+        <p>
+          클라우드 구성을 한국어 문장으로 적으면 공개 가격표(온디맨드 정가)로 월 비용을 계산해 합계, 서비스별 비중, 항목별
+          계산식을 보여 줍니다. 수량을 바꾸거나 &ldquo;여기에 VPN 추가&rdquo;처럼 이어서 물을 수 있습니다.
+        </p>
+        <ul>
+          {EXAMPLES.map((e) => (
+            <li key={e.title}>{e.message}</li>
+          ))}
+        </ul>
+        <p>
+          만든 사람 <a href={SITE.about}>{SITE.author}</a> · <a href={SITE.blog}>블로그</a> · <a href={SITE.repo}>GitHub</a>
+        </p>
+      </main>
+    </div>
+  );
 }
 
 function relativeTime(ms: number): string {
@@ -88,6 +116,11 @@ function ChatList({ current, onOpen, onClose }: { current: string; onOpen: (id: 
           </ul>
         )}
         <p className="chat-list-note">대화는 이 브라우저에만 최대 30개, 30일 동안 저장됩니다.</p>
+        <p className="chat-list-credit">
+          만든 사람 <a href={SITE.about} target="_blank" rel="noopener">{SITE.author}</a> ·{" "}
+          <a href={SITE.blog} target="_blank" rel="noopener">블로그</a> ·{" "}
+          <a href={SITE.repo} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </p>
       </section>
     </div>
   );
@@ -214,7 +247,7 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
     <div className="chat-app">
       <a className="chat-skip" href="#main-content">채팅으로 건너뛰기</a>
       <header className="chat-header">
-        <span className="chat-name">클라우드 비용 계산기</span>
+        <span className="chat-name">{SITE.name}</span>
         <nav aria-label="주 메뉴">
           <button type="button" onClick={() => setShowList(true)} aria-haspopup="dialog" aria-label="대화 목록">
             <span className="chat-hide-sm">대화 </span>목록
@@ -223,7 +256,9 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
           <button type="button" onClick={() => setTheme(dark ? "light" : "dark")} aria-label={dark ? "라이트 모드로" : "다크 모드로"}>
             {dark ? "라이트" : "다크"}
           </button>
-          <a className="chat-hide-sm" href="https://github.com/SeongGi/cloud-cost-calculator" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a className="chat-hide-md" href={SITE.blog} target="_blank" rel="noopener">블로그</a>
+          <a className="chat-hide-md" href={SITE.about} target="_blank" rel="noopener">만든 사람</a>
+          <a className="chat-hide-sm" href={SITE.repo} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </nav>
       </header>
       <main id="main-content" className="chat-main">

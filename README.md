@@ -2,6 +2,8 @@
 
 AWS, Azure, GCP 구성을 한국어 문장으로 설명하면 **공개 가격표**로 월 비용을 계산해 표·막대·계산기 화면으로 보여 줍니다.
 
+**바로 써 보기: https://cost.seonggi.kr** · 만든 사람 [최성기](https://me.seonggi.kr) · [블로그](https://seonggi.kr)
+
 - **LLM은 Gemini 우선, 안 되면 로컬**: 관리자 페이지에 Google AI Studio 키를 넣으면 Gemini로 답합니다. 한도 초과나 오류가 나면 이 컴퓨터의 [Ollama](https://ollama.com)(`qwen3.5:latest`)가 대신 답합니다. 키가 없으면 로컬만 씁니다. Gemini를 쓰는 동안 질문은 Google로 전송됩니다.
 - **가격은 지어내지 않음**: LLM은 문장을 "서비스 + 사양 + 수량"으로 바꾸기만 합니다. 단가는 공개 가격 API로 만든 가격표에서, 계산은 코드가 합니다.
 - **같은 입력이면 같은 합계**: 사양 대안(예: RDS PostgreSQL/MySQL, 인스턴스 크기)은 선택 상자로 두고 합계에는 하나만 넣습니다.
@@ -91,6 +93,10 @@ cd apps/agent && uv run python -m scripts.eval_extraction   # 로컬 모델의 �
 - 모델 래퍼(`CredentialScopedModel`)를 없앴습니다. 이 래퍼를 쓰면 글자가 두 번 스트리밍됩니다.
 - OIUI의 도구 기반 Generative UI(`useRenderTool`) 경로로 비용 카드를 그립니다. 모델이 HTML/JS를 직접 만드는 샌드박스 생성(Open Generative UI)은 껐습니다. 9B급 로컬 모델에게는 느리고 불안정하며, 계산기는 늘 같은 모양이어야 하기 때문입니다.
 - `@ag-ui/client`의 ESM 빌드가 `fast-json-patch`를 namespace import해서 Node에서 `applyPatch`가 `undefined`가 됩니다. Docker 빌드에서 기본 import로 고칩니다.
+
+## 만든 사람
+
+[최성기](https://me.seonggi.kr) (Cloud & AI Architect) · 블로그 [달빛이 비추는 궁전에서](https://seonggi.kr)
 
 ## 라이선스
 
