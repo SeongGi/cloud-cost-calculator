@@ -2,7 +2,7 @@
 
 AWS, Azure, GCP 구성을 한국어 문장으로 설명하면 **공개 가격표**로 월 비용을 계산해 표·막대·계산기 화면으로 보여 줍니다.
 
-- **LLM은 로컬만**: 이 컴퓨터의 [Ollama](https://ollama.com)(`qwen3.5:latest`)만 씁니다. 외부 LLM API를 호출하지 않습니다.
+- **LLM은 Gemini 우선, 안 되면 로컬**: 관리자 페이지에 Google AI Studio 키를 넣으면 Gemini로 답합니다. 한도 초과나 오류가 나면 이 컴퓨터의 [Ollama](https://ollama.com)(`qwen3.5:latest`)가 대신 답합니다. 키가 없으면 로컬만 씁니다. Gemini를 쓰는 동안 질문은 Google로 전송됩니다.
 - **가격은 지어내지 않음**: LLM은 문장을 "서비스 + 사양 + 수량"으로 바꾸기만 합니다. 단가는 공개 가격 API로 만든 가격표에서, 계산은 코드가 합니다.
 - **같은 입력이면 같은 합계**: 사양 대안(예: RDS PostgreSQL/MySQL, 인스턴스 크기)은 선택 상자로 두고 합계에는 하나만 넣습니다.
 
@@ -14,7 +14,7 @@ AWS, Azure, GCP 구성을 한국어 문장으로 설명하면 **공개 가격표
 
 ```
 브라우저 ─▶ gate(nginx, :8095) ─▶ app(Next.js + CopilotKit) ─▶ agent(FastAPI + LangGraph)
-                                                                 ├─ ChatOllama ─▶ 호스트 Ollama :11434
+                                                                 ├─ Gemini API (키가 있을 때) ─▶ 실패 시 ChatOllama ─▶ 호스트 Ollama :11434
                                                                  └─ estimate_cost ─▶ 가격표(JSON)
 ```
 
@@ -53,6 +53,14 @@ docker compose up -d --build
 - Nginx Proxy Manager는 Advanced 칸을 `server` 블록에 넣고, 자체 `location /` 안에 `proxy_set_header`를 따로 둡니다. 그래서 Advanced 칸에 넣은 `proxy_set_header`는 무시됩니다. 대신 Advanced 칸에는 `set $cost_proxy_secret <값>;`을 넣습니다. 그리고 Custom Locations에 `~` `/` 위치(같은 전달 대상, 응답 버퍼링 끔)를 만들고, 그 고급 칸에 `proxy_set_header X-Proxy-Secret $cost_proxy_secret;`을 넣습니다. 수식어 없는 `/`는 기본 위치와 겹쳐 설정 검사가 실패합니다.
 - 앞단 nginx는 응답이 스트리밍(SSE)이므로 `proxy_buffering off;`와 `proxy_read_timeout 300s;`를 권합니다.
 - 첫 질문은 모델을 메모리에 올리느라 1분 이상 걸릴 수 있습니다. 에이전트가 기동할 때 미리 올리고, 30분 동안 쓰지 않으면 내려갑니다.
+
+### 관리자 페이지 (`/admin`)
+
+- 구글 로그인(oauth2-proxy)으로 보호합니다. `docker/auth/allowed-emails.txt`와 `ADMIN_EMAILS`에 있는 계정만 들어올 수 있습니다.
+- 할 수 있는 일: Gemini 키 저장·삭제(화면에는 끝 4자리만 표시), 모델 선택, 연결 시험, Gemini 끄고 켜기. 최근 답변 모델, 전환 횟수, 쉬는 시간도 볼 수 있습니다.
+- 키는 에이전트 볼륨의 권한 600 파일에만 저장됩니다.
+- 검사는 세 단계입니다. gate가 관리자 경로만 oauth2-proxy로 보내고, 로그인한 요청에만 내부 비밀 표시를 붙입니다. 앱은 그 표시와 허용 이메일을 다시 확인합니다. 에이전트는 앱의 토큰을 확인합니다.
+- 켜는 방법: `.env`에 OAuth 클라이언트, `COMPOSE_PROFILES=admin`, 비밀값들을 넣습니다(`.env.example` 참고). Google OAuth 클라이언트에는 `https://<도메인>/oauth2/callback`을 리디렉션 URI로 등록합니다.
 
 ### 개발
 

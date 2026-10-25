@@ -1,4 +1,5 @@
-"""Cloud cost calculator agent: local Ollama + deterministic pricing tools."""
+"""Cloud cost calculator agent: Gemini (when an admin saved a key) with local Ollama fallback,
+plus deterministic pricing tools."""
 
 import asyncio
 import logging
@@ -14,12 +15,15 @@ from langchain.agents import create_agent
 
 from pricing.paths import refresh_enabled
 from pricing.refresh import start_scheduler
+from src import settings
+from src.admin import api as admin_api
 from src.bounded_memory_saver import BoundedMemorySaver
 from src.compact import CompactToolResults
 from src.concurrency import RunLimiter
 from src.cost_tool import estimate_cost
 from src.llm import build_model, warm_up
 from src.prompt import SYSTEM_PROMPT
+from src.router import LLMRouter
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -30,7 +34,7 @@ model = build_model()
 graph = create_agent(
     model=model,
     tools=TOOLS,
-    middleware=[CopilotKitMiddleware(), CompactToolResults()],
+    middleware=[CopilotKitMiddleware(), CompactToolResults(), LLMRouter()],
     system_prompt=SYSTEM_PROMPT,
     checkpointer=BoundedMemorySaver(max_threads=200),
 )
@@ -39,16 +43,20 @@ graph = create_agent(
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    if os.getenv("OLLAMA_WARMUP", "true") == "true":
+    # With Gemini as the primary model the local one loads only when needed (saves memory).
+    if os.getenv("OLLAMA_WARMUP", "true") == "true" and not settings.load().gemini_active:
         asyncio.get_running_loop().run_in_executor(None, warm_up, model)
     if refresh_enabled():
         start_scheduler(int(os.getenv("PRICE_REFRESH_HOUR_KST", "4")))
     yield
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
 app.add_middleware(RunLimiter, max_running=int(os.getenv("MAX_CONCURRENT_RUNS", "2")),
                    max_waiting=int(os.getenv("MAX_WAITING_RUNS", "4")))
+
+
+app.include_router(admin_api)
 
 
 @app.get("/health")

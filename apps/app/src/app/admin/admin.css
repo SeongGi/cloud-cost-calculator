@@ -1,0 +1,166 @@
+.admin {
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.admin *,
+.admin *::before,
+.admin *::after {
+  box-sizing: border-box;
+}
+
+.admin h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.admin h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.admin-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.admin-user,
+.admin-note,
+.admin-sub {
+  color: var(--text-tertiary, #52525b);
+}
+
+.admin a {
+  color: inherit;
+}
+
+.admin-card {
+  margin-bottom: 16px;
+  padding: 18px;
+  border: 1px solid var(--border-default, #d4d4d8);
+  border-radius: 14px;
+  background: var(--surface-primary, transparent);
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  gap: 6px 12px;
+  margin: 0;
+}
+
+.admin-grid dt {
+  font-weight: 600;
+}
+
+.admin-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.admin-field small {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.admin-field input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-default, #d4d4d8);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-actions button {
+  padding: 8px 16px;
+  border: 1px solid var(--border-default, #d4d4d8);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-actions button:first-child {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+.admin-actions button.danger {
+  color: #b91c1c;
+}
+
+.admin-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.admin-switch input {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-ok {
+  color: #15803d;
+}
+
+.admin-warn {
+  color: #b45309;
+}
+
+:root.dark .admin-ok {
+  color: #4ade80;
+}
+
+:root.dark .admin-warn {
+  color: #fbbf24;
+}
+
+:root.dark .admin-actions button.danger {
+  color: #fca5a5;
+}
+
+@media (max-width: 480px) {
+  .admin-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-grid dd {
+    margin-bottom: 6px;
+  }
+}

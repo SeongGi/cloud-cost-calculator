@@ -1,4 +1,5 @@
-"""Local-only chat model: Ollama on this machine, never an external LLM API."""
+"""The local chat model (Ollama on this machine). It is the base model of the agent and the fallback
+when Gemini is not configured or unavailable (see src/router.py)."""
 
 import logging
 import os

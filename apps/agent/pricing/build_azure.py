@@ -7,9 +7,11 @@ Low Priority excluded). Spec flags: allow_non_primary, global_price, tier_min.
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import logging
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -27,15 +29,22 @@ def fetch(flt: str) -> list[dict]:
     items: list[dict] = []
     url: str | None = API + urllib.parse.quote(flt)
     while url:
-        for attempt in range(4):
+        for attempt in range(6):
             try:
                 with urllib.request.urlopen(url, timeout=60) as r:
                     data = json.load(r)
                 break
-            except Exception:
-                if attempt == 3:
+            except urllib.error.HTTPError as exc:
+                # The API rate-limits bursts (429); wait as long as it asks before retrying.
+                if attempt == 5 or exc.code not in (429, 500, 502, 503, 504):
+                    raise
+                retry_after = exc.headers.get("Retry-After", "")
+                time.sleep(min(int(retry_after), 120) if retry_after.isdigit() else 10 * (attempt + 1))
+            except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException, ValueError):
+                if attempt == 5:
                     raise
                 time.sleep(2 * (attempt + 1))
+        time.sleep(0.3)  # stay well under the burst limit across many filters
         items += data.get("Items", [])
         url = data.get("NextPageLink")
     return items

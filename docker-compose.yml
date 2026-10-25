@@ -9,8 +9,10 @@ services:
       PRICE_REFRESH: ${PRICE_REFRESH:-false}
       MAX_CONCURRENT_RUNS: ${MAX_CONCURRENT_RUNS:-2}
       GCP_ACCESS_TOKEN: ${GCP_ACCESS_TOKEN:-}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
     extra_hosts: ["host.docker.internal:host-gateway"]
-    volumes: ["catalogs:/data/catalogs", "price-cache:/data/cache"]
+    volumes: ["catalogs:/data/catalogs", "price-cache:/data/cache", "settings:/data/settings"]
     mem_limit: 768m
     security_opt: ["no-new-privileges:true"]
     cap_drop: [ALL]
@@ -22,6 +24,9 @@ services:
     environment:
       LANGGRAPH_DEPLOYMENT_URL: http://agent:8123
       RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-10}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+      ADMIN_GATE_SECRET: ${ADMIN_GATE_SECRET:-}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-}
     depends_on:
       agent: { condition: service_healthy }
     mem_limit: 512m
@@ -35,6 +40,8 @@ services:
     environment:
       TRUSTED_PROXY_IP: ${TRUSTED_PROXY_IP:-127.0.0.1}
       PROXY_SECRET: ${PROXY_SECRET:-}
+      ADMIN_GATE_SECRET: ${ADMIN_GATE_SECRET:-}
+      ADMIN_PUBLIC_HOST: ${ADMIN_PUBLIC_HOST:-localhost}
     volumes:
       - ./docker/gate/default.conf.template:/etc/nginx/templates/default.conf.template:ro
       - ./docker/gate/10-check-secret.sh:/docker-entrypoint.d/10-check-secret.sh:ro
@@ -43,11 +50,51 @@ services:
     depends_on: [app]
     mem_limit: 64m
     restart: unless-stopped
-    networks: [internal]
+    networks: [internal, admin]
+
+  # Google login for /admin. Start with the "admin" profile once the OAuth client is set in .env
+  # (COMPOSE_PROFILES=admin). Only the emails in docker/auth/allowed-emails.txt can sign in.
+  auth:
+    profiles: ["admin"]
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.11.0
+    environment:
+      OAUTH2_PROXY_PROVIDER: google
+      OAUTH2_PROXY_HTTP_ADDRESS: 0.0.0.0:4180
+      OAUTH2_PROXY_UPSTREAMS: http://gate:8081
+      OAUTH2_PROXY_CLIENT_ID: ${OAUTH2_PROXY_CLIENT_ID:-}
+      OAUTH2_PROXY_CLIENT_SECRET: ${OAUTH2_PROXY_CLIENT_SECRET:-}
+      OAUTH2_PROXY_COOKIE_SECRET: ${OAUTH2_PROXY_COOKIE_SECRET:-}
+      OAUTH2_PROXY_COOKIE_NAME: _cost_admin
+      OAUTH2_PROXY_REDIRECT_URL: ${ADMIN_PUBLIC_URL:-https://localhost}/oauth2/callback
+      OAUTH2_PROXY_WHITELIST_DOMAINS: ${ADMIN_PUBLIC_HOST:-}
+      OAUTH2_PROXY_AUTHENTICATED_EMAILS_FILE: /etc/oauth2-proxy/allowed-emails.txt
+      OAUTH2_PROXY_REVERSE_PROXY: "true"
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
+      OAUTH2_PROXY_COOKIE_SECURE: "true"
+      OAUTH2_PROXY_COOKIE_HTTPONLY: "true"
+      OAUTH2_PROXY_COOKIE_SAMESITE: lax
+      OAUTH2_PROXY_COOKIE_EXPIRE: 12h
+      OAUTH2_PROXY_PASS_USER_HEADERS: "true"
+    volumes: ["./docker/auth/allowed-emails.txt:/etc/oauth2-proxy/allowed-emails.txt:ro"]
+    mem_limit: 64m
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    restart: unless-stopped
+    # "admin" is shared only with the gate, whose internal admin server accepts nothing else;
+    # "auth-egress" lets it reach Google for the login.
+    networks: [admin, auth-egress]
 
 volumes:
   catalogs:
   price-cache:
+  settings:
 
 networks:
   internal:
+  # No gateway (internal), so published ports keep entering through "internal" and the gate
+  # sees the same peer address as before.
+  admin:
+    internal: true
+    ipam:
+      config: [{ subnet: 10.251.77.0/29 }]
+  auth-egress:

@@ -69,3 +69,6 @@ bun.lockb
 
 # 인계 자료(회사 코드 포함) — 절대 커밋 금지
 handoff/
+
+# Admin login allowlist (personal email)
+docker/auth/allowed-emails.txt
