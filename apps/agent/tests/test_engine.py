@@ -309,3 +309,13 @@ def test_gcp_engine_versions_and_engine_in_service_name():
 def test_bare_engine_versions_are_not_specs():
     r = estimate("aws", [{"service": "rds", "spec": "PostgreSQL 16"}, {"service": "rds", "spec": "MySQL 8"}])
     assert all(l["included"] for l in r["lines"])
+
+
+def test_another_clouds_size_is_priced_as_this_clouds_cheapest():
+    # "같은 구성을 Azure로 하면?" once sent AWS's t3.medium to Azure and the VMs dropped out.
+    r = estimate("azure", [{"service": "virtual machines", "spec": "t3.medium", "count": 2}])
+    vm = r["lines"][0]
+    assert vm["key"] == "vm.b2s" and vm["included"] and vm["qty"] == 2 and "AWS 사양" in vm["note"]
+    assert r["total_cents"] == 7592
+    # A made-up size is still reported, not guessed.
+    assert not estimate("azure", [{"service": "virtual machines", "spec": "Z99 v9"}])["lines"][0]["included"]

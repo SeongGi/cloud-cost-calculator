@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CopilotChat, useAgent, useConfigureSuggestions, useCopilotKit } from "@copilotkit/react-core/v2";
 import { ReaderScrollView } from "@/components/chat/reader-scroll-view";
 import { AnswerMarkdown } from "@/components/chat/answer-markdown";
@@ -8,6 +8,7 @@ import { useCostTool } from "@/hooks/use-cost-tool";
 import { useTheme } from "@/hooks/use-theme";
 import { describeError } from "@/lib/errors";
 import { SITE } from "@/lib/site";
+import { followUps, latestResult } from "@/lib/follow-ups";
 import { currentThread, deleteChat, listChats, loadMessages, saveChat, setCurrent, type ChatSummary } from "@/lib/chat-store";
 
 function newThreadId(): string {
@@ -128,8 +129,12 @@ function ChatList({ current, onOpen, onClose }: { current: string; onOpen: (id: 
 
 function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: string) => void; onNewChat: () => void }) {
   useCostTool();
-  useConfigureSuggestions({ suggestions: EXAMPLES, available: "before-first-message" });
   const { agent } = useAgent({ threadId });
+  // Examples on an empty chat; after an answer, questions people tend to ask next about it.
+  // Chosen here because CopilotKit judges "first message" on its base agent, not this thread.
+  const nextQuestions = useMemo(() => followUps(latestResult(agent.messages)), [agent.messages]);
+  const suggestions = agent.messages.length === 0 ? EXAMPLES : nextQuestions.map((q) => ({ title: q, message: q }));
+  useConfigureSuggestions({ suggestions, available: "always" }, [suggestions.map((s) => s.message).join("|")]);
   const { copilotkit } = useCopilotKit();
   const { resolved, setTheme } = useTheme();
   const [error, setError] = useState<string | null>(null);
@@ -289,7 +294,7 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
             labels={{
               welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
               chatInputPlaceholder: "예: AWS EC2 2대, S3 500GB",
-              chatDisclaimerText: "공개 가격표 온디맨드 정가 기준 · 지난 대화는 '목록'에서",
+              chatDisclaimerText: "온디맨드 정가 기준 · 지난 대화는 '목록'에",
             }}
           />
         </div>

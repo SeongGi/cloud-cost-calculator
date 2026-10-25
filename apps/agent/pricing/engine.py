@@ -319,7 +319,12 @@ def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: 
                 family_line = plain_family_line[service]
             else:
                 family_line = _line(service, matched[0] if matched else opts[0], opts if len(opts) > 1 else None)
-                if want and not matched and not want <= set().union(*(key_tokens(k) for k in companions)):
+                foreign = foreign_spec_cloud(spec, cloud) if want and not matched else None
+                if foreign:
+                    # Another cloud's size: price this cloud's cheapest option instead of dropping it.
+                    family_line["note"] = (f"'{spec}'은 {CLOUD_LABEL[foreign]} 사양이라 {CLOUD_LABEL[cloud]}에서 "
+                                           f"가장 저렴한 사양으로 계산했습니다(선택 상자로 변경)")
+                elif want and not matched and not want <= set().union(*(key_tokens(k) for k in companions)):
                     _mark_missing(family_line, spec, has_alternatives=len(opts) > 1)
                 elif len(matched) > 1:
                     family_line["note"] = f"'{spec}'에 맞는 사양 {len(matched)}개 중 가장 저렴한 항목(선택 상자로 변경)"
@@ -403,6 +408,22 @@ def _target(item_lines: list[dict], kind: str, service: str) -> dict | None:
         return next((l for l in cands if l["per"] == "gb_month"), cands[0])
     return min(cands, key=lambda l: MILLION_PRIORITY.index(l["quantity_unit"])
                if l["quantity_unit"] in MILLION_PRIORITY else len(MILLION_PRIORITY))
+
+
+def foreign_spec_cloud(spec: str, cloud: str) -> str | None:
+    """The other cloud whose sizes this spec names ("t3.medium" asked for Azure, as in
+    "같은 구성을 Azure로 하면?"), or None."""
+    for other in CLOUDS:
+        if other == cloud:
+            continue
+        try:
+            items = load_catalog(other)["items"]
+        except CatalogUnavailable:
+            continue
+        want = tokens(spec, other)
+        if want and any(family_of(other, k) and want <= key_tokens(k) for k in items):
+            return other
+    return None
 
 
 def _mark_missing(line: dict, spec: str, has_alternatives: bool) -> None:
