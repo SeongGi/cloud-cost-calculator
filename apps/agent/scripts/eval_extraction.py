@@ -3,6 +3,7 @@
 A case passes when the engine total from the model's arguments equals the total from the
 hand-written arguments. Needs local Ollama. Usage:
   uv run python -m scripts.eval_extraction [--reasoning] [--model NAME] [--repeat N]
+  uv run python -m scripts.eval_extraction --gemini gemini-2.5-flash   (uses the key saved on the admin page)
 """
 
 import argparse
@@ -53,11 +54,16 @@ def main():
     ap.add_argument("--reasoning", action="store_true")
     ap.add_argument("--model")
     ap.add_argument("--repeat", type=int, default=1)
+    ap.add_argument("--gemini", help="Gemini model name; the key comes from the saved admin settings")
     args = ap.parse_args()
-    if args.model:
-        os.environ["OLLAMA_MODEL"] = args.model
-    model = build_model()
-    model.reasoning = args.reasoning
+    if args.gemini:
+        from src import router, settings
+        model = router.gemini_model(settings.load().gemini_api_key, args.gemini)
+    else:
+        if args.model:
+            os.environ["OLLAMA_MODEL"] = args.model
+        model = build_model()
+        model.reasoning = args.reasoning
     bound = model.bind_tools([estimate_cost])
     passed, times = 0, []
     for case in CASES * args.repeat:
@@ -79,7 +85,7 @@ def main():
         passed += ok
         print(f"{'OK ' if ok else 'BAD'} {times[-1]:5.1f}s {question[:40]} -> {json.dumps(calls[0]['args'] if calls else msg.content[:80], ensure_ascii=False)}")
     n = len(CASES) * args.repeat
-    print(f"model={model.model} reasoning={args.reasoning} pass={passed}/{n} avg={sum(times)/n:.1f}s max={max(times):.1f}s")
+    print(f"model={getattr(model, "model", "")} reasoning={args.reasoning} pass={passed}/{n} avg={sum(times)/n:.1f}s max={max(times):.1f}s")
 
 
 if __name__ == "__main__":

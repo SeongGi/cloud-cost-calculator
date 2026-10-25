@@ -10,7 +10,9 @@ import threading
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-DEFAULT_GEMINI_MODEL = "gemini-flash-latest"
+# Measured 2026-10-25: 12/12 extraction cases, ~3 s, and a far larger free daily quota than the
+# full Flash models (20 requests/day). The "gemini-flash-latest" alias hung for 40 s at that time.
+DEFAULT_GEMINI_MODEL = "gemini-3.1-flash-lite"
 _lock = threading.Lock()
 
 

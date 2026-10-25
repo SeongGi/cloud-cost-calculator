@@ -24,7 +24,14 @@ from src import settings
 logger = logging.getLogger(__name__)
 
 QUOTA_COOLDOWN_S = 600
+MAX_QUOTA_COOLDOWN_S = 6 * 3600
 ERROR_COOLDOWN_S = 120
+
+
+def quota_cooldown(exc: BaseException) -> int:
+    """Rest at least 10 minutes, or as long as Google says (retryDelay, e.g. a daily quota)."""
+    m = re.search(r"retryDelay['\"]?\s*[:=]\s*['\"]?(\d+)(?:\.\d+)?s", str(exc))
+    return min(max(QUOTA_COOLDOWN_S, int(m.group(1))), MAX_QUOTA_COOLDOWN_S) if m else QUOTA_COOLDOWN_S
 
 
 def is_quota_error(exc: BaseException) -> bool:
@@ -96,7 +103,7 @@ class LLMRouter(AgentMiddleware):
             STATUS.fallbacks += 1
             STATUS.last_error = ("한도 초과: " if quota else "오류: ") + str(exc)[:300]
             STATUS.last_error_at = time.time()
-            STATUS.cooldown_until = time.time() + (QUOTA_COOLDOWN_S if quota else ERROR_COOLDOWN_S)
+            STATUS.cooldown_until = time.time() + (quota_cooldown(exc) if quota else ERROR_COOLDOWN_S)
         logger.warning("Gemini %s failed (%s); using local model", name, type(exc).__name__)
 
     def _used(self, name: str, gemini: bool) -> None:

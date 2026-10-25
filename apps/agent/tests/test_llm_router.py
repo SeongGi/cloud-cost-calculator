@@ -132,3 +132,10 @@ def test_quota_detected_from_error_code():
         code = 429
     assert router.is_quota_error(ClientError("Too Many Requests"))
     assert not router.is_quota_error(ValueError("bad schema"))
+
+
+def test_quota_cooldown_follows_retry_delay():
+    daily = RuntimeError("429 RESOURCE_EXHAUSTED {'retryDelay': '5356s'}")
+    assert router.quota_cooldown(daily) == 5356
+    assert router.quota_cooldown(RuntimeError("429 {'retryDelay': '7s'}")) == router.QUOTA_COOLDOWN_S
+    assert router.quota_cooldown(RuntimeError("429 {'retryDelay': '999999s'}")) == router.MAX_QUOTA_COOLDOWN_S

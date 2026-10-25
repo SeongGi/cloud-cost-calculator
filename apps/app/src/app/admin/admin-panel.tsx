@@ -174,7 +174,7 @@ export function AdminPanel({ email }: { email: string }) {
         )}
         <p className="admin-note">
           키는 서버의 비공개 파일에만 저장되고 이 화면에는 끝 4자리만 보입니다. Gemini를 쓰면 방문자의 질문이 Google로 전송됩니다.
-          한도 초과나 오류가 나면 10분(오류는 2분) 동안 로컬 모델로 답합니다.
+          한도 초과면 Google이 알려 준 대기 시간(최소 10분, 최대 6시간), 그 밖의 오류면 2분 동안 로컬 모델로 답합니다. 무료 등급은 모델마다 하루 한도가 다릅니다(Flash 20회 등).
         </p>
       </section>
     </main>
