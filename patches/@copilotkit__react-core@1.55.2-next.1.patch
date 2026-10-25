@@ -1,0 +1,62 @@
+diff --git a/dist/copilotkit-Cd-NrDyp.mjs b/dist/copilotkit-Cd-NrDyp.mjs
+index ccb394a4c167d14dee586e3c8f2bad8475e781cf..54814eb18504e36455285872cea1be7f82d8f65c 100644
+--- a/dist/copilotkit-Cd-NrDyp.mjs
++++ b/dist/copilotkit-Cd-NrDyp.mjs
+@@ -779,6 +779,8 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 		value: resolvedValue,
+ 		onChange: handleChange,
+ 		onKeyDown: handleKeyDown,
++		onCompositionStart: (e) => { e.currentTarget.dataset.composing = "1"; },
++		onCompositionEnd: (e) => { delete e.currentTarget.dataset.composing; },
+ 		autoFocus,
+ 		className: twMerge("cpk:w-full cpk:py-3", isExpanded ? "cpk:px-5" : "cpk:pr-5")
+ 	});
+@@ -855,7 +857,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 	};
+ 	const ensureMeasurements = useCallback(() => {
+ 		const textarea = inputRef.current;
+-		if (!textarea) return;
++		if (!textarea || textarea.dataset.composing === "1") return;
+ 		const previousValue = textarea.value;
+ 		const previousHeight = textarea.style.height;
+ 		textarea.style.height = "auto";
+@@ -922,7 +924,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 		}
+ 		if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+ 			if (window.matchMedia("(max-width: 767px)").matches) {
+-				ensureMeasurements();
++				if (measurementsRef.current.singleLineHeight === 0) ensureMeasurements();
+ 				adjustTextareaHeight();
+ 				updateLayout("expanded");
+ 				return;
+diff --git a/dist/copilotkit-Dgdpbqjt.cjs b/dist/copilotkit-Dgdpbqjt.cjs
+index 8e85f42e13573258f50d587604ac1140c54b2d01..f9b1e1101b25c534f184a2b4655ea715b93d4a1e 100644
+--- a/dist/copilotkit-Dgdpbqjt.cjs
++++ b/dist/copilotkit-Dgdpbqjt.cjs
+@@ -809,6 +809,8 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 		value: resolvedValue,
+ 		onChange: handleChange,
+ 		onKeyDown: handleKeyDown,
++		onCompositionStart: (e) => { e.currentTarget.dataset.composing = "1"; },
++		onCompositionEnd: (e) => { delete e.currentTarget.dataset.composing; },
+ 		autoFocus,
+ 		className: (0, tailwind_merge.twMerge)("cpk:w-full cpk:py-3", isExpanded ? "cpk:px-5" : "cpk:pr-5")
+ 	});
+@@ -885,7 +887,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 	};
+ 	const ensureMeasurements = (0, react.useCallback)(() => {
+ 		const textarea = inputRef.current;
+-		if (!textarea) return;
++		if (!textarea || textarea.dataset.composing === "1") return;
+ 		const previousValue = textarea.value;
+ 		const previousHeight = textarea.style.height;
+ 		textarea.style.height = "auto";
+@@ -952,7 +954,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 		}
+ 		if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+ 			if (window.matchMedia("(max-width: 767px)").matches) {
+-				ensureMeasurements();
++				if (measurementsRef.current.singleLineHeight === 0) ensureMeasurements();
+ 				adjustTextareaHeight();
+ 				updateLayout("expanded");
+ 				return;

@@ -73,7 +73,15 @@ def test_gcp_unit_conversion():
 
 
 def test_catalogs_complete():
-    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (46, 31, 39)
+    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (46, 31, 40)
     for cloud in ("aws", "azure", "gcp"):
         regions = set(json.loads((BUNDLED_DIR / f"{cloud}.json").read_text())["regions"])
         assert all(set(it["prices"]) == regions for it in items(cloud).values()), cloud
+
+
+def test_every_alias_resolves():
+    # Hyphenated aliases ("site-to-site vpn") once failed to match the normalized user text.
+    from pricing.engine import load_catalog, resolve_service
+    for cloud in ("aws", "azure", "gcp"):
+        catalog = load_catalog(cloud)
+        assert [a for a in catalog["aliases"] if resolve_service(cloud, a, catalog)[0] is None] == [], cloud

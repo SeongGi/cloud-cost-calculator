@@ -177,14 +177,21 @@ def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | Non
     try:
         parsed = parse_items([i.model_dump() if isinstance(i, BaseModel) else i for i in items])
         said = named_clouds(text)
-        prev = previous_request(state, next(iter(said)) if len(said) == 1 else None)
-        # A follow-up keeps the earlier configuration even when the model sends only the change.
-        # The code decides from the words too, so a model that forgets the flag still gets it right;
-        # a different cloud counts only when the user named it or the new services belong to it.
-        merge = False
-        if prev is not None and follow_up is not False and not (said - {prev["cloud"]}):
-            same_cloud = cloud == prev["cloud"] or (not said and resolves_on(prev["cloud"], parsed))
-            merge = same_cloud and (follow_up is True or bool(remove) or bool(FOLLOW_UP.search(text)))
+        # Each cloud keeps its own configuration in the conversation. A follow-up goes to the cloud
+        # the user named; else to the cloud the model chose if it was estimated before; else to the
+        # latest estimate when the new services exist there ("cloud vpn" in an Azure chat).
+        cue = follow_up is True or bool(remove) or bool(FOLLOW_UP.search(text))
+        prev = None
+        if follow_up is not False or FOLLOW_UP.search(text):
+            # "aws와 vpn으로 연결": the GCP call builds on the GCP config, the AWS call on AWS's.
+            prev = previous_request(state, cloud)
+            if prev is None and len(said) == 1 and cloud not in said:
+                prev = previous_request(state, next(iter(said)))
+            if prev is None and not said:
+                last = previous_request(state)
+                if last is not None and resolves_on(last["cloud"], parsed):
+                    prev = last
+        merge = prev is not None and cue
         notes = []
         if merge:
             cloud = prev["cloud"]

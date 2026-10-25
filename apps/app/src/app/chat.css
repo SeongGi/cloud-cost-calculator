@@ -342,3 +342,14 @@
 .chat-intro a {
   color: var(--text-primary);
 }
+
+/* Phones: keep the input small so answers get the screen. */
+@media (max-width: 640px) {
+  .chat-content [data-testid="copilot-chat-input"] textarea {
+    min-height: 0;
+  }
+  .chat-content [data-testid="copilot-chat-input"] {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}

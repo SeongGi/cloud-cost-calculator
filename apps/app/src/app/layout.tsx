@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   authors: [{ name: SITE.author, url: SITE.about }],
   creator: SITE.author,
   robots: { index: true, follow: true },
+  // Search Console ownership check (public value by design).
+  verification: { google: "aAd1tMkUmArDEnsIWQp-hWzoA3nly9Asn88eRj-Tw0M" },
   openGraph: {
     type: "website", url: SITE.url, siteName: SITE.name, title: SITE.title, description: SITE.description, locale: "ko_KR",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "클라우드 비용 계산기 화면" }],

@@ -7,6 +7,11 @@ settings:
 overrides:
   esbuild: ^0.27.3
 
+patchedDependencies:
+  '@copilotkit/react-core@1.55.2-next.1':
+    hash: 7wkeskmqt7zwzm2ch4owbk2kvu
+    path: patches/@copilotkit__react-core@1.55.2-next.1.patch
+
 importers:
 
   .:
@@ -19,7 +24,7 @@ importers:
     dependencies:
       '@copilotkit/react-core':
         specifier: 1.55.2-next.1
-        version: 1.55.2-next.1(@types/mdast@4.0.4)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(graphql@16.12.0)(micromark-util-types@2.0.2)(micromark@4.0.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@3.25.76)
+        version: 1.55.2-next.1(patch_hash=7wkeskmqt7zwzm2ch4owbk2kvu)(@types/mdast@4.0.4)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(graphql@16.12.0)(micromark-util-types@2.0.2)(micromark@4.0.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@3.25.76)
       '@copilotkit/runtime':
         specifier: 1.55.2-next.1
         version: 1.55.2-next.1(@cfworker/json-schema@4.1.1)(@langchain/core@0.3.80(@opentelemetry/api@1.9.0)(openai@4.104.0(ws@8.19.0)(zod@3.25.76)))(@langchain/langgraph-sdk@1.9.20(@langchain/core@0.3.80(@opentelemetry/api@1.9.0)(openai@4.104.0(ws@8.19.0)(zod@3.25.76)))(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@opentelemetry/api@1.9.0)(langchain@1.4.4(@langchain/core@0.3.80(@opentelemetry/api@1.9.0)(openai@4.104.0(ws@8.19.0)(zod@3.25.76)))(@opentelemetry/api@1.9.0)(openai@4.104.0(ws@8.19.0)(zod@3.25.76))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(ws@8.19.0)(zod-to-json-schema@3.25.1(zod@3.25.76)))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod-to-json-schema@3.25.1(zod@3.25.76))
@@ -5856,7 +5861,7 @@ snapshots:
 
   '@copilotkit/license-verifier@0.0.1-a1': {}
 
-  '@copilotkit/react-core@1.55.2-next.1(@types/mdast@4.0.4)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(graphql@16.12.0)(micromark-util-types@2.0.2)(micromark@4.0.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@3.25.76)':
+  '@copilotkit/react-core@1.55.2-next.1(patch_hash=7wkeskmqt7zwzm2ch4owbk2kvu)(@types/mdast@4.0.4)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(graphql@16.12.0)(micromark-util-types@2.0.2)(micromark@4.0.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@3.25.76)':
     dependencies:
       '@ag-ui/client': 0.0.52
       '@ag-ui/core': 0.0.52

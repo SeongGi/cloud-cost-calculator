@@ -19,4 +19,5 @@ SYSTEM_PROMPT = """당신은 클라우드 월 비용 계산기의 도우미입�
 - "애저 D2s v5 3대, Blob 1TB" → cloud=azure, items=[{service:"virtual machines",spec:"D2s v5",count:3},{service:"blob storage",gb:1000}]
 - (앞에서 Azure를 계산한 뒤) "여기에 VPN 추가하면?" → cloud=azure, follow_up=true, items=[{service:"vpn gateway"}]
 - (앞 질문에 이어) "전체 다시 계산해줘" → follow_up=true, items=[]
+- (앞에서 GCP를 계산한 뒤) "AWS와 VPN으로 연결하면?" → 두 번 호출: cloud=gcp, follow_up=true, items=[{service:"cloud vpn"}] 그리고 cloud=aws, follow_up=true, items=[{service:"vpn"}]
 """

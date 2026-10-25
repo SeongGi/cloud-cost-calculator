@@ -111,7 +111,7 @@ def test_gcp_case3_gke_nat_disk_cache():
     ])
     # 0.10*730=73.00, 200*0.045=9.00, 0.0014*730=1.022 -> 1.02, 300*0.221=66.30, 0.065*730=47.45
     assert r["total_cents"] == 7300 + 900 + 102 + 6630 + 4745 == 19677
-    assert r["as_of"] == "2026-10-23" and r["source"] == "Google Cloud Billing Catalog API"
+    assert r["as_of"] == "2026-10-25" and r["source"] == "Google Cloud Billing Catalog API"
 
 
 # --- rules ---

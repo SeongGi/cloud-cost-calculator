@@ -3,10 +3,8 @@
     "bigquery": "bigquery",
     "cloud armor": "cloud_armor",
     "cloud dns": "cloud_dns",
-    "cloud function": "cloud_functions",
     "cloud functions": "cloud_functions",
     "cloud load balancer": "cloud_lb",
-    "cloud load balancer (https)": "cloud_lb",
     "cloud load balancing": "cloud_lb",
     "cloud logging": "cloud_logging",
     "cloud memorystore": "memorystore",
@@ -19,16 +17,17 @@
     "cloud sql mysql": "cloudsql",
     "cloud sql postgresql": "cloudsql",
     "cloud storage": "gcs",
+    "cloud vpn": "cloud_vpn",
     "compute engine": "gce",
     "gce": "gce",
     "gcp compute engine": "gce",
+    "gcp vpn": "cloud_vpn",
     "gcs": "gcs",
     "gke": "gke",
     "google bigquery": "bigquery",
     "google cloud armor": "cloud_armor",
     "google cloud compute engine": "gce",
     "google cloud dns": "cloud_dns",
-    "google cloud function": "cloud_functions",
     "google cloud functions": "cloud_functions",
     "google cloud load balancing": "cloud_lb",
     "google cloud logging": "cloud_logging",
@@ -37,9 +36,11 @@
     "google cloud run": "cloud_run",
     "google cloud sql": "cloudsql",
     "google cloud storage": "gcs",
+    "google cloud vpn": "cloud_vpn",
     "google compute engine": "gce",
     "google kubernetes engine": "gke",
     "google persistent disk": "pd",
+    "ha vpn": "cloud_vpn",
     "http(s) load balancer": "cloud_lb",
     "https load balancer": "cloud_lb",
     "kubernetes engine": "gke",
@@ -48,9 +49,11 @@
     "memorystore for redis": "memorystore",
     "pd": "pd",
     "persistent disk": "pd",
-    "stackdriver logging": "cloud_logging"
+    "stackdriver logging": "cloud_logging",
+    "vpn": "cloud_vpn",
+    "vpn tunnel": "cloud_vpn"
   },
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-25",
   "currency": "USD",
   "items": {
     "bigquery.analysis": {
@@ -63,9 +66,8 @@
       "per": "gb",
       "prices": {
         "asia-northeast1": {
-          "convert_from_unit": "1/1024",
           "description": "Analysis (asia-northeast1)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "82D5-BCCE-5431",
           "unit": "TiBy",
@@ -73,9 +75,8 @@
           "usd": "0.0073242188"
         },
         "asia-northeast3": {
-          "convert_from_unit": "1/1024",
           "description": "Analysis (asia-northeast3)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "5DE1-2637-AD38",
           "unit": "TiBy",
@@ -83,9 +84,8 @@
           "usd": "0.0073242188"
         },
         "us-central1": {
-          "convert_from_unit": "1/1024",
           "description": "Analysis (us-central1)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "3362-E469-6BEF",
           "unit": "TiBy",
@@ -113,7 +113,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Active Logical Storage (asia-northeast1)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "709C-E503-30BF",
           "unit": "GiBy.mo",
@@ -122,7 +122,7 @@
         },
         "asia-northeast3": {
           "description": "Active Logical Storage (asia-northeast3)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "E44D-16C0-DCD3",
           "unit": "GiBy.mo",
@@ -131,7 +131,7 @@
         },
         "us-central1": {
           "description": "Active Logical Storage (us-central1)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "0018-A5A0-9D6D",
           "unit": "GiBy.mo",
@@ -159,7 +159,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Networking Cloud Armor Policy",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4B13-E64F-4A2B",
           "unit": "mo",
@@ -168,7 +168,7 @@
         },
         "asia-northeast3": {
           "description": "Networking Cloud Armor Policy",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4B13-E64F-4A2B",
           "unit": "mo",
@@ -177,7 +177,7 @@
         },
         "us-central1": {
           "description": "Networking Cloud Armor Policy",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4B13-E64F-4A2B",
           "unit": "mo",
@@ -205,7 +205,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Networking Cloud Armor Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "1A87-DEB9-C4BE",
           "unit": "count",
@@ -214,7 +214,7 @@
         },
         "asia-northeast3": {
           "description": "Networking Cloud Armor Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "1A87-DEB9-C4BE",
           "unit": "count",
@@ -223,7 +223,7 @@
         },
         "us-central1": {
           "description": "Networking Cloud Armor Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "1A87-DEB9-C4BE",
           "unit": "count",
@@ -251,7 +251,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Networking Cloud Armor Rule",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "A321-89BD-F5BC",
           "unit": "mo",
@@ -260,7 +260,7 @@
         },
         "asia-northeast3": {
           "description": "Networking Cloud Armor Rule",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "A321-89BD-F5BC",
           "unit": "mo",
@@ -269,7 +269,7 @@
         },
         "us-central1": {
           "description": "Networking Cloud Armor Rule",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "A321-89BD-F5BC",
           "unit": "mo",
@@ -297,7 +297,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "DNS Query (port 53)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6DFF-5025-A128",
           "unit": "count",
@@ -306,7 +306,7 @@
         },
         "asia-northeast3": {
           "description": "DNS Query (port 53)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6DFF-5025-A128",
           "unit": "count",
@@ -315,7 +315,7 @@
         },
         "us-central1": {
           "description": "DNS Query (port 53)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6DFF-5025-A128",
           "unit": "count",
@@ -343,7 +343,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "ManagedZone",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "8C22-6FC3-D478",
           "unit": "mo",
@@ -352,7 +352,7 @@
         },
         "asia-northeast3": {
           "description": "ManagedZone",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "8C22-6FC3-D478",
           "unit": "mo",
@@ -361,7 +361,7 @@
         },
         "us-central1": {
           "description": "ManagedZone",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "8C22-6FC3-D478",
           "unit": "mo",
@@ -389,7 +389,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Cloud Run Functions Invocations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "92DF-0F0E-630F",
           "unit": "count",
@@ -398,7 +398,7 @@
         },
         "asia-northeast3": {
           "description": "Cloud Run Functions Invocations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "92DF-0F0E-630F",
           "unit": "count",
@@ -407,7 +407,7 @@
         },
         "us-central1": {
           "description": "Cloud Run Functions Invocations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "92DF-0F0E-630F",
           "unit": "count",
@@ -435,7 +435,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Cloud Load Balancer Forwarding Rule Minimum for Tokyo (asia-northeast1)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "A869-FB8F-D3BB",
           "unit": "h",
@@ -444,7 +444,7 @@
         },
         "asia-northeast3": {
           "description": "Cloud Load Balancer Forwarding Rule Minimum for Seoul (asia-northeast3)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "8B08-9A11-D997",
           "unit": "h",
@@ -453,7 +453,7 @@
         },
         "us-central1": {
           "description": "Cloud Load Balancer Forwarding Rule Minimum for Americas (multi-region)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "CBE2-3343-9091",
           "unit": "h",
@@ -481,7 +481,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Log Storage cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "143F-A1B0-E0BE",
           "unit": "GiBy",
@@ -490,7 +490,7 @@
         },
         "asia-northeast3": {
           "description": "Log Storage cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "143F-A1B0-E0BE",
           "unit": "GiBy",
@@ -499,7 +499,7 @@
         },
         "us-central1": {
           "description": "Log Storage cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "143F-A1B0-E0BE",
           "unit": "GiBy",
@@ -527,7 +527,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Log Retention cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "F4AE-5A52-ACE3",
           "unit": "GiBy.mo",
@@ -536,7 +536,7 @@
         },
         "asia-northeast3": {
           "description": "Log Retention cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "F4AE-5A52-ACE3",
           "unit": "GiBy.mo",
@@ -545,7 +545,7 @@
         },
         "us-central1": {
           "description": "Log Retention cost",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "F4AE-5A52-ACE3",
           "unit": "GiBy.mo",
@@ -573,7 +573,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Networking Cloud Nat Data Processing",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "015F-5732-FFF0",
           "unit": "GiBy",
@@ -582,7 +582,7 @@
         },
         "asia-northeast3": {
           "description": "Networking Cloud Nat Data Processing",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "015F-5732-FFF0",
           "unit": "GiBy",
@@ -591,7 +591,7 @@
         },
         "us-central1": {
           "description": "Networking Cloud Nat Data Processing",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "015F-5732-FFF0",
           "unit": "GiBy",
@@ -619,7 +619,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Networking Cloud Nat Gateway Uptime",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "32E2-4EFC-EF9F",
           "unit": "h",
@@ -628,7 +628,7 @@
         },
         "asia-northeast3": {
           "description": "Networking Cloud Nat Gateway Uptime",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "32E2-4EFC-EF9F",
           "unit": "h",
@@ -637,7 +637,7 @@
         },
         "us-central1": {
           "description": "Networking Cloud Nat Gateway Uptime",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "32E2-4EFC-EF9F",
           "unit": "h",
@@ -664,9 +664,8 @@
       "per": "gb_hour",
       "prices": {
         "asia-northeast1": {
-          "convert_from_unit": "3600",
           "description": "Services Memory (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "02A2-9231-36A6",
           "unit": "GiBy.s",
@@ -674,9 +673,8 @@
           "usd": "0.0090000000"
         },
         "asia-northeast3": {
-          "convert_from_unit": "3600",
           "description": "Services Memory Tier 2 (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "600C-3782-6708",
           "unit": "GiBy.s",
@@ -684,9 +682,8 @@
           "usd": "0.0126000000"
         },
         "us-central1": {
-          "convert_from_unit": "3600",
           "description": "Services Memory (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "02A2-9231-36A6",
           "unit": "GiBy.s",
@@ -714,7 +711,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "2DA5-55D3-E679",
           "unit": "count",
@@ -723,7 +720,7 @@
         },
         "asia-northeast3": {
           "description": "Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "2DA5-55D3-E679",
           "unit": "count",
@@ -732,7 +729,7 @@
         },
         "us-central1": {
           "description": "Requests",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "2DA5-55D3-E679",
           "unit": "count",
@@ -759,9 +756,8 @@
       "per": "vcpu_hour",
       "prices": {
         "asia-northeast1": {
-          "convert_from_unit": "3600",
           "description": "Services CPU (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "4856-B847-F1EB",
           "unit": "s",
@@ -769,9 +765,8 @@
           "usd": "0.0864000000"
         },
         "asia-northeast3": {
-          "convert_from_unit": "3600",
           "description": "Services CPU Tier 2  (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "085C-A237-027A",
           "unit": "s",
@@ -779,9 +774,8 @@
           "usd": "0.1209600000"
         },
         "us-central1": {
-          "convert_from_unit": "3600",
           "description": "Services CPU (Request-based billing)",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "4856-B847-F1EB",
           "unit": "s",
@@ -794,6 +788,52 @@
       "service": "cloud_run",
       "slider": {
         "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_vpn.tunnel": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud VPN tunnel (incl. HA VPN, per tunnel hour)",
+        "ja": "Cloud VPN トンネル (HA VPN 含む、トンネルあたり時間)",
+        "ko": "Cloud VPN 터널 (HA VPN 포함, 터널당 시간)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud VPN Tunnel Asianortheast1",
+          "effective_time": "2026-10-24T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "B0D8-6A41-4771",
+          "unit": "h",
+          "unit_price_usd": "0.0750000000",
+          "usd": "0.0750000000"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud VPN Tunnel Asianortheast3",
+          "effective_time": "2026-10-24T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "27B8-FA18-75DB",
+          "unit": "h",
+          "unit_price_usd": "0.0750000000",
+          "usd": "0.0750000000"
+        },
+        "us-central1": {
+          "description": "Networking Cloud VPN Tunnel Uscentral1",
+          "effective_time": "2026-10-24T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "6F2D-F158-5D10",
+          "unit": "h",
+          "unit_price_usd": "0.0500000000",
+          "usd": "0.0500000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_vpn",
+      "slider": {
+        "max": 20,
         "min": 0,
         "step": 1
       }
@@ -811,7 +851,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "DE5C-7D27-AFAD",
@@ -820,7 +860,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "271B-E38A-E844",
@@ -838,7 +878,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "329C-8CA7-8FFF",
@@ -847,7 +887,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "E156-2D86-A683",
@@ -865,7 +905,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "741F-D668-2417",
@@ -874,7 +914,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "49E9-5D00-B807",
@@ -911,7 +951,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "DE5C-7D27-AFAD",
@@ -920,7 +960,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "271B-E38A-E844",
@@ -938,7 +978,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "329C-8CA7-8FFF",
@@ -947,7 +987,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "E156-2D86-A683",
@@ -965,7 +1005,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "741F-D668-2417",
@@ -974,7 +1014,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "49E9-5D00-B807",
@@ -1011,7 +1051,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "DE5C-7D27-AFAD",
@@ -1020,7 +1060,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "271B-E38A-E844",
@@ -1038,7 +1078,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "329C-8CA7-8FFF",
@@ -1047,7 +1087,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "E156-2D86-A683",
@@ -1065,7 +1105,7 @@
           "components": [
             {
               "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "741F-D668-2417",
@@ -1074,7 +1114,7 @@
             },
             {
               "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "49E9-5D00-B807",
@@ -1111,7 +1151,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "D34E-ED22-3AA3",
@@ -1120,7 +1160,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "9AE6-50FF-E3A7",
@@ -1138,7 +1178,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "0304-17F6-DF49",
@@ -1147,7 +1187,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "15DD-D826-2867",
@@ -1165,7 +1205,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "965E-7C36-08E6",
@@ -1174,7 +1214,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "3.75",
               "role": "ram_gib",
               "sku_id": "93DA-3F55-CB04",
@@ -1211,7 +1251,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "D34E-ED22-3AA3",
@@ -1220,7 +1260,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "9AE6-50FF-E3A7",
@@ -1238,7 +1278,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "0304-17F6-DF49",
@@ -1247,7 +1287,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "15DD-D826-2867",
@@ -1265,7 +1305,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "965E-7C36-08E6",
@@ -1274,7 +1314,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "7.5",
               "role": "ram_gib",
               "sku_id": "93DA-3F55-CB04",
@@ -1311,7 +1351,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "D34E-ED22-3AA3",
@@ -1320,7 +1360,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "9AE6-50FF-E3A7",
@@ -1338,7 +1378,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "0304-17F6-DF49",
@@ -1347,7 +1387,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "15DD-D826-2867",
@@ -1365,7 +1405,7 @@
           "components": [
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "965E-7C36-08E6",
@@ -1374,7 +1414,7 @@
             },
             {
               "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "93DA-3F55-CB04",
@@ -1409,7 +1449,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Cloud SQL for MySQL: Zonal - Standard storage in Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "8B28-EC1C-76C6",
           "unit": "GiBy.mo",
@@ -1418,7 +1458,7 @@
         },
         "asia-northeast3": {
           "description": "Cloud SQL for MySQL: Zonal - Standard storage in Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "CBAA-1A30-444D",
           "unit": "GiBy.mo",
@@ -1427,7 +1467,7 @@
         },
         "us-central1": {
           "description": "Cloud SQL for MySQL: Zonal - Standard storage in Americas",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "F0A1-2B08-FA36",
           "unit": "GiBy.mo",
@@ -1457,7 +1497,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "EAED-8A05-843B",
@@ -1466,7 +1506,7 @@
             },
             {
               "description": "E2 Instance Ram running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "ram_gib",
               "sku_id": "CB4B-B875-93B4",
@@ -1484,7 +1524,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "9304-94C4-2117",
@@ -1493,7 +1533,7 @@
             },
             {
               "description": "E2 Instance Ram running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "ram_gib",
               "sku_id": "D715-4E57-BAFB",
@@ -1511,7 +1551,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "1",
               "role": "vcpu",
               "sku_id": "CF4E-A0C7-E3BF",
@@ -1520,7 +1560,7 @@
             },
             {
               "description": "E2 Instance Ram running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "ram_gib",
               "sku_id": "F449-33EC-A5EF",
@@ -1557,7 +1597,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "EAED-8A05-843B",
@@ -1566,7 +1606,7 @@
             },
             {
               "description": "E2 Instance Ram running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "CB4B-B875-93B4",
@@ -1584,7 +1624,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "9304-94C4-2117",
@@ -1593,7 +1633,7 @@
             },
             {
               "description": "E2 Instance Ram running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "D715-4E57-BAFB",
@@ -1611,7 +1651,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "CF4E-A0C7-E3BF",
@@ -1620,7 +1660,7 @@
             },
             {
               "description": "E2 Instance Ram running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "F449-33EC-A5EF",
@@ -1657,7 +1697,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "EAED-8A05-843B",
@@ -1666,7 +1706,7 @@
             },
             {
               "description": "E2 Instance Ram running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "CB4B-B875-93B4",
@@ -1684,7 +1724,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "9304-94C4-2117",
@@ -1693,7 +1733,7 @@
             },
             {
               "description": "E2 Instance Ram running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "D715-4E57-BAFB",
@@ -1711,7 +1751,7 @@
           "components": [
             {
               "description": "E2 Instance Core running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "CF4E-A0C7-E3BF",
@@ -1720,7 +1760,7 @@
             },
             {
               "description": "E2 Instance Ram running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "F449-33EC-A5EF",
@@ -1757,7 +1797,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "E137-7DDF-1143",
@@ -1766,7 +1806,7 @@
             },
             {
               "description": "N2 Instance Ram running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "CFB3-624B-6A52",
@@ -1784,7 +1824,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "D71C-9B8F-0ED9",
@@ -1793,7 +1833,7 @@
             },
             {
               "description": "N2 Instance Ram running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "A9FC-4BD1-8E21",
@@ -1811,7 +1851,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "2",
               "role": "vcpu",
               "sku_id": "BB77-5FDA-69D9",
@@ -1820,7 +1860,7 @@
             },
             {
               "description": "N2 Instance Ram running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "8",
               "role": "ram_gib",
               "sku_id": "5B01-D157-A097",
@@ -1857,7 +1897,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "E137-7DDF-1143",
@@ -1866,7 +1906,7 @@
             },
             {
               "description": "N2 Instance Ram running in Japan",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "CFB3-624B-6A52",
@@ -1884,7 +1924,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "D71C-9B8F-0ED9",
@@ -1893,7 +1933,7 @@
             },
             {
               "description": "N2 Instance Ram running in Seoul",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "A9FC-4BD1-8E21",
@@ -1911,7 +1951,7 @@
           "components": [
             {
               "description": "N2 Instance Core running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "4",
               "role": "vcpu",
               "sku_id": "BB77-5FDA-69D9",
@@ -1920,7 +1960,7 @@
             },
             {
               "description": "N2 Instance Ram running in Americas",
-              "effective_time": "2026-10-23T07:00:00Z",
+              "effective_time": "2026-10-24T07:00:00Z",
               "multiplier": "16",
               "role": "ram_gib",
               "sku_id": "5B01-D157-A097",
@@ -1955,7 +1995,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Regional Standard Class A Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4DBF-185F-A415",
           "unit": "count",
@@ -1964,7 +2004,7 @@
         },
         "asia-northeast3": {
           "description": "Regional Standard Class A Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4DBF-185F-A415",
           "unit": "count",
@@ -1973,7 +2013,7 @@
         },
         "us-central1": {
           "description": "Regional Standard Class A Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "4DBF-185F-A415",
           "unit": "count",
@@ -2001,7 +2041,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Regional Standard Class B Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "7870-010B-2763",
           "unit": "count",
@@ -2010,7 +2050,7 @@
         },
         "asia-northeast3": {
           "description": "Regional Standard Class B Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "7870-010B-2763",
           "unit": "count",
@@ -2019,7 +2059,7 @@
         },
         "us-central1": {
           "description": "Regional Standard Class B Operations",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "7870-010B-2763",
           "unit": "count",
@@ -2047,7 +2087,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Standard Storage Tokyo",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "1845-1496-2891",
           "unit": "GiBy.mo",
@@ -2056,7 +2096,7 @@
         },
         "asia-northeast3": {
           "description": "Standard Storage Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "59CF-0E01-97FE",
           "unit": "GiBy.mo",
@@ -2065,7 +2105,7 @@
         },
         "us-central1": {
           "description": "Standard Storage US Regional",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "E5F0-6A5D-7BAD",
           "unit": "GiBy.mo",
@@ -2093,7 +2133,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Zonal Kubernetes Clusters",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6B92-A835-08AB",
           "unit": "h",
@@ -2102,7 +2142,7 @@
         },
         "asia-northeast3": {
           "description": "Zonal Kubernetes Clusters",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6B92-A835-08AB",
           "unit": "h",
@@ -2111,7 +2151,7 @@
         },
         "us-central1": {
           "description": "Zonal Kubernetes Clusters",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "global",
           "sku_id": "6B92-A835-08AB",
           "unit": "h",
@@ -2139,7 +2179,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Redis Capacity Basic M1 Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "D516-9D9F-81AF",
           "unit": "h",
@@ -2148,7 +2188,7 @@
         },
         "asia-northeast3": {
           "description": "Redis Capacity Basic M1 Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "BA89-9DD7-2ED3",
           "unit": "h",
@@ -2157,7 +2197,7 @@
         },
         "us-central1": {
           "description": "Redis Capacity Basic M1 Iowa/South Carolina/Oregon",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "38BC-F861-2EB5",
           "unit": "h",
@@ -2185,7 +2225,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Redis Capacity Basic M2 Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "3086-8D97-4998",
           "unit": "h",
@@ -2194,7 +2234,7 @@
         },
         "asia-northeast3": {
           "description": "Redis Capacity Basic M2 Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "EA91-630B-3490",
           "unit": "h",
@@ -2203,7 +2243,7 @@
         },
         "us-central1": {
           "description": "Redis Capacity Basic M2 Iowa/South Carolina/Oregon",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "BF59-06FF-4968",
           "unit": "h",
@@ -2231,7 +2271,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Redis Capacity Standard M1 Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "B36B-7EFC-DFE7",
           "unit": "h",
@@ -2240,7 +2280,7 @@
         },
         "asia-northeast3": {
           "description": "Redis Capacity Standard M1 Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "D61C-FE16-60EC",
           "unit": "h",
@@ -2249,7 +2289,7 @@
         },
         "us-central1": {
           "description": "Redis Capacity Standard M1 Iowa/South Carolina/Oregon",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "6CC9-917B-40AB",
           "unit": "h",
@@ -2277,7 +2317,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Redis Capacity Standard M2 Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "CD7A-1AC5-5098",
           "unit": "h",
@@ -2286,7 +2326,7 @@
         },
         "asia-northeast3": {
           "description": "Redis Capacity Standard M2 Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "9384-045F-9E8A",
           "unit": "h",
@@ -2295,7 +2335,7 @@
         },
         "us-central1": {
           "description": "Redis Capacity Standard M2 Iowa/South Carolina/Oregon",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "A4A4-53B9-26CD",
           "unit": "h",
@@ -2323,7 +2363,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Balanced PD Capacity in Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "6D8C-DF09-314D",
           "unit": "GiBy.mo",
@@ -2332,7 +2372,7 @@
         },
         "asia-northeast3": {
           "description": "Balanced PD Capacity in Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "5666-EFB4-5C79",
           "unit": "GiBy.mo",
@@ -2341,7 +2381,7 @@
         },
         "us-central1": {
           "description": "Balanced PD Capacity",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "6AE1-525F-8B80",
           "unit": "GiBy.mo",
@@ -2369,7 +2409,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "SSD backed PD Capacity in Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "704E-4991-FEE8",
           "unit": "GiBy.mo",
@@ -2378,7 +2418,7 @@
         },
         "asia-northeast3": {
           "description": "SSD backed PD Capacity in Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "2C69-A050-09F7",
           "unit": "GiBy.mo",
@@ -2387,7 +2427,7 @@
         },
         "us-central1": {
           "description": "SSD backed PD Capacity",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "B188-61DD-52E4",
           "unit": "GiBy.mo",
@@ -2415,7 +2455,7 @@
       "prices": {
         "asia-northeast1": {
           "description": "Storage PD Capacity in Japan",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "9977-2BC5-386A",
           "unit": "GiBy.mo",
@@ -2424,7 +2464,7 @@
         },
         "asia-northeast3": {
           "description": "Storage PD Capacity in Seoul",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "0306-B164-A7B7",
           "unit": "GiBy.mo",
@@ -2433,7 +2473,7 @@
         },
         "us-central1": {
           "description": "Storage PD Capacity",
-          "effective_time": "2026-10-23T07:00:00Z",
+          "effective_time": "2026-10-24T07:00:00Z",
           "price_scope": "regional",
           "sku_id": "D973-5D65-BAB2",
           "unit": "GiBy.mo",
@@ -2457,5 +2497,6 @@
     "asia-northeast1",
     "us-central1"
   ],
-  "source": "gcp_cloud_billing_catalog_api"
+  "source": "gcp_cloud_billing_catalog_api",
+  "source_url": "https://cloud.google.com/billing/docs/reference/rest"
 }

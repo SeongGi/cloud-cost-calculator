@@ -6,8 +6,11 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
+COPY patches ./patches
 COPY apps/app/package.json ./apps/app/
 RUN pnpm install --frozen-lockfile
+# The CopilotKit input patch (Korean/Japanese IME on phones) must be applied.
+RUN grep -rq 'dataset.composing' node_modules/.pnpm/@copilotkit+react-core@*/node_modules/@copilotkit/react-core/dist/
 # @ag-ui/client's ESM build does `import * as x from "fast-json-patch"` (a CJS module), so
 # x.applyPatch is undefined under Node and state patches fail. Use the default export.
 RUN find node_modules/.pnpm -path '*@ag-ui/client/dist/index.mjs' -exec \

@@ -51,7 +51,13 @@
     "google bigquery": "bigquery",
     "persistent disk": "pd",
     "pd": "pd",
-    "google persistent disk": "pd"
+    "google persistent disk": "pd",
+    "cloud vpn": "cloud_vpn",
+    "google cloud vpn": "cloud_vpn",
+    "gcp vpn": "cloud_vpn",
+    "ha vpn": "cloud_vpn",
+    "vpn": "cloud_vpn",
+    "vpn tunnel": "cloud_vpn"
   },
   "specs": {
     "gce.e2_medium": {
@@ -1200,6 +1206,33 @@
         {
           "match": "^Active Logical Storage \\(",
           "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "cloud_vpn.tunnel": {
+      "service": "cloud_vpn",
+      "label": {
+        "ko": "Cloud VPN 터널 (HA VPN 포함, 터널당 시간)",
+        "en": "Cloud VPN tunnel (incl. HA VPN, per tunnel hour)",
+        "ja": "Cloud VPN トンネル (HA VPN 含む、トンネルあたり時間)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud VPN Tunnel ",
+          "unit": "h"
         }
       ]
     }

@@ -183,7 +183,7 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
       onRunInitialized: () => {
         setSlow(false);
         clearTimeout(timer);
-        timer = setTimeout(() => setSlow(true), 75000);
+        timer = setTimeout(() => setSlow(true), 30000);
       },
       onRunFinalized: () => {
         clearTimeout(timer);
@@ -288,8 +288,8 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
             }}
             labels={{
               welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
-              chatInputPlaceholder: "예: AWS t3.medium 2대, S3 500GB",
-              chatDisclaimerText: "공개 가격표의 온디맨드 정가 기준입니다. 지난 대화는 '대화 목록'에서 다시 열 수 있습니다(이 브라우저에 30일 보관).",
+              chatInputPlaceholder: "예: AWS EC2 2대, S3 500GB",
+              chatDisclaimerText: "공개 가격표 온디맨드 정가 기준 · 지난 대화는 '목록'에서",
             }}
           />
         </div>

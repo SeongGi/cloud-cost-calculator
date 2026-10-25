@@ -61,7 +61,7 @@ ENGINE_ALIASES = {
               "vpn": ("vpn_gateway", "")},
     "gcp": {"postgresql": ("cloudsql", "postgres"), "postgres": ("cloudsql", "postgres"), "mysql": ("cloudsql", "mysql"),
             "redis": ("memorystore", ""), "storage": ("gcs", ""), "object storage": ("gcs", ""), "vm": ("gce", ""),
-            "compute": ("gce", ""), "load balancing": ("cloud_lb", "")},
+            "compute": ("gce", ""), "load balancing": ("cloud_lb", ""), "vpn": ("cloud_vpn", "")},
 }
 TOKEN_SYNONYMS = {"postgresql": "postgres"}
 # A stated quantity goes to one line of the service: the listed primary line, else the first
@@ -85,7 +85,7 @@ GROUPS = {
     "캐시": {"elasticache", "redis", "memorystore"},
     "스토리지": {"s3", "ebs", "efs", "blob", "disk", "gcs", "pd"},
     "네트워크": {"alb", "nlb", "nat_gateway", "vpc_endpoint", "vpn", "route53", "app_gateway", "load_balancer",
-               "public_ip", "vpn_gateway", "cloud_lb", "cloud_nat", "cloud_dns"},
+               "public_ip", "vpn_gateway", "cloud_lb", "cloud_nat", "cloud_dns", "cloud_vpn"},
     "보안": {"waf", "firewall", "cloud_armor"},
     "모니터링": {"cloudwatch", "log_analytics", "cloud_logging"},
 }
@@ -102,7 +102,7 @@ SERVICE_LABEL = {
     "gce": "Compute Engine", "cloudsql": "Cloud SQL", "memorystore": "Memorystore", "pd": "Persistent Disk",
     "gcs": "Cloud Storage", "cloud_lb": "Cloud Load Balancing", "cloud_nat": "Cloud NAT", "gke": "GKE",
     "cloud_run": "Cloud Run", "cloud_functions": "Cloud Run functions", "cloud_logging": "Cloud Logging",
-    "cloud_armor": "Cloud Armor", "cloud_dns": "Cloud DNS", "bigquery": "BigQuery",
+    "cloud_armor": "Cloud Armor", "cloud_dns": "Cloud DNS", "bigquery": "BigQuery", "cloud_vpn": "Cloud VPN",
 }
 # Keyed by the catalog's "source" field, so the label follows how the catalog was built.
 SOURCE_LABEL = {
@@ -206,12 +206,17 @@ def resolve_service(cloud: str, name: str, catalog: dict) -> tuple[str | None, s
     bare = re.sub(r"^(amazon|aws|azure|microsoft|google cloud|google|gcp) ", "", n)
     # "cloud vpn" said in an Azure conversation still means that cloud's VPN.
     candidates = [n, bare, re.sub(r"^cloud ", "", bare)]
-    labels = {SERVICE_LABEL[svc].lower(): svc for svc in services if svc in SERVICE_LABEL}
+    # Names, labels and aliases are compared in the same form ("site-to-site vpn" = "site to site vpn").
+    def norm(s: str) -> str:
+        return re.sub(r"[\s_-]+", " ", s.strip().lower())
+
+    labels = {norm(SERVICE_LABEL[svc]): svc for svc in services if svc in SERVICE_LABEL}
+    aliases = {norm(k): v for k, v in catalog["aliases"].items()}
     for c in candidates:
         if c in labels:
             return labels[c], engine_hint(cloud, labels[c], c)
-        if c in catalog["aliases"]:
-            return catalog["aliases"][c], engine_hint(cloud, catalog["aliases"][c], c)
+        if c in aliases:
+            return aliases[c], engine_hint(cloud, aliases[c], c)
         if c.replace(" ", "_") in services:
             return c.replace(" ", "_"), ""
         if c in ENGINE_ALIASES[cloud]:

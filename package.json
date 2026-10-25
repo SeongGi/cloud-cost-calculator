@@ -14,6 +14,9 @@
   "pnpm": {
     "overrides": {
       "esbuild": "^0.27.3"
+    },
+    "patchedDependencies": {
+      "@copilotkit/react-core@1.55.2-next.1": "patches/@copilotkit__react-core@1.55.2-next.1.patch"
     }
   }
 }

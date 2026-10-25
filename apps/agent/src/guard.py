@@ -9,6 +9,8 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import re
+import uuid
 
 from langchain.agents.middleware import AgentMiddleware, ModelResponse
 from langchain_core.messages import AIMessage
@@ -23,6 +25,26 @@ FAILED = ("지금 답변을 만들지 못했습니다. 잠시 후 같은 질문�
           "계속 안 되면 '새 대화'로 시작하면 됩니다.")
 EMPTY = ("질문을 계산 항목으로 바꾸지 못했습니다. 클라우드와 서비스 이름을 함께 적어 주세요. "
          "예: 'Azure D2s v5 VM 3대와 MySQL', '여기에 VPN 추가'.")
+
+
+CONNECT = re.compile(r"연결|이어|잇|인터커넥트|interconnect|피어링|peering|하이브리드", re.IGNORECASE)
+
+
+def peer_vpn_calls(calls: list[dict], user_text: str, state: dict) -> list[dict]:
+    """"(GCP 구성 뒤) aws와 vpn으로 연결하면?" is a link with two ends: when the model priced only
+    the named cloud, also add a VPN to the configuration already estimated on the other side."""
+    if not CONNECT.search(user_text):
+        return []
+    called = {(c.get("args") or {}).get("cloud") for c in calls if c["name"] == "estimate_cost"}
+    extra = []
+    for cloud in ("aws", "azure", "gcp"):
+        if cloud in called:
+            continue
+        prev = previous_request(state, cloud)
+        if prev is not None and called:
+            extra.append({"name": "estimate_cost", "id": f"peer-{uuid.uuid4().hex[:12]}", "type": "tool_call",
+                          "args": {"cloud": cloud, "follow_up": True, "items": [{"service": "vpn"}]}})
+    return extra
 
 
 def tidy(response: ModelResponse, user_text: str, state: dict | None = None) -> ModelResponse:
@@ -49,6 +71,10 @@ def tidy(response: ModelResponse, user_text: str, state: dict | None = None) -> 
             logger.warning("dropped %d extra estimate_cost calls", len(estimates) - len(kept))
             others = [c for c in calls if c["name"] != "estimate_cost"]
             msg = msg.model_copy(update={"tool_calls": kept + others})
+    peers = peer_vpn_calls(msg.tool_calls or [], user_text, state or {})
+    if peers:
+        logger.info("added VPN on the other side of the link: %s", [p["args"]["cloud"] for p in peers])
+        msg = msg.model_copy(update={"tool_calls": [*(msg.tool_calls or []), *peers]})
     text = msg.content if isinstance(msg.content, str) else "".join(
         b.get("text", "") for b in msg.content if isinstance(b, dict))
     if not msg.tool_calls and not text.strip():

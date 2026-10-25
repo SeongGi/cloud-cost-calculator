@@ -205,3 +205,38 @@ def test_lookups_of_unknown_threads_do_not_evict_real_conversations(tmp_path):
     asyncio.run(g.ainvoke({"messages": [HumanMessage("C")]}, {"configurable": {"thread_id": "C"}}))
     assert {"A", "B", "C"} <= set(saver.storage)
     saver.close()
+
+
+def test_user_scenario_gcp_then_vpn_to_aws_then_cloud_sql():
+    """GCP config → "aws와 vpn으로 연결 추가하면?" → "Cloud SQL도 추가해줘" (reported 2026-10-25)."""
+    q1 = "GCP 서울에 e2-standard-2 VM 하나와 Cloud Storage 1000GB"
+    g1 = run_tool({"messages": [HumanMessage(q1)]}, cloud="gcp", region="asia-northeast3",
+                  items=[{"service": "compute engine", "spec": "e2-standard-2", "count": 1}, {"service": "cloud storage", "gb": 1000}])
+    h = [HumanMessage(q1), ToolMessage(content=json.dumps(g1), name="estimate_cost", tool_call_id="g1")]
+    q2 = "aws와 vpn으로 연결 추가하면 얼마야?"
+    # Two named clouds: one call per cloud. GCP keeps its config and gains a VPN tunnel; AWS gets its VPN.
+    g2 = run_tool({"messages": h + [HumanMessage(q2)]}, cloud="gcp", follow_up=True, items=[{"service": "cloud vpn"}])
+    a2 = run_tool({"messages": h + [HumanMessage(q2)]}, cloud="aws", follow_up=True, items=[{"service": "site-to-site vpn"}])
+    assert {"gce.e2_standard_2", "gcs.standard.storage", "cloud_vpn.tunnel"} <= {l["key"] for l in g2["lines"]}
+    assert g2["total_cents"] == g1["total_cents"] + 5475  # 0.075 × 730 = 54.75
+    assert a2["cloud"] == "aws" and "vpn.hours" in {l["key"] for l in a2["lines"]}
+    h += [HumanMessage(q2), ToolMessage(content=json.dumps(g2), name="estimate_cost", tool_call_id="g2"),
+          ToolMessage(content=json.dumps(a2), name="estimate_cost", tool_call_id="a2")]
+    # The last estimate is AWS, but Cloud SQL belongs to the GCP configuration.
+    g3 = run_tool({"messages": h + [HumanMessage("Cloud SQL도 추가해줘")]}, cloud="gcp", items=[{"service": "cloud sql"}])
+    keys = {l["key"] for l in g3["lines"]}
+    assert {"gce.e2_standard_2", "cloud_vpn.tunnel", "cloudsql_storage.ssd"} <= keys
+    assert g3["total_cents"] == g2["total_cents"] + 6411 + 2210
+
+
+def test_link_to_another_cloud_adds_vpn_on_both_ends():
+    g1 = run_tool({"messages": []}, cloud="gcp", items=[{"service": "compute engine", "spec": "e2-standard-2"}])
+    state = {"messages": [HumanMessage("GCP e2-standard-2"), ToolMessage(content=json.dumps(g1), name="estimate_cost", tool_call_id="g")]}
+    only_aws = ModelResponse(result=[AIMessage(content="", tool_calls=[
+        {"name": "estimate_cost", "args": {"cloud": "aws", "items": [{"service": "vpn"}]}, "id": "a", "type": "tool_call"}])])
+    calls = guard.tidy(only_aws, "aws와 vpn으로 연결 추가하면 얼마야?", state).result[-1].tool_calls
+    assert [c["args"]["cloud"] for c in calls] == ["aws", "gcp"]
+    r = run_tool({"messages": state["messages"] + [HumanMessage("aws와 vpn으로 연결 추가하면 얼마야?")]}, **calls[1]["args"])
+    assert {"gce.e2_standard_2", "cloud_vpn.tunnel"} <= {l["key"] for l in r["lines"]}
+    # Not a link question: nothing is added.
+    assert len(guard.tidy(only_aws, "AWS VPN 요금은?", state).result[-1].tool_calls) == 1
