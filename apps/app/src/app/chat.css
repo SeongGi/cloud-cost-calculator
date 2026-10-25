@@ -58,6 +58,16 @@
 .chat-content {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* The chat takes whatever height is left (below the phone greeting, when shown). */
+.chat-copilot {
+  flex: 1;
+  min-height: 0;
+}
+.chat-copilot > * {
+  height: 100%;
 }
 .chat-app :focus-visible {
   outline: 2px solid #189370;
@@ -343,13 +353,20 @@
   color: var(--text-primary);
 }
 
-/* Phones: keep the input small so answers get the screen. */
+/* Phones: a one-row input at the bottom, no disclaimer (the list panel says the same). */
+.chat-phone-hello {
+  margin: 12px 4px 0;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 @media (max-width: 640px) {
-  .chat-content [data-testid="copilot-chat-input"] textarea {
-    min-height: 0;
+  .chat-content [data-testid="copilot-chat-textarea"] {
+    font-size: 16px; /* below 16px iOS zooms the page while typing */
   }
-  .chat-content [data-testid="copilot-chat-input"] {
-    padding-top: 4px;
-    padding-bottom: 4px;
+  .chat-content div.cpk\:text-center.cpk\:text-xs {
+    display: none;
+  }
+  .chat-main {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }

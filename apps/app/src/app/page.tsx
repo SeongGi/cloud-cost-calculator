@@ -69,6 +69,18 @@ function Intro() {
   );
 }
 
+function usePhone(): boolean {
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 640px)");
+    const update = () => setPhone(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return phone;
+}
+
 function relativeTime(ms: number): string {
   const min = Math.round((Date.now() - ms) / 60000);
   if (min < 1) return "방금";
@@ -137,6 +149,7 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
   useConfigureSuggestions({ suggestions, available: "always" }, [suggestions.map((s) => s.message).join("|")]);
   const { copilotkit } = useCopilotKit();
   const { resolved, setTheme } = useTheme();
+  const phone = usePhone();
   const [error, setError] = useState<string | null>(null);
   const chatRoot = useRef<HTMLDivElement>(null);
   const latestQuestion = agent.messages.filter((message) => message.role === "user").at(-1)?.id;
@@ -281,22 +294,29 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
           </div>
         )}
         <div className="chat-content" ref={chatRoot}>
-          <CopilotChat
-            threadId={threadId}
-            autoScroll={false}
-            scrollView={ReaderScrollView}
-            messageView={{ assistantMessage: { markdownRenderer: AnswerMarkdown } }}
-            onError={(event) => {
-              const err = "error" in event ? event.error : event;
-              console.error("[chat] agent error", err);
-              setError(describeError(err));
-            }}
-            labels={{
-              welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
-              chatInputPlaceholder: "예: AWS EC2 2대, S3 500GB",
-              chatDisclaimerText: "온디맨드 정가 기준 · 지난 대화는 '목록'에",
-            }}
-          />
+          {phone && agent.messages.length === 0 && (
+            <p className="chat-phone-hello">어떤 클라우드 구성의 월 비용을 계산할까요? 아래 예시를 누르거나 직접 적어 주세요.</p>
+          )}
+          <div className="chat-copilot">
+            <CopilotChat
+              // Phones: no centered welcome layout, so the input sits at the bottom from the start.
+              welcomeScreen={phone ? false : undefined}
+              threadId={threadId}
+              autoScroll={false}
+              scrollView={ReaderScrollView}
+              messageView={{ assistantMessage: { markdownRenderer: AnswerMarkdown } }}
+              onError={(event) => {
+                const err = "error" in event ? event.error : event;
+                console.error("[chat] agent error", err);
+                setError(describeError(err));
+              }}
+              labels={{
+                welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
+                chatInputPlaceholder: phone ? "구성을 적어 주세요" : "예: AWS EC2 2대, S3 500GB",
+                chatDisclaimerText: "온디맨드 정가 기준 · 지난 대화는 '목록'에",
+              }}
+            />
+          </div>
         </div>
       </main>
     </div>

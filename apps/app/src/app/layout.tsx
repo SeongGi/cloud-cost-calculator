@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import "./chat.css";
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title: SITE.title, description: SITE.description, images: ["/og.png"] },
 };
+
+// On Android the keyboard shrinks the page instead of covering it, so the input stays above it.
+export const viewport: Viewport = { width: "device-width", initialScale: 1, interactiveWidget: "resizes-content" };
 
 // Structured data so search engines know this is a free web app and who made it.
 const JSON_LD = {

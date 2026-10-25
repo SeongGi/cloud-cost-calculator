@@ -1,5 +1,5 @@
 diff --git a/dist/copilotkit-Cd-NrDyp.mjs b/dist/copilotkit-Cd-NrDyp.mjs
-index ccb394a4c167d14dee586e3c8f2bad8475e781cf..54814eb18504e36455285872cea1be7f82d8f65c 100644
+index ccb394a4c167d14dee586e3c8f2bad8475e781cf..12a4664bad2e3efacd267e8865ea91191bea3f42 100644
 --- a/dist/copilotkit-Cd-NrDyp.mjs
 +++ b/dist/copilotkit-Cd-NrDyp.mjs
 @@ -779,6 +779,8 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
@@ -20,17 +20,22 @@ index ccb394a4c167d14dee586e3c8f2bad8475e781cf..54814eb18504e36455285872cea1be7f
  		const previousValue = textarea.value;
  		const previousHeight = textarea.style.height;
  		textarea.style.height = "auto";
-@@ -922,7 +924,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+@@ -921,12 +923,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 			return;
  		}
  		if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
- 			if (window.matchMedia("(max-width: 767px)").matches) {
+-			if (window.matchMedia("(max-width: 767px)").matches) {
 -				ensureMeasurements();
-+				if (measurementsRef.current.singleLineHeight === 0) ensureMeasurements();
- 				adjustTextareaHeight();
- 				updateLayout("expanded");
- 				return;
+-				adjustTextareaHeight();
+-				updateLayout("expanded");
+-				return;
+-			}
++			// Phones use the same one-row layout as desktop (the forced two-row layout took a fifth of the screen).
+ 		}
+ 		const textarea = inputRef.current;
+ 		const grid = gridRef.current;
 diff --git a/dist/copilotkit-Dgdpbqjt.cjs b/dist/copilotkit-Dgdpbqjt.cjs
-index 8e85f42e13573258f50d587604ac1140c54b2d01..f9b1e1101b25c534f184a2b4655ea715b93d4a1e 100644
+index 8e85f42e13573258f50d587604ac1140c54b2d01..23eb224767e3cb90e6a4bc92520d86884fe43231 100644
 --- a/dist/copilotkit-Dgdpbqjt.cjs
 +++ b/dist/copilotkit-Dgdpbqjt.cjs
 @@ -809,6 +809,8 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
@@ -51,12 +56,17 @@ index 8e85f42e13573258f50d587604ac1140c54b2d01..f9b1e1101b25c534f184a2b4655ea715
  		const previousValue = textarea.value;
  		const previousHeight = textarea.style.height;
  		textarea.style.height = "auto";
-@@ -952,7 +954,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+@@ -951,12 +953,7 @@ function CopilotChatInput({ mode = "input", onSubmitMessage, onStop, isRunning =
+ 			return;
  		}
  		if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
- 			if (window.matchMedia("(max-width: 767px)").matches) {
+-			if (window.matchMedia("(max-width: 767px)").matches) {
 -				ensureMeasurements();
-+				if (measurementsRef.current.singleLineHeight === 0) ensureMeasurements();
- 				adjustTextareaHeight();
- 				updateLayout("expanded");
- 				return;
+-				adjustTextareaHeight();
+-				updateLayout("expanded");
+-				return;
+-			}
++			// Phones use the same one-row layout as desktop (the forced two-row layout took a fifth of the screen).
+ 		}
+ 		const textarea = inputRef.current;
+ 		const grid = gridRef.current;
