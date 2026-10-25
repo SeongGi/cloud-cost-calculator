@@ -49,7 +49,8 @@ docker compose up -d --build
 
 - 공개 포트는 `PUBLIC_PORT`(기본 8095) 하나입니다. 설정하지 않으면 gate는 루프백만 받아들입니다.
 - 앞단 리버스 프록시를 쓸 때는 `.env`에 `TRUSTED_PROXY_IP`와 `PROXY_SECRET`(영문·숫자 32자 이상)을 넣습니다. 프록시는 `proxy_set_header X-Proxy-Secret <값>;`과 `proxy_set_header X-Real-IP $remote_addr;`를 보내야 합니다. gate는 비밀 헤더가 맞는 요청만 통과시키고, 그때만 `X-Real-IP`를 방문자 IP로 씁니다. 비밀값 없이 `TRUSTED_PROXY_IP`만 넣으면 gate가 시작되지 않습니다.
-- OrbStack이나 Docker Desktop은 포트를 넘겨줄 때 출발지 주소를 런타임 게이트웨이(예: `192.168.171.1`)로 바꿉니다. 이 경우 `TRUSTED_PROXY_IP`에는 그 주소를 넣습니다(`docker compose logs gate`로 확인). 그러면 같은 LAN에서 포트로 바로 들어오는 요청도 같은 주소로 보이므로, 실제로 막는 것은 비밀 헤더입니다.
+- OrbStack이나 Docker Desktop은 포트를 넘겨줄 때 출발지 주소를 런타임 게이트웨이(예: `192.168.171.1`)로 바꿉니다. 이 경우 `TRUSTED_PROXY_IP`에는 그 주소를 넣습니다(`docker compose logs gate`로 확인). 그러면 같은 LAN에서 포트로 바로 들어오는 요청도 같은 주소로 보이므로, 실제로 막는 것은 비밀 헤더입니다. gate 로그의 `secret=ok|absent|mismatch`로 헤더가 제대로 오는지 볼 수 있습니다(값은 기록하지 않음).
+- Nginx Proxy Manager는 Advanced 칸을 `server` 블록에 넣고, 자체 `location /` 안에 `proxy_set_header`를 따로 둡니다. 그래서 Advanced 칸에 넣은 `proxy_set_header`는 무시됩니다. 대신 Advanced 칸에는 `set $cost_proxy_secret <값>;`을 넣습니다. 그리고 Custom Locations에 `~` `/` 위치(같은 전달 대상, 응답 버퍼링 끔)를 만들고, 그 고급 칸에 `proxy_set_header X-Proxy-Secret $cost_proxy_secret;`을 넣습니다. 수식어 없는 `/`는 기본 위치와 겹쳐 설정 검사가 실패합니다.
 - 앞단 nginx는 응답이 스트리밍(SSE)이므로 `proxy_buffering off;`와 `proxy_read_timeout 300s;`를 권합니다.
 - 첫 질문은 모델을 메모리에 올리느라 1분 이상 걸릴 수 있습니다. 에이전트가 기동할 때 미리 올리고, 30분 동안 쓰지 않으면 내려갑니다.
 

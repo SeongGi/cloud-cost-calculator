@@ -17,6 +17,16 @@ map "$peer_kind|$http_x_proxy_secret" $allowed {
     "proxy|${PROXY_SECRET}" 1;
 }
 
+# Logged instead of the header itself, so a wrong proxy setup is visible without exposing the secret.
+map $http_x_proxy_secret $secret_state {
+    "" absent;
+    "${PROXY_SECRET}" ok;
+    default mismatch;
+}
+log_format gate '$remote_addr peer=$realip_remote_addr secret=$secret_state [$time_local] '
+                '"$request" $status $body_bytes_sent "$http_user_agent"';
+access_log /var/log/nginx/access.log gate;
+
 # Only API calls are limited; one page load fetches many static chunks.
 limit_req_zone $binary_remote_addr zone=api:10m rate=120r/m;
 
