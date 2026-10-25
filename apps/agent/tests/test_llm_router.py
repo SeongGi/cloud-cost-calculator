@@ -98,6 +98,11 @@ def test_admin_api_requires_token_and_never_returns_key():
     r = c.put("/admin/llm", json={"gemini_api_key": KEY, "gemini_model": "gemini-flash-latest"}, headers=h)
     assert r.status_code == 200 and KEY not in r.text and r.json()["gemini_key_set"]
     assert c.put("/admin/llm", json={"gemini_api_key": "short"}, headers=h).status_code == 422
+    assert c.put("/admin/llm", json={"gemini_api_key": "키" * 30}, headers=h).status_code == 422
+    # Newer key shapes and pasted whitespace are accepted; the stored key has no whitespace.
+    r = c.put("/admin/llm", json={"gemini_api_key": " AQ.Ab8RN6LxTESTkey_0123456789-abcd\n"}, headers=h)
+    assert r.status_code == 200 and r.json()["gemini_key_hint"] == "…abcd"
+    assert settings.load().gemini_api_key == "AQ.Ab8RN6LxTESTkey_0123456789-abcd"
     assert c.put("/admin/llm", json={"gemini_model": "../etc"}, headers=h).status_code == 422
     assert c.delete("/admin/llm/key", headers=h).json()["gemini_key_set"] is False
     assert c.get("/openapi.json").status_code == 404

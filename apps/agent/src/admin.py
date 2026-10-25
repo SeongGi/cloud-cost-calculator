@@ -29,7 +29,7 @@ api = APIRouter(prefix="/admin", dependencies=[Depends(require_token)])
 
 
 class LLMUpdate(BaseModel):
-    gemini_api_key: str | None = Field(default=None, max_length=200)
+    gemini_api_key: str | None = Field(default=None, max_length=400)
     gemini_model: str | None = Field(default=None, max_length=80)
     gemini_enabled: bool | None = None
 
@@ -46,10 +46,14 @@ def get_llm() -> dict:
 @api.put("/llm")
 def put_llm(body: LLMUpdate) -> dict:
     cur = settings.load()
-    key = cur.gemini_api_key if body.gemini_api_key is None else body.gemini_api_key.strip()
+    # Pasted keys often carry spaces or line breaks; key formats change (e.g. "AIza…", "AQ.…"),
+    # so accept any printable ASCII and say which check failed without echoing the key.
+    key = cur.gemini_api_key if body.gemini_api_key is None else re.sub(r"\s+", "", body.gemini_api_key)
     model = cur.gemini_model if body.gemini_model is None else body.gemini_model.strip()
-    if key and not re.fullmatch(r"[A-Za-z0-9_\-]{20,200}", key):
-        raise HTTPException(status_code=422, detail="키 형식이 올바르지 않습니다")
+    if key and not 20 <= len(key) <= 300:
+        raise HTTPException(status_code=422, detail=f"키 길이가 맞지 않습니다({len(key)}자, 20~300자)")
+    if key and not re.fullmatch(r"[\x21-\x7e]+", key):
+        raise HTTPException(status_code=422, detail="키에 영문·숫자·기호가 아닌 문자가 들어 있습니다(한글이나 특수 공백 등)")
     if not MODEL_NAME.fullmatch(model):
         raise HTTPException(status_code=422, detail="모델 이름이 올바르지 않습니다")
     enabled = cur.gemini_enabled if body.gemini_enabled is None else body.gemini_enabled
