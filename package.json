@@ -1,0 +1,19 @@
+{
+  "name": "cloud-cost-calculator",
+  "private": true,
+  "scripts": {
+    "dev:app": "pnpm --filter @repo/app dev",
+    "build": "pnpm --filter @repo/app build",
+    "lint": "pnpm --filter @repo/app lint",
+    "test": "pnpm --filter @repo/app test"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "pnpm": {
+    "overrides": {
+      "esbuild": "^0.27.3"
+    }
+  }
+}

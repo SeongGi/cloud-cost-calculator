@@ -1,0 +1,2461 @@
+{
+  "aliases": {
+    "bigquery": "bigquery",
+    "cloud armor": "cloud_armor",
+    "cloud dns": "cloud_dns",
+    "cloud function": "cloud_functions",
+    "cloud functions": "cloud_functions",
+    "cloud load balancer": "cloud_lb",
+    "cloud load balancer (https)": "cloud_lb",
+    "cloud load balancing": "cloud_lb",
+    "cloud logging": "cloud_logging",
+    "cloud memorystore": "memorystore",
+    "cloud nat": "cloud_nat",
+    "cloud run": "cloud_run",
+    "cloud run functions": "cloud_functions",
+    "cloud sql": "cloudsql",
+    "cloud sql for mysql": "cloudsql",
+    "cloud sql for postgresql": "cloudsql",
+    "cloud sql mysql": "cloudsql",
+    "cloud sql postgresql": "cloudsql",
+    "cloud storage": "gcs",
+    "compute engine": "gce",
+    "gce": "gce",
+    "gcp compute engine": "gce",
+    "gcs": "gcs",
+    "gke": "gke",
+    "google bigquery": "bigquery",
+    "google cloud armor": "cloud_armor",
+    "google cloud compute engine": "gce",
+    "google cloud dns": "cloud_dns",
+    "google cloud function": "cloud_functions",
+    "google cloud functions": "cloud_functions",
+    "google cloud load balancing": "cloud_lb",
+    "google cloud logging": "cloud_logging",
+    "google cloud memorystore": "memorystore",
+    "google cloud nat": "cloud_nat",
+    "google cloud run": "cloud_run",
+    "google cloud sql": "cloudsql",
+    "google cloud storage": "gcs",
+    "google compute engine": "gce",
+    "google kubernetes engine": "gke",
+    "google persistent disk": "pd",
+    "http(s) load balancer": "cloud_lb",
+    "https load balancer": "cloud_lb",
+    "kubernetes engine": "gke",
+    "load balancer": "cloud_lb",
+    "memorystore": "memorystore",
+    "memorystore for redis": "memorystore",
+    "pd": "pd",
+    "persistent disk": "pd",
+    "stackdriver logging": "cloud_logging"
+  },
+  "as_of": "2026-10-23",
+  "currency": "USD",
+  "items": {
+    "bigquery.analysis": {
+      "hours": 1,
+      "label": {
+        "en": "BigQuery on-demand query analysis (bytes scanned)",
+        "ja": "BigQuery オンデマンドクエリ分析 (スキャン量)",
+        "ko": "BigQuery 온디맨드 쿼리 분석 (스캔량)"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "convert_from_unit": "1/1024",
+          "description": "Analysis (asia-northeast1)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "82D5-BCCE-5431",
+          "unit": "TiBy",
+          "unit_price_usd": "7.5000000000",
+          "usd": "0.0073242188"
+        },
+        "asia-northeast3": {
+          "convert_from_unit": "1/1024",
+          "description": "Analysis (asia-northeast3)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "5DE1-2637-AD38",
+          "unit": "TiBy",
+          "unit_price_usd": "7.5000000000",
+          "usd": "0.0073242188"
+        },
+        "us-central1": {
+          "convert_from_unit": "1/1024",
+          "description": "Analysis (us-central1)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "3362-E469-6BEF",
+          "unit": "TiBy",
+          "unit_price_usd": "6.2500000000",
+          "usd": "0.0061035156"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "bigquery",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "bigquery.storage": {
+      "hours": 1,
+      "label": {
+        "en": "BigQuery active logical storage",
+        "ja": "BigQuery アクティブ論理ストレージ",
+        "ko": "BigQuery 활성 논리 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Active Logical Storage (asia-northeast1)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "709C-E503-30BF",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0230000000",
+          "usd": "0.0230000000"
+        },
+        "asia-northeast3": {
+          "description": "Active Logical Storage (asia-northeast3)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "E44D-16C0-DCD3",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0230000000",
+          "usd": "0.0230000000"
+        },
+        "us-central1": {
+          "description": "Active Logical Storage (us-central1)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "0018-A5A0-9D6D",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0230000000",
+          "usd": "0.0230000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "bigquery",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "cloud_armor.policy": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Armor security policy (Standard)",
+        "ja": "Cloud Armor セキュリティポリシー (Standard)",
+        "ko": "Cloud Armor 보안 정책 (Standard)"
+      },
+      "per": "month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud Armor Policy",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4B13-E64F-4A2B",
+          "unit": "mo",
+          "unit_price_usd": "5.0000000000",
+          "usd": "5.0000000000"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud Armor Policy",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4B13-E64F-4A2B",
+          "unit": "mo",
+          "unit_price_usd": "5.0000000000",
+          "usd": "5.0000000000"
+        },
+        "us-central1": {
+          "description": "Networking Cloud Armor Policy",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4B13-E64F-4A2B",
+          "unit": "mo",
+          "unit_price_usd": "5.0000000000",
+          "usd": "5.0000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_armor",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_armor.requests": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Armor requests (Standard)",
+        "ja": "Cloud Armor リクエスト (Standard)",
+        "ko": "Cloud Armor 요청 (Standard)"
+      },
+      "per": "request",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud Armor Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "1A87-DEB9-C4BE",
+          "unit": "count",
+          "unit_price_usd": "0.0000007500",
+          "usd": "0.0000007500"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud Armor Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "1A87-DEB9-C4BE",
+          "unit": "count",
+          "unit_price_usd": "0.0000007500",
+          "usd": "0.0000007500"
+        },
+        "us-central1": {
+          "description": "Networking Cloud Armor Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "1A87-DEB9-C4BE",
+          "unit": "count",
+          "unit_price_usd": "0.0000007500",
+          "usd": "0.0000007500"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "cloud_armor",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_armor.rule": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Armor rules (Standard)",
+        "ja": "Cloud Armor ルール (Standard)",
+        "ko": "Cloud Armor 규칙 (Standard)"
+      },
+      "per": "month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud Armor Rule",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "A321-89BD-F5BC",
+          "unit": "mo",
+          "unit_price_usd": "1.0000000000",
+          "usd": "1.0000000000"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud Armor Rule",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "A321-89BD-F5BC",
+          "unit": "mo",
+          "unit_price_usd": "1.0000000000",
+          "usd": "1.0000000000"
+        },
+        "us-central1": {
+          "description": "Networking Cloud Armor Rule",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "A321-89BD-F5BC",
+          "unit": "mo",
+          "unit_price_usd": "1.0000000000",
+          "usd": "1.0000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_armor",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_dns.queries": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud DNS queries (first 1 billion)",
+        "ja": "Cloud DNS クエリ (最初の 10 億件)",
+        "ko": "Cloud DNS 쿼리 (최초 10억 건)"
+      },
+      "per": "query",
+      "prices": {
+        "asia-northeast1": {
+          "description": "DNS Query (port 53)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6DFF-5025-A128",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "asia-northeast3": {
+          "description": "DNS Query (port 53)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6DFF-5025-A128",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "us-central1": {
+          "description": "DNS Query (port 53)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6DFF-5025-A128",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_queries",
+      "service": "cloud_dns",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_dns.zone": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud DNS managed zones (first 25)",
+        "ja": "Cloud DNS マネージドゾーン (最初の 25 個)",
+        "ko": "Cloud DNS 관리형 영역 (최초 25개)"
+      },
+      "per": "month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "ManagedZone",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "8C22-6FC3-D478",
+          "unit": "mo",
+          "unit_price_usd": "0.2000000000",
+          "usd": "0.2000000000"
+        },
+        "asia-northeast3": {
+          "description": "ManagedZone",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "8C22-6FC3-D478",
+          "unit": "mo",
+          "unit_price_usd": "0.2000000000",
+          "usd": "0.2000000000"
+        },
+        "us-central1": {
+          "description": "ManagedZone",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "8C22-6FC3-D478",
+          "unit": "mo",
+          "unit_price_usd": "0.2000000000",
+          "usd": "0.2000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_dns",
+      "slider": {
+        "max": 25,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_functions.invocations": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Run functions invocations",
+        "ja": "Cloud Run functions 呼び出し",
+        "ko": "Cloud Run Functions 호출"
+      },
+      "per": "request",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Cloud Run Functions Invocations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "92DF-0F0E-630F",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "asia-northeast3": {
+          "description": "Cloud Run Functions Invocations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "92DF-0F0E-630F",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "us-central1": {
+          "description": "Cloud Run Functions Invocations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "92DF-0F0E-630F",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "cloud_functions",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_lb.forwarding_rule": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud Load Balancing forwarding rules (minimum charge, first 5)",
+        "ja": "Cloud Load Balancing 転送ルール (最初の 5 個の最低料金)",
+        "ko": "Cloud Load Balancing 전달 규칙 (최초 5개 기본 요금)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Cloud Load Balancer Forwarding Rule Minimum for Tokyo (asia-northeast1)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "A869-FB8F-D3BB",
+          "unit": "h",
+          "unit_price_usd": "0.0380000000",
+          "usd": "0.0380000000"
+        },
+        "asia-northeast3": {
+          "description": "Cloud Load Balancer Forwarding Rule Minimum for Seoul (asia-northeast3)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "8B08-9A11-D997",
+          "unit": "h",
+          "unit_price_usd": "0.0380000000",
+          "usd": "0.0380000000"
+        },
+        "us-central1": {
+          "description": "Cloud Load Balancer Forwarding Rule Minimum for Americas (multi-region)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "CBE2-3343-9091",
+          "unit": "h",
+          "unit_price_usd": "0.0250000000",
+          "usd": "0.0250000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_lb",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_logging.ingestion": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Logging log ingestion",
+        "ja": "Cloud Logging ログ取り込み",
+        "ko": "Cloud Logging 로그 수집"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Log Storage cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "143F-A1B0-E0BE",
+          "unit": "GiBy",
+          "unit_price_usd": "0.5000000000",
+          "usd": "0.5000000000"
+        },
+        "asia-northeast3": {
+          "description": "Log Storage cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "143F-A1B0-E0BE",
+          "unit": "GiBy",
+          "unit_price_usd": "0.5000000000",
+          "usd": "0.5000000000"
+        },
+        "us-central1": {
+          "description": "Log Storage cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "143F-A1B0-E0BE",
+          "unit": "GiBy",
+          "unit_price_usd": "0.5000000000",
+          "usd": "0.5000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "cloud_logging",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "cloud_logging.retention": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Logging retention beyond default",
+        "ja": "Cloud Logging デフォルト期間超過の保持",
+        "ko": "Cloud Logging 기본 기간 초과 보관"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Log Retention cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "F4AE-5A52-ACE3",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0100000000",
+          "usd": "0.0100000000"
+        },
+        "asia-northeast3": {
+          "description": "Log Retention cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "F4AE-5A52-ACE3",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0100000000",
+          "usd": "0.0100000000"
+        },
+        "us-central1": {
+          "description": "Log Retention cost",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "F4AE-5A52-ACE3",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0100000000",
+          "usd": "0.0100000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "cloud_logging",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "cloud_nat.data": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud NAT data processing",
+        "ja": "Cloud NAT データ処理",
+        "ko": "Cloud NAT 데이터 처리"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud Nat Data Processing",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "015F-5732-FFF0",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0450000000",
+          "usd": "0.0450000000"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud Nat Data Processing",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "015F-5732-FFF0",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0450000000",
+          "usd": "0.0450000000"
+        },
+        "us-central1": {
+          "description": "Networking Cloud Nat Data Processing",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "015F-5732-FFF0",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0450000000",
+          "usd": "0.0450000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "cloud_nat",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "cloud_nat.gateway": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud NAT gateway (per assigned VM hour)",
+        "ja": "Cloud NAT ゲートウェイ (割り当て VM あたり時間)",
+        "ko": "Cloud NAT 게이트웨이 (할당된 VM당 시간)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Networking Cloud Nat Gateway Uptime",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "32E2-4EFC-EF9F",
+          "unit": "h",
+          "unit_price_usd": "0.0014000000",
+          "usd": "0.0014000000"
+        },
+        "asia-northeast3": {
+          "description": "Networking Cloud Nat Gateway Uptime",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "32E2-4EFC-EF9F",
+          "unit": "h",
+          "unit_price_usd": "0.0014000000",
+          "usd": "0.0014000000"
+        },
+        "us-central1": {
+          "description": "Networking Cloud Nat Gateway Uptime",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "32E2-4EFC-EF9F",
+          "unit": "h",
+          "unit_price_usd": "0.0014000000",
+          "usd": "0.0014000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloud_nat",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_run.memory": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud Run memory (request-based billing)",
+        "ja": "Cloud Run メモリ (リクエストベース課金)",
+        "ko": "Cloud Run 메모리 (요청 기반 과금)"
+      },
+      "per": "gb_hour",
+      "prices": {
+        "asia-northeast1": {
+          "convert_from_unit": "3600",
+          "description": "Services Memory (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "02A2-9231-36A6",
+          "unit": "GiBy.s",
+          "unit_price_usd": "0.0000025000",
+          "usd": "0.0090000000"
+        },
+        "asia-northeast3": {
+          "convert_from_unit": "3600",
+          "description": "Services Memory Tier 2 (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "600C-3782-6708",
+          "unit": "GiBy.s",
+          "unit_price_usd": "0.0000035000",
+          "usd": "0.0126000000"
+        },
+        "us-central1": {
+          "convert_from_unit": "3600",
+          "description": "Services Memory (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "02A2-9231-36A6",
+          "unit": "GiBy.s",
+          "unit_price_usd": "0.0000025000",
+          "usd": "0.0090000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "memory_gb",
+      "service": "cloud_run",
+      "slider": {
+        "max": 200,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_run.requests": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Run requests",
+        "ja": "Cloud Run リクエスト",
+        "ko": "Cloud Run 요청"
+      },
+      "per": "request",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "2DA5-55D3-E679",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "asia-northeast3": {
+          "description": "Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "2DA5-55D3-E679",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "us-central1": {
+          "description": "Requests",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "2DA5-55D3-E679",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "cloud_run",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloud_run.vcpu": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud Run vCPU (request-based billing)",
+        "ja": "Cloud Run vCPU (リクエストベース課金)",
+        "ko": "Cloud Run vCPU (요청 기반 과금)"
+      },
+      "per": "vcpu_hour",
+      "prices": {
+        "asia-northeast1": {
+          "convert_from_unit": "3600",
+          "description": "Services CPU (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "4856-B847-F1EB",
+          "unit": "s",
+          "unit_price_usd": "0.0000240000",
+          "usd": "0.0864000000"
+        },
+        "asia-northeast3": {
+          "convert_from_unit": "3600",
+          "description": "Services CPU Tier 2  (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "085C-A237-027A",
+          "unit": "s",
+          "unit_price_usd": "0.0000336000",
+          "usd": "0.1209600000"
+        },
+        "us-central1": {
+          "convert_from_unit": "3600",
+          "description": "Services CPU (Request-based billing)",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "4856-B847-F1EB",
+          "unit": "s",
+          "unit_price_usd": "0.0000240000",
+          "usd": "0.0864000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "vcpu",
+      "service": "cloud_run",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.mysql.db_custom_1_3840": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "DE5C-7D27-AFAD",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "271B-E38A-E844",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for MySQL: Zonal - vCPU in Japan + 3.75 x Cloud SQL for MySQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "DE5C-7D27-AFAD+271B-E38A-E844",
+          "unit": "h",
+          "usd": "0.0878250000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "329C-8CA7-8FFF",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "E156-2D86-A683",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for MySQL: Zonal - vCPU in Seoul + 3.75 x Cloud SQL for MySQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "329C-8CA7-8FFF+E156-2D86-A683",
+          "unit": "h",
+          "usd": "0.0878250000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "741F-D668-2417",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "49E9-5D00-B807",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for MySQL: Zonal - vCPU in Americas + 3.75 x Cloud SQL for MySQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "741F-D668-2417+49E9-5D00-B807",
+          "unit": "h",
+          "usd": "0.0675500000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.mysql.db_custom_2_7680": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "DE5C-7D27-AFAD",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "271B-E38A-E844",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for MySQL: Zonal - vCPU in Japan + 7.5 x Cloud SQL for MySQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "DE5C-7D27-AFAD+271B-E38A-E844",
+          "unit": "h",
+          "usd": "0.1756500000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "329C-8CA7-8FFF",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "E156-2D86-A683",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for MySQL: Zonal - vCPU in Seoul + 7.5 x Cloud SQL for MySQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "329C-8CA7-8FFF+E156-2D86-A683",
+          "unit": "h",
+          "usd": "0.1756500000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "741F-D668-2417",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "49E9-5D00-B807",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for MySQL: Zonal - vCPU in Americas + 7.5 x Cloud SQL for MySQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "741F-D668-2417+49E9-5D00-B807",
+          "unit": "h",
+          "usd": "0.1351000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.mysql.db_custom_4_16384": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "DE5C-7D27-AFAD",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "271B-E38A-E844",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for MySQL: Zonal - vCPU in Japan + 16 x Cloud SQL for MySQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "DE5C-7D27-AFAD+271B-E38A-E844",
+          "unit": "h",
+          "usd": "0.3604000000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "329C-8CA7-8FFF",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "E156-2D86-A683",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for MySQL: Zonal - vCPU in Seoul + 16 x Cloud SQL for MySQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "329C-8CA7-8FFF+E156-2D86-A683",
+          "unit": "h",
+          "usd": "0.3604000000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for MySQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "741F-D668-2417",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for MySQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "49E9-5D00-B807",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for MySQL: Zonal - vCPU in Americas + 16 x Cloud SQL for MySQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "741F-D668-2417+49E9-5D00-B807",
+          "unit": "h",
+          "usd": "0.2772000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.postgres.db_custom_1_3840": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "D34E-ED22-3AA3",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "9AE6-50FF-E3A7",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for PostgreSQL: Zonal - vCPU in Japan + 3.75 x Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "D34E-ED22-3AA3+9AE6-50FF-E3A7",
+          "unit": "h",
+          "usd": "0.0878250000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "0304-17F6-DF49",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "15DD-D826-2867",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul + 3.75 x Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "0304-17F6-DF49+15DD-D826-2867",
+          "unit": "h",
+          "usd": "0.0878250000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "965E-7C36-08E6",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "3.75",
+              "role": "ram_gib",
+              "sku_id": "93DA-3F55-CB04",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "1 x Cloud SQL for PostgreSQL: Zonal - vCPU in Americas + 3.75 x Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "965E-7C36-08E6+93DA-3F55-CB04",
+          "unit": "h",
+          "usd": "0.0675500000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.postgres.db_custom_2_7680": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "D34E-ED22-3AA3",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "9AE6-50FF-E3A7",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for PostgreSQL: Zonal - vCPU in Japan + 7.5 x Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "D34E-ED22-3AA3+9AE6-50FF-E3A7",
+          "unit": "h",
+          "usd": "0.1756500000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "0304-17F6-DF49",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "15DD-D826-2867",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul + 7.5 x Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "0304-17F6-DF49+15DD-D826-2867",
+          "unit": "h",
+          "usd": "0.1756500000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "965E-7C36-08E6",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "7.5",
+              "role": "ram_gib",
+              "sku_id": "93DA-3F55-CB04",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "2 x Cloud SQL for PostgreSQL: Zonal - vCPU in Americas + 7.5 x Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "965E-7C36-08E6+93DA-3F55-CB04",
+          "unit": "h",
+          "usd": "0.1351000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql.postgres.db_custom_4_16384": {
+      "hours": 730,
+      "label": {
+        "en": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, ゾーン)",
+        "ko": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, 단일 영역)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "D34E-ED22-3AA3",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "9AE6-50FF-E3A7",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for PostgreSQL: Zonal - vCPU in Japan + 16 x Cloud SQL for PostgreSQL: Zonal - RAM in Japan",
+          "price_scope": "regional",
+          "sku_id": "D34E-ED22-3AA3+9AE6-50FF-E3A7",
+          "unit": "h",
+          "usd": "0.3604000000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "0304-17F6-DF49",
+              "unit": "h",
+              "unit_price_usd": "0.0537000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "15DD-D826-2867",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0091000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul + 16 x Cloud SQL for PostgreSQL: Zonal - RAM in Seoul",
+          "price_scope": "regional",
+          "sku_id": "0304-17F6-DF49+15DD-D826-2867",
+          "unit": "h",
+          "usd": "0.3604000000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - vCPU in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "965E-7C36-08E6",
+              "unit": "h",
+              "unit_price_usd": "0.0413000000"
+            },
+            {
+              "description": "Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "93DA-3F55-CB04",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0070000000"
+            }
+          ],
+          "description": "4 x Cloud SQL for PostgreSQL: Zonal - vCPU in Americas + 16 x Cloud SQL for PostgreSQL: Zonal - RAM in Americas",
+          "price_scope": "regional",
+          "sku_id": "965E-7C36-08E6+93DA-3F55-CB04",
+          "unit": "h",
+          "usd": "0.2772000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "cloudsql",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cloudsql_storage.ssd": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud SQL SSD storage (zonal)",
+        "ja": "Cloud SQL SSD ストレージ (ゾーン)",
+        "ko": "Cloud SQL SSD 스토리지 (단일 영역)"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Cloud SQL for MySQL: Zonal - Standard storage in Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "8B28-EC1C-76C6",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.2210000000",
+          "usd": "0.2210000000"
+        },
+        "asia-northeast3": {
+          "description": "Cloud SQL for MySQL: Zonal - Standard storage in Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "CBAA-1A30-444D",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.2210000000",
+          "usd": "0.2210000000"
+        },
+        "us-central1": {
+          "description": "Cloud SQL for MySQL: Zonal - Standard storage in Americas",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "F0A1-2B08-FA36",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.1700000000",
+          "usd": "0.1700000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "cloudsql",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "gce.e2_medium": {
+      "hours": 730,
+      "label": {
+        "en": "e2-medium VM (Linux, on-demand)",
+        "ja": "e2-medium VM (Linux, オンデマンド)",
+        "ko": "e2-medium VM (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "EAED-8A05-843B",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "ram_gib",
+              "sku_id": "CB4B-B875-93B4",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "1 x E2 Instance Core running in Japan + 4 x E2 Instance Ram running in Japan",
+          "price_scope": "regional",
+          "sku_id": "EAED-8A05-843B+CB4B-B875-93B4",
+          "unit": "h",
+          "usd": "0.0429828600"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "9304-94C4-2117",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "ram_gib",
+              "sku_id": "D715-4E57-BAFB",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "1 x E2 Instance Core running in Seoul + 4 x E2 Instance Ram running in Seoul",
+          "price_scope": "regional",
+          "sku_id": "9304-94C4-2117+D715-4E57-BAFB",
+          "unit": "h",
+          "usd": "0.0429828600"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "1",
+              "role": "vcpu",
+              "sku_id": "CF4E-A0C7-E3BF",
+              "unit": "h",
+              "unit_price_usd": "0.0218115900"
+            },
+            {
+              "description": "E2 Instance Ram running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "ram_gib",
+              "sku_id": "F449-33EC-A5EF",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0029235300"
+            }
+          ],
+          "description": "1 x E2 Instance Core running in Americas + 4 x E2 Instance Ram running in Americas",
+          "price_scope": "regional",
+          "sku_id": "CF4E-A0C7-E3BF+F449-33EC-A5EF",
+          "unit": "h",
+          "usd": "0.0335057100"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gce",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gce.e2_standard_2": {
+      "hours": 730,
+      "label": {
+        "en": "e2-standard-2 VM (Linux, on-demand)",
+        "ja": "e2-standard-2 VM (Linux, オンデマンド)",
+        "ko": "e2-standard-2 VM (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "EAED-8A05-843B",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "CB4B-B875-93B4",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "2 x E2 Instance Core running in Japan + 8 x E2 Instance Ram running in Japan",
+          "price_scope": "regional",
+          "sku_id": "EAED-8A05-843B+CB4B-B875-93B4",
+          "unit": "h",
+          "usd": "0.0859657200"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "9304-94C4-2117",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "D715-4E57-BAFB",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "2 x E2 Instance Core running in Seoul + 8 x E2 Instance Ram running in Seoul",
+          "price_scope": "regional",
+          "sku_id": "9304-94C4-2117+D715-4E57-BAFB",
+          "unit": "h",
+          "usd": "0.0859657200"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "CF4E-A0C7-E3BF",
+              "unit": "h",
+              "unit_price_usd": "0.0218115900"
+            },
+            {
+              "description": "E2 Instance Ram running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "F449-33EC-A5EF",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0029235300"
+            }
+          ],
+          "description": "2 x E2 Instance Core running in Americas + 8 x E2 Instance Ram running in Americas",
+          "price_scope": "regional",
+          "sku_id": "CF4E-A0C7-E3BF+F449-33EC-A5EF",
+          "unit": "h",
+          "usd": "0.0670114200"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gce",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gce.e2_standard_4": {
+      "hours": 730,
+      "label": {
+        "en": "e2-standard-4 VM (Linux, on-demand)",
+        "ja": "e2-standard-4 VM (Linux, オンデマンド)",
+        "ko": "e2-standard-4 VM (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "EAED-8A05-843B",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "CB4B-B875-93B4",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "4 x E2 Instance Core running in Japan + 16 x E2 Instance Ram running in Japan",
+          "price_scope": "regional",
+          "sku_id": "EAED-8A05-843B+CB4B-B875-93B4",
+          "unit": "h",
+          "usd": "0.1719314400"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "9304-94C4-2117",
+              "unit": "h",
+              "unit_price_usd": "0.0280264200"
+            },
+            {
+              "description": "E2 Instance Ram running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "D715-4E57-BAFB",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0037391100"
+            }
+          ],
+          "description": "4 x E2 Instance Core running in Seoul + 16 x E2 Instance Ram running in Seoul",
+          "price_scope": "regional",
+          "sku_id": "9304-94C4-2117+D715-4E57-BAFB",
+          "unit": "h",
+          "usd": "0.1719314400"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "E2 Instance Core running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "CF4E-A0C7-E3BF",
+              "unit": "h",
+              "unit_price_usd": "0.0218115900"
+            },
+            {
+              "description": "E2 Instance Ram running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "F449-33EC-A5EF",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0029235300"
+            }
+          ],
+          "description": "4 x E2 Instance Core running in Americas + 16 x E2 Instance Ram running in Americas",
+          "price_scope": "regional",
+          "sku_id": "CF4E-A0C7-E3BF+F449-33EC-A5EF",
+          "unit": "h",
+          "usd": "0.1340228400"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gce",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gce.n2_standard_2": {
+      "hours": 730,
+      "label": {
+        "en": "n2-standard-2 VM (Linux, on-demand)",
+        "ja": "n2-standard-2 VM (Linux, オンデマンド)",
+        "ko": "n2-standard-2 VM (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "E137-7DDF-1143",
+              "unit": "h",
+              "unit_price_usd": "0.0406180000"
+            },
+            {
+              "description": "N2 Instance Ram running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "CFB3-624B-6A52",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0054190000"
+            }
+          ],
+          "description": "2 x N2 Instance Core running in Japan + 8 x N2 Instance Ram running in Japan",
+          "price_scope": "regional",
+          "sku_id": "E137-7DDF-1143+CFB3-624B-6A52",
+          "unit": "h",
+          "usd": "0.1245880000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "D71C-9B8F-0ED9",
+              "unit": "h",
+              "unit_price_usd": "0.0405950000"
+            },
+            {
+              "description": "N2 Instance Ram running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "A9FC-4BD1-8E21",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0054410000"
+            }
+          ],
+          "description": "2 x N2 Instance Core running in Seoul + 8 x N2 Instance Ram running in Seoul",
+          "price_scope": "regional",
+          "sku_id": "D71C-9B8F-0ED9+A9FC-4BD1-8E21",
+          "unit": "h",
+          "usd": "0.1247180000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "2",
+              "role": "vcpu",
+              "sku_id": "BB77-5FDA-69D9",
+              "unit": "h",
+              "unit_price_usd": "0.0316110000"
+            },
+            {
+              "description": "N2 Instance Ram running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "8",
+              "role": "ram_gib",
+              "sku_id": "5B01-D157-A097",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0042370000"
+            }
+          ],
+          "description": "2 x N2 Instance Core running in Americas + 8 x N2 Instance Ram running in Americas",
+          "price_scope": "regional",
+          "sku_id": "BB77-5FDA-69D9+5B01-D157-A097",
+          "unit": "h",
+          "usd": "0.0971180000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gce",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gce.n2_standard_4": {
+      "hours": 730,
+      "label": {
+        "en": "n2-standard-4 VM (Linux, on-demand)",
+        "ja": "n2-standard-4 VM (Linux, オンデマンド)",
+        "ko": "n2-standard-4 VM (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "E137-7DDF-1143",
+              "unit": "h",
+              "unit_price_usd": "0.0406180000"
+            },
+            {
+              "description": "N2 Instance Ram running in Japan",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "CFB3-624B-6A52",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0054190000"
+            }
+          ],
+          "description": "4 x N2 Instance Core running in Japan + 16 x N2 Instance Ram running in Japan",
+          "price_scope": "regional",
+          "sku_id": "E137-7DDF-1143+CFB3-624B-6A52",
+          "unit": "h",
+          "usd": "0.2491760000"
+        },
+        "asia-northeast3": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "D71C-9B8F-0ED9",
+              "unit": "h",
+              "unit_price_usd": "0.0405950000"
+            },
+            {
+              "description": "N2 Instance Ram running in Seoul",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "A9FC-4BD1-8E21",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0054410000"
+            }
+          ],
+          "description": "4 x N2 Instance Core running in Seoul + 16 x N2 Instance Ram running in Seoul",
+          "price_scope": "regional",
+          "sku_id": "D71C-9B8F-0ED9+A9FC-4BD1-8E21",
+          "unit": "h",
+          "usd": "0.2494360000"
+        },
+        "us-central1": {
+          "components": [
+            {
+              "description": "N2 Instance Core running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "4",
+              "role": "vcpu",
+              "sku_id": "BB77-5FDA-69D9",
+              "unit": "h",
+              "unit_price_usd": "0.0316110000"
+            },
+            {
+              "description": "N2 Instance Ram running in Americas",
+              "effective_time": "2026-10-23T07:00:00Z",
+              "multiplier": "16",
+              "role": "ram_gib",
+              "sku_id": "5B01-D157-A097",
+              "unit": "GiBy.h",
+              "unit_price_usd": "0.0042370000"
+            }
+          ],
+          "description": "4 x N2 Instance Core running in Americas + 16 x N2 Instance Ram running in Americas",
+          "price_scope": "regional",
+          "sku_id": "BB77-5FDA-69D9+5B01-D157-A097",
+          "unit": "h",
+          "usd": "0.1942360000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gce",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gcs.class_a": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Storage Class A operations (regional Standard)",
+        "ja": "Cloud Storage クラス A オペレーション (リージョン Standard)",
+        "ko": "Cloud Storage A등급 작업 (리전 Standard)"
+      },
+      "per": "request",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Regional Standard Class A Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4DBF-185F-A415",
+          "unit": "count",
+          "unit_price_usd": "0.0000050000",
+          "usd": "0.0000050000"
+        },
+        "asia-northeast3": {
+          "description": "Regional Standard Class A Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4DBF-185F-A415",
+          "unit": "count",
+          "unit_price_usd": "0.0000050000",
+          "usd": "0.0000050000"
+        },
+        "us-central1": {
+          "description": "Regional Standard Class A Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "4DBF-185F-A415",
+          "unit": "count",
+          "unit_price_usd": "0.0000050000",
+          "usd": "0.0000050000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "gcs",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gcs.class_b": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Storage Class B operations (regional Standard)",
+        "ja": "Cloud Storage クラス B オペレーション (リージョン Standard)",
+        "ko": "Cloud Storage B등급 작업 (리전 Standard)"
+      },
+      "per": "request",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Regional Standard Class B Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "7870-010B-2763",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "asia-northeast3": {
+          "description": "Regional Standard Class B Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "7870-010B-2763",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        },
+        "us-central1": {
+          "description": "Regional Standard Class B Operations",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "7870-010B-2763",
+          "unit": "count",
+          "unit_price_usd": "0.0000004000",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "gcs",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "gcs.standard.storage": {
+      "hours": 1,
+      "label": {
+        "en": "Cloud Storage Standard storage (regional)",
+        "ja": "Cloud Storage Standard ストレージ (リージョン)",
+        "ko": "Cloud Storage Standard 스토리지 (리전)"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Standard Storage Tokyo",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "1845-1496-2891",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0230000000",
+          "usd": "0.0230000000"
+        },
+        "asia-northeast3": {
+          "description": "Standard Storage Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "59CF-0E01-97FE",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0230000000",
+          "usd": "0.0230000000"
+        },
+        "us-central1": {
+          "description": "Standard Storage US Regional",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "E5F0-6A5D-7BAD",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0200000000",
+          "usd": "0.0200000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "gcs",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "gke.cluster": {
+      "hours": 730,
+      "label": {
+        "en": "GKE cluster management fee",
+        "ja": "GKE クラスタ管理手数料",
+        "ko": "GKE 클러스터 관리 수수료"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Zonal Kubernetes Clusters",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6B92-A835-08AB",
+          "unit": "h",
+          "unit_price_usd": "0.1000000000",
+          "usd": "0.1000000000"
+        },
+        "asia-northeast3": {
+          "description": "Zonal Kubernetes Clusters",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6B92-A835-08AB",
+          "unit": "h",
+          "unit_price_usd": "0.1000000000",
+          "usd": "0.1000000000"
+        },
+        "us-central1": {
+          "description": "Zonal Kubernetes Clusters",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "global",
+          "sku_id": "6B92-A835-08AB",
+          "unit": "h",
+          "unit_price_usd": "0.1000000000",
+          "usd": "0.1000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "gke",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "memorystore.basic_1gb": {
+      "hours": 730,
+      "label": {
+        "en": "Memorystore for Redis Basic tier 1 GB",
+        "ja": "Memorystore for Redis ベーシック ティア 1GB",
+        "ko": "Memorystore for Redis 기본 등급 1GB"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Redis Capacity Basic M1 Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "D516-9D9F-81AF",
+          "unit": "h",
+          "unit_price_usd": "0.0650000000",
+          "usd": "0.0650000000"
+        },
+        "asia-northeast3": {
+          "description": "Redis Capacity Basic M1 Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "BA89-9DD7-2ED3",
+          "unit": "h",
+          "unit_price_usd": "0.0650000000",
+          "usd": "0.0650000000"
+        },
+        "us-central1": {
+          "description": "Redis Capacity Basic M1 Iowa/South Carolina/Oregon",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "38BC-F861-2EB5",
+          "unit": "h",
+          "unit_price_usd": "0.0490000000",
+          "usd": "0.0490000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "memorystore",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "memorystore.basic_5gb": {
+      "hours": 730,
+      "label": {
+        "en": "Memorystore for Redis Basic tier 5 GB",
+        "ja": "Memorystore for Redis ベーシック ティア 5GB",
+        "ko": "Memorystore for Redis 기본 등급 5GB"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Redis Capacity Basic M2 Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "3086-8D97-4998",
+          "unit": "h",
+          "unit_price_usd": "0.0400000000",
+          "usd": "0.2000000000"
+        },
+        "asia-northeast3": {
+          "description": "Redis Capacity Basic M2 Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "EA91-630B-3490",
+          "unit": "h",
+          "unit_price_usd": "0.0400000000",
+          "usd": "0.2000000000"
+        },
+        "us-central1": {
+          "description": "Redis Capacity Basic M2 Iowa/South Carolina/Oregon",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "BF59-06FF-4968",
+          "unit": "h",
+          "unit_price_usd": "0.0270000000",
+          "usd": "0.1350000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "memorystore",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "memorystore.standard_1gb": {
+      "hours": 730,
+      "label": {
+        "en": "Memorystore for Redis Standard tier 1 GB",
+        "ja": "Memorystore for Redis スタンダード ティア 1GB",
+        "ko": "Memorystore for Redis 표준 등급 1GB"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Redis Capacity Standard M1 Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "B36B-7EFC-DFE7",
+          "unit": "h",
+          "unit_price_usd": "0.1140000000",
+          "usd": "0.1140000000"
+        },
+        "asia-northeast3": {
+          "description": "Redis Capacity Standard M1 Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "D61C-FE16-60EC",
+          "unit": "h",
+          "unit_price_usd": "0.1140000000",
+          "usd": "0.1140000000"
+        },
+        "us-central1": {
+          "description": "Redis Capacity Standard M1 Iowa/South Carolina/Oregon",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "6CC9-917B-40AB",
+          "unit": "h",
+          "unit_price_usd": "0.0640000000",
+          "usd": "0.0640000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "memorystore",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "memorystore.standard_5gb": {
+      "hours": 730,
+      "label": {
+        "en": "Memorystore for Redis Standard tier 5 GB",
+        "ja": "Memorystore for Redis スタンダード ティア 5GB",
+        "ko": "Memorystore for Redis 표준 등급 5GB"
+      },
+      "per": "hour",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Redis Capacity Standard M2 Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "CD7A-1AC5-5098",
+          "unit": "h",
+          "unit_price_usd": "0.0750000000",
+          "usd": "0.3750000000"
+        },
+        "asia-northeast3": {
+          "description": "Redis Capacity Standard M2 Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "9384-045F-9E8A",
+          "unit": "h",
+          "unit_price_usd": "0.0750000000",
+          "usd": "0.3750000000"
+        },
+        "us-central1": {
+          "description": "Redis Capacity Standard M2 Iowa/South Carolina/Oregon",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "A4A4-53B9-26CD",
+          "unit": "h",
+          "unit_price_usd": "0.0540000000",
+          "usd": "0.2700000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "memorystore",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "pd.balanced": {
+      "hours": 1,
+      "label": {
+        "en": "Balanced persistent disk",
+        "ja": "バランス永続ディスク",
+        "ko": "균형 영구 디스크"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Balanced PD Capacity in Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "6D8C-DF09-314D",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.1300000000",
+          "usd": "0.1300000000"
+        },
+        "asia-northeast3": {
+          "description": "Balanced PD Capacity in Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "5666-EFB4-5C79",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.1300000000",
+          "usd": "0.1300000000"
+        },
+        "us-central1": {
+          "description": "Balanced PD Capacity",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "6AE1-525F-8B80",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.1000000000",
+          "usd": "0.1000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "pd",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "pd.ssd": {
+      "hours": 1,
+      "label": {
+        "en": "SSD persistent disk",
+        "ja": "SSD 永続ディスク",
+        "ko": "SSD 영구 디스크"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "SSD backed PD Capacity in Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "704E-4991-FEE8",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.2210000000",
+          "usd": "0.2210000000"
+        },
+        "asia-northeast3": {
+          "description": "SSD backed PD Capacity in Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "2C69-A050-09F7",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.2210000000",
+          "usd": "0.2210000000"
+        },
+        "us-central1": {
+          "description": "SSD backed PD Capacity",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "B188-61DD-52E4",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.1700000000",
+          "usd": "0.1700000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "pd",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "pd.standard": {
+      "hours": 1,
+      "label": {
+        "en": "Standard persistent disk",
+        "ja": "標準永続ディスク",
+        "ko": "표준 영구 디스크"
+      },
+      "per": "gb_month",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Storage PD Capacity in Japan",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "9977-2BC5-386A",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0520000000",
+          "usd": "0.0520000000"
+        },
+        "asia-northeast3": {
+          "description": "Storage PD Capacity in Seoul",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "0306-B164-A7B7",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0520000000",
+          "usd": "0.0520000000"
+        },
+        "us-central1": {
+          "description": "Storage PD Capacity",
+          "effective_time": "2026-10-23T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "D973-5D65-BAB2",
+          "unit": "GiBy.mo",
+          "unit_price_usd": "0.0400000000",
+          "usd": "0.0400000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "pd",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    }
+  },
+  "price_type": "on_demand_list",
+  "regions": [
+    "asia-northeast3",
+    "asia-northeast1",
+    "us-central1"
+  ],
+  "source": "gcp_cloud_billing_catalog_api"
+}

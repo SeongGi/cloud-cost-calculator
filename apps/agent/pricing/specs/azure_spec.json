@@ -1,0 +1,717 @@
+{
+  "as_of": "2026-10-23",
+  "regions": [
+    "koreacentral",
+    "japaneast",
+    "eastus"
+  ],
+  "aliases": {
+    "virtual machines": "vm",
+    "azure vm": "vm",
+    "vm": "vm",
+    "azure virtual machines": "vm",
+    "managed disks": "disk",
+    "azure disk": "disk",
+    "azure managed disks": "disk",
+    "blob storage": "blob",
+    "azure blob storage": "blob",
+    "azure storage": "blob",
+    "storage account": "blob",
+    "azure sql database": "sql_database",
+    "sql database": "sql_database",
+    "azure sql": "sql_database",
+    "azure database for mysql": "mysql",
+    "mysql flexible server": "mysql",
+    "azure database for postgresql": "postgresql",
+    "postgresql flexible server": "postgresql",
+    "application gateway": "app_gateway",
+    "azure application gateway": "app_gateway",
+    "load balancer": "load_balancer",
+    "azure load balancer": "load_balancer",
+    "vpn gateway": "vpn_gateway",
+    "azure vpn gateway": "vpn_gateway",
+    "public ip": "public_ip",
+    "public ip address": "public_ip",
+    "azure firewall": "firewall",
+    "firewall": "firewall",
+    "azure cache for redis": "redis",
+    "azure redis cache": "redis",
+    "redis cache": "redis",
+    "azure kubernetes service": "aks",
+    "aks": "aks",
+    "azure functions": "functions",
+    "functions": "functions",
+    "log analytics": "log_analytics",
+    "azure monitor": "log_analytics",
+    "azure monitor logs": "log_analytics",
+    "azure cosmos db": "cosmos_db",
+    "cosmos db": "cosmos_db"
+  },
+  "specs": {
+    "vm.b2s": {
+      "service": "vm",
+      "label": {
+        "ko": "B2s VM (Linux, 종량제)",
+        "en": "B2s VM (Linux, Pay-as-you-go)",
+        "ja": "B2s VM (Linux, 従量課金)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Virtual Machines' and productName eq 'Virtual Machines BS Series' and armSkuName eq 'Standard_B2s' and skuName eq 'B2s'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "vm.d2s_v5": {
+      "service": "vm",
+      "label": {
+        "ko": "D2s v5 VM (Linux, 종량제)",
+        "en": "D2s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "D2s v5 VM (Linux, 従量課金)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Virtual Machines' and productName eq 'Virtual Machines Dsv5 Series' and armSkuName eq 'Standard_D2s_v5' and skuName eq 'Standard_D2s_v5'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "vm.d4s_v5": {
+      "service": "vm",
+      "label": {
+        "ko": "D4s v5 VM (Linux, 종량제)",
+        "en": "D4s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "D4s v5 VM (Linux, 従量課金)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Virtual Machines' and productName eq 'Virtual Machines Dsv5 Series' and armSkuName eq 'Standard_D4s_v5' and skuName eq 'Standard_D4s_v5'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "vm.e2s_v5": {
+      "service": "vm",
+      "label": {
+        "ko": "E2s v5 VM (Linux, 종량제)",
+        "en": "E2s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "E2s v5 VM (Linux, 従量課金)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Virtual Machines' and productName eq 'Virtual Machines Esv5 Series' and armSkuName eq 'Standard_E2s_v5' and skuName eq 'E2s v5'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "disk.p10_lrs": {
+      "service": "disk",
+      "label": {
+        "ko": "P10 Premium SSD 디스크 (LRS, 월)",
+        "en": "P10 Premium SSD disk (LRS, per month)",
+        "ja": "P10 Premium SSD ディスク (LRS, 月額)"
+      },
+      "quantity_unit": "count",
+      "per": "month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Storage' and productName eq 'Premium SSD Managed Disks' and meterName eq 'P10 LRS Disk'",
+      "expect": {
+        "unitOfMeasure": "1/Month"
+      }
+    },
+    "disk.e10_lrs": {
+      "service": "disk",
+      "label": {
+        "ko": "E10 Standard SSD 디스크 (LRS, 월)",
+        "en": "E10 Standard SSD disk (LRS, per month)",
+        "ja": "E10 Standard SSD ディスク (LRS, 月額)"
+      },
+      "quantity_unit": "count",
+      "per": "month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Storage' and productName eq 'Standard SSD Managed Disks' and meterName eq 'E10 LRS Disk'",
+      "expect": {
+        "unitOfMeasure": "1/Month"
+      }
+    },
+    "blob.hot_lrs.storage": {
+      "service": "blob",
+      "label": {
+        "ko": "Blob Storage Hot LRS 저장 용량",
+        "en": "Blob Storage Hot LRS data stored",
+        "ja": "Blob Storage Hot LRS 保存容量"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Storage' and productName eq 'Blob Storage' and skuName eq 'Hot LRS' and meterName eq 'Hot LRS Data Stored'",
+      "expect": {
+        "unitOfMeasure": "1 GB/Month"
+      },
+      "tier_min": 0
+    },
+    "blob.hot_lrs.write": {
+      "service": "blob",
+      "label": {
+        "ko": "Blob Storage Hot LRS 쓰기 요청",
+        "en": "Blob Storage Hot LRS write operations",
+        "ja": "Blob Storage Hot LRS 書き込み操作"
+      },
+      "quantity_unit": "million_requests",
+      "per": "10k_requests",
+      "quantity_scale": 100,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Storage' and productName eq 'Blob Storage' and skuName eq 'Hot LRS' and meterName eq 'Hot LRS Write Operations'",
+      "expect": {
+        "unitOfMeasure": "10K"
+      }
+    },
+    "blob.hot_lrs.read": {
+      "service": "blob",
+      "label": {
+        "ko": "Blob Storage Hot LRS 읽기 요청",
+        "en": "Blob Storage Hot LRS read operations",
+        "ja": "Blob Storage Hot LRS 読み取り操作"
+      },
+      "quantity_unit": "million_requests",
+      "per": "10k_requests",
+      "quantity_scale": 100,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Storage' and productName eq 'Blob Storage' and skuName eq 'Hot LRS' and meterName eq 'Hot Read Operations'",
+      "expect": {
+        "unitOfMeasure": "10K"
+      }
+    },
+    "sqldb.gp_gen5.vcore": {
+      "service": "sql_database",
+      "label": {
+        "ko": "SQL Database 범용 Gen5 vCore 시간",
+        "en": "SQL Database General Purpose Gen5 vCore hours",
+        "ja": "SQL Database 汎用 Gen5 vCore 時間"
+      },
+      "quantity_unit": "vcore",
+      "per": "vcore_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 64,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'SQL Database' and productName eq 'SQL Database Single/Elastic Pool General Purpose - Compute Gen5' and skuName eq '1 vCore' and meterName eq 'vCore'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "mysql.b1ms": {
+      "service": "mysql",
+      "label": {
+        "ko": "MySQL Flexible Server B1MS 인스턴스 시간",
+        "en": "MySQL Flexible Server B1MS instance hours",
+        "ja": "MySQL Flexible Server B1MS インスタンス時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for MySQL' and productName eq 'Azure Database for MySQL Flexible Server Burstable BS Series Compute' and skuName eq 'B1MS' and meterName eq 'B1MS'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "mysql.b2s": {
+      "service": "mysql",
+      "label": {
+        "ko": "MySQL Flexible Server B2S 인스턴스 시간",
+        "en": "MySQL Flexible Server B2S instance hours",
+        "ja": "MySQL Flexible Server B2S インスタンス時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for MySQL' and productName eq 'Azure Database for MySQL Flexible Server Burstable BS Series Compute' and skuName eq 'B2S' and meterName eq 'B2S'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "mysql.gp_ddsv5.vcore": {
+      "service": "mysql",
+      "label": {
+        "ko": "MySQL Flexible Server 범용 Ddsv5 vCore 시간",
+        "en": "MySQL Flexible Server General Purpose Ddsv5 vCore hours",
+        "ja": "MySQL Flexible Server 汎用 Ddsv5 vCore 時間"
+      },
+      "quantity_unit": "vcore",
+      "per": "vcore_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 64,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for MySQL' and productName eq 'Azure Database for MySQL Flexible Server General Purpose Ddsv5 Series Compute' and skuName eq '1 vCore' and meterName eq '1 vCore'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "mysql.storage": {
+      "service": "mysql",
+      "label": {
+        "ko": "MySQL Flexible Server 스토리지",
+        "en": "MySQL Flexible Server storage",
+        "ja": "MySQL Flexible Server ストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 5000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for MySQL' and productName eq 'Azure Database for MySQL Flexible Server Storage' and skuName eq 'Storage' and meterName eq 'Storage Data Stored'",
+      "expect": {
+        "unitOfMeasure": "1 GB/Month"
+      }
+    },
+    "postgresql.b1ms": {
+      "service": "postgresql",
+      "label": {
+        "ko": "PostgreSQL Flexible Server B1MS 인스턴스 시간",
+        "en": "PostgreSQL Flexible Server B1MS instance hours",
+        "ja": "PostgreSQL Flexible Server B1MS インスタンス時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for PostgreSQL' and productName eq 'Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute' and skuName eq 'B1MS' and meterName eq 'B1MS'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "postgresql.b2ms": {
+      "service": "postgresql",
+      "label": {
+        "ko": "PostgreSQL Flexible Server B2ms 인스턴스 시간",
+        "en": "PostgreSQL Flexible Server B2ms instance hours",
+        "ja": "PostgreSQL Flexible Server B2ms インスタンス時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for PostgreSQL' and productName eq 'Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute' and skuName eq 'B2ms' and meterName eq 'B2ms vCore'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "postgresql.gp_ddsv5.vcore": {
+      "service": "postgresql",
+      "label": {
+        "ko": "PostgreSQL Flexible Server 범용 Ddsv5 vCore 시간",
+        "en": "PostgreSQL Flexible Server General Purpose Ddsv5 vCore hours",
+        "ja": "PostgreSQL Flexible Server 汎用 Ddsv5 vCore 時間"
+      },
+      "quantity_unit": "vcore",
+      "per": "vcore_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 64,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for PostgreSQL' and productName eq 'Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute' and skuName eq '1 vCore' and meterName eq 'vCore'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "postgresql.storage": {
+      "service": "postgresql",
+      "label": {
+        "ko": "PostgreSQL Flexible Server 스토리지",
+        "en": "PostgreSQL Flexible Server storage",
+        "ja": "PostgreSQL Flexible Server ストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 5000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Database for PostgreSQL' and productName eq 'Azure Database for PostgreSQL Flex Server Storage' and skuName eq 'Storage' and meterName eq 'Storage Data Stored'",
+      "expect": {
+        "unitOfMeasure": "1 GB/Month"
+      }
+    },
+    "appgw.standard_v2.fixed": {
+      "service": "app_gateway",
+      "label": {
+        "ko": "Application Gateway Standard v2 고정 시간",
+        "en": "Application Gateway Standard v2 fixed hours",
+        "ja": "Application Gateway Standard v2 固定時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Application Gateway' and productName eq 'Application Gateway Standard v2' and skuName eq 'Standard' and meterName eq 'Standard Fixed Cost'",
+      "expect": {
+        "unitOfMeasure": "1/Hour"
+      }
+    },
+    "appgw.standard_v2.capacity_unit": {
+      "service": "app_gateway",
+      "label": {
+        "ko": "Application Gateway Standard v2 용량 단위 시간",
+        "en": "Application Gateway Standard v2 capacity unit hours",
+        "ja": "Application Gateway Standard v2 キャパシティユニット時間"
+      },
+      "quantity_unit": "capacity_unit",
+      "per": "capacity_unit_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Application Gateway' and productName eq 'Application Gateway Standard v2' and skuName eq 'Standard' and meterName eq 'Standard Capacity Units'",
+      "expect": {
+        "unitOfMeasure": "1/Hour"
+      }
+    },
+    "lb.standard.rules": {
+      "service": "load_balancer",
+      "label": {
+        "ko": "Load Balancer Standard 규칙 시간",
+        "en": "Load Balancer Standard rules hours",
+        "ja": "Load Balancer Standard ルール時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq 'Global' and serviceName eq 'Load Balancer' and productName eq 'Load Balancer' and skuName eq 'Standard' and meterName eq 'Standard Included LB Rules and Outbound Rules'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      },
+      "global_price": true
+    },
+    "vpn.vpngw1": {
+      "service": "vpn_gateway",
+      "label": {
+        "ko": "VPN Gateway VpnGw1 시간",
+        "en": "VPN Gateway VpnGw1 hours",
+        "ja": "VPN Gateway VpnGw1 時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'VPN Gateway' and productName eq 'VPN Gateway' and skuName eq 'VpnGw1' and meterName eq 'VpnGw1'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      },
+      "allow_non_primary": true
+    },
+    "pip.standard_ipv4": {
+      "service": "public_ip",
+      "label": {
+        "ko": "공용 IP Standard 고정 IPv4 시간",
+        "en": "Public IP Standard static IPv4 hours",
+        "ja": "パブリック IP Standard 静的 IPv4 時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq 'Global' and serviceName eq 'Virtual Network' and productName eq 'IP Addresses' and skuName eq 'Standard' and meterName eq 'Standard IPv4 Static Public IP'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      },
+      "global_price": true
+    },
+    "firewall.standard.deployment": {
+      "service": "firewall",
+      "label": {
+        "ko": "Azure Firewall Standard 배포 시간",
+        "en": "Azure Firewall Standard deployment hours",
+        "ja": "Azure Firewall Standard デプロイ時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Firewall' and productName eq 'Azure Firewall' and skuName eq 'Standard' and meterName eq 'Standard Deployment'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      },
+      "allow_non_primary": true
+    },
+    "firewall.standard.data": {
+      "service": "firewall",
+      "label": {
+        "ko": "Azure Firewall Standard 처리 데이터",
+        "en": "Azure Firewall Standard data processed",
+        "ja": "Azure Firewall Standard 処理データ量"
+      },
+      "quantity_unit": "gb",
+      "per": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Firewall' and productName eq 'Azure Firewall' and skuName eq 'Standard' and meterName eq 'Standard Data Processed'",
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "allow_non_primary": true
+    },
+    "redis.standard.c1": {
+      "service": "redis",
+      "label": {
+        "ko": "Azure Cache for Redis Standard C1 시간",
+        "en": "Azure Cache for Redis Standard C1 hours",
+        "ja": "Azure Cache for Redis Standard C1 時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Redis Cache' and productName eq 'Azure Redis Cache Standard' and skuName eq 'C1' and meterName eq 'C1 Cache Instance'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      }
+    },
+    "aks.standard.cluster": {
+      "service": "aks",
+      "label": {
+        "ko": "AKS Standard 티어 클러스터 시간 (Uptime SLA)",
+        "en": "AKS Standard tier cluster hours (Uptime SLA)",
+        "ja": "AKS Standard ティア クラスター時間 (Uptime SLA)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Kubernetes Service' and productName eq 'Azure Kubernetes Service' and skuName eq 'Standard' and meterName eq 'Standard Uptime SLA'",
+      "expect": {
+        "unitOfMeasure": "1 Hour"
+      },
+      "allow_non_primary": true
+    },
+    "functions.consumption.executions": {
+      "service": "functions",
+      "label": {
+        "ko": "Functions 종량제 총 실행 횟수",
+        "en": "Functions Consumption total executions",
+        "ja": "Functions 従量課金 総実行回数"
+      },
+      "quantity_unit": "million_requests",
+      "per": "10_executions",
+      "quantity_scale": 100000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Functions' and productName eq 'Functions' and skuName eq 'Standard' and meterName eq 'Standard Total Executions'",
+      "expect": {
+        "unitOfMeasure": "10"
+      },
+      "tier_min": 100000,
+      "allow_non_primary": true
+    },
+    "functions.consumption.gb_seconds": {
+      "service": "functions",
+      "label": {
+        "ko": "Functions 종량제 실행 시간 (GB-초)",
+        "en": "Functions Consumption execution time (GB-s)",
+        "ja": "Functions 従量課金 実行時間 (GB-秒)"
+      },
+      "quantity_unit": "million_gb_seconds",
+      "per": "gb_second",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Functions' and productName eq 'Functions' and skuName eq 'Standard' and meterName eq 'Standard Execution Time'",
+      "expect": {
+        "unitOfMeasure": "1 GB Second"
+      },
+      "tier_min": 400000,
+      "allow_non_primary": true
+    },
+    "loganalytics.ingestion": {
+      "service": "log_analytics",
+      "label": {
+        "ko": "Log Analytics 데이터 수집 (분석 로그, 종량제)",
+        "en": "Log Analytics data ingestion (Analytics Logs, pay-as-you-go)",
+        "ja": "Log Analytics データ取り込み (分析ログ, 従量課金)"
+      },
+      "quantity_unit": "gb",
+      "per": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Log Analytics' and productName eq 'Log Analytics' and skuName eq 'Analytics Logs' and meterName eq 'Analytics Logs Data Ingestion'",
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "tier_min": 5,
+      "allow_non_primary": true
+    },
+    "cosmos.provisioned_ru": {
+      "service": "cosmos_db",
+      "label": {
+        "ko": "Cosmos DB 프로비저닝 처리량 100 RU/s 시간 (단일 리전)",
+        "en": "Cosmos DB provisioned throughput 100 RU/s hours (single region)",
+        "ja": "Cosmos DB プロビジョニングスループット 100 RU/s 時間 (単一リージョン)"
+      },
+      "quantity_unit": "ru_100",
+      "per": "ru_100_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Azure Cosmos DB' and productName eq 'Azure Cosmos DB' and skuName eq 'RUs' and meterName eq '100 RU/s'",
+      "expect": {
+        "unitOfMeasure": "1/Hour"
+      },
+      "allow_non_primary": true
+    }
+  }
+}

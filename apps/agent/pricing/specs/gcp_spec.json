@@ -1,0 +1,1207 @@
+{
+  "as_of": "2026-10-23",
+  "regions": [
+    "asia-northeast3",
+    "asia-northeast1",
+    "us-central1"
+  ],
+  "aliases": {
+    "compute engine": "gce",
+    "gce": "gce",
+    "google compute engine": "gce",
+    "gcp compute engine": "gce",
+    "google cloud compute engine": "gce",
+    "cloud sql": "cloudsql",
+    "google cloud sql": "cloudsql",
+    "cloud sql for mysql": "cloudsql",
+    "cloud sql for postgresql": "cloudsql",
+    "cloud sql mysql": "cloudsql",
+    "cloud sql postgresql": "cloudsql",
+    "cloud storage": "gcs",
+    "gcs": "gcs",
+    "google cloud storage": "gcs",
+    "gke": "gke",
+    "google kubernetes engine": "gke",
+    "kubernetes engine": "gke",
+    "cloud run": "cloud_run",
+    "google cloud run": "cloud_run",
+    "cloud functions": "cloud_functions",
+    "google cloud functions": "cloud_functions",
+    "cloud run functions": "cloud_functions",
+    "memorystore": "memorystore",
+    "memorystore for redis": "memorystore",
+    "cloud memorystore": "memorystore",
+    "google cloud memorystore": "memorystore",
+    "cloud load balancing": "cloud_lb",
+    "load balancer": "cloud_lb",
+    "cloud load balancer": "cloud_lb",
+    "google cloud load balancing": "cloud_lb",
+    "https load balancer": "cloud_lb",
+    "http(s) load balancer": "cloud_lb",
+    "cloud nat": "cloud_nat",
+    "google cloud nat": "cloud_nat",
+    "cloud armor": "cloud_armor",
+    "google cloud armor": "cloud_armor",
+    "cloud dns": "cloud_dns",
+    "google cloud dns": "cloud_dns",
+    "cloud logging": "cloud_logging",
+    "google cloud logging": "cloud_logging",
+    "stackdriver logging": "cloud_logging",
+    "bigquery": "bigquery",
+    "google bigquery": "bigquery",
+    "persistent disk": "pd",
+    "pd": "pd",
+    "google persistent disk": "pd"
+  },
+  "specs": {
+    "gce.e2_medium": {
+      "service": "gce",
+      "label": {
+        "ko": "e2-medium VM (Linux, 온디맨드)",
+        "en": "e2-medium VM (Linux, on-demand)",
+        "ja": "e2-medium VM (Linux, オンデマンド)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^E2 Instance Core running in ",
+          "multiplier": 1,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^E2 Instance Ram running in ",
+          "multiplier": 4,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "gce.e2_standard_2": {
+      "service": "gce",
+      "label": {
+        "ko": "e2-standard-2 VM (Linux, 온디맨드)",
+        "en": "e2-standard-2 VM (Linux, on-demand)",
+        "ja": "e2-standard-2 VM (Linux, オンデマンド)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^E2 Instance Core running in ",
+          "multiplier": 2,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^E2 Instance Ram running in ",
+          "multiplier": 8,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "gce.e2_standard_4": {
+      "service": "gce",
+      "label": {
+        "ko": "e2-standard-4 VM (Linux, 온디맨드)",
+        "en": "e2-standard-4 VM (Linux, on-demand)",
+        "ja": "e2-standard-4 VM (Linux, オンデマンド)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^E2 Instance Core running in ",
+          "multiplier": 4,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^E2 Instance Ram running in ",
+          "multiplier": 16,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "gce.n2_standard_2": {
+      "service": "gce",
+      "label": {
+        "ko": "n2-standard-2 VM (Linux, 온디맨드)",
+        "en": "n2-standard-2 VM (Linux, on-demand)",
+        "ja": "n2-standard-2 VM (Linux, オンデマンド)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^N2 Instance Core running in ",
+          "multiplier": 2,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^N2 Instance Ram running in ",
+          "multiplier": 8,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "gce.n2_standard_4": {
+      "service": "gce",
+      "label": {
+        "ko": "n2-standard-4 VM (Linux, 온디맨드)",
+        "en": "n2-standard-4 VM (Linux, on-demand)",
+        "ja": "n2-standard-4 VM (Linux, オンデマンド)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^N2 Instance Core running in ",
+          "multiplier": 4,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^N2 Instance Ram running in ",
+          "multiplier": 16,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.mysql.db_custom_1_3840": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for MySQL: Zonal - vCPU in ",
+          "multiplier": 1,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for MySQL: Zonal - RAM in ",
+          "multiplier": 3.75,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.mysql.db_custom_2_7680": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for MySQL: Zonal - vCPU in ",
+          "multiplier": 2,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for MySQL: Zonal - RAM in ",
+          "multiplier": 7.5,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.mysql.db_custom_4_16384": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, zonal)",
+        "ja": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for MySQL: Zonal - vCPU in ",
+          "multiplier": 4,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for MySQL: Zonal - RAM in ",
+          "multiplier": 16,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.postgres.db_custom_1_3840": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - vCPU in ",
+          "multiplier": 1,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - RAM in ",
+          "multiplier": 3.75,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.postgres.db_custom_2_7680": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - vCPU in ",
+          "multiplier": 2,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - RAM in ",
+          "multiplier": 7.5,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql.postgres.db_custom_4_16384": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, 단일 영역)",
+        "en": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, zonal)",
+        "ja": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, ゾーン)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "vcpu",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - vCPU in ",
+          "multiplier": 4,
+          "unit": "h"
+        },
+        {
+          "role": "ram_gib",
+          "match": "^Cloud SQL for PostgreSQL: Zonal - RAM in ",
+          "multiplier": 16,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "cloudsql_storage.ssd": {
+      "service": "cloudsql",
+      "label": {
+        "ko": "Cloud SQL SSD 스토리지 (단일 영역)",
+        "en": "Cloud SQL SSD storage (zonal)",
+        "ja": "Cloud SQL SSD ストレージ (ゾーン)"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Cloud SQL",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Cloud SQL for MySQL: Zonal - Standard storage in ",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "memorystore.basic_1gb": {
+      "service": "memorystore",
+      "label": {
+        "ko": "Memorystore for Redis 기본 등급 1GB",
+        "en": "Memorystore for Redis Basic tier 1 GB",
+        "ja": "Memorystore for Redis ベーシック ティア 1GB"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud Memorystore for Redis",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "capacity_m1_gib",
+          "match": "^Redis Capacity Basic M1 ",
+          "multiplier": 1,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "memorystore.basic_5gb": {
+      "service": "memorystore",
+      "label": {
+        "ko": "Memorystore for Redis 기본 등급 5GB",
+        "en": "Memorystore for Redis Basic tier 5 GB",
+        "ja": "Memorystore for Redis ベーシック ティア 5GB"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud Memorystore for Redis",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "capacity_m2_gib",
+          "match": "^Redis Capacity Basic M2 ",
+          "multiplier": 5,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "memorystore.standard_1gb": {
+      "service": "memorystore",
+      "label": {
+        "ko": "Memorystore for Redis 표준 등급 1GB",
+        "en": "Memorystore for Redis Standard tier 1 GB",
+        "ja": "Memorystore for Redis スタンダード ティア 1GB"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud Memorystore for Redis",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "capacity_m1_gib",
+          "match": "^Redis Capacity Standard M1 ",
+          "multiplier": 1,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "memorystore.standard_5gb": {
+      "service": "memorystore",
+      "label": {
+        "ko": "Memorystore for Redis 표준 등급 5GB",
+        "en": "Memorystore for Redis Standard tier 5 GB",
+        "ja": "Memorystore for Redis スタンダード ティア 5GB"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Cloud Memorystore for Redis",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "role": "capacity_m2_gib",
+          "match": "^Redis Capacity Standard M2 ",
+          "multiplier": 5,
+          "unit": "GiBy.h"
+        }
+      ]
+    },
+    "pd.standard": {
+      "service": "pd",
+      "label": {
+        "ko": "표준 영구 디스크",
+        "en": "Standard persistent disk",
+        "ja": "標準永続ディスク"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Storage PD Capacity( in \\w+)?$",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "pd.balanced": {
+      "service": "pd",
+      "label": {
+        "ko": "균형 영구 디스크",
+        "en": "Balanced persistent disk",
+        "ja": "バランス永続ディスク"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Balanced PD Capacity( in \\w+)?$",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "pd.ssd": {
+      "service": "pd",
+      "label": {
+        "ko": "SSD 영구 디스크",
+        "en": "SSD persistent disk",
+        "ja": "SSD 永続ディスク"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^SSD backed PD Capacity( in \\w+)?$",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "gcs.standard.storage": {
+      "service": "gcs",
+      "label": {
+        "ko": "Cloud Storage Standard 스토리지 (리전)",
+        "en": "Cloud Storage Standard storage (regional)",
+        "ja": "Cloud Storage Standard ストレージ (リージョン)"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Cloud Storage",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Standard Storage (?!.*(Dual-region|Multi-region))",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "gcs.class_a": {
+      "service": "gcs",
+      "label": {
+        "ko": "Cloud Storage A등급 작업 (리전 Standard)",
+        "en": "Cloud Storage Class A operations (regional Standard)",
+        "ja": "Cloud Storage クラス A オペレーション (リージョン Standard)"
+      },
+      "per": "request",
+      "quantity_unit": "million_requests",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Cloud Storage",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Regional Standard Class A Operations$",
+          "unit": "count"
+        }
+      ]
+    },
+    "gcs.class_b": {
+      "service": "gcs",
+      "label": {
+        "ko": "Cloud Storage B등급 작업 (리전 Standard)",
+        "en": "Cloud Storage Class B operations (regional Standard)",
+        "ja": "Cloud Storage クラス B オペレーション (リージョン Standard)"
+      },
+      "per": "request",
+      "quantity_unit": "million_requests",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Cloud Storage",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Regional Standard Class B Operations$",
+          "unit": "count"
+        }
+      ]
+    },
+    "cloud_lb.forwarding_rule": {
+      "service": "cloud_lb",
+      "label": {
+        "ko": "Cloud Load Balancing 전달 규칙 (최초 5개 기본 요금)",
+        "en": "Cloud Load Balancing forwarding rules (minimum charge, first 5)",
+        "ja": "Cloud Load Balancing 転送ルール (最初の 5 個の最低料金)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "regional",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Cloud Load Balancer Forwarding Rule Minimum for ",
+          "unit": "h"
+        }
+      ]
+    },
+    "cloud_nat.gateway": {
+      "service": "cloud_nat",
+      "label": {
+        "ko": "Cloud NAT 게이트웨이 (할당된 VM당 시간)",
+        "en": "Cloud NAT gateway (per assigned VM hour)",
+        "ja": "Cloud NAT ゲートウェイ (割り当て VM あたり時間)"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 50,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "global",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud Nat Gateway Uptime$",
+          "unit": "h"
+        }
+      ]
+    },
+    "cloud_nat.data": {
+      "service": "cloud_nat",
+      "label": {
+        "ko": "Cloud NAT 데이터 처리",
+        "en": "Cloud NAT data processing",
+        "ja": "Cloud NAT データ処理"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Networking",
+      "scope": "global",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud Nat Data Processing$",
+          "unit": "GiBy"
+        }
+      ]
+    },
+    "gke.cluster": {
+      "service": "gke",
+      "label": {
+        "ko": "GKE 클러스터 관리 수수료",
+        "en": "GKE cluster management fee",
+        "ja": "GKE クラスタ管理手数料"
+      },
+      "per": "hour",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      "catalog_service": "Kubernetes Engine",
+      "scope": "global",
+      "expect_unit": "h",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Zonal Kubernetes Clusters$",
+          "unit": "h"
+        }
+      ]
+    },
+    "cloud_run.vcpu": {
+      "service": "cloud_run",
+      "label": {
+        "ko": "Cloud Run vCPU (요청 기반 과금)",
+        "en": "Cloud Run vCPU (request-based billing)",
+        "ja": "Cloud Run vCPU (リクエストベース課金)"
+      },
+      "per": "vcpu_hour",
+      "quantity_unit": "vcpu",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "catalog_service": "Cloud Run",
+      "scope": "regional",
+      "expect_unit": "s",
+      "convert": 3600,
+      "components": [
+        {
+          "match": "^Services CPU (Tier 2 +)?\\(Request-based billing\\)$",
+          "unit": "s"
+        }
+      ]
+    },
+    "cloud_run.memory": {
+      "service": "cloud_run",
+      "label": {
+        "ko": "Cloud Run 메모리 (요청 기반 과금)",
+        "en": "Cloud Run memory (request-based billing)",
+        "ja": "Cloud Run メモリ (リクエストベース課金)"
+      },
+      "per": "gb_hour",
+      "quantity_unit": "memory_gb",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {
+        "min": 0,
+        "max": 200,
+        "step": 1
+      },
+      "catalog_service": "Cloud Run",
+      "scope": "regional",
+      "expect_unit": "GiBy.s",
+      "convert": 3600,
+      "components": [
+        {
+          "match": "^Services Memory (Tier 2 +)?\\(Request-based billing\\)$",
+          "unit": "GiBy.s"
+        }
+      ]
+    },
+    "cloud_run.requests": {
+      "service": "cloud_run",
+      "label": {
+        "ko": "Cloud Run 요청",
+        "en": "Cloud Run requests",
+        "ja": "Cloud Run リクエスト"
+      },
+      "per": "request",
+      "quantity_unit": "million_requests",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Cloud Run",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Requests$",
+          "unit": "count"
+        }
+      ]
+    },
+    "cloud_functions.invocations": {
+      "service": "cloud_functions",
+      "label": {
+        "ko": "Cloud Run Functions 호출",
+        "en": "Cloud Run functions invocations",
+        "ja": "Cloud Run functions 呼び出し"
+      },
+      "per": "request",
+      "quantity_unit": "million_requests",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Cloud Run Functions",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Cloud Run Functions Invocations$",
+          "unit": "count"
+        }
+      ]
+    },
+    "cloud_logging.ingestion": {
+      "service": "cloud_logging",
+      "label": {
+        "ko": "Cloud Logging 로그 수집",
+        "en": "Cloud Logging log ingestion",
+        "ja": "Cloud Logging ログ取り込み"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Cloud Logging",
+      "scope": "regional",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Log Storage cost$",
+          "unit": "GiBy"
+        }
+      ]
+    },
+    "cloud_logging.retention": {
+      "service": "cloud_logging",
+      "label": {
+        "ko": "Cloud Logging 기본 기간 초과 보관",
+        "en": "Cloud Logging retention beyond default",
+        "ja": "Cloud Logging デフォルト期間超過の保持"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "Cloud Logging",
+      "scope": "global",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Log Retention cost$",
+          "unit": "GiBy.mo"
+        }
+      ]
+    },
+    "cloud_armor.policy": {
+      "service": "cloud_armor",
+      "label": {
+        "ko": "Cloud Armor 보안 정책 (Standard)",
+        "en": "Cloud Armor security policy (Standard)",
+        "ja": "Cloud Armor セキュリティポリシー (Standard)"
+      },
+      "per": "month",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 20,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "global",
+      "expect_unit": "mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud Armor Policy$",
+          "unit": "mo"
+        }
+      ]
+    },
+    "cloud_armor.rule": {
+      "service": "cloud_armor",
+      "label": {
+        "ko": "Cloud Armor 규칙 (Standard)",
+        "en": "Cloud Armor rules (Standard)",
+        "ja": "Cloud Armor ルール (Standard)"
+      },
+      "per": "month",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "global",
+      "expect_unit": "mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud Armor Rule$",
+          "unit": "mo"
+        }
+      ]
+    },
+    "cloud_armor.requests": {
+      "service": "cloud_armor",
+      "label": {
+        "ko": "Cloud Armor 요청 (Standard)",
+        "en": "Cloud Armor requests (Standard)",
+        "ja": "Cloud Armor リクエスト (Standard)"
+      },
+      "per": "request",
+      "quantity_unit": "million_requests",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Networking",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Networking Cloud Armor Requests$",
+          "unit": "count"
+        }
+      ]
+    },
+    "cloud_dns.zone": {
+      "service": "cloud_dns",
+      "label": {
+        "ko": "Cloud DNS 관리형 영역 (최초 25개)",
+        "en": "Cloud DNS managed zones (first 25)",
+        "ja": "Cloud DNS マネージドゾーン (最初の 25 個)"
+      },
+      "per": "month",
+      "quantity_unit": "count",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 25,
+        "step": 1
+      },
+      "catalog_service": "Cloud DNS",
+      "scope": "global",
+      "expect_unit": "mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^ManagedZone$",
+          "unit": "mo"
+        }
+      ]
+    },
+    "cloud_dns.queries": {
+      "service": "cloud_dns",
+      "label": {
+        "ko": "Cloud DNS 쿼리 (최초 10억 건)",
+        "en": "Cloud DNS queries (first 1 billion)",
+        "ja": "Cloud DNS クエリ (最初の 10 億件)"
+      },
+      "per": "query",
+      "quantity_unit": "million_queries",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 1000,
+        "step": 1
+      },
+      "catalog_service": "Cloud DNS",
+      "scope": "global",
+      "expect_unit": "count",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^DNS Query \\(port 53\\)$",
+          "unit": "count"
+        }
+      ]
+    },
+    "bigquery.analysis": {
+      "service": "bigquery",
+      "label": {
+        "ko": "BigQuery 온디맨드 쿼리 분석 (스캔량)",
+        "en": "BigQuery on-demand query analysis (bytes scanned)",
+        "ja": "BigQuery オンデマンドクエリ分析 (スキャン量)"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "BigQuery",
+      "scope": "regional",
+      "expect_unit": "TiBy",
+      "convert": "1/1024",
+      "components": [
+        {
+          "match": "^Analysis \\(",
+          "unit": "TiBy"
+        }
+      ]
+    },
+    "bigquery.storage": {
+      "service": "bigquery",
+      "label": {
+        "ko": "BigQuery 활성 논리 스토리지",
+        "en": "BigQuery active logical storage",
+        "ja": "BigQuery アクティブ論理ストレージ"
+      },
+      "per": "gb_month",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 10000,
+        "step": 10
+      },
+      "catalog_service": "BigQuery",
+      "scope": "regional",
+      "expect_unit": "GiBy.mo",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Active Logical Storage \\(",
+          "unit": "GiBy.mo"
+        }
+      ]
+    }
+  }
+}

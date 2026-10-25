@@ -1,0 +1,1682 @@
+[
+ {
+  "state": "ok",
+  "cloud": "aws",
+  "cloud_label": "AWS",
+  "region": "ap-northeast-2",
+  "region_label": "서울",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-24",
+  "source": "AWS Price List (공개 bulk 가격 파일)",
+  "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json",
+  "lines": [
+   {
+    "service": "ec2",
+    "service_label": "EC2",
+    "group": "컴퓨트",
+    "key": "ec2.t3.medium",
+    "label": "t3.medium 인스턴스 (Linux, 온디맨드)",
+    "usd": "0.0520000000",
+    "unit": "Hrs",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 50,
+     "step": 1
+    },
+    "qty": 2,
+    "default_qty": 2,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "ec2.t3.medium",
+      "label": "t3.medium 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.0520000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.c7i.large",
+      "label": "c7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1008000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.m7i.large",
+      "label": "m7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1239000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.r7i.large",
+      "label": "r7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1596000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.m7i.xlarge",
+      "label": "m7i.xlarge 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.2478000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "id": "ec2:0",
+    "subtotal_cents": 7592
+   },
+   {
+    "service": "rds",
+    "service_label": "RDS",
+    "group": "데이터베이스",
+    "key": "rds.postgres.t3.medium",
+    "label": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+    "usd": "0.1120000000",
+    "unit": "Hrs",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 10,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "rds.mysql.t3.medium",
+      "label": "RDS MySQL db.t3.medium (Single-AZ)",
+      "usd": "0.1040000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "rds.postgres.t3.medium",
+      "label": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+      "usd": "0.1120000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "rds.mysql.m6g.large",
+      "label": "RDS MySQL db.m6g.large (Single-AZ)",
+      "usd": "0.2100000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "rds.postgres.m6g.large",
+      "label": "RDS PostgreSQL db.m6g.large (Single-AZ)",
+      "usd": "0.2210000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "rds.mysql.r6g.large",
+      "label": "RDS MySQL db.r6g.large (Single-AZ)",
+      "usd": "0.2550000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "rds.postgres.r6g.large",
+      "label": "RDS PostgreSQL db.r6g.large (Single-AZ)",
+      "usd": "0.2700000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 10,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "note": "'postgresql'에 맞는 사양 3개 중 가장 저렴한 항목(선택 상자로 변경)",
+    "id": "rds:1",
+    "subtotal_cents": 8176
+   },
+   {
+    "service": "rds",
+    "service_label": "RDS",
+    "group": "데이터베이스",
+    "key": "rds.storage.gp3",
+    "label": "RDS gp3 스토리지",
+    "usd": "0.1310000000",
+    "unit": "GB-Mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 3000,
+     "step": 10
+    },
+    "qty": 100,
+    "default_qty": 100,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "rds:2",
+    "subtotal_cents": 1310
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.get",
+    "label": "S3 GET/SELECT 요청",
+    "usd": "0.0000003500",
+    "unit": "Requests",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 500,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "s3:3",
+    "subtotal_cents": 35
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.put",
+    "label": "S3 PUT/POST/COPY 요청",
+    "usd": "0.0000045000",
+    "unit": "Requests",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "s3:4",
+    "subtotal_cents": 450
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.storage",
+    "label": "S3 Standard 스토리지 (첫 50TB)",
+    "usd": "0.0250000000",
+    "unit": "GB-Mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 50000,
+     "step": 100
+    },
+    "qty": 500,
+    "default_qty": 500,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "s3:5",
+    "subtotal_cents": 1250
+   },
+   {
+    "service": "alb",
+    "service_label": "ALB",
+    "group": "네트워크",
+    "key": "alb.hours",
+    "label": "ALB 로드밸런서 시간",
+    "usd": "0.0225000000",
+    "unit": "Hrs",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 10,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "alb:6",
+    "subtotal_cents": 1643
+   },
+   {
+    "service": "alb",
+    "service_label": "ALB",
+    "group": "네트워크",
+    "key": "alb.lcu",
+    "label": "ALB 용량 단위 (LCU)",
+    "usd": "0.0080000000",
+    "unit": "LCU-Hrs",
+    "quantity_unit": "lcu",
+    "scale": 1,
+    "hours": 730,
+    "per": "lcu_hour",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "alb:7",
+    "subtotal_cents": 584
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 21040
+ },
+ {
+  "state": "ok",
+  "cloud": "aws",
+  "cloud_label": "AWS",
+  "region": "ap-northeast-2",
+  "region_label": "서울",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-24",
+  "source": "AWS Price List (공개 bulk 가격 파일)",
+  "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json",
+  "lines": [
+   {
+    "service": "lambda",
+    "service_label": "Lambda",
+    "group": "서버리스",
+    "key": "lambda.duration",
+    "label": "Lambda 함수 실행 시간 (GB-초, 첫 60억)",
+    "usd": "0.0000166667",
+    "unit": "Lambda-GB-Second",
+    "quantity_unit": "million_gb_seconds",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "gb_second",
+    "slider": {
+     "min": 0,
+     "max": 6000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "lambda:0",
+    "subtotal_cents": 1667
+   },
+   {
+    "service": "lambda",
+    "service_label": "Lambda",
+    "group": "서버리스",
+    "key": "lambda.requests",
+    "label": "Lambda 함수 요청",
+    "usd": "0.0000002000",
+    "unit": "Request",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 500,
+     "step": 1
+    },
+    "qty": 37,
+    "default_qty": 37,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "lambda:1",
+    "subtotal_cents": 740
+   },
+   {
+    "service": "nat_gateway",
+    "service_label": "NAT Gateway",
+    "group": "네트워크",
+    "key": "nat_gateway.bytes",
+    "label": "NAT 게이트웨이 처리 데이터",
+    "usd": "0.0590000000",
+    "unit": "GB",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb",
+    "slider": {
+     "min": 0,
+     "max": 5000,
+     "step": 1
+    },
+    "qty": 777,
+    "default_qty": 777,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "nat_gateway:2",
+    "subtotal_cents": 4584
+   },
+   {
+    "service": "nat_gateway",
+    "service_label": "NAT Gateway",
+    "group": "네트워크",
+    "key": "nat_gateway.hours",
+    "label": "NAT 게이트웨이 시간",
+    "usd": "0.0590000000",
+    "unit": "Hrs",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 10,
+     "step": 1
+    },
+    "qty": 2,
+    "default_qty": 2,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "nat_gateway:3",
+    "subtotal_cents": 8614
+   },
+   {
+    "service": "ec2",
+    "service_label": "EC2",
+    "group": "컴퓨트",
+    "key": "ec2.m7i.large",
+    "label": "m7i.large 인스턴스 (Linux, 온디맨드)",
+    "usd": "0.1239000000",
+    "unit": "Hrs",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 50,
+     "step": 1
+    },
+    "qty": 3,
+    "default_qty": 3,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "ec2.t3.medium",
+      "label": "t3.medium 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.0520000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.c7i.large",
+      "label": "c7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1008000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.m7i.large",
+      "label": "m7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1239000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.r7i.large",
+      "label": "r7i.large 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.1596000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "ec2.m7i.xlarge",
+      "label": "m7i.xlarge 인스턴스 (Linux, 온디맨드)",
+      "usd": "0.2478000000",
+      "unit": "Hrs",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "id": "ec2:4",
+    "subtotal_cents": 27134
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 42739
+ },
+ {
+  "state": "ok",
+  "cloud": "azure",
+  "cloud_label": "Azure",
+  "region": "koreacentral",
+  "region_label": "한국 중부(서울)",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-24",
+  "source": "Azure Retail Prices API",
+  "source_url": "https://prices.azure.com/api/retail/prices",
+  "lines": [
+   {
+    "service": "blob",
+    "service_label": "Blob Storage",
+    "group": "스토리지",
+    "key": "blob.hot_lrs.read",
+    "label": "Blob Storage Hot LRS 읽기 요청",
+    "usd": "0.0040000000",
+    "unit": "10K",
+    "quantity_unit": "million_requests",
+    "scale": 100,
+    "hours": 1,
+    "per": "10k_requests",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "blob:0",
+    "subtotal_cents": 40
+   },
+   {
+    "service": "blob",
+    "service_label": "Blob Storage",
+    "group": "스토리지",
+    "key": "blob.hot_lrs.storage",
+    "label": "Blob Storage Hot LRS 저장 용량",
+    "usd": "0.0200000000",
+    "unit": "1 GB/Month",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 10000,
+     "step": 10
+    },
+    "qty": 1000,
+    "default_qty": 1000,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "blob:1",
+    "subtotal_cents": 2000
+   },
+   {
+    "service": "blob",
+    "service_label": "Blob Storage",
+    "group": "스토리지",
+    "key": "blob.hot_lrs.write",
+    "label": "Blob Storage Hot LRS 쓰기 요청",
+    "usd": "0.0500000000",
+    "unit": "10K",
+    "quantity_unit": "million_requests",
+    "scale": 100,
+    "hours": 1,
+    "per": "10k_requests",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "blob:2",
+    "subtotal_cents": 500
+   },
+   {
+    "service": "functions",
+    "service_label": "Functions",
+    "group": "서버리스",
+    "key": "functions.consumption.executions",
+    "label": "Functions 종량제 총 실행 횟수",
+    "usd": "0.0000020000",
+    "unit": "10",
+    "quantity_unit": "million_requests",
+    "scale": 100000,
+    "hours": 1,
+    "per": "10_executions",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 13,
+    "default_qty": 13,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "functions:3",
+    "subtotal_cents": 260
+   },
+   {
+    "service": "functions",
+    "service_label": "Functions",
+    "group": "서버리스",
+    "key": "functions.consumption.gb_seconds",
+    "label": "Functions 종량제 실행 시간 (GB-초)",
+    "usd": "0.0000160000",
+    "unit": "1 GB Second",
+    "quantity_unit": "million_gb_seconds",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "gb_second",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "functions:4",
+    "subtotal_cents": 1600
+   },
+   {
+    "service": "vm",
+    "service_label": "Virtual Machines",
+    "group": "컴퓨트",
+    "key": "vm.d2s_v5",
+    "label": "D2s v5 VM (Linux, 종량제)",
+    "usd": "0.1180000000",
+    "unit": "1 Hour",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 50,
+     "step": 1
+    },
+    "qty": 3,
+    "default_qty": 3,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "vm.b2s",
+      "label": "B2s VM (Linux, 종량제)",
+      "usd": "0.0520000000",
+      "unit": "1 Hour",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "vm.d2s_v5",
+      "label": "D2s v5 VM (Linux, 종량제)",
+      "usd": "0.1180000000",
+      "unit": "1 Hour",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "vm.e2s_v5",
+      "label": "E2s v5 VM (Linux, 종량제)",
+      "usd": "0.1520000000",
+      "unit": "1 Hour",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "vm.d4s_v5",
+      "label": "D4s v5 VM (Linux, 종량제)",
+      "usd": "0.2360000000",
+      "unit": "1 Hour",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "id": "vm:5",
+    "subtotal_cents": 25842
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 30242
+ },
+ {
+  "state": "ok",
+  "cloud": "aws",
+  "cloud_label": "AWS",
+  "region": "ap-northeast-2",
+  "region_label": "서울",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-24",
+  "source": "AWS Price List (공개 bulk 가격 파일)",
+  "source_url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/index.json",
+  "lines": [
+   {
+    "service": "lambda",
+    "service_label": "Lambda",
+    "group": "서버리스",
+    "key": "lambda.duration",
+    "label": "Lambda 함수 실행 시간 (GB-초, 첫 60억)",
+    "usd": "0.0000166667",
+    "unit": "Lambda-GB-Second",
+    "quantity_unit": "million_gb_seconds",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "gb_second",
+    "slider": {
+     "min": 0,
+     "max": 6000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "lambda:0",
+    "subtotal_cents": 1667
+   },
+   {
+    "service": "lambda",
+    "service_label": "Lambda",
+    "group": "서버리스",
+    "key": "lambda.requests",
+    "label": "Lambda 함수 요청",
+    "usd": "0.0000002000",
+    "unit": "Request",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 999999999,
+     "step": 1
+    },
+    "qty": 999999999,
+    "default_qty": 999999999,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "lambda:1",
+    "subtotal_cents": 19999999980
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.get",
+    "label": "S3 GET/SELECT 요청",
+    "usd": "0.0000003500",
+    "unit": "Requests",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 500,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "s3:2",
+    "subtotal_cents": 35
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.put",
+    "label": "S3 PUT/POST/COPY 요청",
+    "usd": "0.0000045000",
+    "unit": "Requests",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "s3:3",
+    "subtotal_cents": 450
+   },
+   {
+    "service": "s3",
+    "service_label": "S3",
+    "group": "스토리지",
+    "key": "s3.storage",
+    "label": "S3 Standard 스토리지 (첫 50TB)",
+    "usd": "0.0250000000",
+    "unit": "GB-Mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 987654321,
+     "step": 1
+    },
+    "qty": 987654321,
+    "default_qty": 987654321,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "s3:4",
+    "subtotal_cents": 2469135803
+   },
+   {
+    "service": "dynamodb",
+    "service_label": "DynamoDB",
+    "group": "데이터베이스",
+    "key": "dynamodb.read",
+    "label": "DynamoDB 온디맨드 읽기 요청 단위 (RRU)",
+    "usd": "0.0000001355",
+    "unit": "ReadRequestUnits",
+    "quantity_unit": "million_units",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request_unit",
+    "slider": {
+     "min": 0,
+     "max": 123456789,
+     "step": 1
+    },
+    "qty": 123456789,
+    "default_qty": 123456789,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "dynamodb:5",
+    "subtotal_cents": 1672839491
+   },
+   {
+    "service": "dynamodb",
+    "service_label": "DynamoDB",
+    "group": "데이터베이스",
+    "key": "dynamodb.write",
+    "label": "DynamoDB 온디맨드 쓰기 요청 단위 (WRU)",
+    "usd": "0.0000006800",
+    "unit": "WriteRequestUnits",
+    "quantity_unit": "million_units",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request_unit",
+    "slider": {
+     "min": 0,
+     "max": 500,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "dynamodb:6",
+    "subtotal_cents": 68
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 24141977494
+ },
+ {
+  "state": "ok",
+  "cloud": "gcp",
+  "cloud_label": "Google Cloud",
+  "region": "asia-northeast3",
+  "region_label": "서울",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-23",
+  "source": "Google Cloud Billing Catalog API",
+  "source_url": "https://cloud.google.com/billing/docs/reference/rest",
+  "lines": [
+   {
+    "service": "gce",
+    "service_label": "Compute Engine",
+    "group": "컴퓨트",
+    "key": "gce.e2_standard_2",
+    "label": "e2-standard-2 VM (Linux, 온디맨드)",
+    "usd": "0.0859657200",
+    "unit": "h",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 50,
+     "step": 1
+    },
+    "qty": 2,
+    "default_qty": 2,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "gce.e2_medium",
+      "label": "e2-medium VM (Linux, 온디맨드)",
+      "usd": "0.0429828600",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "gce.e2_standard_2",
+      "label": "e2-standard-2 VM (Linux, 온디맨드)",
+      "usd": "0.0859657200",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "gce.n2_standard_2",
+      "label": "n2-standard-2 VM (Linux, 온디맨드)",
+      "usd": "0.1247180000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "gce.e2_standard_4",
+      "label": "e2-standard-4 VM (Linux, 온디맨드)",
+      "usd": "0.1719314400",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "gce.n2_standard_4",
+      "label": "n2-standard-4 VM (Linux, 온디맨드)",
+      "usd": "0.2494360000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 50,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "id": "gce:0",
+    "subtotal_cents": 12551
+   },
+   {
+    "service": "cloudsql",
+    "service_label": "Cloud SQL",
+    "group": "데이터베이스",
+    "key": "cloudsql.postgres.db_custom_1_3840",
+    "label": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, 단일 영역)",
+    "usd": "0.0878250000",
+    "unit": "h",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 20,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "cloudsql.mysql.db_custom_1_3840",
+      "label": "Cloud SQL for MySQL db-custom-1-3840 (Enterprise, 단일 영역)",
+      "usd": "0.0878250000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "cloudsql.postgres.db_custom_1_3840",
+      "label": "Cloud SQL for PostgreSQL db-custom-1-3840 (Enterprise, 단일 영역)",
+      "usd": "0.0878250000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "cloudsql.mysql.db_custom_2_7680",
+      "label": "Cloud SQL for MySQL db-custom-2-7680 (Enterprise, 단일 영역)",
+      "usd": "0.1756500000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "cloudsql.postgres.db_custom_2_7680",
+      "label": "Cloud SQL for PostgreSQL db-custom-2-7680 (Enterprise, 단일 영역)",
+      "usd": "0.1756500000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "cloudsql.mysql.db_custom_4_16384",
+      "label": "Cloud SQL for MySQL db-custom-4-16384 (Enterprise, 단일 영역)",
+      "usd": "0.3604000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "cloudsql.postgres.db_custom_4_16384",
+      "label": "Cloud SQL for PostgreSQL db-custom-4-16384 (Enterprise, 단일 영역)",
+      "usd": "0.3604000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "note": "'postgresql'에 맞는 사양 3개 중 가장 저렴한 항목(선택 상자로 변경)",
+    "id": "cloudsql:1",
+    "subtotal_cents": 6411
+   },
+   {
+    "service": "cloudsql",
+    "service_label": "Cloud SQL",
+    "group": "데이터베이스",
+    "key": "cloudsql_storage.ssd",
+    "label": "Cloud SQL SSD 스토리지 (단일 영역)",
+    "usd": "0.2210000000",
+    "unit": "GiBy.mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 10000,
+     "step": 10
+    },
+    "qty": 100,
+    "default_qty": 100,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "cloudsql:2",
+    "subtotal_cents": 2210
+   },
+   {
+    "service": "gcs",
+    "service_label": "Cloud Storage",
+    "group": "스토리지",
+    "key": "gcs.class_a",
+    "label": "Cloud Storage A등급 작업 (리전 Standard)",
+    "usd": "0.0000050000",
+    "unit": "count",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "gcs:3",
+    "subtotal_cents": 500
+   },
+   {
+    "service": "gcs",
+    "service_label": "Cloud Storage",
+    "group": "스토리지",
+    "key": "gcs.class_b",
+    "label": "Cloud Storage B등급 작업 (리전 Standard)",
+    "usd": "0.0000004000",
+    "unit": "count",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "gcs:4",
+    "subtotal_cents": 40
+   },
+   {
+    "service": "gcs",
+    "service_label": "Cloud Storage",
+    "group": "스토리지",
+    "key": "gcs.standard.storage",
+    "label": "Cloud Storage Standard 스토리지 (리전)",
+    "usd": "0.0230000000",
+    "unit": "GiBy.mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 10000,
+     "step": 10
+    },
+    "qty": 500,
+    "default_qty": 500,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "gcs:5",
+    "subtotal_cents": 1150
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 22862
+ },
+ {
+  "state": "ok",
+  "cloud": "gcp",
+  "cloud_label": "Google Cloud",
+  "region": "us-central1",
+  "region_label": "미국 중부(아이오와)",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-23",
+  "source": "Google Cloud Billing Catalog API",
+  "source_url": "https://cloud.google.com/billing/docs/reference/rest",
+  "lines": [
+   {
+    "service": "cloud_run",
+    "service_label": "Cloud Run",
+    "group": "서버리스",
+    "key": "cloud_run.memory",
+    "label": "Cloud Run 메모리 (요청 기반 과금)",
+    "usd": "0.0090000000",
+    "unit": "GiBy.s",
+    "quantity_unit": "memory_gb",
+    "scale": 1,
+    "hours": 730,
+    "per": "gb_hour",
+    "slider": {
+     "min": 0,
+     "max": 200,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "cloud_run:0",
+    "subtotal_cents": 657
+   },
+   {
+    "service": "cloud_run",
+    "service_label": "Cloud Run",
+    "group": "서버리스",
+    "key": "cloud_run.requests",
+    "label": "Cloud Run 요청",
+    "usd": "0.0000004000",
+    "unit": "count",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "cloud_run:1",
+    "subtotal_cents": 40
+   },
+   {
+    "service": "cloud_run",
+    "service_label": "Cloud Run",
+    "group": "서버리스",
+    "key": "cloud_run.vcpu",
+    "label": "Cloud Run vCPU (요청 기반 과금)",
+    "usd": "0.0864000000",
+    "unit": "s",
+    "quantity_unit": "vcpu",
+    "scale": 1,
+    "hours": 730,
+    "per": "vcpu_hour",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 3,
+    "default_qty": 3,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "cloud_run:2",
+    "subtotal_cents": 18922
+   },
+   {
+    "service": "bigquery",
+    "service_label": "BigQuery",
+    "group": "데이터베이스",
+    "key": "bigquery.analysis",
+    "label": "BigQuery 온디맨드 쿼리 분석 (스캔량)",
+    "usd": "0.0061035156",
+    "unit": "TiBy",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb",
+    "slider": {
+     "min": 0,
+     "max": 10000,
+     "step": 10
+    },
+    "qty": 100,
+    "default_qty": 100,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "bigquery:3",
+    "subtotal_cents": 61
+   },
+   {
+    "service": "bigquery",
+    "service_label": "BigQuery",
+    "group": "데이터베이스",
+    "key": "bigquery.storage",
+    "label": "BigQuery 활성 논리 스토리지",
+    "usd": "0.0230000000",
+    "unit": "GiBy.mo",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb_month",
+    "slider": {
+     "min": 0,
+     "max": 10000,
+     "step": 10
+    },
+    "qty": 5000,
+    "default_qty": 5000,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "bigquery:4",
+    "subtotal_cents": 11500
+   },
+   {
+    "service": "cloud_armor",
+    "service_label": "Cloud Armor",
+    "group": "보안",
+    "key": "cloud_armor.policy",
+    "label": "Cloud Armor 보안 정책 (Standard)",
+    "usd": "5.0000000000",
+    "unit": "mo",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 1,
+    "per": "month",
+    "slider": {
+     "min": 0,
+     "max": 20,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "cloud_armor:5",
+    "subtotal_cents": 500
+   },
+   {
+    "service": "cloud_armor",
+    "service_label": "Cloud Armor",
+    "group": "보안",
+    "key": "cloud_armor.requests",
+    "label": "Cloud Armor 요청 (Standard)",
+    "usd": "0.0000007500",
+    "unit": "count",
+    "quantity_unit": "million_requests",
+    "scale": 1000000,
+    "hours": 1,
+    "per": "request",
+    "slider": {
+     "min": 0,
+     "max": 1000,
+     "step": 1
+    },
+    "qty": 250,
+    "default_qty": 250,
+    "assumed": false,
+    "included": true,
+    "family": false,
+    "id": "cloud_armor:6",
+    "subtotal_cents": 18750
+   },
+   {
+    "service": "cloud_armor",
+    "service_label": "Cloud Armor",
+    "group": "보안",
+    "key": "cloud_armor.rule",
+    "label": "Cloud Armor 규칙 (Standard)",
+    "usd": "1.0000000000",
+    "unit": "mo",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 1,
+    "per": "month",
+    "slider": {
+     "min": 0,
+     "max": 100,
+     "step": 1
+    },
+    "qty": 1,
+    "default_qty": 1,
+    "assumed": true,
+    "included": true,
+    "family": false,
+    "id": "cloud_armor:7",
+    "subtotal_cents": 100
+   },
+   {
+    "service": "memorystore",
+    "service_label": "Memorystore",
+    "group": "캐시",
+    "key": "memorystore.standard_5gb",
+    "label": "Memorystore for Redis 표준 등급 5GB",
+    "usd": "0.2700000000",
+    "unit": "h",
+    "quantity_unit": "count",
+    "scale": 1,
+    "hours": 730,
+    "per": "hour",
+    "slider": {
+     "min": 0,
+     "max": 20,
+     "step": 1
+    },
+    "qty": 2,
+    "default_qty": 2,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "memorystore.basic_1gb",
+      "label": "Memorystore for Redis 기본 등급 1GB",
+      "usd": "0.0490000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "memorystore.standard_1gb",
+      "label": "Memorystore for Redis 표준 등급 1GB",
+      "usd": "0.0640000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "memorystore.basic_5gb",
+      "label": "Memorystore for Redis 기본 등급 5GB",
+      "usd": "0.1350000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     },
+     {
+      "key": "memorystore.standard_5gb",
+      "label": "Memorystore for Redis 표준 등급 5GB",
+      "usd": "0.2700000000",
+      "unit": "h",
+      "quantity_unit": "count",
+      "scale": 1,
+      "hours": 730,
+      "per": "hour",
+      "slider": {
+       "max": 20,
+       "min": 0,
+       "step": 1
+      }
+     }
+    ],
+    "id": "memorystore:8",
+    "subtotal_cents": 39420
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
+  ],
+  "total_cents": 89950
+ }
+]

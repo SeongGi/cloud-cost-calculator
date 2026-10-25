@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* === Brand Design Tokens === */
+:root {
+  --background: #F7F7F9;
+  --foreground: #010507;
+
+  /* CopilotKit Brand Colors */
+  --color-lilac:       #BEC2FF;
+  --color-lilac-light: #D4D7FF;
+  --color-lilac-dark:  #9599CC;
+  --color-mint:        #85E0CE;
+  --color-mint-light:  #A8E9DC;
+  --color-mint-dark:   #1B936F;
+
+  /* Surfaces */
+  --color-surface:       #DEDEE9;
+  --color-surface-light: #F7F7F9;
+  --color-container:     #FFFFFF;
+
+  /* Text */
+  --color-text-primary:   #010507;
+  --color-text-secondary: #3f3f46;
+  --color-text-tertiary:  #52525b;
+
+  /* Borders */
+  --color-border:        #DBDBE5;
+  --color-border-light:  #EBEBF0;
+  --color-border-glass:  rgba(255, 255, 255, 0.3);
+
+  /* Glassmorphism */
+  --color-glass:        rgba(255, 255, 255, 0.7);
+  --color-glass-subtle: rgba(255, 255, 255, 0.5);
+  --color-glass-dark:   rgba(255, 255, 255, 0.85);
+
+  /* Shadows */
+  --shadow-sm:        0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md:        0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg:        0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-glass:     0 4px 30px rgba(0, 0, 0, 0.1);
+  --shadow-glow-lilac: 0 0 20px rgba(190, 194, 255, 0.3);
+  --shadow-glow-mint:  0 0 20px rgba(133, 224, 206, 0.3);
+
+  /* Spacing (8px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Border Radius */
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+
+  /* Component-level surfaces */
+  --surface-primary:         #fff;
+  --surface-secondary:       #fafafa;
+  --surface-tertiary:        #f9fafb;
+  --surface-quaternary:      #f3f4f6;
+  --surface-btn:             #fff;
+  --surface-btn-hover:       #f9fafb;
+  --surface-canvas-header:   #fff;
+  --surface-dialog:          #fff;
+
+  --text-primary:   #374151;
+  --text-secondary: #374151;
+  --text-tertiary:  #4b5563;
+
+  --border-default: #e5e7eb;
+  --border-hover:   #d1d5db;
+  --border-subtle:  #f0f0f0;
+  --border-light:   #f3f4f6;
+  --border-card:    transparent;
+
+  --accent-indigo:  #9599CC;
+  --accent-blue:    #BEC2FF;
+  --accent-emerald: #85E0CE;
+
+  --backdrop: rgba(0, 0, 0, 0.4);
+
+  --shadow-card:         0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover:   0 2px 6px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-compact:      0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-compact-hover:0 2px 6px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+
+  /* Chart */
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #e5e7eb;
+  --chart-axis: #6b7280;
+
+  /* CopilotKit accent override */
+  --copilot-kit-primary-color: var(--color-lilac-dark);
+
+  color-scheme: light dark;
+}
+
+/* === Dark Mode === */
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  --color-surface:       #1a1a2e;
+  --color-surface-light: #0f0f1a;
+  --color-container:     #1a1a2e;
+
+  --color-text-primary:   #e5e7eb;
+  --color-text-secondary: #d4d4d8;
+  --color-text-tertiary:  #a1a1aa;
+
+  --color-border:        rgba(255, 255, 255, 0.1);
+  --color-border-light:  rgba(255, 255, 255, 0.06);
+  --color-border-glass:  rgba(255, 255, 255, 0.08);
+
+  --color-glass:        rgba(20, 20, 40, 0.7);
+  --color-glass-subtle: rgba(20, 20, 40, 0.5);
+  --color-glass-dark:   rgba(10, 10, 20, 0.85);
+
+  --shadow-glass:      0 4px 30px rgba(0, 0, 0, 0.3);
+  --shadow-glow-lilac: 0 0 20px rgba(190, 194, 255, 0.15);
+  --shadow-glow-mint:  0 0 20px rgba(133, 224, 206, 0.15);
+
+  --surface-primary:       rgba(255, 255, 255, 0.04);
+  --surface-secondary:     rgba(255, 255, 255, 0.02);
+  --surface-tertiary:      rgba(255, 255, 255, 0.06);
+  --surface-quaternary:    rgba(255, 255, 255, 0.05);
+  --surface-btn:           rgba(255, 255, 255, 0.06);
+  --surface-btn-hover:     rgba(255, 255, 255, 0.1);
+  --surface-canvas-header: rgba(10, 10, 10, 1);
+  --surface-dialog:        rgba(30, 30, 50, 0.9);
+
+  --text-primary:   #e5e7eb;
+  --text-secondary: #d4d4d8;
+  --text-tertiary:  #a1a1aa;
+
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-hover:   rgba(255, 255, 255, 0.14);
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --border-light:   rgba(255, 255, 255, 0.05);
+  --border-card:    rgba(255, 255, 255, 0.06);
+
+  --backdrop: rgba(0, 0, 0, 0.6);
+
+  --shadow-card:          none;
+  --shadow-card-hover:    none;
+  --shadow-compact:       none;
+  --shadow-compact-hover: none;
+
+  --chart-tooltip-bg: #27272a;
+  --chart-tooltip-border: #3f3f46;
+  --chart-axis: #a1a1aa;
+
+  --copilot-kit-primary-color: var(--color-lilac);
+}
+
+/* === Base Styles === */
+body {
+  font-family: var(--font-family);
+  background: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html {
+  height: 100%;
+}
+
+/* === CopilotKit Theme Integration === */
+[data-copilotkit][data-copilotkit] {
+  --background: transparent;
+  --card: transparent;
+  --popover: oklch(98% 0 0);
+  --secondary: oklch(96% 0 0 / 0.6);
+  --muted: oklch(96% 0 0 / 0.5);
+  --border: oklch(90% 0 0 / 0.5);
+  --input: oklch(90% 0 0 / 0.5);
+}
+
+:root.dark [data-copilotkit][data-copilotkit] {
+  --background: transparent;
+  --foreground: oklch(98.5% 0 0);
+  --card: transparent;
+  --card-foreground: oklch(98.5% 0 0);
+  --popover: oklch(14.5% 0 0);
+  --popover-foreground: oklch(98.5% 0 0);
+  --primary: oklch(98.5% 0 0);
+  --primary-foreground: oklch(20.5% 0 0);
+  --secondary: oklch(26.9% 0 0 / 0.6);
+  --secondary-foreground: oklch(98.5% 0 0);
+  --muted: oklch(26.9% 0 0 / 0.15);
+  --muted-foreground: oklch(70.8% 0 0);
+  --border: oklch(26.9% 0 0 / 0.5);
+  --input: oklch(26.9% 0 0 / 0.5);
+}
+
+/* CopilotKit v1 fallback */
+:root.dark {
+  --copilot-kit-contrast-color: rgb(28, 28, 28);
+  --copilot-kit-background-color: transparent;
+  --copilot-kit-input-background-color: transparent;
+  --copilot-kit-secondary-color: transparent;
+  --copilot-kit-secondary-contrast-color: rgb(255, 255, 255);
+  --copilot-kit-separator-color: rgb(45, 45, 45);
+  --copilot-kit-muted-color: rgb(45, 45, 45);
+}
+
+/* Scroll area background fix */
+[class*="overflow-y-scroll"] {
+  padding-bottom: 16px !important;
+  background-color: var(--background);
+}
+
+/* Hide scroll-to-bottom button */
+[data-testid="copilot-scroll-to-bottom"] {
+  display: none !important;
+}

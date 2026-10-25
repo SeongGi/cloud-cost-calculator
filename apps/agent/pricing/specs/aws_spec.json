@@ -1,0 +1,924 @@
+{
+  "as_of": "2026-10-21",
+  "regions": [
+    "ap-northeast-2",
+    "ap-northeast-1",
+    "us-east-1"
+  ],
+  "region_prefixes": {
+    "ap-northeast-2": "APN2-",
+    "ap-northeast-1": "APN1-",
+    "us-east-1": ""
+  },
+  "aliases": {
+    "ec2": "ec2",
+    "bastion host": "ec2",
+    "bastion": "ec2",
+    "ebs": "ebs",
+    "nat gateway": "nat_gateway",
+    "s3": "s3",
+    "cloudwatch": "cloudwatch",
+    "alb": "alb",
+    "application load balancer": "alb",
+    "nlb": "nlb",
+    "network load balancer": "nlb",
+    "rds": "rds",
+    "rds aurora": "aurora",
+    "aurora": "aurora",
+    "route 53": "route53",
+    "lambda": "lambda",
+    "vpn": "vpn",
+    "site-to-site vpn": "vpn",
+    "waf": "waf",
+    "vpc endpoint": "vpc_endpoint",
+    "efs": "efs",
+    "elasticache": "elasticache",
+    "elasticache for redis": "elasticache",
+    "api gateway": "api_gateway",
+    "fargate": "fargate",
+    "ecs fargate": "fargate",
+    "eks": "eks",
+    "dynamodb": "dynamodb"
+  },
+  "specs": {
+    "ec2.t3.medium": {
+      "service": "ec2",
+      "label": {
+        "ko": "t3.medium 인스턴스 (Linux, 온디맨드)",
+        "en": "t3.medium instance (Linux, On-Demand)",
+        "ja": "t3.medium インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:t3.medium",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m7i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "m7i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "m7i.large instance (Linux, On-Demand)",
+        "ja": "m7i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m7i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m7i.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "m7i.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "m7i.xlarge instance (Linux, On-Demand)",
+        "ja": "m7i.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m7i.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.c7i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "c7i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "c7i.large instance (Linux, On-Demand)",
+        "ja": "c7i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:c7i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.r7i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "r7i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "r7i.large instance (Linux, On-Demand)",
+        "ja": "r7i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:r7i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ebs.gp3": {
+      "service": "ebs",
+      "label": {
+        "ko": "gp3 볼륨 스토리지",
+        "en": "gp3 volume storage",
+        "ja": "gp3 ボリュームストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 5000, "step": 10},
+      "service_code": "AmazonEC2",
+      "filters": {"usagetype": "{prefix}EBS:VolumeUsage.gp3"},
+      "expect": {"product_family": "Storage", "aws_unit": "GB-Mo"}
+    },
+    "nat_gateway.hours": {
+      "service": "nat_gateway",
+      "label": {
+        "ko": "NAT 게이트웨이 시간",
+        "en": "NAT Gateway hours",
+        "ja": "NAT ゲートウェイ時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {"usagetype": "{prefix}NatGateway-Hours"},
+      "expect": {"product_family": "NAT Gateway", "aws_unit": "Hrs"}
+    },
+    "nat_gateway.bytes": {
+      "service": "nat_gateway",
+      "label": {
+        "ko": "NAT 게이트웨이 처리 데이터",
+        "en": "NAT Gateway processed data",
+        "ja": "NAT ゲートウェイ処理データ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 5000, "step": 10},
+      "service_code": "AmazonEC2",
+      "filters": {"usagetype": "{prefix}NatGateway-Bytes"},
+      "expect": {"product_family": "NAT Gateway", "aws_unit": "GB"}
+    },
+    "s3.storage": {
+      "service": "s3",
+      "label": {
+        "ko": "S3 Standard 스토리지 (첫 50TB)",
+        "en": "S3 Standard storage (First 50TB)",
+        "ja": "S3 Standard ストレージ (最初の 50TB)"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 50000, "step": 100},
+      "service_code": "AmazonS3",
+      "filters": {
+        "usagetype": "{prefix}TimedStorage-ByteHrs",
+        "storageClass": "General Purpose",
+        "volumeType": "Standard"
+      },
+      "expect": {"product_family": "Storage", "aws_unit": "GB-Mo"}
+    },
+    "s3.put": {
+      "service": "s3",
+      "label": {
+        "ko": "S3 PUT/POST/COPY 요청",
+        "en": "S3 PUT/POST/COPY requests",
+        "ja": "S3 PUT/POST/COPY リクエスト"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 100, "step": 1},
+      "service_code": "AmazonS3",
+      "filters": {"usagetype": "{prefix}Requests-Tier1"},
+      "expect": {"product_family": "API Request", "aws_unit": "Requests"}
+    },
+    "s3.get": {
+      "service": "s3",
+      "label": {
+        "ko": "S3 GET/SELECT 요청",
+        "en": "S3 GET/SELECT requests",
+        "ja": "S3 GET/SELECT リクエスト"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 500, "step": 5},
+      "service_code": "AmazonS3",
+      "filters": {"usagetype": "{prefix}Requests-Tier2"},
+      "expect": {"product_family": "API Request", "aws_unit": "Requests"}
+    },
+    "cloudwatch.logs": {
+      "service": "cloudwatch",
+      "label": {
+        "ko": "CloudWatch 로그 수집",
+        "en": "CloudWatch Logs ingestion",
+        "ja": "CloudWatch ログ収集"
+      },
+      "quantity_unit": "gb",
+      "per": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 1000, "step": 10},
+      "service_code": "AmazonCloudWatch",
+      "filters": {"usagetype": "{prefix}DataProcessing-Bytes"},
+      "expect": {"aws_unit": "GB"}
+    },
+    "alb.hours": {
+      "service": "alb",
+      "label": {
+        "ko": "ALB 로드밸런서 시간",
+        "en": "ALB Load Balancer hours",
+        "ja": "ALB ロードバランサー時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AWSELB",
+      "filters": {
+        "usagetype": "{prefix}LoadBalancerUsage",
+        "operation": "LoadBalancing:Application"
+      },
+      "expect": {"product_family": "Load Balancer-Application", "aws_unit": "Hrs"}
+    },
+    "alb.lcu": {
+      "service": "alb",
+      "label": {
+        "ko": "ALB 용량 단위 (LCU)",
+        "en": "ALB Capacity Units (LCU)",
+        "ja": "ALB 容量単位 (LCU)"
+      },
+      "quantity_unit": "lcu",
+      "per": "lcu_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 100, "step": 1},
+      "service_code": "AWSELB",
+      "filters": {
+        "usagetype": "{prefix}LCUUsage",
+        "operation": "LoadBalancing:Application"
+      },
+      "expect": {"product_family": "Load Balancer-Application", "aws_unit": "LCU-Hrs"}
+    },
+    "nlb.hours": {
+      "service": "nlb",
+      "label": {
+        "ko": "NLB 로드밸런서 시간",
+        "en": "NLB Load Balancer hours",
+        "ja": "NLB ロードバランサー時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AWSELB",
+      "filters": {
+        "usagetype": "{prefix}LoadBalancerUsage",
+        "operation": "LoadBalancing:Network"
+      },
+      "expect": {"product_family": "Load Balancer-Network", "aws_unit": "Hrs"}
+    },
+    "nlb.lcu": {
+      "service": "nlb",
+      "label": {
+        "ko": "NLB 용량 단위 (NLCU)",
+        "en": "NLB Capacity Units (NLCU)",
+        "ja": "NLB 容量単位 (NLCU)"
+      },
+      "quantity_unit": "lcu",
+      "per": "lcu_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 100, "step": 1},
+      "service_code": "AWSELB",
+      "filters": {
+        "usagetype": "{prefix}LCUUsage",
+        "operation": "LoadBalancing:Network"
+      },
+      "expect": {"product_family": "Load Balancer-Network", "aws_unit": "LCU-Hrs"}
+    },
+    "rds.mysql.t3.medium": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS MySQL db.t3.medium (Single-AZ)",
+        "en": "RDS MySQL db.t3.medium (Single-AZ)",
+        "ja": "RDS MySQL db.t3.medium (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.t3.medium",
+        "databaseEngine": "MySQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.mysql.m6g.large": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS MySQL db.m6g.large (Single-AZ)",
+        "en": "RDS MySQL db.m6g.large (Single-AZ)",
+        "ja": "RDS MySQL db.m6g.large (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.m6g.large",
+        "databaseEngine": "MySQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.mysql.r6g.large": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS MySQL db.r6g.large (Single-AZ)",
+        "en": "RDS MySQL db.r6g.large (Single-AZ)",
+        "ja": "RDS MySQL db.r6g.large (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.r6g.large",
+        "databaseEngine": "MySQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.postgres.t3.medium": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+        "en": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+        "ja": "RDS PostgreSQL db.t3.medium (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.t3.medium",
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.postgres.m6g.large": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS PostgreSQL db.m6g.large (Single-AZ)",
+        "en": "RDS PostgreSQL db.m6g.large (Single-AZ)",
+        "ja": "RDS PostgreSQL db.m6g.large (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.m6g.large",
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.postgres.r6g.large": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS PostgreSQL db.r6g.large (Single-AZ)",
+        "en": "RDS PostgreSQL db.r6g.large (Single-AZ)",
+        "ja": "RDS PostgreSQL db.r6g.large (Single-AZ)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.r6g.large",
+        "databaseEngine": "PostgreSQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "rds.storage.gp3": {
+      "service": "rds",
+      "label": {
+        "ko": "RDS gp3 스토리지",
+        "en": "RDS gp3 storage",
+        "ja": "RDS gp3 ストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 3000, "step": 10},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}RDS:GP3-Storage",
+        "databaseEngine": "MySQL"
+      },
+      "expect": {"product_family": "Database Storage", "aws_unit": "GB-Mo"}
+    },
+    "aurora.mysql.r6g.large": {
+      "service": "aurora",
+      "label": {
+        "ko": "Aurora MySQL db.r6g.large 인스턴스",
+        "en": "Aurora MySQL db.r6g.large instance",
+        "ja": "Aurora MySQL db.r6g.large インスタンス"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}InstanceUsage:db.r6g.large",
+        "databaseEngine": "Aurora MySQL",
+        "deploymentOption": "Single-AZ"
+      },
+      "expect": {"product_family": "Database Instance", "aws_unit": "Hrs"}
+    },
+    "aurora.storage": {
+      "service": "aurora",
+      "label": {
+        "ko": "Aurora 데이터 스토리지",
+        "en": "Aurora data storage",
+        "ja": "Aurora データストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 5000, "step": 10},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}Aurora:StorageUsage",
+        "databaseEngine": "Any"
+      },
+      "expect": {"product_family": "Database Storage", "aws_unit": "GB-Mo"}
+    },
+    "aurora.io": {
+      "service": "aurora",
+      "label": {
+        "ko": "Aurora I/O 요청",
+        "en": "Aurora I/O requests",
+        "ja": "Aurora I/O リクエスト"
+      },
+      "quantity_unit": "million_ios",
+      "per": "io",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 500, "step": 5},
+      "service_code": "AmazonRDS",
+      "filters": {
+        "usagetype": "{prefix}Aurora:StorageIOUsage",
+        "databaseEngine": "Any"
+      },
+      "expect": {"product_family": "System Operation", "aws_unit": "IOs"}
+    },
+    "route53.zone": {
+      "service": "route53",
+      "label": {
+        "ko": "Route 53 호스팅 영역 (첫 25개)",
+        "en": "Route 53 Hosted Zone (First 25)",
+        "ja": "Route 53 ホストゾーン (最初の 25)"
+      },
+      "quantity_unit": "count",
+      "per": "month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 25, "step": 1},
+      "service_code": "AmazonRoute53",
+      "filters": {"usagetype": "HostedZone"},
+      "expect": {"product_family": "DNS Zone", "aws_unit": "HostedZone"},
+      "global": true
+    },
+    "route53.queries": {
+      "service": "route53",
+      "label": {
+        "ko": "Route 53 표준 쿼리 (첫 10억 건)",
+        "en": "Route 53 Standard Queries (First 1 Billion)",
+        "ja": "Route 53 標準クエリ (最初の 10億件)"
+      },
+      "quantity_unit": "million_queries",
+      "per": "query",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 1000, "step": 10},
+      "service_code": "AmazonRoute53",
+      "filters": {"usagetype": "DNS-Queries"},
+      "expect": {"product_family": "DNS Query", "aws_unit": "Queries"},
+      "global": true
+    },
+    "lambda.requests": {
+      "service": "lambda",
+      "label": {
+        "ko": "Lambda 함수 요청",
+        "en": "Lambda function requests",
+        "ja": "Lambda 関数リクエスト"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 500, "step": 5},
+      "service_code": "AWSLambda",
+      "filters": {"usagetype": "{prefix}Request"},
+      "expect": {"product_family": "Serverless", "aws_unit": ["Request", "Requests"]}
+    },
+    "lambda.duration": {
+      "service": "lambda",
+      "label": {
+        "ko": "Lambda 함수 실행 시간 (GB-초, 첫 60억)",
+        "en": "Lambda duration (GB-seconds, First 6 Billion)",
+        "ja": "Lambda 実行時間 (GB-秒, 最初の 60億)"
+      },
+      "quantity_unit": "million_gb_seconds",
+      "per": "gb_second",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 6000, "step": 50},
+      "service_code": "AWSLambda",
+      "filters": {"usagetype": "{prefix}Lambda-GB-Second", "productFamily": "Serverless"},
+      "expect": {"product_family": "Serverless", "aws_unit": "Lambda-GB-Second"}
+    },
+    "vpn.hours": {
+      "service": "vpn",
+      "label": {
+        "ko": "Site-to-Site VPN 연결 시간",
+        "en": "Site-to-Site VPN connection hours",
+        "ja": "Site-to-Site VPN 接続時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonVPC",
+      "filters": {"usagetype": "{prefix}VPN-Usage-Hours:ipsec.1"},
+      "expect": {"product_family": "Cloud Connectivity", "aws_unit": ["hours", "Hrs"]}
+    },
+    "waf.web_acl": {
+      "service": "waf",
+      "label": {
+        "ko": "WAF Web ACL",
+        "en": "WAF Web ACL",
+        "ja": "WAF Web ACL"
+      },
+      "quantity_unit": "count",
+      "per": "month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "awswaf",
+      "region_prefixes": {"ap-northeast-2": "APN2-", "ap-northeast-1": "APN1-", "us-east-1": "USE1-"},
+      "filters": {"usagetype": "{prefix}WebACL"},
+      "expect": {"product_family": "Web Application Firewall", "aws_unit": "month"}
+    },
+    "waf.rule": {
+      "service": "waf",
+      "label": {
+        "ko": "WAF 규칙 (Web ACL당)",
+        "en": "WAF rules (per Web ACL)",
+        "ja": "WAF ルール (Web ACL あたり)"
+      },
+      "quantity_unit": "count",
+      "per": "month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "awswaf",
+      "region_prefixes": {"ap-northeast-2": "APN2-", "ap-northeast-1": "APN1-", "us-east-1": "USE1-"},
+      "filters": {"usagetype": "{prefix}Rule"},
+      "expect": {"product_family": "Web Application Firewall", "aws_unit": "month"}
+    },
+    "waf.requests": {
+      "service": "waf",
+      "label": {
+        "ko": "WAF 검사 요청",
+        "en": "WAF inspected requests",
+        "ja": "WAF 検査リクエスト"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 1000, "step": 10},
+      "service_code": "awswaf",
+      "region_prefixes": {"ap-northeast-2": "APN2-", "ap-northeast-1": "APN1-", "us-east-1": "USE1-"},
+      "filters": {"usagetype": "{prefix}Request"},
+      "expect": {"product_family": "Web Application Firewall", "aws_unit": ["Request", "Requests"]}
+    },
+    "vpc_endpoint.hours": {
+      "service": "vpc_endpoint",
+      "label": {
+        "ko": "VPC 엔드포인트 시간 (AZ당)",
+        "en": "VPC Endpoint hours (per AZ)",
+        "ja": "VPC エンドポイント時間 (AZあたり)"
+      },
+      "quantity_unit": "endpoint_az",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 20, "step": 1},
+      "service_code": "AmazonVPC",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}VpcEndpoint-Hours"},
+      "expect": {"product_family": "VpcEndpoint", "aws_unit": "Hrs"}
+    },
+    "vpc_endpoint.bytes": {
+      "service": "vpc_endpoint",
+      "label": {
+        "ko": "VPC 엔드포인트 처리 데이터",
+        "en": "VPC Endpoint processed data",
+        "ja": "VPC エンドポイント処理データ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 5000, "step": 10},
+      "service_code": "AmazonVPC",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}VpcEndpoint-Bytes"},
+      "expect": {"product_family": "VpcEndpoint", "aws_unit": "GB"}
+    },
+    "efs.storage": {
+      "service": "efs",
+      "label": {
+        "ko": "EFS Standard 스토리지",
+        "en": "EFS Standard storage",
+        "ja": "EFS Standard ストレージ"
+      },
+      "quantity_unit": "gb",
+      "per": "gb_month",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {"min": 0, "max": 5000, "step": 10},
+      "service_code": "AmazonEFS",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {
+        "usagetype": "{prefix}TimedStorage-ByteHrs",
+        "storageClass": "General Purpose"
+      },
+      "expect": {"product_family": "Storage", "aws_unit": "GB-Mo"}
+    },
+    "elasticache.t3.medium": {
+      "service": "elasticache",
+      "label": {
+        "ko": "cache.t3.medium 노드 (Redis OSS, 온디맨드)",
+        "en": "cache.t3.medium node (Redis OSS, On-Demand)",
+        "ja": "cache.t3.medium ノード (Redis OSS, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 10, "step": 1},
+      "service_code": "AmazonElastiCache",
+      "filters": {
+        "usagetype": "{prefix}NodeUsage:cache.t3.medium",
+        "cacheEngine": "Redis"
+      },
+      "expect": {"product_family": "Cache Instance", "aws_unit": "Hrs"}
+    },
+    "elasticache.r6g.large": {
+      "service": "elasticache",
+      "label": {
+        "ko": "cache.r6g.large 노드 (Redis OSS, 온디맨드)",
+        "en": "cache.r6g.large node (Redis OSS, On-Demand)",
+        "ja": "cache.r6g.large ノード (Redis OSS, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 20, "step": 1},
+      "service_code": "AmazonElastiCache",
+      "filters": {
+        "usagetype": "{prefix}NodeUsage:cache.r6g.large",
+        "cacheEngine": "Redis"
+      },
+      "expect": {"product_family": "Cache Instance", "aws_unit": "Hrs"}
+    },
+    "api_gateway.rest": {
+      "service": "api_gateway",
+      "label": {
+        "ko": "API Gateway REST API 요청 (첫 3.33억 건)",
+        "en": "API Gateway REST API requests (First 333M)",
+        "ja": "API Gateway REST API リクエスト (最初の 3.33億件)"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 333, "step": 5},
+      "service_code": "AmazonApiGateway",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}ApiGatewayRequest"},
+      "expect": {"product_family": "API Calls", "aws_unit": "Requests"}
+    },
+    "api_gateway.http": {
+      "service": "api_gateway",
+      "label": {
+        "ko": "API Gateway HTTP API 요청 (첫 3억 건)",
+        "en": "API Gateway HTTP API requests (First 300M)",
+        "ja": "API Gateway HTTP API リクエスト (最初の 3億件)"
+      },
+      "quantity_unit": "million_requests",
+      "per": "request",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 300, "step": 5},
+      "service_code": "AmazonApiGateway",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}ApiGatewayHttpRequest"},
+      "expect": {"product_family": "API Calls", "aws_unit": "Requests"}
+    },
+    "fargate.vcpu": {
+      "service": "fargate",
+      "label": {
+        "ko": "Fargate vCPU 시간",
+        "en": "Fargate vCPU hours",
+        "ja": "Fargate vCPU 時間"
+      },
+      "quantity_unit": "vcpu",
+      "per": "vcpu_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 100, "step": 1},
+      "service_code": "AmazonECS",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}Fargate-vCPU-Hours:perCPU"},
+      "expect": {"product_family": "Compute", "aws_unit": "hours"}
+    },
+    "fargate.memory": {
+      "service": "fargate",
+      "label": {
+        "ko": "Fargate 메모리 시간 (GB)",
+        "en": "Fargate memory hours (GB)",
+        "ja": "Fargate メモリ時間 (GB)"
+      },
+      "quantity_unit": "memory_gb",
+      "per": "gb_hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 500, "step": 2},
+      "service_code": "AmazonECS",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}Fargate-GB-Hours"},
+      "expect": {"product_family": "Compute", "aws_unit": "hours"}
+    },
+    "eks.cluster": {
+      "service": "eks",
+      "label": {
+        "ko": "EKS 클러스터 시간",
+        "en": "EKS cluster hours",
+        "ja": "EKS クラスター時間"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 5, "step": 1},
+      "service_code": "AmazonEKS",
+      "region_prefixes": {
+        "ap-northeast-2": "APN2-",
+        "ap-northeast-1": "APN1-",
+        "us-east-1": "USE1-"
+      },
+      "filters": {"usagetype": "{prefix}AmazonEKS-Hours:perCluster"},
+      "expect": {"product_family": "Compute", "aws_unit": "Hours"}
+    },
+    "dynamodb.write": {
+      "service": "dynamodb",
+      "label": {
+        "ko": "DynamoDB 온디맨드 쓰기 요청 단위 (WRU)",
+        "en": "DynamoDB On-Demand Write Request Units (WRU)",
+        "ja": "DynamoDB オンデマンド書き込みリクエストユニット (WRU)"
+      },
+      "quantity_unit": "million_units",
+      "per": "request_unit",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 500, "step": 5},
+      "service_code": "AmazonDynamoDB",
+      "filters": {"usagetype": "{prefix}WriteRequestUnits"},
+      "expect": {
+        "product_family": "Amazon DynamoDB PayPerRequest Throughput",
+        "aws_unit": "WriteRequestUnits"
+      }
+    },
+    "dynamodb.read": {
+      "service": "dynamodb",
+      "label": {
+        "ko": "DynamoDB 온디맨드 읽기 요청 단위 (RRU)",
+        "en": "DynamoDB On-Demand Read Request Units (RRU)",
+        "ja": "DynamoDB オンデマンド読み取りリクエストユニット (RRU)"
+      },
+      "quantity_unit": "million_units",
+      "per": "request_unit",
+      "quantity_scale": 1000000,
+      "hours": 1,
+      "slider": {"min": 0, "max": 1000, "step": 10},
+      "service_code": "AmazonDynamoDB",
+      "filters": {"usagetype": "{prefix}ReadRequestUnits"},
+      "expect": {
+        "product_family": "Amazon DynamoDB PayPerRequest Throughput",
+        "aws_unit": "ReadRequestUnits"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+name: cloud-cost-calculator
+
+services:
+  agent:
+    build: { context: ., dockerfile: docker/Dockerfile.agent }
+    environment:
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3.5:latest}
+      PRICE_REFRESH: ${PRICE_REFRESH:-false}
+      MAX_CONCURRENT_RUNS: ${MAX_CONCURRENT_RUNS:-2}
+      GCP_ACCESS_TOKEN: ${GCP_ACCESS_TOKEN:-}
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["catalogs:/data/catalogs", "price-cache:/data/cache"]
+    mem_limit: 768m
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    restart: unless-stopped
+    networks: [internal]
+
+  app:
+    build: { context: ., dockerfile: docker/Dockerfile.app }
+    environment:
+      LANGGRAPH_DEPLOYMENT_URL: http://agent:8123
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-10}
+    depends_on:
+      agent: { condition: service_healthy }
+    mem_limit: 512m
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: [ALL]
+    restart: unless-stopped
+    networks: [internal]
+
+  gate:
+    image: nginx:1.27-alpine
+    environment:
+      TRUSTED_PROXY_IP: ${TRUSTED_PROXY_IP:-127.0.0.1}
+    volumes:
+      - ./docker/gate/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./docker/gate/proxy.inc:/etc/nginx/conf.d/proxy.inc:ro
+    ports: ["${PUBLIC_PORT:-8095}:8080"]
+    depends_on: [app]
+    mem_limit: 64m
+    restart: unless-stopped
+    networks: [internal]
+
+volumes:
+  catalogs:
+  price-cache:
+
+networks:
+  internal:

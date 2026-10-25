@@ -1,0 +1,3580 @@
+{
+  "aliases": {
+    "alb": "alb",
+    "api gateway": "api_gateway",
+    "application load balancer": "alb",
+    "aurora": "aurora",
+    "bastion": "ec2",
+    "bastion host": "ec2",
+    "cloudwatch": "cloudwatch",
+    "dynamodb": "dynamodb",
+    "ebs": "ebs",
+    "ec2": "ec2",
+    "ecs fargate": "fargate",
+    "efs": "efs",
+    "eks": "eks",
+    "elasticache": "elasticache",
+    "elasticache for redis": "elasticache",
+    "fargate": "fargate",
+    "lambda": "lambda",
+    "nat gateway": "nat_gateway",
+    "network load balancer": "nlb",
+    "nlb": "nlb",
+    "rds": "rds",
+    "rds aurora": "aurora",
+    "route 53": "route53",
+    "s3": "s3",
+    "site-to-site vpn": "vpn",
+    "vpc endpoint": "vpc_endpoint",
+    "vpn": "vpn",
+    "waf": "waf"
+  },
+  "as_of": "2026-10-22",
+  "currency": "USD",
+  "items": {
+    "alb.hours": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Load Balancer-Application"
+        },
+        "filters": {
+          "operation": "LoadBalancing:Application",
+          "usagetype": "{prefix}LoadBalancerUsage"
+        },
+        "service_code": "AWSELB"
+      },
+      "hours": 730,
+      "label": {
+        "en": "ALB Load Balancer hours",
+        "ja": "ALB ロードバランサー時間",
+        "ko": "ALB 로드밸런서 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "APN1-LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0243 per Application LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "98ZU8QNDMR4AS8FJ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "98ZU8QNDMR4AS8FJ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0243000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "APN2-LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0225 per Application LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "VUV9M7PZ543S2SC9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "VUV9M7PZ543S2SC9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0225000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0225 per Application LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "37CUWUT8GSNQEPUV.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "37CUWUT8GSNQEPUV",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0225000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "alb",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "alb.lcu": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "LCU-Hrs",
+          "product_family": "Load Balancer-Application"
+        },
+        "filters": {
+          "operation": "LoadBalancing:Application",
+          "usagetype": "{prefix}LCUUsage"
+        },
+        "service_code": "AWSELB"
+      },
+      "hours": 730,
+      "label": {
+        "en": "ALB Capacity Units (LCU)",
+        "ja": "ALB 容量単位 (LCU)",
+        "ko": "ALB 용량 단위 (LCU)"
+      },
+      "per": "lcu_hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "APN1-LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.008 per used Application load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "F2UQT6CZGM7BTWS8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "F2UQT6CZGM7BTWS8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0080000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "APN2-LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.008 per used Application load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "CX4ZBV2SE6F5HJV3.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CX4ZBV2SE6F5HJV3",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0080000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Application",
+            "productFamily": "Load Balancer-Application",
+            "usagetype": "LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.008 per used Application load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "P2XGEJ8N3KU52WA8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "P2XGEJ8N3KU52WA8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0080000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "lcu",
+      "service": "alb",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "api_gateway.http": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Requests",
+          "product_family": "API Calls"
+        },
+        "filters": {
+          "usagetype": "{prefix}ApiGatewayHttpRequest"
+        },
+        "service_code": "AmazonApiGateway"
+      },
+      "hours": 1,
+      "label": {
+        "en": "API Gateway HTTP API requests (First 300M)",
+        "ja": "API Gateway HTTP API リクエスト (最初の 3億件)",
+        "ko": "API Gateway HTTP API 요청 (첫 3억 건)"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "ApiGatewayHttpApi",
+            "productFamily": "API Calls",
+            "usagetype": "APN1-ApiGatewayHttpRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$1.29/million requests - API Gateway HTTP API (first 300 million)",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "5TU3JKA59EGYZ8XY.JRTCKXETXF.9NXBCPDZYR",
+          "sku": "5TU3JKA59EGYZ8XY",
+          "tier_begin": "0",
+          "tier_end": "300000000",
+          "usd": "0.0000012900"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "ApiGatewayHttpApi",
+            "productFamily": "API Calls",
+            "usagetype": "APN2-ApiGatewayHttpRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$1.23/million requests - API Gateway HTTP API (first 300 million)",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "39KUCJQBWR4UQ68S.JRTCKXETXF.9NXBCPDZYR",
+          "sku": "39KUCJQBWR4UQ68S",
+          "tier_begin": "0",
+          "tier_end": "300000000",
+          "usd": "0.0000012300"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "ApiGatewayHttpApi",
+            "productFamily": "API Calls",
+            "usagetype": "USE1-ApiGatewayHttpRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$1/million requests - API Gateway HTTP API (first 300 million)",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "FC2TWT2UEPTBKVBX.JRTCKXETXF.9NXBCPDZYR",
+          "sku": "FC2TWT2UEPTBKVBX",
+          "tier_begin": "0",
+          "tier_end": "300000000",
+          "usd": "0.0000010000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "api_gateway",
+      "slider": {
+        "max": 300,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "api_gateway.rest": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Requests",
+          "product_family": "API Calls"
+        },
+        "filters": {
+          "usagetype": "{prefix}ApiGatewayRequest"
+        },
+        "service_code": "AmazonApiGateway"
+      },
+      "hours": 1,
+      "label": {
+        "en": "API Gateway REST API requests (First 333M)",
+        "ja": "API Gateway REST API リクエスト (最初の 3.33億件)",
+        "ko": "API Gateway REST API 요청 (첫 3.33억 건)"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "ApiGatewayRequest",
+            "productFamily": "API Calls",
+            "usagetype": "APN1-ApiGatewayRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$4.25/million requests - first 333 million requests/month",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "MK9X5G6WSHJT7QGM.JRTCKXETXF.QS4VQ8N7FD",
+          "sku": "MK9X5G6WSHJT7QGM",
+          "tier_begin": "0",
+          "tier_end": "333000000",
+          "usd": "0.0000042500"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "ApiGatewayRequest",
+            "productFamily": "API Calls",
+            "usagetype": "APN2-ApiGatewayRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$3.50/million requests - first 333 million requests/month",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "3U6J7Z7NQKKPWAZ9.JRTCKXETXF.QS4VQ8N7FD",
+          "sku": "3U6J7Z7NQKKPWAZ9",
+          "tier_begin": "0",
+          "tier_end": "333000000",
+          "usd": "0.0000035000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "ApiGatewayRequest",
+            "productFamily": "API Calls",
+            "usagetype": "USE1-ApiGatewayRequest"
+          },
+          "aws_unit": "Requests",
+          "description": "$3.50/million requests - first 333 million requests/month",
+          "published": "2026-10-13T00:30:44Z",
+          "rate_code": "KKDZ3TFSXUSMCZ3A.JRTCKXETXF.QS4VQ8N7FD",
+          "sku": "KKDZ3TFSXUSMCZ3A",
+          "tier_begin": "0",
+          "tier_end": "333000000",
+          "usd": "0.0000035000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "api_gateway",
+      "slider": {
+        "max": 333,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "aurora.io": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "IOs",
+          "product_family": "System Operation"
+        },
+        "filters": {
+          "databaseEngine": "Any",
+          "usagetype": "{prefix}Aurora:StorageIOUsage"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Aurora I/O requests",
+        "ja": "Aurora I/O リクエスト",
+        "ko": "Aurora I/O 요청"
+      },
+      "per": "io",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "System Operation",
+            "usagetype": "APN1-Aurora:StorageIOUsage"
+          },
+          "aws_unit": "IOs",
+          "description": "USD 0.24 per 1 million I/O requests for Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "6VBRKT5BFTDFPK6J.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6VBRKT5BFTDFPK6J",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002400"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "System Operation",
+            "usagetype": "APN2-Aurora:StorageIOUsage"
+          },
+          "aws_unit": "IOs",
+          "description": "USD 0.24 per 1 million I/O requests for Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "7JNK4WSY79WY2SAM.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "7JNK4WSY79WY2SAM",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002400"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "System Operation",
+            "usagetype": "Aurora:StorageIOUsage"
+          },
+          "aws_unit": "IOs",
+          "description": "$0.20 per 1 million I/O requests (Aurora)",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "Z9GWDW2S5DY72YDV.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "Z9GWDW2S5DY72YDV",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_ios",
+      "service": "aurora",
+      "slider": {
+        "max": 500,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "aurora.mysql.r6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "Aurora MySQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.r6g.large"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "Aurora MySQL db.r6g.large instance",
+        "ja": "Aurora MySQL db.r6g.large インスタンス",
+        "ko": "Aurora MySQL db.r6g.large 인스턴스"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "Aurora MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0016",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.313 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "WT5FHHTBDU7EWS9U.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "WT5FHHTBDU7EWS9U",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3130000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "Aurora MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0016",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.313 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "77GQUAXSSC5FQAKR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "77GQUAXSSC5FQAKR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3130000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "Aurora MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0016",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.26 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "SVB4AAU3H83DPGMK.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "SVB4AAU3H83DPGMK",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2600000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "aurora",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "aurora.storage": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB-Mo",
+          "product_family": "Database Storage"
+        },
+        "filters": {
+          "databaseEngine": "Any",
+          "usagetype": "{prefix}Aurora:StorageUsage"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Aurora data storage",
+        "ja": "Aurora データストレージ",
+        "ko": "Aurora 데이터 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "Database Storage",
+            "usagetype": "APN1-Aurora:StorageUsage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "USD 0.12 per GB-month of consumed storage for Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "EQ54CNYB4H84CXSD.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EQ54CNYB4H84CXSD",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1200000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "Database Storage",
+            "usagetype": "APN2-Aurora:StorageUsage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "USD 0.12 per GB-month of consumed storage for Aurora MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "WJ6WGMWN9BV4D6ZX.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "WJ6WGMWN9BV4D6ZX",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1200000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "Any",
+            "operation": "CreateDBInstance",
+            "productFamily": "Database Storage",
+            "usagetype": "Aurora:StorageUsage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.10 per GB-month of consumed storage (Aurora)",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "VCW4CP6PUZ5JN68T.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "VCW4CP6PUZ5JN68T",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "aurora",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "cloudwatch.logs": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB"
+        },
+        "filters": {
+          "usagetype": "{prefix}DataProcessing-Bytes"
+        },
+        "service_code": "AmazonCloudWatch"
+      },
+      "hours": 1,
+      "label": {
+        "en": "CloudWatch Logs ingestion",
+        "ja": "CloudWatch ログ収集",
+        "ko": "CloudWatch 로그 수집"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "PutLogEvents",
+            "productFamily": "Data Payload",
+            "usagetype": "APN1-DataProcessing-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.76 per GB custom log data ingested in Standard log class - Asia Pacific (Tokyo)",
+          "published": "2026-10-07T11:55:40Z",
+          "rate_code": "CWB2GTZJXNX3TA6H.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CWB2GTZJXNX3TA6H",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.7600000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "PutLogEvents",
+            "productFamily": "Data Payload",
+            "usagetype": "APN2-DataProcessing-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.76 per GB custom log data ingested in Standard log class - Asia Pacific (Seoul)",
+          "published": "2026-10-07T11:55:40Z",
+          "rate_code": "5P9Q77R2ADUJCNJ2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "5P9Q77R2ADUJCNJ2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.7600000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "PutLogEvents",
+            "productFamily": "Data Payload",
+            "usagetype": "DataProcessing-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.50 per GB custom log data ingested in Standard log class - US East (Northern Virginia)",
+          "published": "2026-10-07T11:55:40Z",
+          "rate_code": "96K55R2PV3ZZZ3AM.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "96K55R2PV3ZZZ3AM",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.5000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "cloudwatch",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "dynamodb.read": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "ReadRequestUnits",
+          "product_family": "Amazon DynamoDB PayPerRequest Throughput"
+        },
+        "filters": {
+          "usagetype": "{prefix}ReadRequestUnits"
+        },
+        "service_code": "AmazonDynamoDB"
+      },
+      "hours": 1,
+      "label": {
+        "en": "DynamoDB On-Demand Read Request Units (RRU)",
+        "ja": "DynamoDB オンデマンド読み取りリクエストユニット (RRU)",
+        "ko": "DynamoDB 온디맨드 읽기 요청 단위 (RRU)"
+      },
+      "per": "request_unit",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "APN1-ReadRequestUnits"
+          },
+          "aws_unit": "ReadRequestUnits",
+          "description": "$0.1425 per million read request units (Asia Pacific (Tokyo))",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "TX6BW4TWG2FZQMPQ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "TX6BW4TWG2FZQMPQ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000001425"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "APN2-ReadRequestUnits"
+          },
+          "aws_unit": "ReadRequestUnits",
+          "description": "$0.1355 per million read request units (Asia Pacific (Korea))",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "CA48KP239QD7QGET.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CA48KP239QD7QGET",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000001355"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "ReadRequestUnits"
+          },
+          "aws_unit": "ReadRequestUnits",
+          "description": "$0.125 per million read request units (N. Virginia)",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "4W4ZMC46EHE8XTTZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "4W4ZMC46EHE8XTTZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000001250"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_units",
+      "service": "dynamodb",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "dynamodb.write": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "WriteRequestUnits",
+          "product_family": "Amazon DynamoDB PayPerRequest Throughput"
+        },
+        "filters": {
+          "usagetype": "{prefix}WriteRequestUnits"
+        },
+        "service_code": "AmazonDynamoDB"
+      },
+      "hours": 1,
+      "label": {
+        "en": "DynamoDB On-Demand Write Request Units (WRU)",
+        "ja": "DynamoDB オンデマンド書き込みリクエストユニット (WRU)",
+        "ko": "DynamoDB 온디맨드 쓰기 요청 단위 (WRU)"
+      },
+      "per": "request_unit",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "APN1-WriteRequestUnits"
+          },
+          "aws_unit": "WriteRequestUnits",
+          "description": "$0.715 per million write request units (Asia Pacific (Tokyo))",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "HBK75W4NW4DYPFAC.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HBK75W4NW4DYPFAC",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000007150"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "APN2-WriteRequestUnits"
+          },
+          "aws_unit": "WriteRequestUnits",
+          "description": "$0.68 per million write request units (Asia Pacific (Korea))",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "CRY85JPX766TWE8M.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CRY85JPX766TWE8M",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000006800"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "PayPerRequestThroughput",
+            "productFamily": "Amazon DynamoDB PayPerRequest Throughput",
+            "usagetype": "WriteRequestUnits"
+          },
+          "aws_unit": "WriteRequestUnits",
+          "description": "$0.625 per million write request units (N. Virginia)",
+          "published": "2026-09-11T12:44:22Z",
+          "rate_code": "FGXVD96DKJMUASY3.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "FGXVD96DKJMUASY3",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000006250"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_units",
+      "service": "dynamodb",
+      "slider": {
+        "max": 500,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "ebs.gp3": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB-Mo",
+          "product_family": "Storage"
+        },
+        "filters": {
+          "usagetype": "{prefix}EBS:VolumeUsage.gp3"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 1,
+      "label": {
+        "en": "gp3 volume storage",
+        "ja": "gp3 ボリュームストレージ",
+        "ko": "gp3 볼륨 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN1-EBS:VolumeUsage.gp3"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.096 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Tokyo)",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "C8Y3GJZBQTH8T5JV.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "C8Y3GJZBQTH8T5JV",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0960000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN2-EBS:VolumeUsage.gp3"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.0912 per GB-month of General Purpose (gp3) provisioned storage - Asia Pacific (Seoul)",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "MTK7D9SGKGYR3JD6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "MTK7D9SGKGYR3JD6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0912000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "EBS:VolumeUsage.gp3"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.08 per GB-month of General Purpose (gp3) provisioned storage - US East (N. Virginia)",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "JG3KUJMBRGHV3N8G.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "JG3KUJMBRGHV3N8G",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "ebs",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "ec2.c7i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:c7i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "c7i.large instance (Linux, On-Demand)",
+        "ja": "c7i.large インスタンス (Linux, オンデマンド)",
+        "ko": "c7i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "c7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:c7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.11235 per On Demand Linux c7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "XUYX63YVF9ZC3MN6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XUYX63YVF9ZC3MN6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1123500000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "c7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:c7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1008 per On Demand Linux c7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "TTVRCYNEPCXHDNYH.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "TTVRCYNEPCXHDNYH",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1008000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "c7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:c7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.08925 per On Demand Linux c7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "4TFFGXJMCK23ZSWR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "4TFFGXJMCK23ZSWR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0892500000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m7i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m7i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m7i.large instance (Linux, On-Demand)",
+        "ja": "m7i.large インスタンス (Linux, オンデマンド)",
+        "ko": "m7i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1302 per On Demand Linux m7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "XW87SW9SEYHYNABQ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XW87SW9SEYHYNABQ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1302000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1239 per On Demand Linux m7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "UJJMFBN4RBJ2G2DD.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "UJJMFBN4RBJ2G2DD",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1239000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1008 per On Demand Linux m7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "HDXWAGH5PKCWGFHZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HDXWAGH5PKCWGFHZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1008000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m7i.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m7i.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m7i.xlarge instance (Linux, On-Demand)",
+        "ja": "m7i.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "m7i.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m7i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m7i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.2604 per On Demand Linux m7i.xlarge Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "3DUFQH3PG8TZN6Y7.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3DUFQH3PG8TZN6Y7",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2604000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m7i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m7i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.2478 per On Demand Linux m7i.xlarge Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "AFGD7C6YY6TQZHWM.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "AFGD7C6YY6TQZHWM",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2478000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m7i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m7i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.2016 per On Demand Linux m7i.xlarge Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "W8MD4QK5G3J3QYWR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "W8MD4QK5G3J3QYWR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2016000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.r7i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:r7i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "r7i.large instance (Linux, On-Demand)",
+        "ja": "r7i.large インスタンス (Linux, オンデマンド)",
+        "ko": "r7i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "r7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:r7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1596 per On Demand Linux r7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "2F29GP4HQR74NKXY.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "2F29GP4HQR74NKXY",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1596000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "r7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:r7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1596 per On Demand Linux r7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "TN4EKTPETAWSTA45.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "TN4EKTPETAWSTA45",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1596000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "r7i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:r7i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1323 per On Demand Linux r7i.large Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "C8TP7NV93HBVY8JZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "C8TP7NV93HBVY8JZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1323000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.t3.medium": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:t3.medium"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "t3.medium instance (Linux, On-Demand)",
+        "ja": "t3.medium インスタンス (Linux, オンデマンド)",
+        "ko": "t3.medium 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "t3.medium",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0544 per On Demand Linux t3.medium Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "77PTRYZ5MAUP8HU6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "77PTRYZ5MAUP8HU6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0544000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "t3.medium",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.052 per On Demand Linux t3.medium Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "G5CAZXC4M5ENHEZN.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "G5CAZXC4M5ENHEZN",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0520000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "t3.medium",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0416 per On Demand Linux t3.medium Instance Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "NN4EGUUQRWVYP98C.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NN4EGUUQRWVYP98C",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0416000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "efs.storage": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB-Mo",
+          "product_family": "Storage"
+        },
+        "filters": {
+          "storageClass": "General Purpose",
+          "usagetype": "{prefix}TimedStorage-ByteHrs"
+        },
+        "service_code": "AmazonEFS"
+      },
+      "hours": 1,
+      "label": {
+        "en": "EFS Standard storage",
+        "ja": "EFS Standard ストレージ",
+        "ko": "EFS Standard 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN1-TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "USD $0.36 per GB-Mo for Standard storage (APN1)",
+          "published": "2026-09-11T12:44:25Z",
+          "rate_code": "6AKQKVK34TWYK2FQ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6AKQKVK34TWYK2FQ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3600000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN2-TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "USD $0.33 per GB-Mo for Standard storage (APN2)",
+          "published": "2026-09-11T12:44:25Z",
+          "rate_code": "WJPJ8E2M4Q4VTM3W.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "WJPJ8E2M4Q4VTM3W",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3300000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "USE1-TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "USD $0.30 per GB-Mo for Standard storage (USE1)",
+          "published": "2026-09-11T12:44:25Z",
+          "rate_code": "YFV3RHAD3CDDP3VE.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YFV3RHAD3CDDP3VE",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "efs",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "eks.cluster": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hours",
+          "product_family": "Compute"
+        },
+        "filters": {
+          "usagetype": "{prefix}AmazonEKS-Hours:perCluster"
+        },
+        "service_code": "AmazonEKS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "EKS cluster hours",
+        "ja": "EKS クラスター時間",
+        "ko": "EKS 클러스터 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "CreateOperation",
+            "productFamily": "Compute",
+            "usagetype": "APN1-AmazonEKS-Hours:perCluster"
+          },
+          "aws_unit": "Hours",
+          "description": "Amazon EKS cluster usage in Asia Pacific (Tokyo)",
+          "published": "2026-09-28T19:42:55Z",
+          "rate_code": "F7AV3M7DBEX7FCHJ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "F7AV3M7DBEX7FCHJ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1000000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "CreateOperation",
+            "productFamily": "Compute",
+            "usagetype": "APN2-AmazonEKS-Hours:perCluster"
+          },
+          "aws_unit": "Hours",
+          "description": "Amazon EKS cluster usage in Asia Pacific (Seoul)",
+          "published": "2026-09-28T19:42:55Z",
+          "rate_code": "8HAE52ZNS3QC3Q8Q.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "8HAE52ZNS3QC3Q8Q",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1000000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "CreateOperation",
+            "productFamily": "Compute",
+            "usagetype": "USE1-AmazonEKS-Hours:perCluster"
+          },
+          "aws_unit": "Hours",
+          "description": "Amazon EKS cluster usage in US East (N. Virginia)",
+          "published": "2026-09-28T19:42:55Z",
+          "rate_code": "ZYWMR684YSMFHWEU.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "ZYWMR684YSMFHWEU",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "eks",
+      "slider": {
+        "max": 5,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "elasticache.r6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Cache Instance"
+        },
+        "filters": {
+          "cacheEngine": "Redis",
+          "usagetype": "{prefix}NodeUsage:cache.r6g.large"
+        },
+        "service_code": "AmazonElastiCache"
+      },
+      "hours": 730,
+      "label": {
+        "en": "cache.r6g.large node (Redis OSS, On-Demand)",
+        "ja": "cache.r6g.large ノード (Redis OSS, オンデマンド)",
+        "ko": "cache.r6g.large 노드 (Redis OSS, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.r6g.large",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "APN1-NodeUsage:cache.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.247 per Memory optimized r6g.large node hour running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "PU9NNPMMEB2N6BW9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "PU9NNPMMEB2N6BW9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2470000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.r6g.large",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "APN2-NodeUsage:cache.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.246 per Memory optimized r6g.large node hour running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "HZ9X2Q6Y7BSHWGR9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HZ9X2Q6Y7BSHWGR9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2460000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.r6g.large",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "NodeUsage:cache.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.206 per Memory optimized r6g.large node hour running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "XRYU5DPB7QK6S94A.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XRYU5DPB7QK6S94A",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2060000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "elasticache",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "elasticache.t3.medium": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Cache Instance"
+        },
+        "filters": {
+          "cacheEngine": "Redis",
+          "usagetype": "{prefix}NodeUsage:cache.t3.medium"
+        },
+        "service_code": "AmazonElastiCache"
+      },
+      "hours": 730,
+      "label": {
+        "en": "cache.t3.medium node (Redis OSS, On-Demand)",
+        "ja": "cache.t3.medium ノード (Redis OSS, オンデマンド)",
+        "ko": "cache.t3.medium 노드 (Redis OSS, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.t3.medium",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "APN1-NodeUsage:cache.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.103 per T3 Medium Cache node-hour (or partial hour) running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "28KF93Q7DA265HN2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "28KF93Q7DA265HN2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1030000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.t3.medium",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "APN2-NodeUsage:cache.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.099 per T3 Medium Cache node-hour (or partial hour) running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "AGKXAFNMXBP5XB67.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "AGKXAFNMXBP5XB67",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0990000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "cacheEngine": "Redis",
+            "instanceType": "cache.t3.medium",
+            "operation": "CreateCacheCluster:0002",
+            "productFamily": "Cache Instance",
+            "usagetype": "NodeUsage:cache.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.068 per T3 Medium Cache node-hour (or partial hour) running Redis",
+          "published": "2026-10-14T22:11:39Z",
+          "rate_code": "8SWQ49R2GUEC2P8F.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "8SWQ49R2GUEC2P8F",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0680000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "elasticache",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "fargate.memory": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "hours",
+          "product_family": "Compute"
+        },
+        "filters": {
+          "usagetype": "{prefix}Fargate-GB-Hours"
+        },
+        "service_code": "AmazonECS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "Fargate memory hours (GB)",
+        "ja": "Fargate メモリ時間 (GB)",
+        "ko": "Fargate 메모리 시간 (GB)"
+      },
+      "per": "gb_hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "APN1-Fargate-GB-Hours"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - Memory  - Asia Pacific (Tokyo)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "JQEE6EF5FAF2AESH.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "JQEE6EF5FAF2AESH",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0055300000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "APN2-Fargate-GB-Hours"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - Memory  - Asia Pacific (Seoul)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "KJE68NNYFF2BQG98.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "KJE68NNYFF2BQG98",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0051100000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "USE1-Fargate-GB-Hours"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - Memory  - US East (N.Virginia)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "PBZNQUSEXZUC34C9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "PBZNQUSEXZUC34C9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0044450000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "memory_gb",
+      "service": "fargate",
+      "slider": {
+        "max": 500,
+        "min": 0,
+        "step": 2
+      }
+    },
+    "fargate.vcpu": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "hours",
+          "product_family": "Compute"
+        },
+        "filters": {
+          "usagetype": "{prefix}Fargate-vCPU-Hours:perCPU"
+        },
+        "service_code": "AmazonECS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "Fargate vCPU hours",
+        "ja": "Fargate vCPU 時間",
+        "ko": "Fargate vCPU 시간"
+      },
+      "per": "vcpu_hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "APN1-Fargate-vCPU-Hours:perCPU"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - vCPU  - Asia Pacific (Tokyo)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "KBQ3Q6DY9J327G8N.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "KBQ3Q6DY9J327G8N",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0505600000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "APN2-Fargate-vCPU-Hours:perCPU"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - vCPU  - Asia Pacific (Seoul)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "DS579H2QDYXPJDKE.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "DS579H2QDYXPJDKE",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0465600000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Compute",
+            "usagetype": "USE1-Fargate-vCPU-Hours:perCPU"
+          },
+          "aws_unit": "hours",
+          "description": "AWS Fargate - vCPU - US East (N.Virginia)",
+          "published": "2026-10-19T22:43:17Z",
+          "rate_code": "8CESGAFWKAJ98PME.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "8CESGAFWKAJ98PME",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0404800000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "vcpu",
+      "service": "fargate",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "lambda.duration": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Lambda-GB-Second",
+          "product_family": "Serverless"
+        },
+        "filters": {
+          "productFamily": "Serverless",
+          "usagetype": "{prefix}Lambda-GB-Second"
+        },
+        "service_code": "AWSLambda"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Lambda duration (GB-seconds, First 6 Billion)",
+        "ja": "Lambda 実行時間 (GB-秒, 最初の 60億)",
+        "ko": "Lambda 함수 실행 시간 (GB-초, 첫 60억)"
+      },
+      "per": "gb_second",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "APN1-Lambda-GB-Second"
+          },
+          "aws_unit": "Lambda-GB-Second",
+          "description": "AWS Lambda - Total Compute - Asia Pacific (Tokyo)-Tier-1",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "FSYUV9NMNDEXRJ5H.JRTCKXETXF.CUKFZ388N3",
+          "sku": "FSYUV9NMNDEXRJ5H",
+          "tier_begin": "0",
+          "tier_end": "6000000000",
+          "usd": "0.0000166667"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "APN2-Lambda-GB-Second"
+          },
+          "aws_unit": "Lambda-GB-Second",
+          "description": "AWS Lambda - Total Compute - Asia Pacific (Seoul)-Tier-1",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "AW8K7Q9ZMMBBP9W6.JRTCKXETXF.CUKFZ388N3",
+          "sku": "AW8K7Q9ZMMBBP9W6",
+          "tier_begin": "0",
+          "tier_end": "6000000000",
+          "usd": "0.0000166667"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "Lambda-GB-Second"
+          },
+          "aws_unit": "Lambda-GB-Second",
+          "description": "AWS Lambda - Total Compute - US East (Northern Virginia)-Tier-1",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "TG3M4CAGBA3NYQBH.JRTCKXETXF.CUKFZ388N3",
+          "sku": "TG3M4CAGBA3NYQBH",
+          "tier_begin": "0",
+          "tier_end": "6000000000",
+          "usd": "0.0000166667"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_gb_seconds",
+      "service": "lambda",
+      "slider": {
+        "max": 6000,
+        "min": 0,
+        "step": 50
+      }
+    },
+    "lambda.requests": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": [
+            "Request",
+            "Requests"
+          ],
+          "product_family": "Serverless"
+        },
+        "filters": {
+          "usagetype": "{prefix}Request"
+        },
+        "service_code": "AWSLambda"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Lambda function requests",
+        "ja": "Lambda 関数リクエスト",
+        "ko": "Lambda 함수 요청"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "APN1-Request"
+          },
+          "aws_unit": "Request",
+          "description": "AWS Lambda - Total Requests - Asia Pacific (Tokyo)",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "3BE8DYKG4FYSZGDW.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3BE8DYKG4FYSZGDW",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "APN2-Request"
+          },
+          "aws_unit": "Request",
+          "description": "AWS Lambda - Total Requests - Asia Pacific (Seoul)",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "NFXH9EUGP7BUPE4A.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NFXH9EUGP7BUPE4A",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Serverless",
+            "usagetype": "Request"
+          },
+          "aws_unit": "Requests",
+          "description": "AWS Lambda - Total Requests - US East (Northern Virginia)",
+          "published": "2026-10-16T18:23:59Z",
+          "rate_code": "GU2ZS9HVP6QTQ7KE.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "GU2ZS9HVP6QTQ7KE",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000002000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "lambda",
+      "slider": {
+        "max": 500,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "nat_gateway.bytes": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "NAT Gateway"
+        },
+        "filters": {
+          "usagetype": "{prefix}NatGateway-Bytes"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 1,
+      "label": {
+        "en": "NAT Gateway processed data",
+        "ja": "NAT ゲートウェイ処理データ",
+        "ko": "NAT 게이트웨이 처리 데이터"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "APN1-NatGateway-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.062 per GB Data Processed by NAT Gateways",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "3Z2F4ZNXEMZB88ED.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3Z2F4ZNXEMZB88ED",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0620000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "APN2-NatGateway-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.059 per GB Data Processed by NAT Gateways",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "HC3MBQKUG7PB4BYX.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HC3MBQKUG7PB4BYX",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0590000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "NatGateway-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.045 per GB Data Processed by NAT Gateways",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "59S5R83GFPUAGVR5.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "59S5R83GFPUAGVR5",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0450000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "nat_gateway",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "nat_gateway.hours": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "NAT Gateway"
+        },
+        "filters": {
+          "usagetype": "{prefix}NatGateway-Hours"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "NAT Gateway hours",
+        "ja": "NAT ゲートウェイ時間",
+        "ko": "NAT 게이트웨이 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "APN1-NatGateway-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.062 per NAT Gateway Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "CA23TN2NAN47KGCF.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CA23TN2NAN47KGCF",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0620000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "APN2-NatGateway-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.059 per NAT Gateway Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "P63FHTYZXQBC6HX5.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "P63FHTYZXQBC6HX5",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0590000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "NatGateway",
+            "productFamily": "NAT Gateway",
+            "usagetype": "NatGateway-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.045 per NAT Gateway Hour",
+          "published": "2026-10-21T22:11:29Z",
+          "rate_code": "M2YSHUBETB3JX4M4.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "M2YSHUBETB3JX4M4",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0450000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "nat_gateway",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "nlb.hours": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Load Balancer-Network"
+        },
+        "filters": {
+          "operation": "LoadBalancing:Network",
+          "usagetype": "{prefix}LoadBalancerUsage"
+        },
+        "service_code": "AWSELB"
+      },
+      "hours": 730,
+      "label": {
+        "en": "NLB Load Balancer hours",
+        "ja": "NLB ロードバランサー時間",
+        "ko": "NLB 로드밸런서 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "APN1-LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0243 per Network LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "F3FRDKGR8M9SKAQS.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "F3FRDKGR8M9SKAQS",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0243000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "APN2-LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0225 per Network LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "FTU9EQE348PCR5Y2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "FTU9EQE348PCR5Y2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0225000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "LoadBalancerUsage"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0225 per Network LoadBalancer-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "YKBGGP5EBGDU9T5W.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YKBGGP5EBGDU9T5W",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0225000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "nlb",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "nlb.lcu": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "LCU-Hrs",
+          "product_family": "Load Balancer-Network"
+        },
+        "filters": {
+          "operation": "LoadBalancing:Network",
+          "usagetype": "{prefix}LCUUsage"
+        },
+        "service_code": "AWSELB"
+      },
+      "hours": 730,
+      "label": {
+        "en": "NLB Capacity Units (NLCU)",
+        "ja": "NLB 容量単位 (NLCU)",
+        "ko": "NLB 용량 단위 (NLCU)"
+      },
+      "per": "lcu_hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "APN1-LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.006 per used Network load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "CJZKHZV4ACSZKK3F.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "CJZKHZV4ACSZKK3F",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0060000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "APN2-LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.006 per used Network load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "W2KCCPTV7TC5BGW9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "W2KCCPTV7TC5BGW9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0060000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "LoadBalancing:Network",
+            "productFamily": "Load Balancer-Network",
+            "usagetype": "LCUUsage"
+          },
+          "aws_unit": "LCU-Hrs",
+          "description": "$0.006 per used Network load balancer capacity unit-hour (or partial hour)",
+          "published": "2026-09-11T12:45:44Z",
+          "rate_code": "XZ2DR556MD28P9WJ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XZ2DR556MD28P9WJ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0060000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "lcu",
+      "service": "nlb",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.mysql.m6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "MySQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.m6g.large"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS MySQL db.m6g.large (Single-AZ)",
+        "ja": "RDS MySQL db.m6g.large (Single-AZ)",
+        "ko": "RDS MySQL db.m6g.large (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.209 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "HR7JCGXH9JZJWARC.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HR7JCGXH9JZJWARC",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2090000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.21 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "63WQ3C5729D9KZ2C.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "63WQ3C5729D9KZ2C",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2100000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.152 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "A4DHW6ZCYQ6QVBCW.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "A4DHW6ZCYQ6QVBCW",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1520000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.mysql.r6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "MySQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.r6g.large"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS MySQL db.r6g.large (Single-AZ)",
+        "ja": "RDS MySQL db.r6g.large (Single-AZ)",
+        "ko": "RDS MySQL db.r6g.large (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.255 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "YDUVTS54XTFQFM9N.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YDUVTS54XTFQFM9N",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2550000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.255 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "H3ACRCNGXZSMJJ62.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "H3ACRCNGXZSMJJ62",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2550000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.215 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "5KE8TCG3FP4Y4ZVZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "5KE8TCG3FP4Y4ZVZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2150000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.mysql.t3.medium": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "MySQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.t3.medium"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS MySQL db.t3.medium (Single-AZ)",
+        "ja": "RDS MySQL db.t3.medium (Single-AZ)",
+        "ko": "RDS MySQL db.t3.medium (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.104 per db.t3.medium Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "9U48F5ARA9M3BAP5.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "9U48F5ARA9M3BAP5",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1040000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.104 per db.t3.medium Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "RH3EDBKFH7DGXRV9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "RH3EDBKFH7DGXRV9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1040000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.068 per db.t3.medium Single-AZ instance hour (or partial hour) running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "TSK7J2Y3CBVXPUQ2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "TSK7J2Y3CBVXPUQ2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0680000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.postgres.m6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "PostgreSQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.m6g.large"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS PostgreSQL db.m6g.large (Single-AZ)",
+        "ja": "RDS PostgreSQL db.m6g.large (Single-AZ)",
+        "ko": "RDS PostgreSQL db.m6g.large (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.221 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "4GNWXFW8E6KKF8RK.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "4GNWXFW8E6KKF8RK",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2210000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.221 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "3TUXAC4FS4AGBZX8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3TUXAC4FS4AGBZX8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2210000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.m6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.m6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.159 per RDS db.m6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "NW6VUGAHAQ6UY55B.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NW6VUGAHAQ6UY55B",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1590000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.postgres.r6g.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "PostgreSQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.r6g.large"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS PostgreSQL db.r6g.large (Single-AZ)",
+        "ja": "RDS PostgreSQL db.r6g.large (Single-AZ)",
+        "ko": "RDS PostgreSQL db.r6g.large (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.27 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "NQ9QJ7RS5BX49Y4Q.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NQ9QJ7RS5BX49Y4Q",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2700000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.27 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "A6AJP2J5T4JE554P.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "A6AJP2J5T4JE554P",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2700000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.r6g.large",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.r6g.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$ 0.225 per RDS db.r6g.large Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "C4ERBAHB6DJ9BCDR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "C4ERBAHB6DJ9BCDR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2250000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.postgres.t3.medium": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Database Instance"
+        },
+        "filters": {
+          "databaseEngine": "PostgreSQL",
+          "deploymentOption": "Single-AZ",
+          "usagetype": "{prefix}InstanceUsage:db.t3.medium"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 730,
+      "label": {
+        "en": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+        "ja": "RDS PostgreSQL db.t3.medium (Single-AZ)",
+        "ko": "RDS PostgreSQL db.t3.medium (Single-AZ)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN1-InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.112 per db.t3.medium Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "6RRQJ8G2S83EZDET.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6RRQJ8G2S83EZDET",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1120000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "APN2-InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.112 per db.t3.medium Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "6KUMP4JGWJQWTHP2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6KUMP4JGWJQWTHP2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1120000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "PostgreSQL",
+            "instanceType": "db.t3.medium",
+            "operation": "CreateDBInstance:0014",
+            "productFamily": "Database Instance",
+            "usagetype": "InstanceUsage:db.t3.medium"
+          },
+          "aws_unit": "Hrs",
+          "description": "USD 0.072 per db.t3.medium Single-AZ instance hour (or partial hour) running PostgreSQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "2V4Z46C2HCZPQCUW.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "2V4Z46C2HCZPQCUW",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0720000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "rds",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "rds.storage.gp3": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB-Mo",
+          "product_family": "Database Storage"
+        },
+        "filters": {
+          "databaseEngine": "MySQL",
+          "usagetype": "{prefix}RDS:GP3-Storage"
+        },
+        "service_code": "AmazonRDS"
+      },
+      "hours": 1,
+      "label": {
+        "en": "RDS gp3 storage",
+        "ja": "RDS gp3 ストレージ",
+        "ko": "RDS gp3 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Storage",
+            "usagetype": "APN1-RDS:GP3-Storage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.138 per GB-month of provisioned GP3 storage running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "8P38M5D2TZRKJJAQ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "8P38M5D2TZRKJJAQ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1380000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Storage",
+            "usagetype": "APN2-RDS:GP3-Storage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.131 per GB-month of provisioned GP3 storage running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "HN5UJMXZCYTYFCUG.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HN5UJMXZCYTYFCUG",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1310000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "databaseEngine": "MySQL",
+            "operation": "CreateDBInstance:0002",
+            "productFamily": "Database Storage",
+            "usagetype": "RDS:GP3-Storage"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.115 per GB-month of provisioned GP3 storage running MySQL",
+          "published": "2026-10-20T00:32:32Z",
+          "rate_code": "H4R2WBBMX6VRJG4S.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "H4R2WBBMX6VRJG4S",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1150000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "rds",
+      "slider": {
+        "max": 3000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "route53.queries": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Queries",
+          "product_family": "DNS Query"
+        },
+        "filters": {
+          "usagetype": "DNS-Queries"
+        },
+        "service_code": "AmazonRoute53"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Route 53 Standard Queries (First 1 Billion)",
+        "ja": "Route 53 標準クエリ (最初の 10億件)",
+        "ko": "Route 53 표준 쿼리 (첫 10억 건)"
+      },
+      "per": "query",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Query",
+            "usagetype": "DNS-Queries"
+          },
+          "aws_unit": "Queries",
+          "description": "$0.40 per 1,000,000 queries for the first 1 Billion queries",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "JHRA6QBEDT9FZVT5.JRTCKXETXF.ZN357FEBCK",
+          "sku": "JHRA6QBEDT9FZVT5",
+          "tier_begin": "0",
+          "tier_end": "1000000000",
+          "usd": "0.0000004000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Query",
+            "usagetype": "DNS-Queries"
+          },
+          "aws_unit": "Queries",
+          "description": "$0.40 per 1,000,000 queries for the first 1 Billion queries",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "JHRA6QBEDT9FZVT5.JRTCKXETXF.ZN357FEBCK",
+          "sku": "JHRA6QBEDT9FZVT5",
+          "tier_begin": "0",
+          "tier_end": "1000000000",
+          "usd": "0.0000004000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Query",
+            "usagetype": "DNS-Queries"
+          },
+          "aws_unit": "Queries",
+          "description": "$0.40 per 1,000,000 queries for the first 1 Billion queries",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "JHRA6QBEDT9FZVT5.JRTCKXETXF.ZN357FEBCK",
+          "sku": "JHRA6QBEDT9FZVT5",
+          "tier_begin": "0",
+          "tier_end": "1000000000",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_queries",
+      "service": "route53",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "route53.zone": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "HostedZone",
+          "product_family": "DNS Zone"
+        },
+        "filters": {
+          "usagetype": "HostedZone"
+        },
+        "service_code": "AmazonRoute53"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Route 53 Hosted Zone (First 25)",
+        "ja": "Route 53 ホストゾーン (最初の 25)",
+        "ko": "Route 53 호스팅 영역 (첫 25개)"
+      },
+      "per": "month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Zone",
+            "usagetype": "HostedZone"
+          },
+          "aws_unit": "HostedZone",
+          "description": "$0.50 per Hosted Zone for the first 25 Hosted Zones",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "KVPGEJE88UW8S779.JRTCKXETXF.G2A93NZ7DT",
+          "sku": "KVPGEJE88UW8S779",
+          "tier_begin": "0",
+          "tier_end": "25",
+          "usd": "0.5000000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Zone",
+            "usagetype": "HostedZone"
+          },
+          "aws_unit": "HostedZone",
+          "description": "$0.50 per Hosted Zone for the first 25 Hosted Zones",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "KVPGEJE88UW8S779.JRTCKXETXF.G2A93NZ7DT",
+          "sku": "KVPGEJE88UW8S779",
+          "tier_begin": "0",
+          "tier_end": "25",
+          "usd": "0.5000000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "DNS Zone",
+            "usagetype": "HostedZone"
+          },
+          "aws_unit": "HostedZone",
+          "description": "$0.50 per Hosted Zone for the first 25 Hosted Zones",
+          "published": "2026-09-11T12:45:04Z",
+          "rate_code": "KVPGEJE88UW8S779.JRTCKXETXF.G2A93NZ7DT",
+          "sku": "KVPGEJE88UW8S779",
+          "tier_begin": "0",
+          "tier_end": "25",
+          "usd": "0.5000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "route53",
+      "slider": {
+        "max": 25,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "s3.get": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Requests",
+          "product_family": "API Request"
+        },
+        "filters": {
+          "usagetype": "{prefix}Requests-Tier2"
+        },
+        "service_code": "AmazonS3"
+      },
+      "hours": 1,
+      "label": {
+        "en": "S3 GET/SELECT requests",
+        "ja": "S3 GET/SELECT リクエスト",
+        "ko": "S3 GET/SELECT 요청"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "APN1-Requests-Tier2"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.0037 per 10,000 GET and all other requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "9C7873KU3ZQBD6BJ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "9C7873KU3ZQBD6BJ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000003700"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "APN2-Requests-Tier2"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.0035 per 10,000 GET and all other requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "84G6KSFBGCU9CEC9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "84G6KSFBGCU9CEC9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000003500"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "Requests-Tier2"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.004 per 10,000 GET and all other requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "ZWQ6Q48CRJXX4FXE.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "ZWQ6Q48CRJXX4FXE",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000004000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "s3",
+      "slider": {
+        "max": 500,
+        "min": 0,
+        "step": 5
+      }
+    },
+    "s3.put": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Requests",
+          "product_family": "API Request"
+        },
+        "filters": {
+          "usagetype": "{prefix}Requests-Tier1"
+        },
+        "service_code": "AmazonS3"
+      },
+      "hours": 1,
+      "label": {
+        "en": "S3 PUT/POST/COPY requests",
+        "ja": "S3 PUT/POST/COPY リクエスト",
+        "ko": "S3 PUT/POST/COPY 요청"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "APN1-Requests-Tier1"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.0047 per 1,000 PUT, COPY, POST, or LIST requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "XAKHUSC46NWC9PPM.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XAKHUSC46NWC9PPM",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000047000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "APN2-Requests-Tier1"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.0045 per 1,000 PUT, COPY, POST, or LIST requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "D3S5DN86CFPGUM5G.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "D3S5DN86CFPGUM5G",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000045000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "API Request",
+            "usagetype": "Requests-Tier1"
+          },
+          "aws_unit": "Requests",
+          "description": "$0.005 per 1,000 PUT, COPY, POST, or LIST requests",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "E9YHNFENF4XQBZR6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "E9YHNFENF4XQBZR6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000050000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "s3",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "s3.storage": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB-Mo",
+          "product_family": "Storage"
+        },
+        "filters": {
+          "storageClass": "General Purpose",
+          "usagetype": "{prefix}TimedStorage-ByteHrs",
+          "volumeType": "Standard"
+        },
+        "service_code": "AmazonS3"
+      },
+      "hours": 1,
+      "label": {
+        "en": "S3 Standard storage (First 50TB)",
+        "ja": "S3 Standard ストレージ (最初の 50TB)",
+        "ko": "S3 Standard 스토리지 (첫 50TB)"
+      },
+      "per": "gb_month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN1-TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.025 per GB - first 50 TB / month of storage used",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "CCBFTMENTDWZHXHX.JRTCKXETXF.PGHJ3S3EYE",
+          "sku": "CCBFTMENTDWZHXHX",
+          "tier_begin": "0",
+          "tier_end": "51200",
+          "usd": "0.0250000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "APN2-TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.025 per GB - first 50 TB / month of storage used",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "3JSN7K7UDDNCYCDM.JRTCKXETXF.PGHJ3S3EYE",
+          "sku": "3JSN7K7UDDNCYCDM",
+          "tier_begin": "0",
+          "tier_end": "51200",
+          "usd": "0.0250000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Storage",
+            "usagetype": "TimedStorage-ByteHrs"
+          },
+          "aws_unit": "GB-Mo",
+          "description": "$0.023 per GB - first 50 TB / month of storage used",
+          "published": "2026-10-15T17:35:40Z",
+          "rate_code": "WP9ANXZGBYYSGJEA.JRTCKXETXF.PGHJ3S3EYE",
+          "sku": "WP9ANXZGBYYSGJEA",
+          "tier_begin": "0",
+          "tier_end": "51200",
+          "usd": "0.0230000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "s3",
+      "slider": {
+        "max": 50000,
+        "min": 0,
+        "step": 100
+      }
+    },
+    "vpc_endpoint.bytes": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "VpcEndpoint"
+        },
+        "filters": {
+          "usagetype": "{prefix}VpcEndpoint-Bytes"
+        },
+        "service_code": "AmazonVPC"
+      },
+      "hours": 1,
+      "label": {
+        "en": "VPC Endpoint processed data",
+        "ja": "VPC エンドポイント処理データ",
+        "ko": "VPC 엔드포인트 처리 데이터"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "APN1-VpcEndpoint-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.01 per GB for upto 1 PB monthly data processed by VPC Endpoints",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "6CRQJ7BNA8VQV6B7.JRTCKXETXF.D7RZ6WCPVW",
+          "sku": "6CRQJ7BNA8VQV6B7",
+          "tier_begin": "0",
+          "tier_end": "1048576",
+          "usd": "0.0100000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "APN2-VpcEndpoint-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.01 per GB for upto 1 PB monthly data processed by VPC Endpoints",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "K4QBYWVDC6VAS9E8.JRTCKXETXF.D7RZ6WCPVW",
+          "sku": "K4QBYWVDC6VAS9E8",
+          "tier_begin": "0",
+          "tier_end": "1048576",
+          "usd": "0.0100000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "USE1-VpcEndpoint-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.01 per GB for upto 1 PB monthly data processed by VPC Endpoints",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "DQYYEZBCWSW5XS2R.JRTCKXETXF.D7RZ6WCPVW",
+          "sku": "DQYYEZBCWSW5XS2R",
+          "tier_begin": "0",
+          "tier_end": "1048576",
+          "usd": "0.0100000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "vpc_endpoint",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "vpc_endpoint.hours": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "VpcEndpoint"
+        },
+        "filters": {
+          "usagetype": "{prefix}VpcEndpoint-Hours"
+        },
+        "service_code": "AmazonVPC"
+      },
+      "hours": 730,
+      "label": {
+        "en": "VPC Endpoint hours (per AZ)",
+        "ja": "VPC エンドポイント時間 (AZあたり)",
+        "ko": "VPC 엔드포인트 시간 (AZ당)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "APN1-VpcEndpoint-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.014 per VPC Endpoint Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "W5KUR855UCRX4QZ8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "W5KUR855UCRX4QZ8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0140000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "APN2-VpcEndpoint-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.013 per VPC Endpoint Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "BH2CREBM4CXH3HB5.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "BH2CREBM4CXH3HB5",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0130000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "VpcEndpoint",
+            "productFamily": "VpcEndpoint",
+            "usagetype": "USE1-VpcEndpoint-Hours"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.01 per VPC Endpoint Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "EN2N5TATXE673A3B.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EN2N5TATXE673A3B",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0100000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "endpoint_az",
+      "service": "vpc_endpoint",
+      "slider": {
+        "max": 20,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vpn.hours": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": [
+            "hours",
+            "Hrs"
+          ],
+          "product_family": "Cloud Connectivity"
+        },
+        "filters": {
+          "usagetype": "{prefix}VPN-Usage-Hours:ipsec.1"
+        },
+        "service_code": "AmazonVPC"
+      },
+      "hours": 730,
+      "label": {
+        "en": "Site-to-Site VPN connection hours",
+        "ja": "Site-to-Site VPN 接続時間",
+        "ko": "Site-to-Site VPN 연결 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "CreateVpnConnection",
+            "productFamily": "Cloud Connectivity",
+            "usagetype": "APN1-VPN-Usage-Hours:ipsec.1"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.048 per VPN Connection-Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "SYJRAFHKRRHH7M38.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "SYJRAFHKRRHH7M38",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0480000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "CreateVpnConnection",
+            "productFamily": "Cloud Connectivity",
+            "usagetype": "APN2-VPN-Usage-Hours:ipsec.1"
+          },
+          "aws_unit": "hours",
+          "description": "$0.05 per VPN Connection-Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "58SS7G54MM3WTNX8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "58SS7G54MM3WTNX8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0500000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "CreateVpnConnection",
+            "productFamily": "Cloud Connectivity",
+            "usagetype": "VPN-Usage-Hours:ipsec.1"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.05 per VPN Connection-Hour",
+          "published": "2026-10-16T22:43:21Z",
+          "rate_code": "EC5BHP9ZANKN9EQD.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EC5BHP9ZANKN9EQD",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0500000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vpn",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "waf.requests": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": [
+            "Request",
+            "Requests"
+          ],
+          "product_family": "Web Application Firewall"
+        },
+        "filters": {
+          "usagetype": "{prefix}Request"
+        },
+        "service_code": "awswaf"
+      },
+      "hours": 1,
+      "label": {
+        "en": "WAF inspected requests",
+        "ja": "WAF 検査リクエスト",
+        "ko": "WAF 검사 요청"
+      },
+      "per": "request",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN1-Request"
+          },
+          "aws_unit": "Request",
+          "description": "Price per HTTP request",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "GWFQ5HRBYJMUH9D4.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "GWFQ5HRBYJMUH9D4",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000006000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN2-Request"
+          },
+          "aws_unit": "Request",
+          "description": "Price per HTTP request",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "3JHYTADEH64RPBC3.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3JHYTADEH64RPBC3",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000006000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "USE1-Request"
+          },
+          "aws_unit": "Request",
+          "description": "Price per HTTP request",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "C342DJPGVP5ZXQCT.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "C342DJPGVP5ZXQCT",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0000006000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_requests",
+      "service": "waf",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "waf.rule": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "month",
+          "product_family": "Web Application Firewall"
+        },
+        "filters": {
+          "usagetype": "{prefix}Rule"
+        },
+        "service_code": "awswaf"
+      },
+      "hours": 1,
+      "label": {
+        "en": "WAF rules (per Web ACL)",
+        "ja": "WAF ルール (Web ACL あたり)",
+        "ko": "WAF 규칙 (Web ACL당)"
+      },
+      "per": "month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN1-Rule"
+          },
+          "aws_unit": "month",
+          "description": "Price per Rule",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "JPZ69WNFHBDKV4YR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "JPZ69WNFHBDKV4YR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "1.0000000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN2-Rule"
+          },
+          "aws_unit": "month",
+          "description": "Price per Rule",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "GRKAR7RJJ29FKF2J.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "GRKAR7RJJ29FKF2J",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "1.0000000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "USE1-Rule"
+          },
+          "aws_unit": "month",
+          "description": "Price per Rule",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "MMK6882R53ZPMBQG.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "MMK6882R53ZPMBQG",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "1.0000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "waf",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "waf.web_acl": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "month",
+          "product_family": "Web Application Firewall"
+        },
+        "filters": {
+          "usagetype": "{prefix}WebACL"
+        },
+        "service_code": "awswaf"
+      },
+      "hours": 1,
+      "label": {
+        "en": "WAF Web ACL",
+        "ja": "WAF Web ACL",
+        "ko": "WAF Web ACL"
+      },
+      "per": "month",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN1-WebACL"
+          },
+          "aws_unit": "month",
+          "description": "Price per WebACL",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "JPRWH9JCZC46VQSV.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "JPRWH9JCZC46VQSV",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "5.0000000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "APN2-WebACL"
+          },
+          "aws_unit": "month",
+          "description": "Price per WebACL",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "XUMKX7JE2U2NWTXC.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "XUMKX7JE2U2NWTXC",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "5.0000000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Web Application Firewall",
+            "usagetype": "USE1-WebACL"
+          },
+          "aws_unit": "month",
+          "description": "Price per WebACL",
+          "published": "2026-09-14T16:39:21Z",
+          "rate_code": "PJQM8PKU9GAJ6WKY.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "PJQM8PKU9GAJ6WKY",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "5.0000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "waf",
+      "slider": {
+        "max": 10,
+        "min": 0,
+        "step": 1
+      }
+    }
+  },
+  "price_type": "on_demand_list",
+  "regions": [
+    "ap-northeast-2",
+    "ap-northeast-1",
+    "us-east-1"
+  ],
+  "source": "aws_price_list_query_api"
+}

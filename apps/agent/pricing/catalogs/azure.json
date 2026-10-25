@@ -1,0 +1,1585 @@
+{
+  "aliases": {
+    "aks": "aks",
+    "application gateway": "app_gateway",
+    "application insights": "log_analytics",
+    "azure application gateway": "app_gateway",
+    "azure blob storage": "blob",
+    "azure cache for redis": "redis",
+    "azure cosmos db": "cosmos_db",
+    "azure database for mysql": "mysql",
+    "azure database for postgresql": "postgresql",
+    "azure disk": "disk",
+    "azure firewall": "firewall",
+    "azure function app": "functions",
+    "azure functions": "functions",
+    "azure kubernetes service": "aks",
+    "azure load balancer": "load_balancer",
+    "azure managed disks": "disk",
+    "azure monitor": "log_analytics",
+    "azure monitor logs": "log_analytics",
+    "azure mysql": "mysql",
+    "azure postgresql": "postgresql",
+    "azure redis": "redis",
+    "azure redis cache": "redis",
+    "azure sql": "sql_database",
+    "azure sql database": "sql_database",
+    "azure storage": "blob",
+    "azure virtual machine": "vm",
+    "azure virtual machines": "vm",
+    "azure vm": "vm",
+    "azure vpn gateway": "vpn_gateway",
+    "blob storage": "blob",
+    "cosmos db": "cosmos_db",
+    "firewall": "firewall",
+    "function app": "functions",
+    "functions": "functions",
+    "load balancer": "load_balancer",
+    "log analytics": "log_analytics",
+    "log analytics workspace": "log_analytics",
+    "managed disks": "disk",
+    "mysql": "mysql",
+    "mysql flexible server": "mysql",
+    "postgresql": "postgresql",
+    "postgresql flexible server": "postgresql",
+    "public ip": "public_ip",
+    "public ip address": "public_ip",
+    "redis cache": "redis",
+    "sql database": "sql_database",
+    "storage account": "blob",
+    "virtual machine": "vm",
+    "virtual machines": "vm",
+    "vm": "vm",
+    "vpn gateway": "vpn_gateway"
+  },
+  "as_of": "2026-10-23",
+  "currency": "USD",
+  "items": {
+    "aks.standard.cluster": {
+      "hours": 730,
+      "label": {
+        "en": "AKS Standard tier cluster hours (Uptime SLA)",
+        "ja": "AKS Standard ティア クラスター時間 (Uptime SLA)",
+        "ko": "AKS Standard 티어 클러스터 시간 (Uptime SLA)"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2020-03-01T00:00:00Z",
+          "meter_id": "251a08e1-40d6-48e6-8368-4c3e5ee3bbff",
+          "meter_name": "Standard Uptime SLA",
+          "product_name": "Azure Kubernetes Service",
+          "sku_id": "DZH318Z0CQSH/0006",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.1000000000"
+        },
+        "japaneast": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "251a08e1-40d6-48e6-8368-4c3e5ee3bbff",
+          "meter_name": "Standard Uptime SLA",
+          "product_name": "Azure Kubernetes Service",
+          "sku_id": "DZH318Z0CQSH/000X",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.1000000000"
+        },
+        "koreacentral": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "251a08e1-40d6-48e6-8368-4c3e5ee3bbff",
+          "meter_name": "Standard Uptime SLA",
+          "product_name": "Azure Kubernetes Service",
+          "sku_id": "DZH318Z0CQSH/000S",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.1000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "aks",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "appgw.standard_v2.capacity_unit": {
+      "hours": 730,
+      "label": {
+        "en": "Application Gateway Standard v2 capacity unit hours",
+        "ja": "Application Gateway Standard v2 キャパシティユニット時間",
+        "ko": "Application Gateway Standard v2 용량 단위 시간"
+      },
+      "per": "capacity_unit_hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "6e72c174-f258-4d94-899f-94beb69d135e",
+          "meter_name": "Standard Capacity Units",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000M",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.0080000000"
+        },
+        "japaneast": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "b2b32691-f771-4860-9775-45c33ffafcae",
+          "meter_name": "Standard Capacity Units",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000T",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.0080000000"
+        },
+        "koreacentral": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "a481e8de-6213-4e87-a9ce-0cbe5565fcba",
+          "meter_name": "Standard Capacity Units",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000V",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.0080000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "capacity_unit",
+      "service": "app_gateway",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "appgw.standard_v2.fixed": {
+      "hours": 730,
+      "label": {
+        "en": "Application Gateway Standard v2 fixed hours",
+        "ja": "Application Gateway Standard v2 固定時間",
+        "ko": "Application Gateway Standard v2 고정 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "4062934b-a0aa-40df-a9fb-dcf8e4e7043e",
+          "meter_name": "Standard Fixed Cost",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000M",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.2000000000"
+        },
+        "japaneast": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "365c9874-51af-4c34-ba39-ab6ccf93f9e4",
+          "meter_name": "Standard Fixed Cost",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000T",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.2900000000"
+        },
+        "koreacentral": {
+          "effective_start": "2019-05-09T00:00:00Z",
+          "meter_id": "94bd7d51-ec36-4e53-8cbf-b178689b02af",
+          "meter_name": "Standard Fixed Cost",
+          "product_name": "Application Gateway Standard v2",
+          "sku_id": "DZH318Z0BSD1/000V",
+          "sku_name": "Standard",
+          "unit": "1/Hour",
+          "usd": "0.2700000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "app_gateway",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "blob.hot_lrs.read": {
+      "hours": 1,
+      "label": {
+        "en": "Blob Storage Hot LRS read operations",
+        "ja": "Blob Storage Hot LRS 読み取り操作",
+        "ko": "Blob Storage Hot LRS 읽기 요청"
+      },
+      "per": "10k_requests",
+      "prices": {
+        "eastus": {
+          "effective_start": "2016-11-01T00:00:00Z",
+          "meter_id": "c5248cf8-ecba-4807-9304-6a8f14b5805a",
+          "meter_name": "Hot Read Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/0058",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0040000000"
+        },
+        "japaneast": {
+          "effective_start": "2016-05-09T00:00:00Z",
+          "meter_id": "6b3b540c-c0b2-4d98-9abc-aa26087f38e9",
+          "meter_name": "Hot Read Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/00BG",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0040000000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-02-01T00:00:00Z",
+          "meter_id": "3b2b2fc9-179c-43d4-bb90-5c7140d4a149",
+          "meter_name": "Hot Read Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/009R",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0040000000"
+        }
+      },
+      "quantity_scale": 100,
+      "quantity_unit": "million_requests",
+      "service": "blob",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "blob.hot_lrs.storage": {
+      "hours": 1,
+      "label": {
+        "en": "Blob Storage Hot LRS data stored",
+        "ja": "Blob Storage Hot LRS 保存容量",
+        "ko": "Blob Storage Hot LRS 저장 용량"
+      },
+      "per": "gb_month",
+      "prices": {
+        "eastus": {
+          "effective_start": "2017-02-03T00:00:00Z",
+          "meter_id": "272492b3-1c92-4a5f-bee9-52a8e10ca514",
+          "meter_name": "Hot LRS Data Stored",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/0058",
+          "sku_name": "Hot LRS",
+          "unit": "1 GB/Month",
+          "usd": "0.0208000000"
+        },
+        "japaneast": {
+          "effective_start": "2017-02-03T00:00:00Z",
+          "meter_id": "696220f2-91da-4ca5-920b-151e51a6d103",
+          "meter_name": "Hot LRS Data Stored",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/00BG",
+          "sku_name": "Hot LRS",
+          "unit": "1 GB/Month",
+          "usd": "0.0200000000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-02-20T00:00:00Z",
+          "meter_id": "d4b38a28-b8aa-449e-be8b-167b245967cb",
+          "meter_name": "Hot LRS Data Stored",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/009R",
+          "sku_name": "Hot LRS",
+          "unit": "1 GB/Month",
+          "usd": "0.0200000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "blob",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "blob.hot_lrs.write": {
+      "hours": 1,
+      "label": {
+        "en": "Blob Storage Hot LRS write operations",
+        "ja": "Blob Storage Hot LRS 書き込み操作",
+        "ko": "Blob Storage Hot LRS 쓰기 요청"
+      },
+      "per": "10k_requests",
+      "prices": {
+        "eastus": {
+          "effective_start": "2016-11-01T00:00:00Z",
+          "meter_id": "14854f12-8d37-4299-842a-b0f2df82a305",
+          "meter_name": "Hot LRS Write Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/0058",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0500000000"
+        },
+        "japaneast": {
+          "effective_start": "2016-05-09T00:00:00Z",
+          "meter_id": "a8e5826f-0b33-4241-8ceb-6e94e10994bf",
+          "meter_name": "Hot LRS Write Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/00BG",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0500000000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-02-01T00:00:00Z",
+          "meter_id": "bcdcab1c-8bfd-4f14-acdb-d243e442c2ff",
+          "meter_name": "Hot LRS Write Operations",
+          "product_name": "Blob Storage",
+          "sku_id": "DZH318Z0BNZJ/009R",
+          "sku_name": "Hot LRS",
+          "unit": "10K",
+          "usd": "0.0500000000"
+        }
+      },
+      "quantity_scale": 100,
+      "quantity_unit": "million_requests",
+      "service": "blob",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "cosmos.provisioned_ru": {
+      "hours": 730,
+      "label": {
+        "en": "Cosmos DB provisioned throughput 100 RU/s hours (single region)",
+        "ja": "Cosmos DB プロビジョニングスループット 100 RU/s 時間 (単一リージョン)",
+        "ko": "Cosmos DB 프로비저닝 처리량 100 RU/s 시간 (단일 리전)"
+      },
+      "per": "ru_100_hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2016-04-01T00:00:00Z",
+          "meter_id": "65d4ded2-41ae-43a8-bb68-3c200e1ba864",
+          "meter_name": "100 RU/s",
+          "product_name": "Azure Cosmos DB",
+          "sku_id": "DZH318Z0BPJH/0072",
+          "sku_name": "RUs",
+          "unit": "1/Hour",
+          "usd": "0.0080000000"
+        },
+        "japaneast": {
+          "effective_start": "2016-04-01T00:00:00Z",
+          "meter_id": "b641077b-1ee1-4745-8103-4366ee2543fe",
+          "meter_name": "100 RU/s",
+          "product_name": "Azure Cosmos DB",
+          "sku_id": "DZH318Z0BPJH/0034",
+          "sku_name": "RUs",
+          "unit": "1/Hour",
+          "usd": "0.0090000000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-02-01T00:00:00Z",
+          "meter_id": "70effbf7-afd9-490d-a0f7-59192f6c2cab",
+          "meter_name": "100 RU/s",
+          "product_name": "Azure Cosmos DB",
+          "sku_id": "DZH318Z0BPJH/002R",
+          "sku_name": "RUs",
+          "unit": "1/Hour",
+          "usd": "0.0080000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "ru_100",
+      "service": "cosmos_db",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "disk.e10_lrs": {
+      "hours": 1,
+      "label": {
+        "en": "E10 Standard SSD disk (LRS, per month)",
+        "ja": "E10 Standard SSD ディスク (LRS, 月額)",
+        "ko": "E10 Standard SSD 디스크 (LRS, 월)"
+      },
+      "per": "month",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "a97f31a2-0fb1-4d64-bb43-a2399dd31f0b",
+          "meter_name": "E10 LRS Disk",
+          "product_name": "Standard SSD Managed Disks",
+          "sku_id": "DZH318Z0BP88/0013",
+          "sku_name": "E10 LRS",
+          "unit": "1/Month",
+          "usd": "9.6000000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "0a008d1f-1193-4120-92b4-9d1437907f87",
+          "meter_name": "E10 LRS Disk",
+          "product_name": "Standard SSD Managed Disks",
+          "sku_id": "DZH318Z0BP88/002W",
+          "sku_name": "E10 LRS",
+          "unit": "1/Month",
+          "usd": "9.6000000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "3523aa74-7dca-4b9a-af71-2e29b3a69ba5",
+          "meter_name": "E10 LRS Disk",
+          "product_name": "Standard SSD Managed Disks",
+          "sku_id": "DZH318Z0BP88/002G",
+          "sku_name": "E10 LRS",
+          "unit": "1/Month",
+          "usd": "9.6000000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "disk",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "disk.p10_lrs": {
+      "hours": 1,
+      "label": {
+        "en": "P10 Premium SSD disk (LRS, per month)",
+        "ja": "P10 Premium SSD ディスク (LRS, 月額)",
+        "ko": "P10 Premium SSD 디스크 (LRS, 월)"
+      },
+      "per": "month",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-05-01T00:00:00Z",
+          "meter_id": "93a6a529-4f49-47cb-9b1e-db9e5f23263f",
+          "meter_name": "P10 LRS Disk",
+          "product_name": "Premium SSD Managed Disks",
+          "sku_id": "DZH318Z0BP04/0035",
+          "sku_name": "P10 LRS",
+          "unit": "1/Month",
+          "usd": "19.7100000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-05-01T00:00:00Z",
+          "meter_id": "6e7345ea-45fb-4f83-b31b-f64057e33117",
+          "meter_name": "P10 LRS Disk",
+          "product_name": "Premium SSD Managed Disks",
+          "sku_id": "DZH318Z0BP04/00CF",
+          "sku_name": "P10 LRS",
+          "unit": "1/Month",
+          "usd": "22.6700000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-05-01T00:00:00Z",
+          "meter_id": "ded54cf9-8fc0-44f2-8183-2f14076942a4",
+          "meter_name": "P10 LRS Disk",
+          "product_name": "Premium SSD Managed Disks",
+          "sku_id": "DZH318Z0BP04/008R",
+          "sku_name": "P10 LRS",
+          "unit": "1/Month",
+          "usd": "19.7100000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "disk",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "firewall.standard.data": {
+      "hours": 1,
+      "label": {
+        "en": "Azure Firewall Standard data processed",
+        "ja": "Azure Firewall Standard 処理データ量",
+        "ko": "Azure Firewall Standard 처리 데이터"
+      },
+      "per": "gb",
+      "prices": {
+        "eastus": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "5f492263-6ee9-488d-9b66-02332b889b03",
+          "meter_name": "Standard Data Processed",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/0009",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.0160000000"
+        },
+        "japaneast": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "5f492263-6ee9-488d-9b66-02332b889b03",
+          "meter_name": "Standard Data Processed",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/000K",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.0160000000"
+        },
+        "koreacentral": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "5f492263-6ee9-488d-9b66-02332b889b03",
+          "meter_name": "Standard Data Processed",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/000Q",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.0160000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "firewall",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "firewall.standard.deployment": {
+      "hours": 730,
+      "label": {
+        "en": "Azure Firewall Standard deployment hours",
+        "ja": "Azure Firewall Standard デプロイ時間",
+        "ko": "Azure Firewall Standard 배포 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "e90604a4-719b-454b-879d-b85523882c92",
+          "meter_name": "Standard Deployment",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/0009",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "1.2500000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "e90604a4-719b-454b-879d-b85523882c92",
+          "meter_name": "Standard Deployment",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/000K",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "1.2500000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-11-01T00:00:00Z",
+          "meter_id": "e90604a4-719b-454b-879d-b85523882c92",
+          "meter_name": "Standard Deployment",
+          "product_name": "Azure Firewall",
+          "sku_id": "DZH318Z0BZ06/000Q",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "1.2500000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "firewall",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "functions.consumption.executions": {
+      "hours": 1,
+      "label": {
+        "en": "Functions Consumption total executions",
+        "ja": "Functions 従量課金 総実行回数",
+        "ko": "Functions 종량제 총 실행 횟수"
+      },
+      "per": "10_executions",
+      "prices": {
+        "eastus": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "4e5cd9e2-c20f-4d7f-acbe-58931b8b49ef",
+          "meter_name": "Standard Total Executions",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/000B",
+          "sku_name": "Standard",
+          "unit": "10",
+          "usd": "0.0000020000"
+        },
+        "japaneast": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "4e5cd9e2-c20f-4d7f-acbe-58931b8b49ef",
+          "meter_name": "Standard Total Executions",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/000F",
+          "sku_name": "Standard",
+          "unit": "10",
+          "usd": "0.0000020000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "4e5cd9e2-c20f-4d7f-acbe-58931b8b49ef",
+          "meter_name": "Standard Total Executions",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/0015",
+          "sku_name": "Standard",
+          "unit": "10",
+          "usd": "0.0000020000"
+        }
+      },
+      "quantity_scale": 100000,
+      "quantity_unit": "million_requests",
+      "service": "functions",
+      "slider": {
+        "max": 1000,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "functions.consumption.gb_seconds": {
+      "hours": 1,
+      "label": {
+        "en": "Functions Consumption execution time (GB-s)",
+        "ja": "Functions 従量課金 実行時間 (GB-秒)",
+        "ko": "Functions 종량제 실행 시간 (GB-초)"
+      },
+      "per": "gb_second",
+      "prices": {
+        "eastus": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "2a384075-01d7-4f66-a84a-0eed3ca58876",
+          "meter_name": "Standard Execution Time",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/000B",
+          "sku_name": "Standard",
+          "unit": "1 GB Second",
+          "usd": "0.0000160000"
+        },
+        "japaneast": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "2a384075-01d7-4f66-a84a-0eed3ca58876",
+          "meter_name": "Standard Execution Time",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/000F",
+          "sku_name": "Standard",
+          "unit": "1 GB Second",
+          "usd": "0.0000160000"
+        },
+        "koreacentral": {
+          "effective_start": "2017-01-01T00:00:00Z",
+          "meter_id": "2a384075-01d7-4f66-a84a-0eed3ca58876",
+          "meter_name": "Standard Execution Time",
+          "product_name": "Functions",
+          "sku_id": "DZH318Z0BNWB/0015",
+          "sku_name": "Standard",
+          "unit": "1 GB Second",
+          "usd": "0.0000160000"
+        }
+      },
+      "quantity_scale": 1000000,
+      "quantity_unit": "million_gb_seconds",
+      "service": "functions",
+      "slider": {
+        "max": 100,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "lb.standard.rules": {
+      "hours": 730,
+      "label": {
+        "en": "Load Balancer Standard rules hours",
+        "ja": "Load Balancer Standard ルール時間",
+        "ko": "Load Balancer Standard 규칙 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-04-11T00:00:00Z",
+          "meter_id": "27827eb0-7f60-4928-940b-f5fe15e7a4cb",
+          "meter_name": "Standard Included LB Rules and Outbound Rules",
+          "product_name": "Load Balancer",
+          "sku_id": "DZH318Z0BNXH/0002",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0250000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-04-11T00:00:00Z",
+          "meter_id": "27827eb0-7f60-4928-940b-f5fe15e7a4cb",
+          "meter_name": "Standard Included LB Rules and Outbound Rules",
+          "product_name": "Load Balancer",
+          "sku_id": "DZH318Z0BNXH/0002",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0250000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-04-11T00:00:00Z",
+          "meter_id": "27827eb0-7f60-4928-940b-f5fe15e7a4cb",
+          "meter_name": "Standard Included LB Rules and Outbound Rules",
+          "product_name": "Load Balancer",
+          "sku_id": "DZH318Z0BNXH/0002",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0250000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "load_balancer",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "loganalytics.ingestion": {
+      "hours": 1,
+      "label": {
+        "en": "Log Analytics data ingestion (Analytics Logs, pay-as-you-go)",
+        "ja": "Log Analytics データ取り込み (分析ログ, 従量課金)",
+        "ko": "Log Analytics 데이터 수집 (분석 로그, 종량제)"
+      },
+      "per": "gb",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-02-01T00:00:00Z",
+          "meter_id": "ffbd06c0-e72e-42b6-b612-f03144b476df",
+          "meter_name": "Analytics Logs Data Ingestion",
+          "product_name": "Log Analytics",
+          "sku_id": "DZH318Z0BQD2/000W",
+          "sku_name": "Analytics Logs",
+          "unit": "1 GB",
+          "usd": "2.3000000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-02-01T00:00:00Z",
+          "meter_id": "032c4095-250b-41e8-96ae-779a1df9e626",
+          "meter_name": "Analytics Logs Data Ingestion",
+          "product_name": "Log Analytics",
+          "sku_id": "DZH318Z0BQD2/003D",
+          "sku_name": "Analytics Logs",
+          "unit": "1 GB",
+          "usd": "3.3400000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-02-01T00:00:00Z",
+          "meter_id": "a216d8ab-1da9-4012-9d49-411e04e6fb1c",
+          "meter_name": "Analytics Logs Data Ingestion",
+          "product_name": "Log Analytics",
+          "sku_id": "DZH318Z0BQD2/003W",
+          "sku_name": "Analytics Logs",
+          "unit": "1 GB",
+          "usd": "3.1100000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "log_analytics",
+      "slider": {
+        "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "mysql.b1ms": {
+      "hours": 730,
+      "label": {
+        "en": "MySQL Flexible Server B1MS instance hours",
+        "ja": "MySQL Flexible Server B1MS インスタンス時間",
+        "ko": "MySQL Flexible Server B1MS 인스턴스 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "5611f574-9c35-57fd-bb65-14f3e487c058",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/000X",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0170000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "42631bff-7c8a-5592-ba8c-097ff1fec363",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/0035",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0260000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "c746e3f0-63a6-5a32-8b7f-d402bcc46852",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/002K",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0260000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "mysql",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "mysql.b2s": {
+      "hours": 730,
+      "label": {
+        "en": "MySQL Flexible Server B2S instance hours",
+        "ja": "MySQL Flexible Server B2S インスタンス時間",
+        "ko": "MySQL Flexible Server B2S 인스턴스 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "b09c71fd-034f-5b91-bf95-c6422fb04ada",
+          "meter_name": "B2S",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/000W",
+          "sku_name": "B2S",
+          "unit": "1 Hour",
+          "usd": "0.0680000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "9698f233-ea26-5824-9888-8ba7263b59df",
+          "meter_name": "B2S",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/002W",
+          "sku_name": "B2S",
+          "unit": "1 Hour",
+          "usd": "0.1040000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "e0e8af17-b25b-577a-b4d9-f89bde17ba37",
+          "meter_name": "B2S",
+          "product_name": "Azure Database for MySQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCS3/002X",
+          "sku_name": "B2S",
+          "unit": "1 Hour",
+          "usd": "0.1040000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "mysql",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "mysql.gp_ddsv5.vcore": {
+      "hours": 730,
+      "label": {
+        "en": "MySQL Flexible Server General Purpose Ddsv5 vCore hours",
+        "ja": "MySQL Flexible Server 汎用 Ddsv5 vCore 時間",
+        "ko": "MySQL Flexible Server 범용 Ddsv5 vCore 시간"
+      },
+      "per": "vcore_hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2025-07-01T00:00:00Z",
+          "meter_id": "7c65361e-7bb4-5985-8454-35afdc77ff95",
+          "meter_name": "1 vCore",
+          "product_name": "Azure Database for MySQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0TRNB/0034",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.0855000000"
+        },
+        "japaneast": {
+          "effective_start": "2025-07-01T00:00:00Z",
+          "meter_id": "daa29548-ef4a-51f0-9876-1b999653d2ae",
+          "meter_name": "1 vCore",
+          "product_name": "Azure Database for MySQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0TRNB/0037",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1175000000"
+        },
+        "koreacentral": {
+          "effective_start": "2025-07-01T00:00:00Z",
+          "meter_id": "5e79aaa6-4897-53e1-9897-e9d258df2ef5",
+          "meter_name": "1 vCore",
+          "product_name": "Azure Database for MySQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0TRNB/000N",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1180000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "vcore",
+      "service": "mysql",
+      "slider": {
+        "max": 64,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "mysql.storage": {
+      "hours": 1,
+      "label": {
+        "en": "MySQL Flexible Server storage",
+        "ja": "MySQL Flexible Server ストレージ",
+        "ko": "MySQL Flexible Server 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "72be597c-31cf-528f-bede-85d568c7ef67",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for MySQL Flexible Server Storage",
+          "sku_id": "DZH318Z0DCQ4/0013",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1150000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "b9ac632e-270a-5a23-84ce-311f472f4899",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for MySQL Flexible Server Storage",
+          "sku_id": "DZH318Z0DCQ4/0015",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1380000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "75211005-5854-53b5-a3f0-4f896ca33098",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for MySQL Flexible Server Storage",
+          "sku_id": "DZH318Z0DCQ4/000K",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1310000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "mysql",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "pip.standard_ipv4": {
+      "hours": 730,
+      "label": {
+        "en": "Public IP Standard static IPv4 hours",
+        "ja": "パブリック IP Standard 静的 IPv4 時間",
+        "ko": "공용 IP Standard 고정 IPv4 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-06-01T00:00:00Z",
+          "meter_id": "9c150bf9-2bad-430e-a53c-c213804f49ef",
+          "meter_name": "Standard IPv4 Static Public IP",
+          "product_name": "IP Addresses",
+          "sku_id": "DZH318Z0BNXN/0033",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0050000000"
+        },
+        "japaneast": {
+          "effective_start": "2018-06-01T00:00:00Z",
+          "meter_id": "9c150bf9-2bad-430e-a53c-c213804f49ef",
+          "meter_name": "Standard IPv4 Static Public IP",
+          "product_name": "IP Addresses",
+          "sku_id": "DZH318Z0BNXN/0033",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0050000000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-06-01T00:00:00Z",
+          "meter_id": "9c150bf9-2bad-430e-a53c-c213804f49ef",
+          "meter_name": "Standard IPv4 Static Public IP",
+          "product_name": "IP Addresses",
+          "sku_id": "DZH318Z0BNXN/0033",
+          "sku_name": "Standard",
+          "unit": "1 Hour",
+          "usd": "0.0050000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "public_ip",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "postgresql.b1ms": {
+      "hours": 730,
+      "label": {
+        "en": "PostgreSQL Flexible Server B1MS instance hours",
+        "ja": "PostgreSQL Flexible Server B1MS インスタンス時間",
+        "ko": "PostgreSQL Flexible Server B1MS 인스턴스 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "699ee3c7-5e59-5284-a84a-52ec1ffaa320",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/0020",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0170000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "7df22407-6d39-5fdf-91c7-8c1c2965fe9d",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/0034",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0260000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-12-01T00:00:00Z",
+          "meter_id": "72e24ded-c3d5-5079-890f-c403c0a9a7c9",
+          "meter_name": "B1MS",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/002N",
+          "sku_name": "B1MS",
+          "unit": "1 Hour",
+          "usd": "0.0260000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "postgresql",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "postgresql.b2ms": {
+      "hours": 730,
+      "label": {
+        "en": "PostgreSQL Flexible Server B2ms instance hours",
+        "ja": "PostgreSQL Flexible Server B2ms インスタンス時間",
+        "ko": "PostgreSQL Flexible Server B2ms 인스턴스 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2023-03-01T00:00:00Z",
+          "meter_id": "4ee1aa81-d37a-5b90-8b9e-c35f47fe66ac",
+          "meter_name": "B2ms vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/00DW",
+          "sku_name": "B2ms",
+          "unit": "1 Hour",
+          "usd": "0.1360000000"
+        },
+        "japaneast": {
+          "effective_start": "2023-03-01T00:00:00Z",
+          "meter_id": "59f4d774-550b-596c-9aa4-9fbefd01cc4b",
+          "meter_name": "B2ms vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/00FP",
+          "sku_name": "B2ms",
+          "unit": "1 Hour",
+          "usd": "0.2080000000"
+        },
+        "koreacentral": {
+          "effective_start": "2023-03-01T00:00:00Z",
+          "meter_id": "274198d9-310e-53e4-84c9-f68959a592fa",
+          "meter_name": "B2ms vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server Burstable BS Series Compute",
+          "sku_id": "DZH318Z0DCRL/00FF",
+          "sku_name": "B2ms",
+          "unit": "1 Hour",
+          "usd": "0.2080000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "postgresql",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "postgresql.gp_ddsv5.vcore": {
+      "hours": 730,
+      "label": {
+        "en": "PostgreSQL Flexible Server General Purpose Ddsv5 vCore hours",
+        "ja": "PostgreSQL Flexible Server 汎用 Ddsv5 vCore 時間",
+        "ko": "PostgreSQL Flexible Server 범용 Ddsv5 vCore 시간"
+      },
+      "per": "vcore_hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2024-04-01T00:00:00Z",
+          "meter_id": "edb10257-e212-51a5-beb0-c18f2333b816",
+          "meter_name": "vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0KDZJ/00WK",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.0890000000"
+        },
+        "japaneast": {
+          "effective_start": "2024-04-01T00:00:00Z",
+          "meter_id": "0112997c-6af8-54fd-879c-c8a4da982b5d",
+          "meter_name": "vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0KDZJ/00W9",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1220000000"
+        },
+        "koreacentral": {
+          "effective_start": "2024-04-01T00:00:00Z",
+          "meter_id": "ec441515-99ff-5127-9da5-6b1d116f5997",
+          "meter_name": "vCore",
+          "product_name": "Azure Database for PostgreSQL Flexible Server General Purpose Ddsv5 Series Compute",
+          "sku_id": "DZH318Z0KDZJ/00WF",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1230000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "vcore",
+      "service": "postgresql",
+      "slider": {
+        "max": 64,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "postgresql.storage": {
+      "hours": 1,
+      "label": {
+        "en": "PostgreSQL Flexible Server storage",
+        "ja": "PostgreSQL Flexible Server ストレージ",
+        "ko": "PostgreSQL Flexible Server 스토리지"
+      },
+      "per": "gb_month",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "05116300-a5d3-5c8f-a80e-bc6bf8109556",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for PostgreSQL Flex Server Storage",
+          "sku_id": "DZH318Z0DCRX/000R",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1150000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "cf8269ac-0978-5c40-8dd5-0faf844f04b4",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for PostgreSQL Flex Server Storage",
+          "sku_id": "DZH318Z0DCRX/0018",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1380000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-06-01T00:00:00Z",
+          "meter_id": "c8191f70-a3bb-5688-9a71-c0df8fd50a3f",
+          "meter_name": "Storage Data Stored",
+          "product_name": "Azure Database for PostgreSQL Flex Server Storage",
+          "sku_id": "DZH318Z0DCRX/000J",
+          "sku_name": "Storage",
+          "unit": "1 GB/Month",
+          "usd": "0.1310000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "postgresql",
+      "slider": {
+        "max": 5000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "redis.standard.c1": {
+      "hours": 730,
+      "label": {
+        "en": "Azure Cache for Redis Standard C1 hours",
+        "ja": "Azure Cache for Redis Standard C1 時間",
+        "ko": "Azure Cache for Redis Standard C1 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "8e3e2b59-99e1-4171-a96b-a06cf9745381",
+          "meter_name": "C1 Cache Instance",
+          "product_name": "Azure Redis Cache Standard",
+          "sku_id": "DZH318Z0BQH2/0049",
+          "sku_name": "C1",
+          "unit": "1 Hour",
+          "usd": "0.0690000000"
+        },
+        "japaneast": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "e917628a-c026-438a-b09a-6c6034858f47",
+          "meter_name": "C1 Cache Instance",
+          "product_name": "Azure Redis Cache Standard",
+          "sku_id": "DZH318Z0BQH2/0096",
+          "sku_name": "C1",
+          "unit": "1 Hour",
+          "usd": "0.0690000000"
+        },
+        "koreacentral": {
+          "effective_start": "2019-05-01T00:00:00Z",
+          "meter_id": "3d1af8e2-707a-486c-a6ad-9261d04fcd95",
+          "meter_name": "C1 Cache Instance",
+          "product_name": "Azure Redis Cache Standard",
+          "sku_id": "DZH318Z0BQH2/0040",
+          "sku_name": "C1",
+          "unit": "1 Hour",
+          "usd": "0.0890000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "redis",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "sqldb.gp_gen5.vcore": {
+      "hours": 730,
+      "label": {
+        "en": "SQL Database General Purpose Gen5 vCore hours",
+        "ja": "SQL Database 汎用 Gen5 vCore 時間",
+        "ko": "SQL Database 범용 Gen5 vCore 시간"
+      },
+      "per": "vcore_hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2018-07-15T00:00:00Z",
+          "meter_id": "d0fc12d4-91ca-4689-bf8f-9ccdf1b0a619",
+          "meter_name": "vCore",
+          "product_name": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+          "sku_id": "DZH318Z0BPXL/00WG",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1522170000"
+        },
+        "japaneast": {
+          "effective_start": "2018-08-01T00:00:00Z",
+          "meter_id": "a4b9c97e-3f62-406a-852b-a42ba12efd23",
+          "meter_name": "vCore",
+          "product_name": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+          "sku_id": "DZH318Z0BPXL/00XR",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1720050000"
+        },
+        "koreacentral": {
+          "effective_start": "2018-08-01T00:00:00Z",
+          "meter_id": "4284129f-ee24-419a-aced-a3eb31eafc4d",
+          "meter_name": "vCore",
+          "product_name": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+          "sku_id": "DZH318Z0BPXL/00XK",
+          "sku_name": "1 vCore",
+          "unit": "1 Hour",
+          "usd": "0.1720050000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "vcore",
+      "service": "sql_database",
+      "slider": {
+        "max": 64,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vm.b2s": {
+      "hours": 730,
+      "label": {
+        "en": "B2s VM (Linux, Pay-as-you-go)",
+        "ja": "B2s VM (Linux, 従量課金)",
+        "ko": "B2s VM (Linux, 종량제)"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2025-10-01T00:00:00Z",
+          "meter_id": "2c57ed84-f939-4f5c-ba90-782349a367b8",
+          "meter_name": "B2s",
+          "product_name": "Virtual Machines BS Series",
+          "sku_id": "DZH318Z0BQ35/00J7",
+          "sku_name": "B2s",
+          "unit": "1 Hour",
+          "usd": "0.0416000000"
+        },
+        "japaneast": {
+          "effective_start": "2025-10-01T00:00:00Z",
+          "meter_id": "fa90700b-ce3b-4f07-8877-c1245a20ab7a",
+          "meter_name": "B2s",
+          "product_name": "Virtual Machines BS Series",
+          "sku_id": "DZH318Z0BQ35/00LB",
+          "sku_name": "B2s",
+          "unit": "1 Hour",
+          "usd": "0.0544000000"
+        },
+        "koreacentral": {
+          "effective_start": "2025-10-01T00:00:00Z",
+          "meter_id": "633c8102-22a8-42b8-a21f-14a98b584913",
+          "meter_name": "B2s",
+          "product_name": "Virtual Machines BS Series",
+          "sku_id": "DZH318Z0BQ35/00L6",
+          "sku_name": "B2s",
+          "unit": "1 Hour",
+          "usd": "0.0520000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vm",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vm.d2s_v5": {
+      "hours": 730,
+      "label": {
+        "en": "D2s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "D2s v5 VM (Linux, 従量課金)",
+        "ko": "D2s v5 VM (Linux, 종량제)"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "36cc2454-47d7-517f-884f-be4d6b7efa55",
+          "meter_name": "D2s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/0061",
+          "sku_name": "Standard_D2s_v5",
+          "unit": "1 Hour",
+          "usd": "0.0960000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "5014c5a1-1252-5169-9b39-31397eef15ad",
+          "meter_name": "D2s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/00JT",
+          "sku_name": "Standard_D2s_v5",
+          "unit": "1 Hour",
+          "usd": "0.1240000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "1bd761b2-f613-592a-83c0-2c5cad8c4998",
+          "meter_name": "D2s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/002L",
+          "sku_name": "Standard_D2s_v5",
+          "unit": "1 Hour",
+          "usd": "0.1180000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vm",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vm.d4s_v5": {
+      "hours": 730,
+      "label": {
+        "en": "D4s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "D4s v5 VM (Linux, 従量課金)",
+        "ko": "D4s v5 VM (Linux, 종량제)"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "db8c0962-f3f8-5b44-99aa-f3c7c1e668c8",
+          "meter_name": "D4s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/004T",
+          "sku_name": "Standard_D4s_v5",
+          "unit": "1 Hour",
+          "usd": "0.1920000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "a5a189c2-53b5-5cc2-8b62-6b0fdf6b96b1",
+          "meter_name": "D4s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/00HQ",
+          "sku_name": "Standard_D4s_v5",
+          "unit": "1 Hour",
+          "usd": "0.2480000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "e32e5a68-9b9e-592d-b1ab-809fe88ae472",
+          "meter_name": "D4s v5",
+          "product_name": "Virtual Machines Dsv5 Series",
+          "sku_id": "DZH318Z08M9W/002N",
+          "sku_name": "Standard_D4s_v5",
+          "unit": "1 Hour",
+          "usd": "0.2360000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vm",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vm.e2s_v5": {
+      "hours": 730,
+      "label": {
+        "en": "E2s v5 VM (Linux, Pay-as-you-go)",
+        "ja": "E2s v5 VM (Linux, 従量課金)",
+        "ko": "E2s v5 VM (Linux, 종량제)"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "683e47f0-b25f-501b-9aac-d189cf9de2c9",
+          "meter_name": "E2s v5",
+          "product_name": "Virtual Machines Esv5 Series",
+          "sku_id": "DZH318Z096SR/014T",
+          "sku_name": "E2s v5",
+          "unit": "1 Hour",
+          "usd": "0.1260000000"
+        },
+        "japaneast": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "f344df67-943c-5af4-b823-ea0e755396f8",
+          "meter_name": "E2s v5",
+          "product_name": "Virtual Machines Esv5 Series",
+          "sku_id": "DZH318Z096SR/01ZN",
+          "sku_name": "E2s v5",
+          "unit": "1 Hour",
+          "usd": "0.1520000000"
+        },
+        "koreacentral": {
+          "effective_start": "2021-11-01T00:00:00Z",
+          "meter_id": "b4bea525-b037-53b2-b653-f4c8fb744ddd",
+          "meter_name": "E2s v5",
+          "product_name": "Virtual Machines Esv5 Series",
+          "sku_id": "DZH318Z096SR/01RC",
+          "sku_name": "E2s v5",
+          "unit": "1 Hour",
+          "usd": "0.1520000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vm",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "vpn.vpngw1": {
+      "hours": 730,
+      "label": {
+        "en": "VPN Gateway VpnGw1 hours",
+        "ja": "VPN Gateway VpnGw1 時間",
+        "ko": "VPN Gateway VpnGw1 시간"
+      },
+      "per": "hour",
+      "prices": {
+        "eastus": {
+          "effective_start": "2025-02-01T00:00:00Z",
+          "meter_id": "431b835b-2538-4faa-8763-8202f3fdbbb4",
+          "meter_name": "VpnGw1",
+          "product_name": "VPN Gateway",
+          "sku_id": "DZH318Z0BNXL/008T",
+          "sku_name": "VpnGw1",
+          "unit": "1 Hour",
+          "usd": "0.1900000000"
+        },
+        "japaneast": {
+          "effective_start": "2025-02-01T00:00:00Z",
+          "meter_id": "431b835b-2538-4faa-8763-8202f3fdbbb4",
+          "meter_name": "VpnGw1",
+          "product_name": "VPN Gateway",
+          "sku_id": "DZH318Z0BNXL/006Z",
+          "sku_name": "VpnGw1",
+          "unit": "1 Hour",
+          "usd": "0.1900000000"
+        },
+        "koreacentral": {
+          "effective_start": "2025-02-01T00:00:00Z",
+          "meter_id": "431b835b-2538-4faa-8763-8202f3fdbbb4",
+          "meter_name": "VpnGw1",
+          "product_name": "VPN Gateway",
+          "sku_id": "DZH318Z0BNXL/009P",
+          "sku_name": "VpnGw1",
+          "unit": "1 Hour",
+          "usd": "0.1900000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "vpn_gateway",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    }
+  },
+  "price_type": "on_demand_retail",
+  "regions": [
+    "koreacentral",
+    "japaneast",
+    "eastus"
+  ],
+  "source": "azure_retail_prices_api"
+}

@@ -1,0 +1,26 @@
+[project]
+name = "cost-agent"
+version = "0.1.0"
+description = "Cloud cost calculator agent (local Ollama only)"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain==1.2.0",
+    "langgraph==1.0.7",  # pinned: BoundedMemorySaver relies on MemorySaver.storage internal
+    "fastapi>=0.115.5,<1.0.0",
+    "uvicorn>=0.29.0,<1.0.0",
+    "python-dotenv>=1.0.0,<2.0.0",
+    "copilotkit>=0.1.94",
+    "ag-ui-langgraph>=0.0.38",
+    "httpx>=0.28,<1",
+    "langchain-ollama>=1.0.0",
+    "ijson>=3.6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
