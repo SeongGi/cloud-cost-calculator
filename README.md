@@ -47,7 +47,9 @@ cp .env.example .env      # TRUSTED_PROXY_IP 등 설정 (.env는 커밋하지 �
 docker compose up -d --build
 ```
 
-- 공개 포트는 `PUBLIC_PORT`(기본 8095) 하나입니다. gate는 `TRUSTED_PROXY_IP`(앞단 리버스 프록시)와 루프백만 받아들입니다. 설정하지 않으면 루프백만 허용합니다.
+- 공개 포트는 `PUBLIC_PORT`(기본 8095) 하나입니다. 설정하지 않으면 gate는 루프백만 받아들입니다.
+- 앞단 리버스 프록시를 쓸 때는 `.env`에 `TRUSTED_PROXY_IP`와 `PROXY_SECRET`(영문·숫자 32자 이상)을 넣습니다. 프록시는 `proxy_set_header X-Proxy-Secret <값>;`과 `proxy_set_header X-Real-IP $remote_addr;`를 보내야 합니다. gate는 비밀 헤더가 맞는 요청만 통과시키고, 그때만 `X-Real-IP`를 방문자 IP로 씁니다. 비밀값 없이 `TRUSTED_PROXY_IP`만 넣으면 gate가 시작되지 않습니다.
+- OrbStack이나 Docker Desktop은 포트를 넘겨줄 때 출발지 주소를 런타임 게이트웨이(예: `192.168.171.1`)로 바꿉니다. 이 경우 `TRUSTED_PROXY_IP`에는 그 주소를 넣습니다(`docker compose logs gate`로 확인). 그러면 같은 LAN에서 포트로 바로 들어오는 요청도 같은 주소로 보이므로, 실제로 막는 것은 비밀 헤더입니다.
 - 앞단 nginx는 응답이 스트리밍(SSE)이므로 `proxy_buffering off;`와 `proxy_read_timeout 300s;`를 권합니다.
 - 첫 질문은 모델을 메모리에 올리느라 1분 이상 걸릴 수 있습니다. 에이전트가 기동할 때 미리 올리고, 30분 동안 쓰지 않으면 내려갑니다.
 

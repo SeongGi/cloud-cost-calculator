@@ -34,8 +34,10 @@ services:
     image: nginx:1.27-alpine
     environment:
       TRUSTED_PROXY_IP: ${TRUSTED_PROXY_IP:-127.0.0.1}
+      PROXY_SECRET: ${PROXY_SECRET:-}
     volumes:
       - ./docker/gate/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./docker/gate/10-check-secret.sh:/docker-entrypoint.d/10-check-secret.sh:ro
       - ./docker/gate/proxy.inc:/etc/nginx/conf.d/proxy.inc:ro
     ports: ["${PUBLIC_PORT:-8095}:8080"]
     depends_on: [app]
