@@ -7,7 +7,7 @@ import { AnswerMarkdown } from "@/components/chat/answer-markdown";
 import { useCostTool } from "@/hooks/use-cost-tool";
 import { useTheme } from "@/hooks/use-theme";
 import { describeError } from "@/lib/errors";
-import { clearChat, loadChat, saveChat } from "@/lib/chat-store";
+import { currentThread, deleteChat, listChats, loadMessages, saveChat, setCurrent, type ChatSummary } from "@/lib/chat-store";
 
 function newThreadId(): string {
   // crypto.randomUUID needs a secure context; plain-HTTP LAN access falls back to getRandomValues.
@@ -26,16 +26,74 @@ const EXAMPLES = [
 ];
 
 export default function HomePage() {
-  // The thread id is the agent's memory key. It is decided after mount (from this browser's saved
-  // chat or new) and handed to CopilotKit, which then loads that thread's history itself.
+  // The thread id is the agent's memory key. It is decided after mount (the last chat in this
+  // browser, or a new one) and handed to CopilotKit, which then loads that thread's history.
   const [threadId, setThreadId] = useState<string | null>(null);
   useEffect(() => {
-    setThreadId(loadChat()?.threadId ?? newThreadId());
+    setThreadId(currentThread() ?? newThreadId());
   }, []);
-  return threadId ? <Chat key={threadId} threadId={threadId} onNewChat={() => { clearChat(); setThreadId(newThreadId()); }} /> : null;
+  const open = (id: string) => {
+    setCurrent(id);
+    setThreadId(id);
+  };
+  if (!threadId) return <div className="chat-app" />;
+  return <Chat key={threadId} threadId={threadId} onOpen={open} onNewChat={() => open(newThreadId())} />;
 }
 
-function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void }) {
+function relativeTime(ms: number): string {
+  const min = Math.round((Date.now() - ms) / 60000);
+  if (min < 1) return "방금";
+  if (min < 60) return `${min}분 전`;
+  if (min < 60 * 24) return `${Math.round(min / 60)}시간 전`;
+  return new Date(ms).toLocaleDateString("ko-KR", { month: "long", day: "numeric" });
+}
+
+function ChatList({ current, onOpen, onClose }: { current: string; onOpen: (id: string) => void; onClose: () => void }) {
+  const [chats, setChats] = useState<ChatSummary[]>(() => listChats());
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div className="chat-list-backdrop" onClick={onClose}>
+      <section className="chat-list" role="dialog" aria-label="대화 목록" onClick={(e) => e.stopPropagation()}>
+        <header>
+          <h2>대화 목록</h2>
+          <button type="button" onClick={onClose} aria-label="닫기">닫기</button>
+        </header>
+        {chats.length === 0 ? (
+          <p className="chat-list-empty">아직 저장된 대화가 없습니다.</p>
+        ) : (
+          <ul>
+            {chats.map((c) => (
+              <li key={c.threadId} aria-current={c.threadId === current ? "true" : undefined}>
+                <button type="button" className="chat-list-open" onClick={() => onOpen(c.threadId)}>
+                  <span className="chat-list-title">{c.title}</span>
+                  <span className="chat-list-time">{relativeTime(c.updatedAt)}</span>
+                </button>
+                <button
+                  type="button"
+                  className="chat-list-delete"
+                  aria-label={`${c.title} 삭제`}
+                  onClick={() => {
+                    deleteChat(c.threadId);
+                    setChats(listChats());
+                  }}
+                >
+                  삭제
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        <p className="chat-list-note">대화는 이 브라우저에만 최대 30개, 30일 동안 저장됩니다.</p>
+      </section>
+    </div>
+  );
+}
+
+function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: string) => void; onNewChat: () => void }) {
   useCostTool();
   useConfigureSuggestions({ suggestions: EXAMPLES, available: "before-first-message" });
   const { agent } = useAgent({ threadId });
@@ -64,17 +122,56 @@ function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void
     return () => observer.disconnect();
   }, [latestQuestion]);
 
-  // If CopilotKit's own history load came back empty (e.g. the app server restarted), draw the
-  // earlier answers from this browser's copy. Only when nothing is shown, so nothing is doubled.
+  const [showList, setShowList] = useState(false);
+  const [slow, setSlow] = useState(false);
+
+  // CopilotKit first loads the thread's history from the app server. When that comes back empty
+  // (e.g. after the server restarted), draw this browser's copy once it settles. Only while nothing
+  // is shown, so nothing is doubled and a question typed meanwhile wins.
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const saved = loadChat();
-      if (saved?.threadId === threadId && !agent.isRunning && agent.messages.length === 0 && saved.messages.length) {
-        agent.setMessages(saved.messages as typeof agent.messages);
+    const saved = loadMessages(threadId);
+    if (!saved.length) return;
+    let tries = 0;
+    const timer = setInterval(() => {
+      tries += 1;
+      if (agent.messages.length > 0 || tries > 50) return clearInterval(timer);
+      if (!agent.isRunning && tries >= 3) {
+        agent.setMessages(saved as typeof agent.messages);
+        clearInterval(timer);
       }
-    }, 2000);
-    return () => clearTimeout(timer);
+    }, 300);
+    return () => clearInterval(timer);
   }, [agent, threadId]);
+
+  // A run that never finishes must not lock the chat: offer to stop it after a while.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const subscription = agent.subscribe({
+      onRunInitialized: () => {
+        setSlow(false);
+        clearTimeout(timer);
+        timer = setTimeout(() => setSlow(true), 75000);
+      },
+      onRunFinalized: () => {
+        clearTimeout(timer);
+        setSlow(false);
+      },
+      onRunFailed: () => {
+        clearTimeout(timer);
+        setSlow(false);
+      },
+    });
+    return () => {
+      clearTimeout(timer);
+      subscription.unsubscribe();
+    };
+  }, [agent]);
+
+  const stopRun = () => {
+    agent.abortRun();
+    setSlow(false);
+    setError("응답이 너무 오래 걸려 중지했습니다. 같은 질문을 다시 보내 주세요.");
+  };
 
   useEffect(() => {
     const save = () => {
@@ -93,6 +190,11 @@ function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void
   const newChat = () => {
     setError(null);
     onNewChat();
+  };
+
+  const openChat = (id: string) => {
+    setShowList(false);
+    if (id !== threadId) onOpen(id);
   };
 
   const retry = async () => {
@@ -114,14 +216,24 @@ function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void
       <header className="chat-header">
         <span className="chat-name">클라우드 비용 계산기</span>
         <nav aria-label="주 메뉴">
+          <button type="button" onClick={() => setShowList(true)} aria-haspopup="dialog" aria-label="대화 목록">
+            <span className="chat-hide-sm">대화 </span>목록
+          </button>
           <button type="button" onClick={newChat} disabled={agent.isRunning}>새 대화</button>
           <button type="button" onClick={() => setTheme(dark ? "light" : "dark")} aria-label={dark ? "라이트 모드로" : "다크 모드로"}>
             {dark ? "라이트" : "다크"}
           </button>
-          <a href="https://github.com/SeongGi/cloud-cost-calculator" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a className="chat-hide-sm" href="https://github.com/SeongGi/cloud-cost-calculator" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </nav>
       </header>
       <main id="main-content" className="chat-main">
+        {showList && <ChatList current={threadId} onOpen={openChat} onClose={() => setShowList(false)} />}
+        {slow && agent.isRunning && (
+          <div className="chat-error" role="alert">
+            <p>응답이 평소보다 오래 걸리고 있습니다.</p>
+            <button type="button" onClick={stopRun}>중지하고 다시 보내기</button>
+          </div>
+        )}
         {error && (
           <div className="chat-error" role="alert">
             <p>{error}</p>
@@ -142,7 +254,7 @@ function Chat({ threadId, onNewChat }: { threadId: string; onNewChat: () => void
             labels={{
               welcomeMessageText: "어떤 클라우드 구성의 월 비용을 계산할까요?",
               chatInputPlaceholder: "예: AWS t3.medium 2대, S3 500GB",
-              chatDisclaimerText: "공개 가격표의 온디맨드 정가 기준입니다. 대화는 이 브라우저에 30일 보관되며 '새 대화'를 누르면 지워집니다.",
+              chatDisclaimerText: "공개 가격표의 온디맨드 정가 기준입니다. 지난 대화는 '대화 목록'에서 다시 열 수 있습니다(이 브라우저에 30일 보관).",
             }}
           />
         </div>

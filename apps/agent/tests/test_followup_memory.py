@@ -169,3 +169,39 @@ def test_storage_stays_linear_in_conversation_length(tmp_path):
     path = tmp_path / "evil.pkl"
     path.write_bytes(pickle.dumps({"format": 1, "storage": {}, "writes": {}, "blobs": {}, "order": [], "x": PersistentMemorySaver}))
     assert len(PersistentMemorySaver(path, flush_every_s=60).storage) == 0  # refused, starts empty
+
+
+def aws_turn():
+    r = run_tool({"messages": []}, cloud="aws", items=[{"service": "ec2", "spec": "t3.medium", "count": 2}, {"service": "rds"}])
+    return [HumanMessage("AWS EC2 t3.medium 2대 + RDS"), ToolMessage(content=json.dumps(r), name="estimate_cost", tool_call_id="a")]
+
+
+def test_changing_the_spec_replaces_the_line_instead_of_adding_one():
+    r = run_tool({"messages": aws_turn() + [HumanMessage("EC2를 m7i.large로 바꾸면?")]}, cloud="aws", follow_up=True,
+                 items=[{"service": "ec2", "spec": "m7i.large"}])
+    ec2 = [i for i in r["request"]["items"] if i["service"] == "ec2"]
+    assert ec2 == [{"service": "ec2", "spec": "m7i.large", "count": 2, "gb": None, "million": None}]
+    # "추가" with another spec keeps both.
+    r = run_tool({"messages": aws_turn() + [HumanMessage("m7i.large 1대 추가")]}, cloud="aws", follow_up=True,
+                 items=[{"service": "ec2", "spec": "m7i.large", "count": 1}])
+    assert len([i for i in r["request"]["items"] if i["service"] == "ec2"]) == 2
+
+
+def test_ambiguous_change_on_several_lines_is_reported_not_guessed():
+    two = run_tool({"messages": []}, cloud="aws", items=[{"service": "ec2", "spec": "t3.medium", "count": 2},
+                                                          {"service": "ec2", "spec": "m7i.large", "count": 1}])
+    history = [HumanMessage("x"), ToolMessage(content=json.dumps(two), name="estimate_cost", tool_call_id="b")]
+    r = run_tool({"messages": history + [HumanMessage("EC2를 5대로 늘려")]}, cloud="aws", follow_up=True, items=[{"service": "ec2", "count": 5}])
+    assert r["total_cents"] == two["total_cents"] and any("여러 줄" in n for n in r["notes"])
+
+
+def test_lookups_of_unknown_threads_do_not_evict_real_conversations(tmp_path):
+    saver = PersistentMemorySaver(tmp_path / "t.pkl", max_threads=3, flush_every_s=60)
+    g = create_agent(model=Fake(responses=[AIMessage(content=str(i)) for i in range(10)]), tools=[estimate_cost], checkpointer=saver)
+    for t in ("A", "B"):
+        asyncio.run(g.ainvoke({"messages": [HumanMessage(t)]}, {"configurable": {"thread_id": t}}))
+    for i in range(5):
+        asyncio.run(g.aget_state({"configurable": {"thread_id": f"empty-{i}"}}))
+    asyncio.run(g.ainvoke({"messages": [HumanMessage("C")]}, {"configurable": {"thread_id": "C"}}))
+    assert {"A", "B", "C"} <= set(saver.storage)
+    saver.close()

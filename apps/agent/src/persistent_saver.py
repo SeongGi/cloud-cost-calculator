@@ -94,6 +94,10 @@ class PersistentMemorySaver(BoundedMemorySaver):
         while not self._stop.wait(every):
             try:
                 self.flush()
+            except RuntimeError:
+                # A lookup added a key while the snapshot was copied; the next cycle retries.
+                with self._lock:
+                    self._dirty = True
             except Exception:
                 logger.exception("conversation snapshot write failed")
 
@@ -128,8 +132,16 @@ class PersistentMemorySaver(BoundedMemorySaver):
         for key in [k for k in self.blobs if k[0] not in live]:
             del self.blobs[key]
 
+    def _drop_empty(self) -> None:
+        """Lookups of unknown threads leave empty entries (the base class uses defaultdicts); they
+        would count toward max_threads and push real conversations out."""
+        for thread in [t for t, nss in self.storage.items() if not any(nss.values())]:
+            del self.storage[thread]
+            self._insertion_order.pop(thread, None)
+
     def put(self, config, checkpoint, metadata, new_versions):
         with self._lock:
+            self._drop_empty()
             before = set(self.storage)
             result = super().put(config, checkpoint, metadata, new_versions)
             self._prune(config["configurable"]["thread_id"])

@@ -57,7 +57,15 @@ def last_user_text(state: dict) -> str:
 FOLLOW_UP = re.compile(
     r"여기에|거기에|이거에|이것에|위\s*구성|앞\s*구성|기존|추가|더하|더\s*넣|포함|빼|제외|없애|삭제|바꾸|바꿔|변경|"
     r"늘리|늘려|줄이|줄여|대신|전체|합쳐|같이|그대로|으로\s*하면|로\s*하면")
-CLOUD_WORDS = {"aws": r"aws|아마존|amazon", "azure": r"azure|애저|microsoft", "gcp": r"gcp|구글|google|지씨피"}
+# Cloud names only; "Microsoft SQL Server" or "Google Workspace" must not switch the cloud.
+CLOUD_WORDS = {
+    # Latin-letter boundaries: Korean particles attach directly ("AWS랑", "GCP에").
+    "aws": r"(?<![a-z])aws(?![a-z])|아마존|amazon web services",
+    "azure": r"azure|애저|마이크로소프트\s*클라우드",
+    "gcp": r"(?<![a-z])gcp(?![a-z])|google\s*cloud|구글\s*클라우드|구글|지씨피",
+}
+# "바꿔/대신/으로" replaces the line of that service; "추가/더" adds another one.
+REPLACE_WORDS = re.compile(r"바꾸|바꿔|변경|대신|교체|으로\s*하면|로\s*하면|으로\s*해|로\s*해")
 
 
 def previous_request(state: dict, cloud: str | None = None) -> dict | None:
@@ -92,10 +100,14 @@ def _norm_spec(spec: str | None) -> str:
     return re.sub(r"[\s_\-.]+", "", (spec or "").lower())
 
 
-def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[str]) -> tuple[list[dict], list[str]]:
-    """Previous items updated by the new ones and minus the removed services. A change goes to the
-    line with the same service and spec, else to the only line of that service, else it is added.
-    Returns the items and the removal names that matched nothing (so the answer can say so)."""
+def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[str],
+                replace: bool = False) -> tuple[list[dict], list[str]]:
+    """Previous items updated by the new ones and minus the removed services.
+
+    A change goes to the line with the same service and spec; else, when the user asked to change
+    (`replace`) or gave no new spec, to the only line of that service; with several such lines and
+    no spec match it is not guessed. Otherwise it is added. Returns the items and notes about
+    what could not be applied."""
     try:
         catalog = load_catalog(cloud)
     except CatalogUnavailable:
@@ -105,21 +117,32 @@ def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[
         return resolve_service(cloud, name, catalog)[0] or name.strip().lower()
 
     merged = [dict(i) for i in base]
+    notes = []
     unmatched = []
     for name in remove:
         kept = [m for m in merged if key(m["service"]) != key(name)]
         if len(kept) == len(merged):
             unmatched.append(name)
         merged = kept
+    if unmatched:
+        notes.append(f"앞 구성에 없어 빼지 못한 서비스: {', '.join(unmatched)}")
     for change in changes:
         same = [m for m in merged if key(m["service"]) == key(change["service"])]
         exact = [m for m in same if change.get("spec") and _norm_spec(m.get("spec")) == _norm_spec(change["spec"])]
-        target = exact[0] if exact else (same[0] if len(same) == 1 and not (change.get("spec") and same[0].get("spec")) else None)
+        if exact:
+            target = exact[0]
+        elif len(same) == 1 and (replace or not change.get("spec") or not same[0].get("spec")):
+            target = same[0]
+        elif len(same) > 1 and not change.get("spec"):
+            notes.append(f"{change['service']} 항목이 여러 줄이라 어느 것을 바꿀지 알 수 없어 그대로 두었습니다. 사양을 함께 말해 주세요.")
+            continue
+        else:
+            target = None
         if target is None:
             merged.append(dict(change))
         else:
             target.update({k: v for k, v in change.items() if v is not None and k != "service"})
-    return merged, unmatched
+    return merged, notes
 
 
 class EstimateArgs(BaseModel):
@@ -166,10 +189,9 @@ def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | Non
         if merge:
             cloud = prev["cloud"]
             region = region or prev.get("region")
-            parsed, unmatched = merge_items(cloud, prev["items"], parsed, remove)
+            parsed, merge_notes = merge_items(cloud, prev["items"], parsed, remove, replace=bool(REPLACE_WORDS.search(text)))
             notes.append("앞에서 계산한 구성에 이번 요청(추가·변경·제외)을 반영해 전체를 다시 계산했습니다.")
-            if unmatched:
-                notes.append(f"앞 구성에 없어 빼지 못한 서비스: {', '.join(unmatched)}")
+            notes.extend(merge_notes)
         if not parsed:
             raise ValueError("계산할 서비스가 없습니다")
         result = estimate(cloud, parsed, region, user_text=text)

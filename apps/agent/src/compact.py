@@ -23,7 +23,8 @@ def summarize(content) -> str:
 def compact(messages: list) -> list:
     return [
         m.model_copy(update={"content": summarize(m.content)})
-        if isinstance(m, ToolMessage) and m.name == "estimate_cost" else m
+        # By content too: tool messages restored from the browser arrive without a name.
+        if isinstance(m, ToolMessage) and (m.name == "estimate_cost" or '"total_cents"' in str(m.content)) else m
         for m in messages
     ]
 
