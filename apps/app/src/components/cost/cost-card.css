@@ -10,6 +10,17 @@
   --cc-bar: #2563eb;
   --cc-warn: #9a3412;
   --cc-warn-bg: #fff7ed;
+  --cc-g-compute: #2563eb;
+  --cc-g-serverless: #7c3aed;
+  --cc-g-database: #0d9488;
+  --cc-g-cache: #db2777;
+  --cc-g-storage: #d97706;
+  --cc-g-network: #0891b2;
+  --cc-g-security: #dc2626;
+  --cc-g-monitoring: #65a30d;
+  --cc-g-other: #71717a;
+  --cc-cloud: #2563eb;
+  --cc-cloud-2: #0d9488;
 
   box-sizing: border-box;
   width: 100%;
@@ -23,6 +34,7 @@
   font-size: 15px;
   line-height: 1.55;
   overflow-wrap: anywhere;
+  container-type: inline-size;
 }
 
 :root.dark .cost-card {
@@ -37,7 +49,26 @@
   --cc-bar: #60a5fa;
   --cc-warn: #fdba74;
   --cc-warn-bg: #431407;
+  --cc-g-compute: #60a5fa;
+  --cc-g-serverless: #a78bfa;
+  --cc-g-database: #2dd4bf;
+  --cc-g-cache: #f472b6;
+  --cc-g-storage: #fbbf24;
+  --cc-g-network: #22d3ee;
+  --cc-g-security: #f87171;
+  --cc-g-monitoring: #a3e635;
+  --cc-g-other: #a1a1aa;
+  --cc-cloud: #60a5fa;
+  --cc-cloud-2: #2dd4bf;
 }
+
+/* Accent per cloud: neutral hues, not vendor branding. */
+.cost-card[data-cloud="aws"] { --cc-cloud: #ea580c; --cc-cloud-2: #f59e0b; --cc-mark: #c2410c; }
+.cost-card[data-cloud="azure"] { --cc-cloud: #2563eb; --cc-cloud-2: #06b6d4; --cc-mark: #1d4ed8; }
+.cost-card[data-cloud="gcp"] { --cc-cloud: #16a34a; --cc-cloud-2: #0ea5e9; --cc-mark: #15803d; }
+:root.dark .cost-card[data-cloud="aws"] { --cc-cloud: #fb923c; --cc-cloud-2: #fbbf24; }
+:root.dark .cost-card[data-cloud="azure"] { --cc-cloud: #60a5fa; --cc-cloud-2: #22d3ee; }
+:root.dark .cost-card[data-cloud="gcp"] { --cc-cloud: #4ade80; --cc-cloud-2: #38bdf8; }
 
 .cost-card *,
 .cost-card *::before,
@@ -55,9 +86,26 @@
 }
 
 .cost-head h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 0;
   font-size: 18px;
   font-weight: 700;
+}
+
+.cc-cloud-mark {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--cc-mark, #1d4ed8);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .cost-badge,
@@ -78,12 +126,29 @@
 }
 
 .cost-total {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 14px 16px;
-  border-radius: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
   background: var(--cc-total-bg);
+  background:
+    radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--cc-cloud-2) 22%, transparent), transparent 60%),
+    linear-gradient(135deg, color-mix(in srgb, var(--cc-cloud) 14%, var(--cc-bg)), var(--cc-total-bg));
+  border: 1px solid var(--cc-border);
+  border: 1px solid color-mix(in srgb, var(--cc-cloud) 30%, var(--cc-border));
+  overflow: hidden;
+}
+
+.cost-total-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 2px;
+  color: var(--cc-text);
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .cost-total-label,
@@ -94,6 +159,7 @@
 
 .cost-total-value {
   color: var(--cc-accent);
+  color: color-mix(in srgb, var(--cc-cloud) 80%, var(--cc-text));
   font-size: 34px;
   font-weight: 800;
   line-height: 1.2;
@@ -121,12 +187,81 @@
   list-style: none;
 }
 
+.cost-breakdown {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.cc-donut {
+  position: relative;
+  width: 200px;
+  aspect-ratio: 1;
+}
+
+.cc-donut svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cc-donut-seg {
+  transition: stroke-dasharray 0.35s ease, stroke-dashoffset 0.35s ease;
+}
+
+.cc-donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.cc-donut-center span {
+  color: var(--cc-text-2);
+  font-size: 15px;
+}
+
+.cc-donut-center span,
+.cc-donut-center strong {
+  max-width: 58%;
+}
+
+.cc-donut-center strong {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: normal;
+  word-break: break-all;
+  font-variant-numeric: tabular-nums;
+}
+
 .cost-groups li {
   display: grid;
-  grid-template-columns: 7.5em minmax(0, 1fr) 10.5em;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 10px;
-  padding: 4px 0;
+  gap: 2px 10px;
+  padding: 6px 0;
+}
+
+.cost-group-icon,
+.cost-row-icon {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--cc-panel);
+  background: color-mix(in srgb, var(--g) 16%, transparent);
+  color: var(--g);
+}
+
+.cost-group-icon {
+  width: 30px;
+  height: 30px;
+  grid-row: span 2;
 }
 
 .cost-group-name {
@@ -135,17 +270,20 @@
 
 .cost-bar {
   display: block;
-  height: 12px;
-  border-radius: 6px;
+  grid-column: 2 / -1;
+  height: 8px;
+  border-radius: 4px;
   background: var(--cc-track);
   overflow: hidden;
 }
 
-.cost-bar i {
+.cost-bar i,
+.cost-row-share i {
   display: block;
   height: 100%;
-  border-radius: 6px;
-  background: var(--cc-bar);
+  border-radius: inherit;
+  background: var(--g, var(--cc-bar));
+  transition: width 0.35s ease;
 }
 
 .cost-group-value {
@@ -155,13 +293,31 @@
 }
 
 .cost-group-value small {
+  margin-left: 6px;
   color: var(--cc-text-2);
   font-size: 15px;
 }
 
 .cost-row {
-  padding: 12px 0;
+  padding: 12px 0 12px 14px;
   border-bottom: 1px solid var(--cc-border);
+  box-shadow: inset 3px 0 0 var(--g, var(--cc-border));
+}
+
+.cost-row-icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.cost-row-share {
+  display: block;
+  height: 4px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: var(--cc-track);
+  overflow: hidden;
 }
 
 .cost-row-head {
@@ -359,6 +515,12 @@
   .cost-skeleton {
     animation: none;
   }
+
+  .cc-donut-seg,
+  .cost-bar i,
+  .cost-row-share i {
+    transition: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -370,12 +532,21 @@
     font-size: 30px;
   }
 
-  .cost-groups li {
-    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* Stack the donut over the legend when the card itself is narrow (chat column, not viewport). */
+@container (max-width: 560px) {
+  .cost-breakdown {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 12px;
   }
 
-  .cost-bar {
-    grid-column: 1 / -1;
-    grid-row: 2;
+  .cost-breakdown .cost-groups {
+    width: 100%;
+  }
+
+  .cc-donut {
+    width: 190px;
   }
 }

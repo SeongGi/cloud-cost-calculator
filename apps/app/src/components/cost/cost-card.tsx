@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { type CSSProperties, useMemo, useState } from "react";
 import { formatUnitPrice, formatUsd, parseQuantity, pricePerUnit, subtotalCents } from "./price-math";
 import type { CostEstimate, CostLine, PriceOption } from "./types";
+import { CloudMark, GroupIcon, ShareDonut, groupColor, sharePercent } from "./cost-visuals";
 import "./cost-card.css";
 
 const UNIT_WORD: Record<string, string> = {
@@ -66,13 +67,13 @@ export function CostCard({ estimate }: { estimate: CostEstimate }) {
     [estimate.lines, rows],
   );
   const total = Object.values(subtotals).reduce((a, b) => a + b, 0n);
+  const includedCount = Object.values(subtotals).filter((c) => c > 0n).length;
 
   const groups = useMemo(() => {
     const sums = new Map<string, bigint>();
     for (const l of estimate.lines) sums.set(l.group, (sums.get(l.group) ?? 0n) + subtotals[l.id]);
     return [...sums].filter(([, v]) => v > 0n).sort((a, b) => (b[1] > a[1] ? 1 : b[1] < a[1] ? -1 : a[0].localeCompare(b[0])));
   }, [estimate.lines, subtotals]);
-  const maxGroup = groups[0]?.[1] ?? 1n;
 
   // Order rows once by their initial cost so they do not jump while sliding.
   const ordered = useMemo(
@@ -102,13 +103,19 @@ export function CostCard({ estimate }: { estimate: CostEstimate }) {
     const invalid = parseQuantity(row.text, line.slider) === null;
     const errorId = `${line.id}-qty-error`;
     return (
-      <li key={line.id} className="cost-row" data-line={line.key}>
+      <li key={line.id} className="cost-row" data-line={line.key} style={{ "--g": groupColor(line.group) } as CSSProperties}>
         <div className="cost-row-head">
           <span className="cost-row-label">
+            <span className="cost-row-icon"><GroupIcon group={line.group} size={18} /></span>
             <span className="cost-chip">{line.service_label}</span> {opt.label}
           </span>
           <span className="cost-row-amount">{row.included ? `${formatUsd(subtotals[line.id])}/월` : "합계 제외"}</span>
         </div>
+        {row.included && total > 0n && (
+          <span className="cost-row-share" aria-hidden="true">
+            <i style={{ width: `${sharePercent(subtotals[line.id], total)}%` }} />
+          </span>
+        )}
         {!line.included && (
           <label className="cost-include">
             <input
@@ -181,34 +188,45 @@ export function CostCard({ estimate }: { estimate: CostEstimate }) {
   const rest = ordered.slice(VISIBLE_ROWS);
 
   return (
-    <section className="cost-card" data-cost-card="ok" aria-label="월 비용 계산 결과">
+    <section className="cost-card" data-cost-card="ok" data-cloud={estimate.cloud} aria-label="월 비용 계산 결과">
       <header className="cost-head">
-        <h3>{estimate.cloud_label} · {estimate.region_label}</h3>
+        <h3>
+          <CloudMark cloud={estimate.cloud} />
+          {estimate.cloud_label} · {estimate.region_label}
+        </h3>
         <span className="cost-badge">기준일 {estimate.as_of}</span>
       </header>
 
       <div className="cost-total">
         <span className="cost-total-label">월 예상 합계</span>
         <strong className="cost-total-value" data-total>{formatUsd(total)}</strong>
+        <span className="cost-total-meta">
+          <span>연간 환산 {formatUsd(total * 12n)}</span>
+          <span>금액이 있는 항목 {includedCount}개 · 서비스군 {groups.length}개</span>
+        </span>
         <span className="cost-total-sub">온디맨드 정가, USD, 세금·할인·프리 티어 제외</span>
       </div>
 
       {groups.length > 0 && (
         <>
-          <h4 className="cost-section">서비스군별 월 비용</h4>
-          <ul className="cost-groups">
-            {groups.map(([name, value]) => (
-              <li key={name}>
-                <span className="cost-group-name">{name}</span>
-                <span className="cost-bar" aria-hidden="true">
-                  <i style={{ width: `${Math.max(3, Number((value * 1000n) / maxGroup) / 10)}%` }} />
-                </span>
-                <span className="cost-group-value">
-                  {formatUsd(value)} <small>({total > 0n ? (Number((value * 1000n) / total) / 10).toFixed(1) : "0.0"}%)</small>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <h4 className="cost-section">서비스군별 비중</h4>
+          <div className="cost-breakdown">
+            <ShareDonut groups={groups} total={total} centerLabel="월 합계" centerValue={formatUsd(total)} />
+            <ul className="cost-groups">
+              {groups.map(([name, value]) => (
+                <li key={name} style={{ "--g": groupColor(name) } as CSSProperties}>
+                  <span className="cost-group-icon"><GroupIcon group={name} /></span>
+                  <span className="cost-group-name">{name}</span>
+                  <span className="cost-group-value">
+                    {formatUsd(value)} <small>{sharePercent(value, total).toFixed(1)}%</small>
+                  </span>
+                  <span className="cost-bar" aria-hidden="true">
+                    <i style={{ width: `${Math.max(2, sharePercent(value, total))}%` }} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </>
       )}
 

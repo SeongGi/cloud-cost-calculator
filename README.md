@@ -20,7 +20,7 @@ AWS, Azure, GCP 구성을 한국어 문장으로 설명하면 **공개 가격표
 
 1. 모델은 질문을 `estimate_cost(cloud, items=[{service, spec, count, gb, million}], region)` 호출로 바꿉니다. 모델이 보는 도구는 이것 하나뿐입니다.
 2. 계산 엔진(`apps/agent/pricing/engine.py`)이 서비스의 가격표 항목을 모두 줄로 만듭니다. 대안 묶음은 가장 싼 것(또는 사용자가 말한 사양) 하나만 합계에 넣습니다.
-3. 화면은 결과 JSON을 고정 부품(`apps/app/src/components/cost/`)으로 그립니다. 합계 카드, 서비스군별 막대, 항목별 슬라이더와 산식, 대안 선택 상자, 기준일이 들어갑니다. 슬라이더를 움직이면 브라우저에서 BigInt 센트로 다시 계산합니다.
+3. 화면은 결과 JSON을 고정 부품(`apps/app/src/components/cost/`)으로 그립니다. 합계 카드(연간 환산 포함), 서비스군 비중 도넛 차트와 범례, 서비스군 아이콘과 색, 항목별 비중 막대·슬라이더·산식, 대안 선택 상자, 기준일이 들어갑니다. 차트는 외부 라이브러리 없이 SVG로 그립니다. 슬라이더를 움직이면 브라우저에서 BigInt 센트로 다시 계산합니다.
 
 ### 계산 규칙
 
@@ -81,3 +81,13 @@ cd apps/agent && uv run python -m scripts.eval_extraction   # 로컬 모델의 �
 ## 라이선스
 
 [MIT](LICENSE)
+
+### 사용한 오픈소스
+- [Open Intelligent UI](https://github.com/CopilotKit/OpenIntelligentUI)(MIT): 원본 저작권 고지를 [`LICENSE.OpenIntelligentUI`](LICENSE.OpenIntelligentUI)에 그대로 두었습니다. CopilotKit 로고와 글꼴 같은 원본 자산은 쓰지 않습니다.
+- 의존성: 2026-10-25에 검사했습니다.
+  - JS 운영 의존성 678개는 MIT, ISC, Apache-2.0, BSD가 대부분입니다. 예외는 `@img/sharp-libvips`(LGPL-3.0, Next.js 이미지 처리용 동적 라이브러리를 수정 없이 씀)와 `caniuse-lite`(CC-BY-4.0)입니다.
+  - Python 의존성 51개는 MIT, BSD, Apache-2.0이 대부분입니다. 예외는 `certifi`(MPL-2.0, 수정 없이 씀)입니다.
+  - GPL·AGPL 의존성은 없습니다.
+  - 패키지 정보에 라이선스 표기가 없는 것도 있습니다. JS의 `@ag-ui/langgraph`, Python의 `ag-ui-langgraph`(둘 다 MIT인 AG-UI 저장소 소속), `khroma`(MIT 파일 포함), 그리고 CopilotKit 런타임의 유료 기능 검사용 하위 패키지 `@copilotkit/license-verifier`입니다.
+  - 이 저장소에는 잠금 파일만 들어 있고 의존성 파일 자체는 들어 있지 않습니다. Docker 이미지를 공개 레지스트리에 올린다면, 그 전에 위 패키지들의 고지와 조건을 함께 확인해야 합니다.
+- 가격 데이터: AWS·Azure·Google Cloud가 공개하는 가격 API 결과이고, 각 사의 상표는 각 사에 있습니다. 화면에는 회사 로고 대신 글자 표시만 씁니다. 이 프로젝트는 AWS, Microsoft, Google, CopilotKit과 제휴하거나 보증받은 관계가 아닙니다.
