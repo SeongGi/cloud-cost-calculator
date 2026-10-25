@@ -50,7 +50,12 @@ services:
     depends_on: [app]
     mem_limit: 64m
     restart: unless-stopped
-    networks: [internal, admin]
+    networks:
+      internal:
+      # Explicit alias and address: oauth2-proxy finds the gate by this name on the admin network.
+      admin:
+        aliases: [gate-admin]
+        ipv4_address: 10.251.77.3
 
   # Google login for /admin. Start with the "admin" profile once the OAuth client is set in .env
   # (COMPOSE_PROFILES=admin). Only the emails in docker/auth/allowed-emails.txt can sign in.
@@ -60,7 +65,7 @@ services:
     environment:
       OAUTH2_PROXY_PROVIDER: google
       OAUTH2_PROXY_HTTP_ADDRESS: 0.0.0.0:4180
-      OAUTH2_PROXY_UPSTREAMS: http://gate:8081
+      OAUTH2_PROXY_UPSTREAMS: http://gate-admin:8081
       OAUTH2_PROXY_CLIENT_ID: ${OAUTH2_PROXY_CLIENT_ID:-}
       OAUTH2_PROXY_CLIENT_SECRET: ${OAUTH2_PROXY_CLIENT_SECRET:-}
       OAUTH2_PROXY_COOKIE_SECRET: ${OAUTH2_PROXY_COOKIE_SECRET:-}
