@@ -43,8 +43,13 @@ def download(url: str, cache_dir: Path) -> Path:
     return target
 
 
-def render(filters: dict[str, Any], prefix: str) -> dict[str, str]:
-    return {k: str(v).replace("{prefix}", prefix) for k, v in filters.items()}
+def render(filters: dict[str, Any], prefix: str, region: str = "") -> dict[str, str]:
+    return {k: str(v).replace("{prefix}", prefix).replace("{region}", region) for k, v in filters.items()}
+
+
+def spec_regions(spec: dict, regions: list[str]) -> list[str]:
+    """Regions an item is priced in: its own "regions" list, else every catalog region."""
+    return spec.get("regions", regions)
 
 
 def wanted_families(expect: dict) -> list[str] | None:
@@ -129,7 +134,7 @@ def build(spec_path: Path, out_path: Path, cache_dir: Path) -> dict:
     for code, keys in sorted(by_service.items()):
         index = fetch_json(f"{BASE}/offers/v1.0/aws/{code}/current/region_index.json")["regions"]
         for region in regions:
-            todo = [k for k in keys if not (specs[k].get("global") and prices[k])]
+            todo = [k for k in keys if region in spec_regions(specs[k], regions) and not (specs[k].get("global") and prices[k])]
             if not todo:
                 continue
             src_region = region
@@ -146,7 +151,7 @@ def build(spec_path: Path, out_path: Path, cache_dir: Path) -> dict:
                 spec = specs[k]
                 prefixes = spec.get("region_prefixes") or cfg["region_prefixes"]
                 targets[k] = {
-                    "filters": render(spec["filters"], prefixes.get(region, "")),
+                    "filters": render(spec["filters"], prefixes.get(region, ""), region),
                     "families": wanted_families(spec["expect"]),
                 }
             published, matches, terms = scan_offer(path, targets)
@@ -168,7 +173,7 @@ def build(spec_path: Path, out_path: Path, cache_dir: Path) -> dict:
 
     items = {}
     for key, spec in sorted(specs.items()):
-        if len(prices[key]) != len(regions):
+        if len(prices[key]) != len(spec_regions(spec, regions)):
             warnings.append(f"{key}: skipped (priced in {sorted(prices[key])})")
             continue
         items[key] = {

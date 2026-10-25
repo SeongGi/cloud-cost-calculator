@@ -29,11 +29,16 @@
     "azure virtual machines": "vm",
     "azure vm": "vm",
     "azure vpn gateway": "vpn_gateway",
+    "bandwidth": "data_transfer",
     "blob storage": "blob",
     "cosmos db": "cosmos_db",
+    "data transfer": "data_transfer",
+    "egress": "data_transfer",
     "firewall": "firewall",
     "function app": "functions",
     "functions": "functions",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
     "load balancer": "load_balancer",
     "log analytics": "log_analytics",
     "log analytics workspace": "log_analytics",
@@ -50,7 +55,11 @@
     "virtual machine": "vm",
     "virtual machines": "vm",
     "vm": "vm",
-    "vpn gateway": "vpn_gateway"
+    "vpn gateway": "vpn_gateway",
+    "데이터 전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "인터넷 전송": "data_transfer",
+    "전송": "data_transfer"
   },
   "as_of": "2026-10-23",
   "currency": "USD",
@@ -396,6 +405,172 @@
         "max": 1000,
         "min": 0,
         "step": 1
+      }
+    },
+    "data_transfer.internet": {
+      "hours": 1,
+      "label": {
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送",
+        "ko": "인터넷으로 나가는 전송(100GB 이후 첫 구간)"
+      },
+      "per": "gb",
+      "prices": {
+        "eastus": {
+          "effective_start": "2022-05-01T00:00:00Z",
+          "meter_id": "9995d93a-7d35-4d3f-9c69-7a7fea447ef4",
+          "meter_name": "Standard Data Transfer Out",
+          "product_name": "Rtn Preference: MGN",
+          "sku_id": "DZH318Z0BNVX/001D",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.0870000000"
+        },
+        "japaneast": {
+          "effective_start": "2022-05-01T00:00:00Z",
+          "meter_id": "fe167397-a38d-43c3-9bb3-8e2907e56a41",
+          "meter_name": "Standard Data Transfer Out",
+          "product_name": "Rtn Preference: MGN",
+          "sku_id": "DZH318Z0BNVX/002V",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.1200000000"
+        },
+        "koreacentral": {
+          "effective_start": "2022-05-01T00:00:00Z",
+          "meter_id": "fe167397-a38d-43c3-9bb3-8e2907e56a41",
+          "meter_name": "Standard Data Transfer Out",
+          "product_name": "Rtn Preference: MGN",
+          "sku_id": "DZH318Z0BNVX/002G",
+          "sku_name": "Standard",
+          "unit": "1 GB",
+          "usd": "0.1200000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_eastus": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to East US",
+        "ja": "米国東部へのリージョン間データ転送",
+        "ko": "미국 동부(eastus)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "japaneast": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "7910b1eb-292c-4462-92f8-d3c917924591",
+          "meter_name": "Inter Continent Data Transfer Out - ASIA To Any",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0003",
+          "sku_name": "Inter Continent",
+          "unit": "1 GB",
+          "usd": "0.0800000000"
+        },
+        "koreacentral": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "7910b1eb-292c-4462-92f8-d3c917924591",
+          "meter_name": "Inter Continent Data Transfer Out - ASIA To Any",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0003",
+          "sku_name": "Inter Continent",
+          "unit": "1 GB",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_japaneast": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Japan East",
+        "ja": "東日本へのリージョン間データ転送",
+        "ko": "일본 동부(japaneast)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "eastus": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "beb1457b-1ab8-4e38-8021-bf7e39b1014b",
+          "meter_name": "Inter Continent Data Transfer Out - NAM or EU To Any",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0003",
+          "sku_name": "Inter Continent",
+          "unit": "1 GB",
+          "usd": "0.0500000000"
+        },
+        "koreacentral": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "941a7a91-f0b4-4c70-be0f-d87ea6ff09ee",
+          "meter_name": "Intra Continent Data Transfer Out",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0005",
+          "sku_name": "Intra Continent",
+          "unit": "1 GB",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_koreacentral": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Korea Central",
+        "ja": "韓国中部へのリージョン間データ転送",
+        "ko": "한국 중부(koreacentral)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "eastus": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "beb1457b-1ab8-4e38-8021-bf7e39b1014b",
+          "meter_name": "Inter Continent Data Transfer Out - NAM or EU To Any",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0003",
+          "sku_name": "Inter Continent",
+          "unit": "1 GB",
+          "usd": "0.0500000000"
+        },
+        "japaneast": {
+          "effective_start": "2020-09-01T00:00:00Z",
+          "meter_id": "941a7a91-f0b4-4c70-be0f-d87ea6ff09ee",
+          "meter_name": "Intra Continent Data Transfer Out",
+          "product_name": "Bandwidth Inter-Region",
+          "sku_id": "DZH318Z0C5TM/0005",
+          "sku_name": "Intra Continent",
+          "unit": "1 GB",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
       }
     },
     "disk.e10_lrs": {

@@ -135,6 +135,11 @@ def price_region(spec: dict, skus: list[dict], region: str) -> tuple[dict | None
     return entry, ""
 
 
+def spec_regions(spec: dict, regions: list[str]) -> list[str]:
+    """Regions an item is priced in: its own "regions" list, else every catalog region."""
+    return spec.get("regions", regions)
+
+
 def build(spec_path: Path, out_path: Path) -> dict:
     cfg = json.loads(spec_path.read_text(encoding="utf-8"))
     services = {s["displayName"]: s["serviceId"] for s in list_all("services", "services", {"pageSize": 5000})}
@@ -151,13 +156,13 @@ def build(spec_path: Path, out_path: Path) -> dict:
             sku_cache[sid] = list_all(f"services/{sid}/skus", "skus", {"currencyCode": "USD", "pageSize": 5000})
             log.info("fetched %s: %d skus", name, len(sku_cache[sid]))
         prices: dict[str, dict] = {}
-        for region in cfg["regions"]:
+        for region in spec_regions(spec, cfg["regions"]):
             entry, why = price_region(spec, sku_cache[sid], region)
             if entry is None:
                 warnings.append(f"{key} {region}: {why}")
                 continue
             prices[region] = entry
-        if len(prices) != len(cfg["regions"]):
+        if len(prices) != len(spec_regions(spec, cfg["regions"])):
             warnings.append(f"{key}: skipped (priced in {sorted(prices)})")
             continue
         items[key] = {

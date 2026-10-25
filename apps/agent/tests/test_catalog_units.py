@@ -73,10 +73,22 @@ def test_gcp_unit_conversion():
 
 
 def test_catalogs_complete():
-    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (46, 31, 40)
+    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (50, 35, 44)
     for cloud in ("aws", "azure", "gcp"):
-        regions = set(json.loads((BUNDLED_DIR / f"{cloud}.json").read_text())["regions"])
-        assert all(set(it["prices"]) == regions for it in items(cloud).values()), cloud
+        regions = json.loads((BUNDLED_DIR / f"{cloud}.json").read_text())["regions"]
+        specs = json.loads((BUNDLED_DIR.parent / "specs" / f"{cloud}_spec.json").read_text())["specs"]
+        # An item with its own "regions" list is priced exactly there, the others in every region.
+        assert all(set(it["prices"]) == set(specs[key].get("regions", regions)) for key, it in items(cloud).items()), cloud
+
+
+def test_data_transfer_keys_match_the_design():
+    for cloud, regions in {"aws": ["ap-northeast-2", "ap-northeast-1", "us-east-1"],
+                           "azure": ["koreacentral", "japaneast", "eastus"],
+                           "gcp": ["asia-northeast3", "asia-northeast1", "us-central1"]}.items():
+        got = {k: set(it["prices"]) for k, it in items(cloud).items() if it["service"] == "data_transfer"}
+        want = {"data_transfer.internet": set(regions),
+                **{"data_transfer.to_" + r.replace("-", "_"): set(regions) - {r} for r in regions}}
+        assert got == want, cloud
 
 
 def test_every_alias_resolves():

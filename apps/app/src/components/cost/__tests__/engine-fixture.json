@@ -1678,5 +1678,168 @@
    "수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다."
   ],
   "total_cents": 89950
+ },
+ {
+  "state": "ok",
+  "cloud": "aws",
+  "cloud_label": "AWS",
+  "region": "ap-northeast-2",
+  "region_label": "서울",
+  "requested_region": null,
+  "currency": "USD",
+  "as_of": "2026-10-22",
+  "source": "AWS Price List Query API",
+  "source_url": "https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html",
+  "lines": [
+   {
+    "service": "data_transfer",
+    "service_label": "데이터 전송",
+    "group": "네트워크",
+    "key": "data_transfer.to_ap_northeast_1",
+    "label": "도쿄(ap-northeast-1)로 리전 간 전송",
+    "usd": "0.0800000000",
+    "unit": "GB",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb",
+    "slider": {
+     "min": 0,
+     "max": 100000,
+     "step": 10
+    },
+    "qty": 1000,
+    "default_qty": 1000,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "data_transfer.to_ap_northeast_1",
+      "label": "도쿄(ap-northeast-1)로 리전 간 전송",
+      "usd": "0.0800000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     },
+     {
+      "key": "data_transfer.to_us_east_1",
+      "label": "미국 동부(us-east-1)로 리전 간 전송",
+      "usd": "0.0800000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     },
+     {
+      "key": "data_transfer.internet",
+      "label": "인터넷으로 나가는 전송(첫 10TB 구간)",
+      "usd": "0.1260000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     }
+    ],
+    "id": "data_transfer:0",
+    "subtotal_cents": 8000
+   },
+   {
+    "service": "data_transfer",
+    "service_label": "데이터 전송",
+    "group": "네트워크",
+    "key": "data_transfer.internet",
+    "label": "인터넷으로 나가는 전송(첫 10TB 구간)",
+    "usd": "0.1260000000",
+    "unit": "GB",
+    "quantity_unit": "gb",
+    "scale": 1,
+    "hours": 1,
+    "per": "gb",
+    "slider": {
+     "min": 0,
+     "max": 100000,
+     "step": 10
+    },
+    "qty": 500,
+    "default_qty": 500,
+    "assumed": false,
+    "included": true,
+    "family": true,
+    "alternatives": [
+     {
+      "key": "data_transfer.to_ap_northeast_1",
+      "label": "도쿄(ap-northeast-1)로 리전 간 전송",
+      "usd": "0.0800000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     },
+     {
+      "key": "data_transfer.to_us_east_1",
+      "label": "미국 동부(us-east-1)로 리전 간 전송",
+      "usd": "0.0800000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     },
+     {
+      "key": "data_transfer.internet",
+      "label": "인터넷으로 나가는 전송(첫 10TB 구간)",
+      "usd": "0.1260000000",
+      "unit": "GB",
+      "quantity_unit": "gb",
+      "scale": 1,
+      "hours": 1,
+      "per": "gb",
+      "slider": {
+       "max": 100000,
+       "min": 0,
+       "step": 10
+      }
+     }
+    ],
+    "id": "data_transfer:1",
+    "subtotal_cents": 6300
+   }
+  ],
+  "excluded": [],
+  "notes": [
+   "데이터 전송은 첫 유료 구간 단가를 전체 수량에 곱했습니다. 무료 구간과 대량 할인 구간은 반영하지 않으므로 실제 청구액보다 많게 잡힐 수 있습니다. 들어오는 전송과 같은 리전 안 전송은 계산하지 않습니다."
+  ],
+  "total_cents": 14300
  }
 ]

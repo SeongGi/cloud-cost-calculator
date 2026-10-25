@@ -54,6 +54,110 @@ def test_new_question_or_other_cloud_starts_over():
     assert "vm.d2s_v5" not in {l["key"] for l in r["lines"]}
 
 
+def transfer_turn(text, history=(), **args):
+    """One data transfer turn; returns the result and the history to continue from."""
+    state = {"messages": [*history, HumanMessage(text)]}
+    r = run_tool(state, cloud="aws", region="ap-northeast-2", **args)
+    return r, [*state["messages"], ToolMessage(content=json.dumps(r, ensure_ascii=False), name="estimate_cost", tool_call_id="t")]
+
+
+def transfer_lines(r):
+    return {l["key"]: l for l in r["lines"] if l["service"] == "data_transfer"}
+
+
+def test_transfer_destination_survives_a_follow_up():
+    r, history = transfer_turn("서울에서 인터넷으로 500GB", items=[{"service": "data transfer", "spec": "인터넷", "gb": 500}])
+    assert r["total_cents"] == 6300
+    r, _ = transfer_turn("여기에 EC2 추가", history, follow_up=True, items=[{"service": "ec2"}])
+    assert transfer_lines(r)["data_transfer.internet"]["qty"] == 500 and "ec2.t3.medium" in {l["key"] for l in r["lines"]}
+
+
+def test_quantity_only_follow_up_keeps_the_stated_destination():
+    r, history = transfer_turn("인터넷 500GB", items=[{"service": "data transfer", "spec": "인터넷", "gb": 500}])
+    r, _ = transfer_turn("전송량 2TB로 늘려", history, follow_up=True, items=[{"service": "data transfer", "gb": 2000}])
+    lines = transfer_lines(r)
+    assert list(lines) == ["data_transfer.internet"] and lines["data_transfer.internet"]["qty"] == 2000
+    assert r["request"]["items"][0]["spec"] == "internet" and "transfer_default" not in r["request"]["items"][0]
+
+
+def test_quantity_only_follow_up_keeps_a_default_destination_as_default():
+    r, history = transfer_turn("리전 간 복제 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    r, _ = transfer_turn("전송량 2TB로 늘려", history, follow_up=True, items=[{"service": "data transfer", "gb": 2000}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.to_ap_northeast_1": 2000}
+    assert r["request"]["items"][0]["transfer_default"] is True
+
+
+def test_internet_does_not_overwrite_the_region_line():
+    r, history = transfer_turn("도쿄로 1TB", items=[{"service": "data transfer", "spec": "도쿄", "gb": 1000}])
+    r, _ = transfer_turn("여기에 인터넷으로 500GB 추가", history, follow_up=True,
+                         items=[{"service": "data transfer", "spec": "인터넷", "gb": 500}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.to_ap_northeast_1": 1000, "data_transfer.internet": 500}
+    assert r["total_cents"] == 8000 + 6300
+
+
+def test_renaming_the_destination_does_not_duplicate_the_line():
+    r, history = transfer_turn("도쿄로 1TB", items=[{"service": "data transfer", "spec": "도쿄", "gb": 1000}])
+    r, _ = transfer_turn("tokyo로 2TB 추가", history, follow_up=True, items=[{"service": "data transfer", "spec": "tokyo", "gb": 2000}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.to_ap_northeast_1": 2000}
+
+
+def test_user_location_in_a_quantity_follow_up_does_not_change_the_destination():
+    r, history = transfer_turn("인터넷 1TB", items=[{"service": "data transfer", "spec": "인터넷", "gb": 1000}])
+    r, _ = transfer_turn("도쿄 사용자도 있으니 전송량 2TB로 늘려", history, follow_up=True,
+                         items=[{"service": "data transfer", "gb": 2000}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.internet": 2000}
+
+
+def test_new_estimate_with_user_location_is_not_a_region_transfer():
+    r, _ = transfer_turn("도쿄 사용자에게 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    assert list(transfer_lines(r)) == ["data_transfer.internet"]
+
+
+def test_adding_to_a_default_line_adds_a_line():
+    r, history = transfer_turn("리전 간 복제 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    r, _ = transfer_turn("여기에 인터넷 전송 500GB 추가", history, follow_up=True,
+                         items=[{"service": "data transfer", "spec": "인터넷", "gb": 500}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.to_ap_northeast_1": 1000, "data_transfer.internet": 500}
+    assert r["total_cents"] == 8000 + 6300 == 14300
+
+
+def test_region_change_that_drops_the_stored_destination_is_explained():
+    r, history = transfer_turn("서울에서 도쿄로 1TB", items=[{"service": "data transfer", "spec": "도쿄", "gb": 1000}])
+    state = {"messages": [*history, HumanMessage("리전을 도쿄로 바꾸면?")]}
+    r = run_tool(state, cloud="aws", region="ap-northeast-1", items=[], follow_up=True)
+    assert "앞에서 정한 도착지(도쿄)가 이번 견적 리전과 같아" in next(iter(transfer_lines(r).values()))["note"]
+
+
+def test_a_stated_destination_with_a_casual_word_still_replaces_a_default():
+    r, history = transfer_turn("리전 간 복제 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    r, _ = transfer_turn("한 달에 1TB 정도 미국으로 보내는 거야", history, follow_up=True,
+                         items=[{"service": "data transfer", "spec": "미국", "gb": 1000}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.to_us_east_1": 1000}
+
+
+def test_adding_a_line_by_sentence_only_keeps_the_existing_line():
+    r, history = transfer_turn("인터넷 1TB", items=[{"service": "data transfer", "spec": "인터넷", "gb": 1000}])
+    r, _ = transfer_turn("여기에 도쿄로 복제 2TB 추가", history, follow_up=True, items=[{"service": "data transfer", "gb": 2000}])
+    assert {k: l["qty"] for k, l in transfer_lines(r).items()} == {"data_transfer.internet": 1000, "data_transfer.to_ap_northeast_1": 2000}
+
+
+def test_default_destination_gives_the_same_amount_after_another_follow_up():
+    r, history = transfer_turn("리전 간 복제 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    assert r["total_cents"] == 8000 and "도착지를 알 수 없어" in r["lines"][0]["note"]
+    r, _ = transfer_turn("여기에 EC2 추가", history, follow_up=True, items=[{"service": "ec2"}])
+    assert transfer_lines(r)["data_transfer.to_ap_northeast_1"]["subtotal_cents"] == 8000
+    assert "도착지를 알 수 없어" in transfer_lines(r)["data_transfer.to_ap_northeast_1"]["note"]
+
+
+def test_stating_the_destination_replaces_a_default_line():
+    r, history = transfer_turn("리전 간 복제 1TB", items=[{"service": "data transfer", "gb": 1000}])
+    r, _ = transfer_turn("미국으로 보내는 거야", history, follow_up=True, items=[{"service": "data transfer", "spec": "미국"}])
+    lines = transfer_lines(r)
+    assert {k: l["qty"] for k, l in lines.items()} == {"data_transfer.to_us_east_1": 1000}
+    assert "note" not in lines["data_transfer.to_us_east_1"]
+    assert r["request"]["items"][0]["transfer_default"] is False
+
+
 def call(name, cloud):
     return {"name": name, "args": {"cloud": cloud, "items": []}, "id": cloud, "type": "tool_call"}
 

@@ -30,21 +30,25 @@ REGION_LABEL = {
 }
 REGION_ALIASES = {
     "aws": {"seoul": "ap-northeast-2", "서울": "ap-northeast-2", "korea": "ap-northeast-2", "한국": "ap-northeast-2",
-            "tokyo": "ap-northeast-1", "도쿄": "ap-northeast-1", "virginia": "us-east-1", "버지니아": "us-east-1",
-            "미국": "us-east-1", "us": "us-east-1"},
+            "tokyo": "ap-northeast-1", "도쿄": "ap-northeast-1", "virginia": "us-east-1", "버지니아": "us-east-1", "us-east": "us-east-1", "n. virginia": "us-east-1",
+            "n virginia": "us-east-1",
+            "미국": "us-east-1", "미국 동부": "us-east-1", "us": "us-east-1", "일본": "ap-northeast-1", "japan": "ap-northeast-1"},
     "azure": {"korea central": "koreacentral", "seoul": "koreacentral", "서울": "koreacentral", "한국": "koreacentral",
               "코리아센트럴": "koreacentral", "코리아 센트럴": "koreacentral", "korea": "koreacentral",
-              "japan east": "japaneast", "tokyo": "japaneast", "도쿄": "japaneast", "east us": "eastus", "미국": "eastus"},
+              "japan east": "japaneast", "tokyo": "japaneast", "도쿄": "japaneast", "east us": "eastus", "미국": "eastus", "미국 동부": "eastus",
+              "한국 중부": "koreacentral", "일본 동부": "japaneast", "일본": "japaneast", "japan": "japaneast", "virginia": "eastus", "버지니아": "eastus", "us-east": "eastus", "n. virginia": "eastus",
+              "n virginia": "eastus"},
     "gcp": {"seoul": "asia-northeast3", "서울": "asia-northeast3", "korea": "asia-northeast3", "한국": "asia-northeast3",
             "tokyo": "asia-northeast1", "도쿄": "asia-northeast1", "iowa": "us-central1", "아이오와": "us-central1",
-            "미국": "us-central1", "us": "us-central1", "us central": "us-central1"},
+            "미국": "us-central1", "미국 중부": "us-central1", "us": "us-central1", "us central": "us-central1", "일본": "asia-northeast1",
+            "japan": "asia-northeast1"},
 }
 
 FAMILY_PATTERNS = {
     "aws": [r"^ec2\.", r"^rds\.(mysql|postgres)\.", r"^aurora\.(mysql|postgres)\.", r"^elasticache\.",
-            r"^api_gateway\."],
-    "azure": [r"^vm\.", r"^(mysql|postgresql)\.(?!storage$)", r"^disk\.", r"^redis\."],
-    "gcp": [r"^gce\.", r"^cloudsql\.(mysql|postgres)\.", r"^memorystore\.", r"^pd\."],
+            r"^api_gateway\.", r"^data_transfer\."],
+    "azure": [r"^vm\.", r"^(mysql|postgresql)\.(?!storage$)", r"^disk\.", r"^redis\.", r"^data_transfer\."],
+    "gcp": [r"^gce\.", r"^cloudsql\.(mysql|postgres)\.", r"^memorystore\.", r"^pd\.", r"^data_transfer\."],
 }
 # Words that carry no spec information for a cloud's keys.
 STOPWORDS = {
@@ -85,7 +89,7 @@ GROUPS = {
     "캐시": {"elasticache", "redis", "memorystore"},
     "스토리지": {"s3", "ebs", "efs", "blob", "disk", "gcs", "pd"},
     "네트워크": {"alb", "nlb", "nat_gateway", "vpc_endpoint", "vpn", "route53", "app_gateway", "load_balancer",
-               "public_ip", "vpn_gateway", "cloud_lb", "cloud_nat", "cloud_dns", "cloud_vpn"},
+               "public_ip", "vpn_gateway", "cloud_lb", "cloud_nat", "cloud_dns", "cloud_vpn", "data_transfer"},
     "보안": {"waf", "firewall", "cloud_armor"},
     "모니터링": {"cloudwatch", "log_analytics", "cloud_logging"},
 }
@@ -103,6 +107,7 @@ SERVICE_LABEL = {
     "gcs": "Cloud Storage", "cloud_lb": "Cloud Load Balancing", "cloud_nat": "Cloud NAT", "gke": "GKE",
     "cloud_run": "Cloud Run", "cloud_functions": "Cloud Run functions", "cloud_logging": "Cloud Logging",
     "cloud_armor": "Cloud Armor", "cloud_dns": "Cloud DNS", "bigquery": "BigQuery", "cloud_vpn": "Cloud VPN",
+    "data_transfer": "데이터 전송",
 }
 # Keyed by the catalog's "source" field, so the label follows how the catalog was built.
 SOURCE_LABEL = {
@@ -240,6 +245,8 @@ def service_from_spec(cloud: str, spec: str, catalog: dict) -> str | None:
     if not want:
         return None
     owners = {it["service"] for k, it in catalog["items"].items() if family_of(cloud, k) and want <= key_tokens(k)}
+    # Transfer keys are named after regions and "internet"; a spec word alone never means a transfer.
+    owners.discard("data_transfer")
     return owners.pop() if len(owners) == 1 else None
 
 
@@ -273,6 +280,138 @@ def spec_from_text(cloud: str, opts: list[dict], text: str) -> str:
     return " ".join(sorted(key_tokens(hits[0]["key"]) - shared)) if len(hits) == 1 else ""
 
 
+# Destinations outside the catalog's three regions, said by the model in a spec.
+OUT_OF_SCOPE_WORDS = ("싱가포르", "유럽", "오사카", "프랑크푸르트", "런던", "시드니", "홍콩", "뭄바이", "서부", "singapore",
+                      "europe", "osaka", "frankfurt", "london", "sydney", "hong kong", "mumbai", "west",
+                      "오레곤", "오하이오", "캘리포니아", "중국", "인도", "호주", "캐나다", "브라질", "독일", "프랑스", "영국", "아일랜드",
+                      "아프리카", "남미", "오세아니아", "중동", "oregon", "ohio", "california", "china", "india", "australia",
+                      "canada", "brazil", "germany", "france", "ireland", "africa", "oceania")
+REGION_CODE_SHAPE = re.compile(r"[a-z]{2,}-[a-z]+-?\d")
+INTERNET_CUES = re.compile(r"egress|outbound|아웃바운드|외부|다운로드|사용자|고객|트래픽|온프레미스|on-?prem|사무실|해외|"
+                           r"(?<![a-z])idc(?![a-z])|users?|public|cloudfront")
+REPLICA_CUES = re.compile(r"리전|region|복제|replication|백업|(?<![a-z])dr(?![a-z])")
+# A region name followed by these is where the users are, not a destination ("도쿄 사용자").
+USER_LOCATION = re.compile(r"\s*(?:리전|region)?\s*(?:사용자|고객|유저|접속|users?\b|customers?\b|clients?\b)")
+
+
+def _latin(word: str) -> bool:
+    return re.fullmatch(r"[a-z0-9 .\-]+", word) is not None
+
+
+def _word_re(word: str) -> str:
+    """Latin words need non-latin neighbours ("us" is not in "business"); a Korean region name
+    is not a region when "어" follows ("한국어")."""
+    return rf"(?<![a-z0-9]){re.escape(word)}(?![a-z0-9])" if _latin(word) else rf"{re.escape(word)}(?!어|식|인)"
+
+
+def transfer_destination(cloud: str, text: str, reg: str, catalog: dict, check_scope: bool = False) -> tuple[str, str]:
+    """Where a data transfer goes, from a spec or a sentence: (dest, source).
+
+    dest is "internet", a region code, "" (cannot tell) or "?" (a destination outside the catalog,
+    only with check_scope, meant for the model's spec). source is the region the text names as the
+    origin ("서울에서", "from tokyo") or ""."""
+    t = (text or "").lower()
+    codes = list(catalog["regions"])
+    if check_scope:
+        rest = t
+        for c in codes:
+            rest = rest.replace(c, " ")
+        if REGION_CODE_SHAPE.search(rest) or any(re.search(_word_re(w), rest) for w in OUT_OF_SCOPE_WORDS):
+            return "?", ""
+    aliases = {**REGION_ALIASES[cloud], **{c: c for c in codes}}
+    spans: list[tuple[int, int]] = []
+    candidates: set[str] = set()
+    source = ""
+    for alias in sorted(aliases, key=len, reverse=True):
+        for m in re.finditer(_word_re(alias), t):
+            if any(m.start() < e and s < m.end() for s, e in spans):
+                continue
+            spans.append((m.start(), m.end()))
+            code = aliases[alias]
+            after = t[m.end():]
+            if USER_LOCATION.match(after) or (alias == "us" and re.match(r"\s*(달러|dollar)", after)):
+                continue
+            if (re.match(r"\s*(리전|region)?\s*(에서|으?로부터)", after) or re.match(r"\s+to\b", after)
+                    or re.search(r"from\s+$", t[:m.start()])):
+                source = source or code
+            elif code != reg:
+                candidates.add(code)
+    if re.search(r"인터넷|internet", t):
+        return "internet", source
+    return (next(iter(candidates)) if len(candidates) == 1 else ""), source
+
+
+def _default_transfer(catalog: dict, reg: str, cue_text: str) -> str:
+    """The destination to use when none is known: the cheapest alternative (the project's fixed
+    rule), unless the words only suggest the internet or only suggest copying to another region."""
+    keys = sorted(k for k, it in catalog["items"].items() if it["service"] == "data_transfer" and reg in it["prices"])
+    opts = sorted((option(k, catalog["items"][k], reg) for k in keys), key=lambda o: (monthly_unit_cents(o), o["key"]))
+    internet, replica = bool(INTERNET_CUES.search(cue_text)), bool(REPLICA_CUES.search(cue_text))
+    if internet and not replica:
+        pick = "data_transfer.internet"
+    else:
+        pool = [o for o in opts if o["key"] != "data_transfer.internet"] if replica and not internet else opts
+        pick = (pool or opts)[0]["key"]
+    if pick == "data_transfer.internet":
+        return "internet"
+    return next(r for r in catalog["regions"] if f"data_transfer.to_{r.replace('-', '_')}" == pick)
+
+
+def _resolve_transfer(cloud: str, spec: str, reg: str, catalog: dict, user_text: str,
+                      read_text: bool = True, fill_default: bool = True) -> tuple[str, str, bool, str]:
+    """(dest, source, defaulted, dropped) for one data transfer item.
+
+    The model's spec comes first. The user's sentence is read only when the spec is empty (and
+    read_text is on), and only then can it name a source. Without fill_default an unknown
+    destination stays "" (before a follow-up is merged, an empty spec still means "only the
+    quantity changes"). Otherwise the default applies. dropped is the estimate's own region when the spec named it as
+    the destination, which a transfer cannot have."""
+    dest, source = transfer_destination(cloud, spec, reg, catalog, check_scope=True)
+    if dest == "?":
+        return "?", "", False, ""
+    if not dest and not spec.strip() and read_text:
+        dest, source = transfer_destination(cloud, user_text, reg, catalog)
+    if dest or not fill_default:
+        return dest, source, False, ""
+    dropped = reg if reg in _named_regions(cloud, spec, catalog) else ""
+    return _default_transfer(catalog, reg, f"{spec} {user_text}".lower()), source, True, dropped
+
+
+def _named_regions(cloud: str, text: str, catalog: dict) -> set[str]:
+    t = (text or "").lower()
+    aliases = {**REGION_ALIASES[cloud], **{c: c for c in catalog["regions"]}}
+    return {code for alias, code in aliases.items() if re.search(_word_re(alias), t)}
+
+
+def normalize_transfer_items(cloud: str, items: list[dict], region: str | None, user_text: str,
+                             fill_default: bool = True, read_text: bool = True) -> list[dict]:
+    """Copies of the items where a data transfer's spec is its destination ("internet" or a region
+    code). An item whose spec is empty is read from the user's sentence (read_text) and, if that
+    names nothing, gets the default and "transfer_default": true (fill_default). An out-of-scope
+    destination keeps its spec."""
+    cloud = (cloud or "").strip().lower()
+    out = [dict(i) for i in items]
+    if cloud not in CLOUDS:
+        return out
+    try:
+        catalog = load_catalog(cloud)
+    except CatalogUnavailable:
+        return out
+    reg, _ = resolve_region(cloud, region, catalog)
+    for item in out:
+        if resolve_service(cloud, str(item.get("service", "")), catalog)[0] != "data_transfer":
+            continue
+        dest, _, defaulted, dropped = _resolve_transfer(cloud, str(item.get("spec") or ""), reg, catalog, user_text,
+                                                        read_text=read_text, fill_default=fill_default)
+        if dest and dest != "?":
+            item["spec"] = dest
+            if defaulted:
+                item["transfer_default"] = True
+                if dropped:
+                    item["transfer_dropped"] = dropped
+    return out
+
+
 def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: dict | None = None,
              user_text: str = "") -> dict:
     cloud = (cloud or "").strip().lower()
@@ -301,6 +440,18 @@ def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: 
             excluded.append({"service": name or "(이름 없음)", "reason": "가격표에 없는 서비스"})
             continue
         spec = " ".join(x for x in (str(raw.get("spec") or ""), hint) if x).strip()
+        transfer_notes: list[str] = []
+        unknown_dest = out_of_scope = False
+        if service == "data_transfer":
+            dest, source, defaulted, dropped = _resolve_transfer(cloud, str(raw.get("spec") or ""), reg, catalog, user_text)
+            dropped = dropped or (raw.get("transfer_dropped") if raw.get("transfer_dropped") == reg else "")
+            out_of_scope = dest == "?"
+            if dest and not out_of_scope:
+                spec = dest
+            if source and source != reg:
+                transfer_notes.append(f"말씀하신 출발지({REGION_LABEL.get(source, source)})가 아니라 견적 리전 "
+                                      f"{REGION_LABEL.get(reg, reg)} 기준으로 계산했습니다. 출발 리전을 바꾸려면 리전을 지정해 주세요.")
+            unknown_dest = (defaulted or bool(raw.get("transfer_default"))) and not out_of_scope
         qty_in = {u: _int_or_none(raw.get(u)) for u in ("count", "gb", "million")}
         keys = sorted(k for k, it in catalog["items"].items() if it["service"] == service and reg in it["prices"])
         fam_keys = [k for k in keys if family_of(cloud, k)]
@@ -312,15 +463,17 @@ def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: 
         if fam_keys:
             opts = sorted((option(k, catalog["items"][k], reg) for k in fam_keys),
                           key=lambda o: (monthly_unit_cents(o), o["key"]))
-            if not want and len(opts) > 1:
+            if not want and len(opts) > 1 and service != "data_transfer":
                 want = tokens(spec_from_text(cloud, opts, user_text), cloud)
             matched = [o for o in opts if want and want <= key_tokens(o["key"])]
-            if not want and service in plain_family_line:
+            if not want and service in plain_family_line and not out_of_scope:
                 family_line = plain_family_line[service]
             else:
                 family_line = _line(service, matched[0] if matched else opts[0], opts if len(opts) > 1 else None)
-                foreign = foreign_spec_cloud(spec, cloud) if want and not matched else None
-                if foreign:
+                foreign = foreign_spec_cloud(spec, cloud) if want and not matched and service != "data_transfer" else None
+                if out_of_scope:
+                    _mark_missing(family_line, str(raw.get("spec") or ""), has_alternatives=True)
+                elif foreign:
                     # Another cloud's size: price this cloud's cheapest option instead of dropping it.
                     family_line["note"] = (f"'{spec}'은 {CLOUD_LABEL[foreign]} 사양이라 {CLOUD_LABEL[cloud]}에서 "
                                            f"가장 저렴한 사양으로 계산했습니다(선택 상자로 변경)")
@@ -330,6 +483,13 @@ def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: 
                     family_line["note"] = f"'{spec}'에 맞는 사양 {len(matched)}개 중 가장 저렴한 항목(선택 상자로 변경)"
                 elif len(opts) > 1 and not matched:
                     family_line["note"] = f"사양 대안 {len(opts)}개 중 가장 저렴한 사양(선택 상자로 변경)"
+                if unknown_dest:
+                    transfer_notes.insert(0, (
+                        f"앞에서 정한 도착지({REGION_LABEL.get(dropped, dropped)})가 이번 견적 리전과 같아 "
+                        f"'{family_line['label']}' 항목으로 계산했습니다(선택 상자로 변경)") if dropped else
+                        f"도착지를 알 수 없어 '{family_line['label']}' 항목으로 계산했습니다(선택 상자로 변경)")
+                if transfer_notes and not out_of_scope:
+                    family_line["note"] = " ".join(x for x in (family_line.get("note", ""), *transfer_notes) if x)
                 lines.append(family_line)
                 if not want:
                     plain_family_line[service] = family_line
@@ -357,6 +517,12 @@ def estimate(cloud: str, items: list[dict], region: str | None = None, catalog: 
         line["subtotal_cents"] = subtotal_cents(line["usd"], line["scale"], line["hours"], line["qty"]) if line["included"] else 0
     if any(l["assumed"] for l in lines):
         notes.append("수량을 말하지 않은 항목은 최소 구성 기본값(개수 1, 백만 단위 1, GB 100)으로 계산했습니다.")
+    transfers = [l for l in lines if l["service"] == "data_transfer" and l["included"]]
+    if transfers:
+        notes.append("데이터 전송은 첫 유료 구간 단가를 전체 수량에 곱했습니다. 무료 구간과 대량 할인 구간은 반영하지 않으므로 "
+                     "실제 청구액보다 많게 잡힐 수 있습니다. 들어오는 전송과 같은 리전 안 전송은 계산하지 않습니다.")
+        if cloud == "gcp" and any(l["key"] == "data_transfer.internet" for l in transfers):
+            notes.append("Google Cloud 인터넷 전송은 한국 사용자 대상 단가입니다.")
     if requested:
         notes.append(f"요청한 리전 '{requested}'은 가격표에 없어 {REGION_LABEL[reg]} 기준으로 계산했습니다.")
     return {

@@ -194,20 +194,25 @@ def test_refresh_carries_over_keys_missing_from_new_build(tmp_path, monkeypatch)
     import json as _json
 
     from pricing import refresh
+    from pricing.paths import BUNDLED_DIR
 
     monkeypatch.setenv("CATALOG_DIR", str(tmp_path))
     monkeypatch.setenv("PRICE_REFRESH", "true")
-    current = {"as_of": "2999-01-01", "items": {"vm.b2s": {}, "vm.d2s_v5": {}}}
+    bundled = _json.loads((BUNDLED_DIR / "azure.json").read_text())["items"]
+    spec_keys = set(_json.loads((BUNDLED_DIR.parent / "specs" / "azure_spec.json").read_text())["specs"])
+    current = {"as_of": "2999-01-01", "items": {k: {} for k in bundled}}
     (tmp_path / "azure.json").write_text(_json.dumps(current))
+    fresh = {k: {} for k in bundled if k != "vm.d2s_v5"}
     monkeypatch.setattr(refresh.build_azure, "build",
-                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": {"vm.b2s": {}}})))
+                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": fresh})))
     assert "1 carried over" in refresh.refresh_one("azure")
     kept = _json.loads((tmp_path / "azure.json").read_text())
-    assert set(kept["items"]) == {"vm.b2s", "vm.d2s_v5"} and kept["carried_over"] == ["vm.d2s_v5"]
+    assert set(kept["items"]) == set(bundled) and kept["carried_over"] == ["vm.d2s_v5"]
     monkeypatch.setattr(refresh.build_azure, "build",
-                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": {"vm.b2s": {}, "vm.d2s_v5": {}, "x": {}}})))
+                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": {**{k: {} for k in bundled}, "x": {}}})))
     assert "updated" in refresh.refresh_one("azure")
-    assert len(_json.loads((tmp_path / "azure.json").read_text())["items"]) == 3
+    assert len(_json.loads((tmp_path / "azure.json").read_text())["items"]) == len(bundled) + 1
+    assert spec_keys <= set(bundled)
 
 
 def test_bundled_catalog_wins_when_newer(tmp_path, monkeypatch):
@@ -217,10 +222,34 @@ def test_bundled_catalog_wins_when_newer(tmp_path, monkeypatch):
 
     monkeypatch.setenv("CATALOG_DIR", str(tmp_path))
     monkeypatch.setenv("PRICE_REFRESH", "true")
-    (tmp_path / "aws.json").write_text(_json.dumps({"as_of": "2000-01-01", "items": {}}))
+    keys = {k: {} for k in _json.loads((BUNDLED_DIR / "aws.json").read_text())["items"]}
+    (tmp_path / "aws.json").write_text(_json.dumps({"as_of": "2000-01-01", "items": keys}))
     assert readable_catalog_path("aws") == BUNDLED_DIR / "aws.json"
-    (tmp_path / "aws.json").write_text(_json.dumps({"as_of": "2999-01-01", "items": {}}))
+    (tmp_path / "aws.json").write_text(_json.dumps({"as_of": "2999-01-01", "items": keys}))
     assert readable_catalog_path("aws") == tmp_path / "aws.json"
+
+
+def test_refreshed_catalog_missing_a_bundled_key_is_outdated_and_carried_over_by_refresh(tmp_path, monkeypatch):
+    """A code update adds a key to the bundled catalog: a newer refreshed file without it is not used, and the
+    next refresh keeps the bundled value for the key when its build fails, then the refreshed file is used."""
+    import json as _json
+
+    from pricing import refresh
+    from pricing.paths import BUNDLED_DIR, readable_catalog_path
+
+    monkeypatch.setenv("CATALOG_DIR", str(tmp_path))
+    monkeypatch.setenv("PRICE_REFRESH", "true")
+    bundled = _json.loads((BUNDLED_DIR / "gcp.json").read_text())["items"]
+    key = "data_transfer.internet"
+    old = {k: v for k, v in bundled.items() if k != key}
+    (tmp_path / "gcp.json").write_text(_json.dumps({"as_of": "2999-01-01", "items": old}))
+    assert readable_catalog_path("gcp") == BUNDLED_DIR / "gcp.json"
+    monkeypatch.setattr(refresh.build_gcp, "build",
+                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": old})))
+    assert "1 carried over" in refresh.refresh_one("gcp")
+    kept = _json.loads((tmp_path / "gcp.json").read_text())
+    assert kept["items"][key] == bundled[key] and kept["carried_over"] == [key]
+    assert readable_catalog_path("gcp") == tmp_path / "gcp.json"
 
 
 def test_refresh_off_uses_bundled_catalog(tmp_path, monkeypatch):
@@ -319,3 +348,247 @@ def test_another_clouds_size_is_priced_as_this_clouds_cheapest():
     assert r["total_cents"] == 7592
     # A made-up size is still reported, not guessed.
     assert not estimate("azure", [{"service": "virtual machines", "spec": "Z99 v9"}])["lines"][0]["included"]
+
+
+# --- data transfer ---
+
+def transfer(cloud, spec="", gb=1000, region=None, text=""):
+    return estimate(cloud, [{"service": "data transfer", "spec": spec, "gb": gb}], region, user_text=text)
+
+
+def transfer_lines(r):
+    return {l["key"]: l for l in r["lines"] if l["service"] == "data_transfer"}
+
+
+def test_transfer_hand_calculated():
+    # AWS seoul -> tokyo 0.08, Azure koreacentral internet 0.12, Azure eastus -> koreacentral 0.05, GCP seoul -> americas 0.08
+    r = transfer("aws", "도쿄", region="ap-northeast-2")
+    assert list(transfer_lines(r)) == ["data_transfer.to_ap_northeast_1"] and r["total_cents"] == 8000
+    line = transfer_lines(r)["data_transfer.to_ap_northeast_1"]
+    assert (line["group"], line["service_label"]) == ("네트워크", "데이터 전송")
+    r = transfer("azure", "인터넷", region="koreacentral")
+    assert list(transfer_lines(r)) == ["data_transfer.internet"] and r["total_cents"] == 12000
+    r = transfer("azure", "한국 중부", region="eastus")
+    assert list(transfer_lines(r)) == ["data_transfer.to_koreacentral"] and r["total_cents"] == 5000
+    r = transfer("gcp", "미국", region="asia-northeast3")
+    assert list(transfer_lines(r)) == ["data_transfer.to_us_central1"] and r["total_cents"] == 8000
+    assert transfer("aws", "인터넷", region="ap-northeast-2")["total_cents"] == 12600
+    assert transfer("gcp", "인터넷")["total_cents"] == 19000
+
+
+@pytest.mark.parametrize("spec", ["도쿄", "tokyo", "ap-northeast-1", "일본", "Tokyo"])
+def test_transfer_spec_variants_pick_the_same_key(spec):
+    r = transfer("aws", spec, region="ap-northeast-2")
+    assert list(transfer_lines(r)) == ["data_transfer.to_ap_northeast_1"] and "note" not in r["lines"][0]
+
+
+def test_transfer_destinations_per_cloud():
+    assert list(transfer_lines(transfer("azure", "일본", region="koreacentral"))) == ["data_transfer.to_japaneast"]
+    assert list(transfer_lines(transfer("azure", "virginia", region="koreacentral"))) == ["data_transfer.to_eastus"]
+    assert list(transfer_lines(transfer("gcp", "japan"))) == ["data_transfer.to_asia_northeast1"]
+    assert transfer("azure", "일본", region="koreacentral")["total_cents"] == 8000
+    assert transfer("azure", "미국", region="koreacentral")["total_cents"] == 8000
+
+
+def test_transfer_destination_from_the_sentence_when_spec_is_empty():
+    assert list(transfer_lines(transfer("aws", text="서울에서 도쿄로 매달 1TB 복제"))) == ["data_transfer.to_ap_northeast_1"]
+    r = transfer("aws", text="서울에서 도쿄로 매달 1TB 복제")
+    assert "note" not in r["lines"][0]
+    # two destinations are not guessed: the default (with its note) applies
+    r = transfer("aws", text="도쿄와 미국")
+    assert "도착지를 알 수 없어" in r["lines"][0]["note"]
+
+
+def test_transfer_destination_rules():
+    from pricing.engine import load_catalog, transfer_destination
+    cat = load_catalog("aws")
+    seoul, tokyo = "ap-northeast-2", "ap-northeast-1"
+    d = lambda text, reg=seoul, **kw: transfer_destination("aws", text, reg, cat, **kw)  # noqa: E731
+    assert d("한국 사용자에게 인터넷으로", tokyo) == ("internet", "")
+    assert d("도쿄 리전으로 아웃바운드") == (tokyo, "")
+    assert d("business 한국어 data") == ("", "")
+    assert d("서울에서 도쿄로") == (tokyo, seoul)
+    assert d("도쿄 리전에서 서울로") == ("", tokyo)
+    assert d("from tokyo to us") == ("us-east-1", tokyo)
+    assert d("egress outbound 외부") == ("", "")  # direction words are not "internet"
+
+
+def test_transfer_scope_check_is_for_the_models_spec_only():
+    from pricing.engine import load_catalog, transfer_destination
+    cat = load_catalog("aws")
+    scoped = lambda text, reg="ap-northeast-2": transfer_destination("aws", text, reg, cat, check_scope=True)[0]  # noqa: E731
+    assert scoped("싱가포르") == "?" and scoped("europe") == "?" and scoped("us-west-2") == "?" and scoped("미국 서부") == "?"
+    assert scoped("us west") == "?"
+    # region codes of the catalog are not out of scope; "west" needs latin word boundaries; codes without hyphens are unknown
+    assert scoped("ap-northeast-1") == "ap-northeast-1" and scoped("us-east-1") == "us-east-1"
+    assert scoped("westus2") == "" and scoped("northwest") == ""
+    assert scoped("다른 리전") == "" and scoped("DR 리전") == "" and scoped("CDN") == ""
+    gcp = load_catalog("gcp")
+    assert transfer_destination("gcp", "asia-northeast3", "us-central1", gcp, check_scope=True)[0] == "asia-northeast3"
+    # a user's sentence is never judged out of scope
+    assert transfer_destination("aws", "싱가포르로 보내", "ap-northeast-2", cat)[0] == ""
+
+
+@pytest.mark.parametrize("spec", ["싱가포르", "europe"])
+def test_transfer_out_of_scope_destination_is_missing(spec):
+    r = transfer("aws", spec)
+    line = r["lines"][0]
+    assert line["included"] is False and line["missing_spec"] == spec and r["total_cents"] == 0
+    assert "선택 상자" in line["note"]
+
+
+def test_transfer_unknown_destination_defaults_with_a_note():
+    r = transfer("aws", gb=2000, text="egress 2TB")
+    assert list(transfer_lines(r)) == ["data_transfer.internet"] and r["total_cents"] == 25200
+    assert "도착지를 알 수 없어" in r["lines"][0]["note"]
+    r = transfer("aws", text="리전 간 복제 1TB")
+    assert list(transfer_lines(r)) == ["data_transfer.to_ap_northeast_1"] and r["total_cents"] == 8000
+    assert "도착지를 알 수 없어" in r["lines"][0]["note"]
+    # no cue at all: the cheapest alternative (the fixed project rule)
+    assert list(transfer_lines(transfer("aws", text="전송")))[0] == "data_transfer.to_ap_northeast_1"
+
+
+def test_transfer_both_cues_choose_the_cheapest():
+    r = transfer("aws", text="서울 리전 사용자 트래픽")
+    assert list(transfer_lines(r)) == ["data_transfer.to_ap_northeast_1"]
+    assert "도착지를 알 수 없어" in r["lines"][0]["note"]
+
+
+def test_transfer_source_mismatch_note():
+    r = transfer("aws", text="도쿄에서 서울로", region="ap-northeast-2")
+    assert "말씀하신 출발지(도쿄)가 아니라 견적 리전 서울 기준" in r["lines"][0]["note"]
+    assert "출발지" not in (transfer("aws", "도쿄", text="서울에서 도쿄로").get("lines")[0].get("note") or "")
+
+
+def test_transfer_internet_and_region_lines_sum_and_notes():
+    r = estimate("aws", [{"service": "data transfer", "spec": "인터넷", "gb": 500}, {"service": "data transfer", "spec": "도쿄", "gb": 1000}],
+                 "ap-northeast-2")
+    assert sorted(l["subtotal_cents"] for l in r["lines"]) == [6300, 8000] and r["total_cents"] == 14300
+    assert sum("첫 유료 구간 단가" in n for n in r["notes"]) == 1
+    assert not any("첫 유료 구간 단가" in n for n in estimate("aws", [{"service": "ec2"}])["notes"])
+    assert any("한국 사용자 대상" in n for n in transfer("gcp", "인터넷")["notes"])
+    assert not any("한국 사용자 대상" in n for n in transfer("gcp", "도쿄")["notes"])
+    # a transfer left out of the total does not add the note
+    assert not any("첫 유료 구간 단가" in n for n in transfer("aws", "싱가포르")["notes"])
+
+
+def test_service_from_spec_never_returns_data_transfer():
+    from pricing.engine import load_catalog, service_from_spec
+    assert estimate("aws", [{"service": "internet gateway", "spec": "internet"}])["excluded"]
+    assert service_from_spec("aws", "internet", load_catalog("aws")) is None
+
+
+def test_transfer_alias_names():
+    for name in ("data transfer", "데이터 전송", "전송", "리전 간 전송", "inter region", "inter-region data transfer", "egress", "인터넷 전송"):
+        assert estimate("gcp", [{"service": name, "spec": "인터넷"}])["lines"][0]["service"] == "data_transfer", name
+    assert estimate("azure", [{"service": "bandwidth", "spec": "인터넷"}])["lines"][0]["service"] == "data_transfer"
+
+
+def test_normalize_transfer_items():
+    from pricing.engine import normalize_transfer_items
+    items = [{"service": "data transfer", "spec": "도쿄", "gb": 1}, {"service": "ec2", "spec": "t3.medium"},
+             {"service": "data transfer", "spec": "싱가포르"}, {"service": "data transfer", "spec": "", "gb": 5}]
+    out = normalize_transfer_items("aws", items, "ap-northeast-2", "리전 간 복제")
+    assert out[0] == {"service": "data transfer", "spec": "ap-northeast-1", "gb": 1}
+    assert out[1] == items[1] and out[2] == items[2]
+    assert out[3] == {"service": "data transfer", "spec": "ap-northeast-1", "gb": 5, "transfer_default": True}
+    assert normalize_transfer_items("aws", out, "ap-northeast-2", "다른 문장") == out  # applying twice changes nothing
+    assert items[0]["spec"] == "도쿄"  # inputs are copied
+    # without defaults an unknown destination stays empty; a stated one is still filled in
+    assert normalize_transfer_items("aws", [items[3]], "ap-northeast-2", "x", fill_default=False) == [items[3]]
+    assert normalize_transfer_items("aws", [{**items[3], "spec": "인터넷으로"}], None, "x", fill_default=False)[0]["spec"] == "internet"
+    # the sentence is read only after merging, and only for an empty spec
+    assert normalize_transfer_items("aws", [items[3]], None, "인터넷으로", fill_default=False, read_text=False) == [items[3]]
+    assert normalize_transfer_items("aws", [items[3]], None, "인터넷으로", fill_default=False)[0]["spec"] == "internet"
+    assert normalize_transfer_items("aws", [items[3]], None, "인터넷으로")[0]["spec"] == "internet"
+    assert normalize_transfer_items("aws", [{**items[3], "spec": "다른 리전"}], None, "인터넷으로")[0]["spec"] != "internet"
+    # estimate adds the notice to a stored default
+    r = estimate("aws", [out[3]], "ap-northeast-2")
+    assert "도착지를 알 수 없어" in r["lines"][0]["note"]
+
+
+def test_transfer_user_location_is_not_a_destination():
+    from pricing.engine import load_catalog, transfer_destination
+    cat = load_catalog("aws")
+    d = lambda text: transfer_destination("aws", text, "ap-northeast-2", cat)  # noqa: E731
+    assert d("도쿄 사용자에게 1TB") == ("", "") and d("일본 고객용") == ("", "") and d("tokyo users") == ("", "")
+    assert d("도쿄에서 접속하는 사용자") == ("", "ap-northeast-1")
+    r = transfer("aws", text="도쿄 사용자에게 1TB")
+    assert list(transfer_lines(r)) == ["data_transfer.internet"]  # user cue alone suggests the internet, not a copy to tokyo
+
+
+def test_transfer_scope_is_a_list_not_leftover_words():
+    for spec in ("오레곤", "중국", "인도", "캘리포니아", "oregon", "china", "싱가포르"):
+        line = transfer("aws", spec)["lines"][0]
+        assert line["included"] is False and line["missing_spec"] == spec, spec
+    for spec in ("다른 리전", "DR 리전", "CDN", "egress", "재해 복구 리전", "인터넷으로", "도쿄로", "westus2", "잘 모르겠음"):
+        assert transfer("aws", spec)["lines"][0]["included"] is True, spec
+    assert transfer("azure", "한국 중부", region="eastus")["lines"][0]["key"] == "data_transfer.to_koreacentral"
+
+
+def test_transfer_internet_cues_and_virginia_aliases():
+    for spec in ("온프레미스", "on-prem", "IDC", "사무실", "end users", "public", "CloudFront", "해외"):
+        r = transfer("aws", spec)
+        assert list(transfer_lines(r)) == ["data_transfer.internet"] and r["lines"][0]["included"], spec
+    for spec in ("us-east", "N. Virginia", "n virginia"):
+        assert list(transfer_lines(transfer("aws", spec, region="ap-northeast-2"))) == ["data_transfer.to_us_east_1"], spec
+        assert list(transfer_lines(transfer("azure", spec, region="koreacentral"))) == ["data_transfer.to_eastus"], spec
+
+
+def test_transfer_source_note_only_for_sentences_that_were_read():
+    # With a spec the sentence is not read, so its "tokyo에서" is not taken as a source.
+    r = estimate("aws", [{"service": "data transfer", "spec": "인터넷", "gb": 1000}], "ap-northeast-2",
+                 user_text="서울 리전 EC2 1대, 도쿄에서 접속하는 사용자에게 인터넷으로 1TB")
+    assert "note" not in r["lines"][0]
+    assert "출발지" in transfer("aws", text="도쿄에서 서울로")["lines"][0]["note"]
+
+
+def test_transfer_source_phrases_and_korean_false_positives():
+    from pricing.engine import load_catalog, transfer_destination
+    cat = load_catalog("aws")
+    d = lambda text: transfer_destination("aws", text, "ap-northeast-2", cat)  # noqa: E731
+    assert d("tokyo to seoul") == ("", "ap-northeast-1") and d("도쿄로부터 서울로") == ("", "ap-northeast-1")
+    for text in ("미국식 아키텍처", "일본어 서비스", "한국인 대상", "US 달러로 egress"):
+        assert d(text) == ("", ""), text
+
+
+def test_transfer_stored_destination_equal_to_the_new_region_is_explained():
+    r = estimate("aws", [{"service": "data transfer", "spec": "ap-northeast-1", "gb": 1000}], "ap-northeast-1")
+    note = r["lines"][0]["note"]
+    assert "앞에서 정한 도착지(도쿄)가 이번 견적 리전과 같아" in note and "선택 상자로 변경" in note
+    from pricing.engine import normalize_transfer_items
+    stored = normalize_transfer_items("aws", [{"service": "data transfer", "spec": "도쿄", "gb": 1000}], "ap-northeast-1", "")[0]
+    assert stored["transfer_default"] is True and stored["transfer_dropped"] == "ap-northeast-1"
+    assert "앞에서 정한 도착지(도쿄)" in estimate("aws", [stored], "ap-northeast-1")["lines"][0]["note"]
+
+
+def test_paths_cache_follows_size_and_inode_not_only_mtime(tmp_path):
+    import os
+
+    from pricing.paths import item_keys
+
+    f = tmp_path / "c.json"
+    f.write_text('{"items": {"a": {}}}')
+    st = f.stat()
+    assert item_keys(f) == {"a"}
+    f.write_text('{"items": {"b": {}, "c": {}}}')  # different size, same mtime
+    os.utime(f, ns=(st.st_atime_ns, st.st_mtime_ns))
+    assert item_keys(f) == {"b", "c"}
+
+
+def test_refresh_carry_over_prefers_the_refreshed_file_over_the_bundle(tmp_path, monkeypatch):
+    import json as _json
+
+    from pricing import refresh
+    from pricing.paths import BUNDLED_DIR
+
+    monkeypatch.setenv("CATALOG_DIR", str(tmp_path))
+    monkeypatch.setenv("PRICE_REFRESH", "true")
+    bundled = _json.loads((BUNDLED_DIR / "azure.json").read_text())["items"]
+    mine = {k: {"marker": "refreshed"} if k == "vm.d2s_v5" else v for k, v in bundled.items()}
+    (tmp_path / "azure.json").write_text(_json.dumps({"as_of": "2999-01-01", "items": mine}))
+    fresh = {k: v for k, v in bundled.items() if k != "vm.d2s_v5"}
+    monkeypatch.setattr(refresh.build_azure, "build",
+                        lambda spec, out: out.write_text(_json.dumps({"as_of": "2999-01-02", "items": fresh})))
+    refresh.refresh_one("azure")
+    assert _json.loads((tmp_path / "azure.json").read_text())["items"]["vm.d2s_v5"] == {"marker": "refreshed"}

@@ -38,7 +38,15 @@
     "fargate": "fargate",
     "ecs fargate": "fargate",
     "eks": "eks",
-    "dynamodb": "dynamodb"
+    "dynamodb": "dynamodb",
+    "data transfer": "data_transfer",
+    "데이터 전송": "data_transfer",
+    "전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
+    "egress": "data_transfer",
+    "인터넷 전송": "data_transfer"
   },
   "specs": {
     "ec2.t3.medium": {
@@ -919,6 +927,126 @@
         "product_family": "Amazon DynamoDB PayPerRequest Throughput",
         "aws_unit": "ReadRequestUnits"
       }
+    },
+    "data_transfer.internet": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "인터넷으로 나가는 전송(첫 10TB 구간)",
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "service_code": "AWSDataTransfer",
+      "filters": {
+        "fromRegionCode": "{region}",
+        "toLocation": "External",
+        "transferType": "AWS Outbound"
+      },
+      "expect": {
+        "product_family": "Data Transfer",
+        "aws_unit": "GB"
+      }
+    },
+    "data_transfer.to_ap_northeast_2": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "서울(ap-northeast-2)로 리전 간 전송",
+        "en": "Inter-region data transfer to Seoul",
+        "ja": "ソウルへのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "service_code": "AWSDataTransfer",
+      "filters": {
+        "fromRegionCode": "{region}",
+        "toRegionCode": "ap-northeast-2",
+        "transferType": "InterRegion Outbound"
+      },
+      "expect": {
+        "product_family": "Data Transfer",
+        "aws_unit": "GB"
+      },
+      "regions": [
+        "ap-northeast-1",
+        "us-east-1"
+      ]
+    },
+    "data_transfer.to_ap_northeast_1": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "도쿄(ap-northeast-1)로 리전 간 전송",
+        "en": "Inter-region data transfer to Tokyo",
+        "ja": "東京へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "service_code": "AWSDataTransfer",
+      "filters": {
+        "fromRegionCode": "{region}",
+        "toRegionCode": "ap-northeast-1",
+        "transferType": "InterRegion Outbound"
+      },
+      "expect": {
+        "product_family": "Data Transfer",
+        "aws_unit": "GB"
+      },
+      "regions": [
+        "ap-northeast-2",
+        "us-east-1"
+      ]
+    },
+    "data_transfer.to_us_east_1": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "미국 동부(us-east-1)로 리전 간 전송",
+        "en": "Inter-region data transfer to N. Virginia",
+        "ja": "バージニア北部へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "service_code": "AWSDataTransfer",
+      "filters": {
+        "fromRegionCode": "{region}",
+        "toRegionCode": "us-east-1",
+        "transferType": "InterRegion Outbound"
+      },
+      "expect": {
+        "product_family": "Data Transfer",
+        "aws_unit": "GB"
+      },
+      "regions": [
+        "ap-northeast-2",
+        "ap-northeast-1"
+      ]
     }
   }
 }

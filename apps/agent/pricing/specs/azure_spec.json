@@ -45,7 +45,16 @@
     "azure monitor": "log_analytics",
     "azure monitor logs": "log_analytics",
     "azure cosmos db": "cosmos_db",
-    "cosmos db": "cosmos_db"
+    "cosmos db": "cosmos_db",
+    "data transfer": "data_transfer",
+    "데이터 전송": "data_transfer",
+    "전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
+    "egress": "data_transfer",
+    "인터넷 전송": "data_transfer",
+    "bandwidth": "data_transfer"
   },
   "specs": {
     "vm.b2s": {
@@ -712,6 +721,127 @@
         "unitOfMeasure": "1/Hour"
       },
       "allow_non_primary": true
+    },
+    "data_transfer.internet": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "인터넷으로 나가는 전송(100GB 이후 첫 구간)",
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "filter": "armRegionName eq '{region}' and serviceName eq 'Bandwidth' and productName eq 'Rtn Preference: MGN' and meterName eq 'Standard Data Transfer Out'",
+      "tier_min": 100,
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "allow_non_primary": true
+    },
+    "data_transfer.to_koreacentral": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "한국 중부(koreacentral)로 리전 간 전송",
+        "en": "Inter-region data transfer to Korea Central",
+        "ja": "韓国中部へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "filter": "armRegionName eq 'Asia' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Intra Continent Data Transfer Out'",
+      "tier_min": 0,
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "by_region": {
+        "japaneast": {
+          "filter": "armRegionName eq 'Asia' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Intra Continent Data Transfer Out'",
+          "tier_min": 0
+        },
+        "eastus": {
+          "filter": "armRegionName eq 'Intercontinental' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Inter Continent Data Transfer Out - NAM or EU To Any'",
+          "tier_min": 5
+        }
+      },
+      "regions": [
+        "japaneast",
+        "eastus"
+      ]
+    },
+    "data_transfer.to_japaneast": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "일본 동부(japaneast)로 리전 간 전송",
+        "en": "Inter-region data transfer to Japan East",
+        "ja": "東日本へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "filter": "armRegionName eq 'Asia' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Intra Continent Data Transfer Out'",
+      "tier_min": 0,
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "by_region": {
+        "koreacentral": {
+          "filter": "armRegionName eq 'Asia' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Intra Continent Data Transfer Out'",
+          "tier_min": 0
+        },
+        "eastus": {
+          "filter": "armRegionName eq 'Intercontinental' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Inter Continent Data Transfer Out - NAM or EU To Any'",
+          "tier_min": 5
+        }
+      },
+      "regions": [
+        "koreacentral",
+        "eastus"
+      ]
+    },
+    "data_transfer.to_eastus": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "미국 동부(eastus)로 리전 간 전송",
+        "en": "Inter-region data transfer to East US",
+        "ja": "米国東部へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "filter": "armRegionName eq 'Intercontinental' and productName eq 'Bandwidth Inter-Region' and meterName eq 'Inter Continent Data Transfer Out - ASIA To Any'",
+      "tier_min": 5,
+      "expect": {
+        "unitOfMeasure": "1 GB"
+      },
+      "regions": [
+        "koreacentral",
+        "japaneast"
+      ]
     }
   }
 }

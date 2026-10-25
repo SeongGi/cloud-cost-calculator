@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from pricing import build_aws, build_azure, build_gcp
-from pricing.paths import SPEC_DIR, catalog_dir, readable_catalog_path
+from pricing.paths import BUNDLED_DIR, SPEC_DIR, catalog_dir, readable_catalog_path
 
 log = logging.getLogger(__name__)
 KST = timezone(timedelta(hours=9))
@@ -24,6 +24,13 @@ def item_keys(path: Path) -> set[str]:
         return set(json.loads(path.read_text(encoding="utf-8"))["items"])
     except (OSError, ValueError, KeyError):
         return set()
+
+
+def _items_of(path: Path) -> dict:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))["items"]
+    except (OSError, ValueError, KeyError):
+        return {}
 
 
 def refresh_one(cloud: str) -> str:
@@ -42,14 +49,17 @@ def refresh_one(cloud: str) -> str:
             build_gcp.build(SPEC_DIR / "gcp_spec.json", new)
         spec_keys = set(json.loads((SPEC_DIR / f"{cloud}_spec.json").read_text(encoding="utf-8"))["specs"])
         previous = readable_catalog_path(cloud)
-        before, after = item_keys(previous) & spec_keys, item_keys(new)
+        bundled = BUNDLED_DIR / f"{cloud}.json"
+        # Keys the bundled catalog added with a code update count as previous prices too.
+        before, after = (item_keys(previous) | item_keys(bundled)) & spec_keys, item_keys(new)
         if not after:
             return f"{cloud}: kept previous catalog (new build is empty)"
         missing = sorted(before - after)
         if missing:
             # One failed SKU must not freeze the whole catalog: keep the old entry for just that key.
             data = json.loads(new.read_text(encoding="utf-8"))
-            old_items = json.loads(previous.read_text(encoding="utf-8"))["items"]
+            # The refreshed file wins over the bundled one; the bundled one covers keys it never had.
+            old_items = {**_items_of(bundled), **_items_of(target)}
             data["items"].update({k: old_items[k] for k in missing})
             data["carried_over"] = missing
             new.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")

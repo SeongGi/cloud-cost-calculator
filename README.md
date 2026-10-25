@@ -28,15 +28,16 @@ AWS, Azure, GCP 구성을 한국어 문장으로 설명하면 **공개 가격표
 
 - 월 비용 = 단가 × quantity_scale × 월 시간(730) × 수량. 센트 단위로 반올림(0.5는 올림)합니다.
 - 수량을 말하지 않으면 최소 구성 기본값을 쓰고 화면에 "가정"으로 표시합니다. 기본값은 개수 1, 백만 단위 1, GB 100입니다.
+- 데이터 전송은 견적 리전에서 나가는 전송만 계산합니다. 도착지(다른 두 리전이나 인터넷)를 사양 대안으로 고르며, 첫 유료 구간 단가를 전체 수량에 곱하므로 무료·대량 할인 구간은 반영하지 않고, 들어오는 전송과 같은 리전 안 전송은 계산하지 않습니다.
 - 온디맨드 정가(USD)만 씁니다. 세금, 약정 할인, 프리 티어는 빼고, 가격표에 없는 서비스나 사양은 합계에서 빼고 표시합니다.
 
 ### 가격표
 
-| 클라우드 | 출처 | 기준일 | 항목 × 리전 |
+| 클라우드 | 출처 | 기준일 | 항목 × 리전 (데이터 전송의 리전 간 항목은 출발 리전 2곳) |
 |---|---|---|---|
-| AWS | [Price List Query API](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) | 2026-10-22 | 46 × 3 (서울, 도쿄, 버지니아) |
-| Azure | [Retail Prices API](https://prices.azure.com/api/retail/prices) | 2026-10-23 | 31 × 3 (한국 중부, 일본 동부, 미국 동부) |
-| GCP | [Cloud Billing Catalog API](https://cloud.google.com/billing/docs/reference/rest) | 2026-10-23 | 39 × 3 (서울, 도쿄, 아이오와) |
+| AWS | [Price List Query API](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html) | 2026-10-22 | 50 × 3 (서울, 도쿄, 버지니아) |
+| Azure | [Retail Prices API](https://prices.azure.com/api/retail/prices) | 2026-10-23 | 35 × 3 (한국 중부, 일본 동부, 미국 동부) |
+| GCP | [Cloud Billing Catalog API](https://cloud.google.com/billing/docs/reference/rest) | 2026-10-25 | 44 × 3 (서울, 도쿄, 아이오와) |
 
 가격표는 `apps/agent/pricing/catalogs/`의 JSON이고, 화면에 기준일이 표시됩니다. 다시 만들려면 아래 `make prices`를 씁니다. AWS는 인증 없이 공개 bulk 파일로, Azure는 인증 없이, GCP는 `GCP_ACCESS_TOKEN`(`gcloud auth print-access-token`)으로 만듭니다. `.env`에 `PRICE_REFRESH=true`를 넣으면 에이전트가 매일 04:00(KST)에 AWS·Azure를 다시 만듭니다. GCP 토큰은 약 1시간이면 만료되므로 GCP는 손으로만 다시 만듭니다. 이때 빌드가 실패하거나 항목이 빠지면 이전 단가를 그대로 씁니다.
 

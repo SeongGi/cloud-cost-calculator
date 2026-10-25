@@ -19,6 +19,8 @@
     "cloud storage": "gcs",
     "cloud vpn": "cloud_vpn",
     "compute engine": "gce",
+    "data transfer": "data_transfer",
+    "egress": "data_transfer",
     "gce": "gce",
     "gcp compute engine": "gce",
     "gcp vpn": "cloud_vpn",
@@ -43,6 +45,8 @@
     "ha vpn": "cloud_vpn",
     "http(s) load balancer": "cloud_lb",
     "https load balancer": "cloud_lb",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
     "kubernetes engine": "gke",
     "load balancer": "cloud_lb",
     "memorystore": "memorystore",
@@ -51,7 +55,11 @@
     "persistent disk": "pd",
     "stackdriver logging": "cloud_logging",
     "vpn": "cloud_vpn",
-    "vpn tunnel": "cloud_vpn"
+    "vpn tunnel": "cloud_vpn",
+    "데이터 전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "인터넷 전송": "data_transfer",
+    "전송": "data_transfer"
   },
   "as_of": "2026-10-25",
   "currency": "USD",
@@ -1480,6 +1488,163 @@
       "service": "cloudsql",
       "slider": {
         "max": 10000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.internet": {
+      "hours": 1,
+      "label": {
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送",
+        "ko": "인터넷으로 나가는 전송(한국 사용자 대상)"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Network Internet Data Transfer Out from Tokyo to South Korea",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "9799-FFCB-9A0A",
+          "unit": "GiBy",
+          "unit_price_usd": "0.1900000000",
+          "usd": "0.1900000000"
+        },
+        "asia-northeast3": {
+          "description": "Network Internet Data Transfer Out from Seoul to South Korea",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "70A1-9E75-5BB1",
+          "unit": "GiBy",
+          "unit_price_usd": "0.1900000000",
+          "usd": "0.1900000000"
+        },
+        "us-central1": {
+          "description": "Network Internet Data Transfer Out from Americas to South Korea",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "74A7-12EC-2374",
+          "unit": "GiBy",
+          "unit_price_usd": "0.1900000000",
+          "usd": "0.1900000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_asia_northeast1": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Tokyo",
+        "ja": "東京へのリージョン間データ転送",
+        "ko": "도쿄(asia-northeast1)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast3": {
+          "description": "Network Inter Region Data Transfer Out from Seoul to Japan",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "5943-4B33-25A7",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        },
+        "us-central1": {
+          "description": "Network Inter Region Data Transfer Out from Americas to Japan",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "DE89-F11A-D163",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_asia_northeast3": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Seoul",
+        "ja": "ソウルへのリージョン間データ転送",
+        "ko": "서울(asia-northeast3)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Network Inter Region Data Transfer Out from Japan to Seoul",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "D605-86BD-C7BA",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        },
+        "us-central1": {
+          "description": "Network Inter Region Data Transfer Out from Americas to Seoul",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "E600-FADE-52E5",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_us_central1": {
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Iowa",
+        "ja": "アイオワへのリージョン間データ転送",
+        "ko": "미국 중부(us-central1)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "asia-northeast1": {
+          "description": "Network Inter Region Data Transfer Out from Japan to Americas",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "695F-F3F7-6A44",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        },
+        "asia-northeast3": {
+          "description": "Network Inter Region Data Transfer Out from Seoul to Americas",
+          "effective_time": "2026-10-25T07:00:00Z",
+          "price_scope": "regional",
+          "sku_id": "431F-2128-D8A7",
+          "unit": "GiBy",
+          "unit_price_usd": "0.0800000000",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
         "min": 0,
         "step": 10
       }

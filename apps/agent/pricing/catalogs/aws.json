@@ -7,15 +7,19 @@
     "bastion": "ec2",
     "bastion host": "ec2",
     "cloudwatch": "cloudwatch",
+    "data transfer": "data_transfer",
     "dynamodb": "dynamodb",
     "ebs": "ebs",
     "ec2": "ec2",
     "ecs fargate": "fargate",
     "efs": "efs",
+    "egress": "data_transfer",
     "eks": "eks",
     "elasticache": "elasticache",
     "elasticache for redis": "elasticache",
     "fargate": "fargate",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
     "lambda": "lambda",
     "nat gateway": "nat_gateway",
     "network load balancer": "nlb",
@@ -27,7 +31,11 @@
     "site-to-site vpn": "vpn",
     "vpc endpoint": "vpc_endpoint",
     "vpn": "vpn",
-    "waf": "waf"
+    "waf": "waf",
+    "데이터 전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "인터넷 전송": "data_transfer",
+    "전송": "data_transfer"
   },
   "as_of": "2026-10-22",
   "currency": "USD",
@@ -637,6 +645,265 @@
       "service": "cloudwatch",
       "slider": {
         "max": 1000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.internet": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "Data Transfer"
+        },
+        "filters": {
+          "fromRegionCode": "{region}",
+          "toLocation": "External",
+          "transferType": "AWS Outbound"
+        },
+        "service_code": "AWSDataTransfer"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送",
+        "ko": "인터넷으로 나가는 전송(첫 10TB 구간)"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN1-DataTransfer-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.114 per GB - first 10 TB / month data transfer out beyond the global free tier",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "9ESU2G5WSY6FMZR3.JRTCKXETXF.Q3Z75P77EN",
+          "sku": "9ESU2G5WSY6FMZR3",
+          "tier_begin": "0",
+          "tier_end": "10240",
+          "usd": "0.1140000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN2-DataTransfer-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.126 per GB - first 10 TB / month data transfer out beyond the global free tier",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "9AS8NERTGECRPGT7.JRTCKXETXF.Q3Z75P77EN",
+          "sku": "9AS8NERTGECRPGT7",
+          "tier_begin": "0",
+          "tier_end": "10240",
+          "usd": "0.1260000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "DataTransfer-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.090 per GB - first 10 TB / month data transfer out beyond the global free tier",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "HQEH3ZWJVT46JHRG.JRTCKXETXF.Q3Z75P77EN",
+          "sku": "HQEH3ZWJVT46JHRG",
+          "tier_begin": "0",
+          "tier_end": "10240",
+          "usd": "0.0900000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_ap_northeast_1": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "Data Transfer"
+        },
+        "filters": {
+          "fromRegionCode": "{region}",
+          "toRegionCode": "ap-northeast-1",
+          "transferType": "InterRegion Outbound"
+        },
+        "service_code": "AWSDataTransfer"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Tokyo",
+        "ja": "東京へのリージョン間データ転送",
+        "ko": "도쿄(ap-northeast-1)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN2-APN1-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to Asia Pacific (Tokyo)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "B3VACMZKHVCS9UJG.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "B3VACMZKHVCS9UJG",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0800000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "USE1-APN1-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.02 per GB - US East (Northern Virginia) data transfer to Asia Pacific (Tokyo)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "EDJPFY8K3AW2AD23.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EDJPFY8K3AW2AD23",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0200000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_ap_northeast_2": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "Data Transfer"
+        },
+        "filters": {
+          "fromRegionCode": "{region}",
+          "toRegionCode": "ap-northeast-2",
+          "transferType": "InterRegion Outbound"
+        },
+        "service_code": "AWSDataTransfer"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to Seoul",
+        "ja": "ソウルへのリージョン間データ転送",
+        "ko": "서울(ap-northeast-2)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN1-APN2-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to Asia Pacific (Seoul)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "Q2MP8J3DYTZ3QPQB.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "Q2MP8J3DYTZ3QPQB",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0900000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "USE1-APN2-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.02 per GB - US East (Northern Virginia) data transfer to Asia Pacific (Seoul)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "Y8HYRU3BZZ4QFJHH.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "Y8HYRU3BZZ4QFJHH",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0200000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
+        "min": 0,
+        "step": 10
+      }
+    },
+    "data_transfer.to_us_east_1": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "GB",
+          "product_family": "Data Transfer"
+        },
+        "filters": {
+          "fromRegionCode": "{region}",
+          "toRegionCode": "us-east-1",
+          "transferType": "InterRegion Outbound"
+        },
+        "service_code": "AWSDataTransfer"
+      },
+      "hours": 1,
+      "label": {
+        "en": "Inter-region data transfer to N. Virginia",
+        "ja": "バージニア北部へのリージョン間データ転送",
+        "ko": "미국 동부(us-east-1)로 리전 간 전송"
+      },
+      "per": "gb",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN1-USE1-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.09 per GB - Asia Pacific (Tokyo) data transfer to US East (Northern Virginia)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "7EQFT8UVNNKTV2AA.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "7EQFT8UVNNKTV2AA",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0900000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "operation": "",
+            "productFamily": "Data Transfer",
+            "usagetype": "APN2-USE1-AWS-Out-Bytes"
+          },
+          "aws_unit": "GB",
+          "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to US East (Northern Virginia)",
+          "published": "2026-09-16T13:22:08Z",
+          "rate_code": "39FN83U7M4TB4352.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "39FN83U7M4TB4352",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0800000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "gb",
+      "service": "data_transfer",
+      "slider": {
+        "max": 100000,
         "min": 0,
         "step": 10
       }

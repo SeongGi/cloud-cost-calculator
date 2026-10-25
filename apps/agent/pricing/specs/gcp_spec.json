@@ -57,7 +57,15 @@
     "gcp vpn": "cloud_vpn",
     "ha vpn": "cloud_vpn",
     "vpn": "cloud_vpn",
-    "vpn tunnel": "cloud_vpn"
+    "vpn tunnel": "cloud_vpn",
+    "data transfer": "data_transfer",
+    "데이터 전송": "data_transfer",
+    "전송": "data_transfer",
+    "리전 간 전송": "data_transfer",
+    "inter region": "data_transfer",
+    "inter-region data transfer": "data_transfer",
+    "egress": "data_transfer",
+    "인터넷 전송": "data_transfer"
   },
   "specs": {
     "gce.e2_medium": {
@@ -1234,6 +1242,126 @@
           "match": "^Networking Cloud VPN Tunnel ",
           "unit": "h"
         }
+      ]
+    },
+    "data_transfer.internet": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "인터넷으로 나가는 전송(한국 사용자 대상)",
+        "en": "Data transfer out to the internet",
+        "ja": "インターネットへのデータ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Network Internet Data Transfer Out from (Seoul|Tokyo|Americas) to South Korea$",
+          "unit": "GiBy"
+        }
+      ]
+    },
+    "data_transfer.to_asia_northeast3": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "서울(asia-northeast3)로 리전 간 전송",
+        "en": "Inter-region data transfer to Seoul",
+        "ja": "ソウルへのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Network Inter Region Data Transfer Out from (Seoul|Japan|Americas) to Seoul$",
+          "unit": "GiBy"
+        }
+      ],
+      "regions": [
+        "asia-northeast1",
+        "us-central1"
+      ]
+    },
+    "data_transfer.to_asia_northeast1": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "도쿄(asia-northeast1)로 리전 간 전송",
+        "en": "Inter-region data transfer to Tokyo",
+        "ja": "東京へのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Network Inter Region Data Transfer Out from (Seoul|Japan|Americas) to Japan$",
+          "unit": "GiBy"
+        }
+      ],
+      "regions": [
+        "asia-northeast3",
+        "us-central1"
+      ]
+    },
+    "data_transfer.to_us_central1": {
+      "service": "data_transfer",
+      "label": {
+        "ko": "미국 중부(us-central1)로 리전 간 전송",
+        "en": "Inter-region data transfer to Iowa",
+        "ja": "アイオワへのリージョン間データ転送"
+      },
+      "per": "gb",
+      "quantity_unit": "gb",
+      "quantity_scale": 1,
+      "hours": 1,
+      "slider": {
+        "min": 0,
+        "max": 100000,
+        "step": 10
+      },
+      "catalog_service": "Compute Engine",
+      "scope": "regional",
+      "expect_unit": "GiBy",
+      "convert": 1,
+      "components": [
+        {
+          "match": "^Network Inter Region Data Transfer Out from (Seoul|Japan|Americas) to Americas$",
+          "unit": "GiBy"
+        }
+      ],
+      "regions": [
+        "asia-northeast3",
+        "asia-northeast1"
       ]
     }
   }

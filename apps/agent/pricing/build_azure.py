@@ -1,7 +1,7 @@
 """Build the Azure on-demand catalog from the public Retail Prices API (no credentials).
 
 Each spec item must leave exactly one Consumption meter per region (Windows, Spot and
-Low Priority excluded). Spec flags: allow_non_primary, global_price, tier_min.
+Low Priority excluded). Spec flags: allow_non_primary, global_price, tier_min, regions (priced only there), by_region.
 """
 
 from __future__ import annotations
@@ -50,7 +50,15 @@ def fetch(flt: str) -> list[dict]:
     return items
 
 
+def spec_regions(spec: dict, regions: list[str]) -> list[str]:
+    """Regions an item is priced in: its own "regions" list, else every catalog region."""
+    return spec.get("regions", regions)
+
+
 def select(spec: dict, region: str) -> tuple[dict | None, str]:
+    # "by_region" overrides filter, tier_min and allow_non_primary for the source region (the meter
+    # depends on where the traffic goes, e.g. inter-region transfer).
+    spec = {**spec, **spec.get("by_region", {}).get(region, {})}
     flt = spec["filter"].replace("{region}", region) + " and priceType eq 'Consumption'"
     tier_min = float(spec.get("tier_min", 0))
     rows = [
@@ -94,13 +102,13 @@ def build(spec_path: Path, out_path: Path) -> dict:
             else:
                 prices = {r: entry(it) for r in cfg["regions"]}
         else:
-            for region in cfg["regions"]:
+            for region in spec_regions(spec, cfg["regions"]):
                 it, why = select(spec, region)
                 if it is None:
                     warnings.append(f"{key} {region}: {why}")
                     continue
                 prices[region] = entry(it)
-        if len(prices) != len(cfg["regions"]):
+        if len(prices) != len(spec_regions(spec, cfg["regions"])):
             warnings.append(f"{key}: skipped (priced in {sorted(prices)})")
             continue
         items[key] = {

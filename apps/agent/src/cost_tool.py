@@ -12,7 +12,8 @@ from pydantic import BaseModel, Field, field_validator
 
 from langchain_core.messages import ToolMessage
 
-from pricing.engine import CLOUDS, CatalogUnavailable, estimate, load_catalog, resolve_service, service_menu
+from pricing.engine import (CLOUDS, CatalogUnavailable, estimate, load_catalog, normalize_transfer_items, resolve_service,
+                            service_menu)
 
 log = logging.getLogger(__name__)
 
@@ -66,6 +67,8 @@ CLOUD_WORDS = {
 }
 # "바꿔/대신/으로" replaces the line of that service; "추가/더" adds another one.
 REPLACE_WORDS = re.compile(r"바꾸|바꿔|변경|대신|교체|으로\s*하면|로\s*하면|으로\s*해|로\s*해")
+# "인터넷도", "여기에 ... 추가": the user adds another line rather than naming the default's destination.
+ADD_WORDS = re.compile(r"추가|더하|더\s*넣|으로도|로도|도\s*추가")
 
 
 def previous_request(state: dict, cloud: str | None = None) -> dict | None:
@@ -101,13 +104,15 @@ def _norm_spec(spec: str | None) -> str:
 
 
 def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[str],
-                replace: bool = False) -> tuple[list[dict], list[str]]:
+                replace: bool = False, add: bool = False) -> tuple[list[dict], list[str]]:
     """Previous items updated by the new ones and minus the removed services.
 
     A change goes to the line with the same service and spec; else, when the user asked to change
     (`replace`) or gave no new spec, to the only line of that service; with several such lines and
     no spec match it is not guessed. Otherwise it is added. Returns the items and notes about
-    what could not be applied."""
+    what could not be applied. A data transfer line whose destination is only a default
+    (`transfer_default`) counts as having no spec: the user naming a destination replaces it,
+    unless the user is adding (`add`)."""
     try:
         catalog = load_catalog(cloud)
     except CatalogUnavailable:
@@ -131,7 +136,8 @@ def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[
         exact = [m for m in same if change.get("spec") and _norm_spec(m.get("spec")) == _norm_spec(change["spec"])]
         if exact:
             target = exact[0]
-        elif len(same) == 1 and (replace or not change.get("spec") or not same[0].get("spec")):
+        elif len(same) == 1 and (replace or not change.get("spec") or not same[0].get("spec")
+                                 or (same[0].get("transfer_default") and not add)):
             target = same[0]
         elif len(same) > 1 and not change.get("spec"):
             notes.append(f"{change['service']} 항목이 여러 줄이라 어느 것을 바꿀지 알 수 없어 그대로 두었습니다. 사양을 함께 말해 주세요.")
@@ -141,7 +147,12 @@ def merge_items(cloud: str, base: list[dict], changes: list[dict], remove: list[
         if target is None:
             merged.append(dict(change))
         else:
+            was_default = target.get("transfer_default")
             target.update({k: v for k, v in change.items() if v is not None and k != "service"})
+            if was_default and change.get("spec"):
+                # update() skips None, so the flag is set explicitly: a stated destination is not a default.
+                target["transfer_default"] = bool(change.get("transfer_default", False))
+                target.pop("transfer_dropped", None)
     return merged, notes
 
 
@@ -196,11 +207,19 @@ def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | Non
         if merge:
             cloud = prev["cloud"]
             region = region or prev.get("region")
-            parsed, merge_notes = merge_items(cloud, prev["items"], parsed, remove, replace=bool(REPLACE_WORDS.search(text)))
+        # Before merging only the model's own spec is read, plus the sentence when the user is adding a
+        # line: otherwise an empty spec still means "only the quantity changes". Defaults come after.
+        parsed = normalize_transfer_items(cloud, parsed, region, text, fill_default=False,
+                                          read_text=bool(ADD_WORDS.search(text)))
+        if merge:
+            parsed, merge_notes = merge_items(cloud, prev["items"], parsed, remove, replace=bool(REPLACE_WORDS.search(text)),
+                                              add=bool(ADD_WORDS.search(text)))
             notes.append("앞에서 계산한 구성에 이번 요청(추가·변경·제외)을 반영해 전체를 다시 계산했습니다.")
             notes.extend(merge_notes)
         if not parsed:
             raise ValueError("계산할 서비스가 없습니다")
+        # Saved with the result, so a later turn keeps the destination (and a default stays a default).
+        parsed = normalize_transfer_items(cloud, parsed, region, text)
         result = estimate(cloud, parsed, region, user_text=text)
         result["notes"] = notes + result.get("notes", [])
         # The resolved items travel with the result so the next follow-up can build on them.
