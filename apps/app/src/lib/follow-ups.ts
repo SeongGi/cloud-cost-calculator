@@ -109,8 +109,9 @@ export function followUps(result: Result | null, max = 4): string[] {
   if (db && dbLine && SWAPPABLE.test(dbLine.key)) changes.push(`${db.name} ${db.mysql.test(dbLine.key) ? "PostgreSQL" : "MySQL"}로 바꾸면?`);
   if (storage && storage.quantity_unit === "gb") changes.push(`스토리지를 ${(storage.qty * 2).toLocaleString("en-US")}GB로 늘리면?`);
 
-  moves.push(result.region && SEOUL.has(result.region) ? "도쿄 리전이면 얼마야?" : "서울 리전이면 얼마야?");
+  // 다른 클라우드 비교는 늘 보이게 이동 묶음 맨 앞에 둔다(번갈아 고르면 3번째 안에 든다)
   moves.push(`같은 구성을 ${OTHER_CLOUD[cloud] ?? "다른 클라우드"}로 하면 얼마야?`);
+  moves.push(result.region && SEOUL.has(result.region) ? "도쿄 리전이면 얼마야?" : "서울 리전이면 얼마야?");
 
   const out: string[] = [];
   for (let i = 0; out.length < max && (i < adds.length || i < changes.length || i < moves.length); i++) {

@@ -12,7 +12,7 @@ describe("follow-ups", () => {
     expect(followUps(latestResult(msgs))).toEqual([
       "여기에 VPN 연결 추가하면?",
       "VM을 6대로 늘리면?",
-      "도쿄 리전이면 얼마야?",
+      "같은 구성을 GCP로 하면 얼마야?",
       "앞에 Application Gateway 붙이면?",
     ]);
   });
@@ -26,10 +26,10 @@ describe("follow-ups", () => {
     expect(followUps(latestResult(msgs), 6)).toEqual([
       "앞에 ALB 붙이면?",
       "EC2를 2대로 늘리면?",
-      "서울 리전이면 얼마야?",
+      "같은 구성을 Azure로 하면 얼마야?",
       "여기에 RDS PostgreSQL 추가하면?",
       "스토리지를 1,000GB로 늘리면?",
-      "같은 구성을 Azure로 하면 얼마야?",
+      "서울 리전이면 얼마야?",
     ]);
   });
 
@@ -40,10 +40,10 @@ describe("follow-ups", () => {
     expect(followUps(latestResult(msgs), 20)).toEqual([
       "여기에 ElastiCache 캐시 추가하면?",
       "EC2를 4대로 늘리면?",
-      "도쿄 리전이면 얼마야?",
+      "같은 구성을 Azure로 하면 얼마야?",
       "AWS WAF로 보안 정책 추가하면?",
       "RDS를 PostgreSQL로 바꾸면?",
-      "같은 구성을 Azure로 하면 얼마야?",
+      "도쿄 리전이면 얼마야?",
       "NAT Gateway 추가하면?",
       "S3 500GB 추가하면?",
       "CloudWatch로 로그 수집하면?",
@@ -58,6 +58,11 @@ describe("follow-ups", () => {
   it("suggests storage when the configuration has none", () => {
     const msgs = [result("gcp", "asia-northeast3", [{ key: "gce.e2_medium", qty: 1 }])];
     expect(followUps(latestResult(msgs), 20)).toContain("Cloud Storage 500GB 추가하면?");
+  });
+
+  it("always offers the same setup on another cloud among the default four", () => {
+    const busy = [result("aws", "ap-northeast-2", [{ key: "ec2.t3.medium", qty: 2 }, { key: "rds.mysql.t3.medium", qty: 1 }])];
+    expect(followUps(latestResult(busy))).toContain("같은 구성을 Azure로 하면 얼마야?");
   });
 
   it("offers nothing without a successful result", () => {
