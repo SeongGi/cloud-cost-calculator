@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Component, useCallback, useEffect, useState, type ReactNode } from "react";
 
 interface LlmState {
   gemini_key_set: boolean;
@@ -15,6 +15,30 @@ interface LlmState {
   fallbacks: number;
 }
 
+interface UsageSummary {
+  days: number;
+  from: string;
+  to: string;
+  totals: {
+    questions: number;
+    limited: number;
+    visitors: number;
+    limited_visitors: number;
+    conversations: number;
+    estimates: number;
+    estimate_errors: number;
+    answer_failures: number;
+    busy: number;
+  };
+  daily: { day: string; questions: number; visitors: number }[];
+  clouds: { aws: number; azure: number; gcp: number };
+  services: { service: string; label: string; count: number }[];
+  // null is tolerated: an agent without records may send nothing here.
+  all_time: { questions: number; visitors: number; since: string | null } | null;
+}
+
+const PERIODS = [7, 30, 90] as const;
+
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`/api/admin/${path}`, { cache: "no-store", ...init });
   const body = await res.json().catch(() => ({}));
@@ -24,6 +48,162 @@ async function call<T>(path: string, init?: RequestInit): Promise<T> {
     throw new Error(detail ?? body.error ?? `요청 실패 (${res.status})`);
   }
   return body as T;
+}
+
+const isObject = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null;
+
+// Only the shape the card reads; anything else is shown as an error inside the card.
+function isUsageSummary(v: unknown): v is UsageSummary {
+  return (
+    isObject(v) &&
+    isObject(v.totals) &&
+    Array.isArray(v.daily) &&
+    isObject(v.clouds) &&
+    Array.isArray(v.services) &&
+    (v.all_time === null || v.all_time === undefined || isObject(v.all_time))
+  );
+}
+
+// A render error in the card body must not take down the LLM cards.
+class UsageBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    return this.state.failed ? (
+      <p className="admin-warn" role="status">사용량 응답을 표시하지 못했습니다.</p>
+    ) : (
+      this.props.children
+    );
+  }
+}
+
+// Loads on its own, so a usage failure shows only inside this card and the LLM cards keep working.
+export function UsageCard() {
+  const [days, setDays] = useState<number>(30);
+  // The result remembers which period it answers, so switching periods shows "loading" without resetting state in the effect.
+  const [result, setResult] = useState<{ days: number; usage?: UsageSummary; error?: string } | null>(null);
+
+  useEffect(() => {
+    let current = true;
+    call<unknown>(`usage?days=${days}`)
+      .then((body) => {
+        if (!isUsageSummary(body)) throw new Error("사용량 응답 형식이 올바르지 않습니다.");
+        if (current) setResult({ days, usage: body });
+      })
+      .catch((e: Error) => current && setResult({ days, error: e.message }));
+    return () => {
+      current = false;
+    };
+  }, [days]);
+
+  const answered = result?.days === days ? result : null;
+  const usage = answered?.usage ?? null;
+  const error = answered?.error ?? "";
+
+  return (
+    <section className="admin-card" aria-labelledby="usage-title">
+      <div className="admin-card-head">
+        <h2 id="usage-title">사용량</h2>
+        <div className="admin-periods" role="group" aria-label="기간">
+          {PERIODS.map((n) => (
+            <button key={n} type="button" aria-pressed={days === n} onClick={() => setDays(n)}>
+              {n}일
+            </button>
+          ))}
+        </div>
+      </div>
+      {error && <p className="admin-warn" role="status">{error}</p>}
+      {!usage && !error && <p className="admin-note">불러오는 중…</p>}
+      {usage && (
+        <UsageBoundary key={days}>
+          <UsageBody usage={usage} />
+        </UsageBoundary>
+      )}
+      <p className="admin-note">질문 원문과 IP는 저장하지 않습니다. 방문자는 IP를 되돌릴 수 없는 값으로 바꿔 셉니다.</p>
+    </section>
+  );
+}
+
+function UsageBody({ usage }: { usage: UsageSummary }) {
+  const t = usage.totals;
+  const failures = t.estimate_errors + t.answer_failures + t.busy;
+  const peak = Math.max(1, ...usage.daily.map((d) => d.questions));
+  const allTime = usage.all_time;
+
+  return (
+    <>
+      <p className="admin-sub">{usage.from} ~ {usage.to}</p>
+      <dl className="admin-tiles">
+        <div>
+          <dt>질문</dt>
+          <dd>{t.questions}</dd>
+        </div>
+        <div>
+          <dt>방문자</dt>
+          <dd>{t.visitors}</dd>
+        </div>
+        <div>
+          <dt>대화</dt>
+          <dd>{t.conversations}</dd>
+        </div>
+        <div>
+          <dt>실패</dt>
+          <dd>{failures}</dd>
+          <dd className="admin-sub">계산 오류 {t.estimate_errors} · 답변 실패 {t.answer_failures} · 혼잡 {t.busy}</dd>
+        </div>
+      </dl>
+      <p className="admin-sub">제한 {t.limited}회 · 제한된 방문자 {t.limited_visitors}</p>
+
+      <table className="admin-daily">
+        <caption className="admin-sr">일별 질문과 방문자</caption>
+        <thead>
+          <tr>
+            <th scope="col">날짜</th>
+            <th scope="col">질문</th>
+            <th scope="col">방문자</th>
+            <th scope="col"><span className="admin-sr">질문 수 막대</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {[...usage.daily].reverse().map((d) => (
+            <tr key={d.day}>
+              <th scope="row">{d.day}</th>
+              <td>{d.questions}</td>
+              <td>{d.visitors}</td>
+              <td>
+                <div className="admin-bar" title={`${d.day.slice(5)} 질문 ${d.questions} · 방문자 ${d.visitors}`}>
+                  <div style={{ width: `${(d.questions / peak) * 100}%` }} />
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <p>
+        계산 클라우드: AWS {usage.clouds.aws} · Azure {usage.clouds.azure} · GCP {usage.clouds.gcp}
+      </p>
+      {usage.services.length > 0 && (
+        <ol className="admin-services" aria-label="많이 계산한 서비스">
+          {usage.services.map((s) => (
+            <li key={s.service}>
+              <span>{s.label}</span>
+              <span>{s.count}</span>
+            </li>
+          ))}
+        </ol>
+      )}
+      <p>
+        {allTime?.since
+          ? `기록 시작 ${allTime.since}부터 질문 ${allTime.questions} · 방문자 ${allTime.visitors}`
+          : "아직 기록이 없습니다"}
+      </p>
+    </>
+  );
 }
 
 export function AdminPanel({ email }: { email: string }) {
@@ -101,6 +281,8 @@ export function AdminPanel({ email }: { email: string }) {
           {email} · <a href="/oauth2/sign_out?rd=%2F">로그아웃</a> · <a href="/">계산기로</a>
         </span>
       </header>
+
+      <UsageCard />
 
       <section className="admin-card" aria-labelledby="llm-status">
         <h2 id="llm-status">답변 모델</h2>

@@ -4,6 +4,8 @@ Pure ASGI so a streaming response holds its slot until the stream ends."""
 import asyncio
 import json
 
+from src import usage
+
 
 class RunLimiter:
     def __init__(self, app, max_running: int = 2, max_waiting: int = 4, path: str = "/"):
@@ -17,6 +19,7 @@ class RunLimiter:
         if scope["type"] != "http" or scope["method"] != "POST" or scope["path"] != self.path:
             return await self.app(scope, receive, send)
         if self.slots.locked() and self.waiting >= self.max_waiting:
+            usage.record("busy", blocking=False)
             body = json.dumps({"error": "지금 계산 요청이 많습니다. 잠시 후 다시 시도해 주세요."}).encode()
             await send({"type": "http.response.start", "status": 429,
                         "headers": [(b"content-type", b"application/json"), (b"retry-after", b"30")]})

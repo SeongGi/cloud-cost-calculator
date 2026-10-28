@@ -15,6 +15,7 @@ import uuid
 from langchain.agents.middleware import AgentMiddleware, ModelResponse
 from langchain_core.messages import AIMessage
 
+from src import usage
 from src.cost_tool import last_user_text, named_clouds, previous_request
 
 logger = logging.getLogger(__name__)
@@ -82,18 +83,28 @@ def tidy(response: ModelResponse, user_text: str, state: dict | None = None) -> 
     return ModelResponse(result=[*response.result[:-1], msg], structured_response=response.structured_response)
 
 
+def _note_empty(response: ModelResponse, blocking: bool) -> ModelResponse:
+    """tidy() stays pure; the record is made here when it swapped in the EMPTY notice."""
+    last = response.result[-1] if response.result else None
+    if isinstance(last, AIMessage) and last.content == EMPTY:
+        usage.record("answer_empty", thread_id=usage.current_thread_id(), blocking=blocking)
+    return response
+
+
 class ResponseGuard(AgentMiddleware):
     def wrap_model_call(self, request, handler):
         try:
-            return tidy(handler(request), last_user_text(request.state or {}), request.state)
+            return _note_empty(tidy(handler(request), last_user_text(request.state or {}), request.state), True)
         except Exception:
             logger.exception("model call failed; answering with a notice")
+            usage.record("answer_failed", thread_id=usage.current_thread_id())
             return ModelResponse(result=[AIMessage(content=FAILED)])
 
     async def awrap_model_call(self, request, handler):
         try:
             response = await asyncio.wait_for(handler(request), timeout=DEADLINE_S)
-            return tidy(response, last_user_text(request.state or {}), request.state)
+            return _note_empty(tidy(response, last_user_text(request.state or {}), request.state), False)
         except Exception:  # includes the deadline (TimeoutError)
             logger.exception("model call failed or timed out; answering with a notice")
+            usage.record("answer_failed", thread_id=usage.current_thread_id(), blocking=False)
             return ModelResponse(result=[AIMessage(content=FAILED)])

@@ -21,6 +21,8 @@ from typing import Any
 from pricing.paths import readable_catalog_path
 
 CLOUDS = ("aws", "azure", "gcp")
+# Every "state" estimate() can return; src/usage.py records only these (and a few of its own).
+RESULT_STATES = frozenset({"ok", "price_data_unavailable"})
 CLOUD_LABEL = {"aws": "AWS", "azure": "Azure", "gcp": "Google Cloud"}
 DEFAULT_REGION = {"aws": "ap-northeast-2", "azure": "koreacentral", "gcp": "asia-northeast3"}
 REGION_LABEL = {

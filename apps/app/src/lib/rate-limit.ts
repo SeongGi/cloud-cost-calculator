@@ -1,3 +1,5 @@
+import { agentRunThread } from "@/lib/usage";
+
 // In-memory sliding window per client. The public port sits behind the gate
 // container, which overwrites X-Real-IP with the peer address it trusts.
 const WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS) || 60_000;
@@ -18,11 +20,16 @@ export function isRateLimited(key: string, now = Date.now()): boolean {
   return recent.length > MAX_RUNS;
 }
 
-export async function isAgentRun(req: Request): Promise<boolean> {
+// Reads the body once: whether this is an agent run and which thread it belongs to.
+export async function readRun(req: Request): Promise<{ run: boolean; threadId: string | null }> {
   try {
     const body = await req.clone().json();
-    return body?.method === "agent/run";
+    return { run: body?.method === "agent/run", threadId: agentRunThread(body) };
   } catch {
-    return false;
+    return { run: false, threadId: null };
   }
+}
+
+export async function isAgentRun(req: Request): Promise<boolean> {
+  return (await readRun(req)).run;
 }

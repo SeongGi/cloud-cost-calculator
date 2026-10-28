@@ -68,6 +68,7 @@ docker compose up -d --build
 - 구글 로그인(oauth2-proxy)으로 보호합니다. `docker/auth/allowed-emails.txt`와 `ADMIN_EMAILS`에 있는 계정만 들어올 수 있습니다.
 - 할 수 있는 일: Gemini 키 저장·삭제(화면에는 끝 4자리만 표시), 모델 선택, 연결 시험, Gemini 끄고 켜기. 최근 답변 모델, 전환 횟수, 쉬는 시간도 볼 수 있습니다.
 - 키는 에이전트 볼륨의 권한 600 파일에만 저장됩니다.
+- 사용량: 최근 7·30·90일의 질문·방문자·대화 수, 일별 추이, 클라우드·서비스별 계산 수, 실패 건수(계산 오류·답변 실패·혼잡)를 봅니다. 기록은 settings 볼륨의 `usage.sqlite3`에 400일 동안 남습니다. 질문 원문, 사양 문자열, IP 원문은 저장하지 않으며, 방문자는 IP를 비밀 salt로 해시한 값으로 셉니다.
 - 검사는 세 단계입니다. gate가 관리자 경로만 oauth2-proxy로 보내고, 로그인한 요청에만 내부 비밀 표시를 붙입니다. 앱은 그 표시와 허용 이메일을 다시 확인합니다. 에이전트는 앱의 토큰을 확인합니다.
 - 켜는 방법: `.env`에 OAuth 클라이언트, `COMPOSE_PROFILES=admin`, 비밀값들을 넣습니다(`.env.example` 참고). Google OAuth 클라이언트에는 `https://<도메인>/oauth2/callback`을 리디렉션 URI로 등록합니다.
 

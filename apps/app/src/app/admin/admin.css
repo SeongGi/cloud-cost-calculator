@@ -155,7 +155,149 @@
   color: #fca5a5;
 }
 
+.admin-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.admin-card-head h2 {
+  margin: 0;
+}
+
+.admin-periods {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-periods button {
+  padding: 4px 12px;
+  border: 1px solid var(--border-default, #d4d4d8);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.admin-periods button[aria-pressed="true"] {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+.admin-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.admin-tiles > div {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-default, #d4d4d8);
+  border-radius: 10px;
+}
+
+.admin-tiles dt {
+  font-weight: 600;
+}
+
+.admin-tiles dd {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.admin-tiles dd.admin-sub {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.admin-daily {
+  width: 100%;
+  margin: 12px 0;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-daily th,
+.admin-daily td {
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px solid var(--border-light, #f3f4f6);
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-daily thead th {
+  font-weight: 600;
+}
+
+.admin-daily td:nth-child(2),
+.admin-daily td:nth-child(3),
+.admin-daily thead th:nth-child(2),
+.admin-daily thead th:nth-child(3) {
+  text-align: right;
+}
+
+.admin-daily td:last-child {
+  width: 100%;
+  padding-left: 12px;
+}
+
+.admin-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--surface-quaternary, #f3f4f6);
+  overflow: hidden;
+}
+
+.admin-bar div {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: #2563eb;
+}
+
+.admin-services {
+  margin: 0 0 12px;
+  padding: 0 0 0 1.5em;
+}
+
+.admin-services li span:first-child {
+  margin-right: 8px;
+}
+
+.admin-services li span:last-child {
+  color: var(--text-tertiary, #52525b);
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:root.dark .admin-bar div {
+  background: #60a5fa;
+}
+
 @media (max-width: 480px) {
+  .admin-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .admin-grid {
     grid-template-columns: minmax(0, 1fr);
   }

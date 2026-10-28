@@ -13,7 +13,7 @@ import urllib.request
 from fastapi import APIRouter, Depends, Header, HTTPException
 from pydantic import BaseModel, Field
 
-from src import router, settings
+from src import router, settings, usage
 
 GEMINI_API = "https://generativelanguage.googleapis.com/v1beta"
 MODEL_NAME = re.compile(r"^[a-z0-9][a-z0-9.\-]{2,80}$")
@@ -109,3 +109,23 @@ def test_llm() -> dict:
         return {"ok": False, "quota": quota, "error": str(exc)[:300]}
     router.reset_cooldown()
     return {"ok": True, "model": s.gemini_model, "reply": (reply.text or "")[:60]}
+
+
+class QuestionEvent(BaseModel):
+    ip: str = Field(max_length=64)
+    thread_id: str | None = Field(default=None, max_length=200)
+    limited: bool = False
+
+
+@api.post("/usage/question")
+def post_usage_question(body: QuestionEvent) -> dict:
+    """The app knows the visitor's IP, the agent holds the salt: the app forwards, the agent hashes."""
+    usage.record("limited" if body.limited else "question", ip=body.ip, thread_id=body.thread_id)
+    return {"ok": True}
+
+
+@api.get("/usage")
+def get_usage(days: int = 30) -> dict:
+    if days not in usage.PERIODS:
+        raise HTTPException(status_code=422, detail="days는 7, 30, 90 중 하나입니다")
+    return usage.summary(days)

@@ -7,6 +7,7 @@ const ROUTES: Record<string, string[]> = {
   "llm/key": ["DELETE"],
   "llm/models": ["GET"],
   "llm/test": ["POST"],
+  usage: ["GET"],
 };
 
 async function forward(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
@@ -17,9 +18,18 @@ async function forward(req: NextRequest, { params }: { params: Promise<{ path: s
   }
   const path = (await params).path.join("/");
   if (!ROUTES[path]?.includes(req.method)) return Response.json({ error: "없는 경로입니다." }, { status: 404 });
+  // Usage takes one query value, from a fixed list; any other query is dropped.
+  let query = "";
+  if (path === "usage") {
+    const days = req.nextUrl.searchParams.getAll("days");
+    if (days.length > 1 || (days.length === 1 && !["7", "30", "90"].includes(days[0]))) {
+      return Response.json({ error: "days는 7, 30, 90 중 하나여야 합니다." }, { status: 400 });
+    }
+    if (days.length === 1) query = `?days=${days[0]}`;
+  }
   const token = process.env.ADMIN_TOKEN ?? "";
   const base = process.env.LANGGRAPH_DEPLOYMENT_URL ?? "http://localhost:8123";
-  const res = await fetch(`${base}/admin/${path}`, {
+  const res = await fetch(`${base}/admin/${path}${query}`, {
     method: req.method,
     headers: { "content-type": "application/json", "x-admin-token": token },
     body: req.method === "PUT" ? await req.text() : undefined,

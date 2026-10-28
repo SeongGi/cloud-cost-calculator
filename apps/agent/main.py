@@ -25,6 +25,7 @@ from src.prompt import SYSTEM_PROMPT
 from src.guard import ResponseGuard
 from src.persistent_saver import PersistentMemorySaver, default_path
 from src.router import LLMRouter
+from src.usage_middleware import UsageMiddleware
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -35,7 +36,8 @@ model = build_model()
 graph = create_agent(
     model=model,
     tools=TOOLS,
-    middleware=[CopilotKitMiddleware(), CompactToolResults(), ResponseGuard(), LLMRouter()],
+    # Last, so it sees what the tool really returned (and any exception) after the other hooks.
+    middleware=[CopilotKitMiddleware(), CompactToolResults(), ResponseGuard(), LLMRouter(), UsageMiddleware()],
     system_prompt=SYSTEM_PROMPT,
     checkpointer=(memory := PersistentMemorySaver(default_path())),
 )
