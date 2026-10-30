@@ -1,4 +1,4 @@
-import { Component, useMemo, useRef, type ReactNode } from "react";
+import { Component, useMemo, useState, type ReactNode } from "react";
 import { z } from "zod";
 import { useAgent, useRenderTool } from "@copilotkit/react-core/v2";
 import { CostCard, CostCardPending } from "@/components/cost/cost-card";
@@ -56,9 +56,9 @@ function CostResult({ result }: { result: string }) {
 function PendingOrStopped() {
   const { agent } = useAgent();
   // Once a call is seen stopped it stays stopped, even when a later question starts a new run.
-  const stopped = useRef(false);
-  if (!agent.isRunning) stopped.current = true;
-  return stopped.current
+  const [stopped, setStopped] = useState(false);
+  if (!agent.isRunning && !stopped) setStopped(true);
+  return stopped || !agent.isRunning
     ? <CostProblem title="계산이 중간에 멈췄습니다. 같은 질문을 다시 보내 주세요." />
     : <CostCardPending />;
 }

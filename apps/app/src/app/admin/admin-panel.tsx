@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, useCallback, useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 
 interface LlmState {
   gemini_key_set: boolean;
@@ -278,7 +279,7 @@ export function AdminPanel({ email }: { email: string }) {
       <header className="admin-head">
         <h1>관리자</h1>
         <span className="admin-user">
-          {email} · <a href="/oauth2/sign_out?rd=%2F">로그아웃</a> · <a href="/">계산기로</a>
+          {email} · <a href="/oauth2/sign_out?rd=%2F">로그아웃</a> · <Link href="/">계산기로</Link>
         </span>
       </header>
 
