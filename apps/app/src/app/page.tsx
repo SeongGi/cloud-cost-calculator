@@ -21,11 +21,31 @@ function newThreadId(): string {
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
 }
 
-const EXAMPLES = [
-  { title: "AWS 웹 서비스", message: "AWS 서울에 t3.medium 2대, RDS PostgreSQL, S3 500GB, ALB 월 비용 알려줘" },
-  { title: "Azure VM과 DB", message: "Azure 코리아 센트럴에 D2s v5 VM 3대랑 MySQL 월 비용은?" },
-  { title: "GCP 기본 구성", message: "GCP 서울에 e2-standard-2 VM 하나와 Cloud Storage 1000GB" },
+// Example questions, four per cloud. Each was run through the local model and engine and priced as
+// written. GCP has no Tokyo example: the model maps "GCP 도쿄" to Seoul.
+const EXAMPLE_POOLS = [
+  [
+    { title: "AWS 웹 서비스", message: "AWS 서울에 t3.medium 2대, RDS PostgreSQL, S3 500GB, ALB 월 비용 알려줘" },
+    { title: "AWS 쿠버네티스", message: "AWS 도쿄에 EKS 클러스터와 m6i.large 3대, ALB 월 비용은?" },
+    { title: "AWS 서버리스", message: "AWS 서울에 Lambda, API Gateway, DynamoDB로 만든 서버리스 API 월 비용" },
+    { title: "AWS 미국 서비스", message: "AWS 미국 동부에 c6i.large 4대, Aurora MySQL, ElastiCache 월 비용은?" },
+  ],
+  [
+    { title: "Azure VM과 DB", message: "Azure 코리아 센트럴에 D2s v5 VM 3대랑 MySQL 월 비용은?" },
+    { title: "Azure 쿠버네티스", message: "Azure 일본 동부(도쿄)에 AKS와 PostgreSQL, Blob Storage 1000GB 월 비용" },
+    { title: "Azure 웹 서비스", message: "Azure 코리아 센트럴에 D4s v5 VM 2대, Application Gateway, Redis 월 비용은?" },
+    { title: "Azure 서버리스", message: "Azure 미국 동부에 Azure SQL Database와 Functions 월 비용 알려줘" },
+  ],
+  [
+    { title: "GCP 기본 구성", message: "GCP 서울에 e2-standard-2 VM 하나와 Cloud Storage 1000GB" },
+    { title: "GCP VM과 캐시", message: "GCP 서울에 n2-standard-4 VM 3대와 Memorystore Redis 5GB 월 비용" },
+    { title: "GCP VM과 DB", message: "GCP 미국 중부에 e2-standard-4 VM 2대와 Cloud SQL MySQL 월 비용은?" },
+    { title: "GCP 데이터 분석", message: "GCP 미국에 BigQuery와 Cloud Storage 5000GB 월 비용 알려줘" },
+  ],
 ];
+// The server-rendered intro shows the first of each so the markup does not change between renders.
+const EXAMPLES = EXAMPLE_POOLS.map((pool) => pool[0]);
+const pickExamples = () => EXAMPLE_POOLS.map((pool) => pool[Math.floor(Math.random() * pool.length)]);
 
 export default function HomePage() {
   // The thread id is the agent's memory key. It is decided after mount (the last chat in this
@@ -144,8 +164,10 @@ function Chat({ threadId, onOpen, onNewChat }: { threadId: string; onOpen: (id: 
   const { agent } = useAgent({ threadId });
   // Examples on an empty chat; after an answer, questions people tend to ask next about it.
   // Chosen here because CopilotKit judges "first message" on its base agent, not this thread.
+  // The chat renders only in the browser, so a fresh pick per chat is safe here.
+  const [examples] = useState(pickExamples);
   const nextQuestions = useMemo(() => followUps(latestResult(agent.messages)), [agent.messages]);
-  const suggestions = agent.messages.length === 0 ? EXAMPLES : nextQuestions.map((q) => ({ title: q, message: q }));
+  const suggestions = agent.messages.length === 0 ? examples : nextQuestions.map((q) => ({ title: q, message: q }));
   useConfigureSuggestions({ suggestions, available: "always" }, [suggestions.map((s) => s.message).join("|")]);
   const { copilotkit } = useCopilotKit();
   const { resolved, setTheme } = useTheme();
