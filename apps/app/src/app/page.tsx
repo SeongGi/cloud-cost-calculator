@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { CopilotChat, useAgent, useConfigureSuggestions, useCopilotKit } from "@copilotkit/react-core/v2";
 import { ReaderScrollView } from "@/components/chat/reader-scroll-view";
 import { AnswerMarkdown } from "@/components/chat/answer-markdown";
@@ -10,6 +10,9 @@ import { describeError } from "@/lib/errors";
 import { SITE } from "@/lib/site";
 import { followUps, latestResult } from "@/lib/follow-ups";
 import { currentThread, deleteChat, listChats, loadMessages, saveChat, setCurrent, type ChatSummary } from "@/lib/chat-store";
+
+// The saved chat only changes through this page, so there is nothing to subscribe to.
+const noSubscribe = () => () => {};
 
 function newThreadId(): string {
   // crypto.randomUUID needs a secure context; plain-HTTP LAN access falls back to getRandomValues.
@@ -50,13 +53,14 @@ const pickExamples = () => EXAMPLE_POOLS.map((pool) => pool[Math.floor(Math.rand
 export default function HomePage() {
   // The thread id is the agent's memory key. It is decided after mount (the last chat in this
   // browser, or a new one) and handed to CopilotKit, which then loads that thread's history.
-  const [threadId, setThreadId] = useState<string | null>(null);
-  useEffect(() => {
-    setThreadId(currentThread() ?? newThreadId());
-  }, []);
+  // The server and the hydrating render read null and show the intro; then "" means no saved chat.
+  const saved = useSyncExternalStore(noSubscribe, () => currentThread() ?? "", () => null);
+  const [fresh] = useState(newThreadId);
+  const [picked, setPicked] = useState<string | null>(null);
+  const threadId = picked ?? (saved === null ? null : saved || fresh);
   const open = (id: string) => {
     setCurrent(id);
-    setThreadId(id);
+    setPicked(id);
   };
   if (!threadId) return <Intro />;
   return <Chat key={threadId} threadId={threadId} onOpen={open} onNewChat={() => open(newThreadId())} />;

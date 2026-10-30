@@ -12,6 +12,8 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
+    // Node 25+ defines its own global localStorage (undefined without a file), hiding jsdom's.
+    execArgv: ["--no-experimental-webstorage"],
     server: { deps: { inline: [/@copilotkit\/react-core/] } },
   },
 });
