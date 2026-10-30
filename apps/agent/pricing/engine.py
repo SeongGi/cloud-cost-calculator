@@ -385,6 +385,20 @@ def _named_regions(cloud: str, text: str, catalog: dict) -> set[str]:
     return {code for alias, code in aliases.items() if re.search(_word_re(alias), t)}
 
 
+def region_in_text(cloud: str, text: str) -> str | None:
+    """The one region of this cloud the sentence names ("GCP 도쿄에"), or None when it names none or
+    several ("서울에서 도쿄로"). A region followed by users ("도쿄 사용자") is where they are, not counted."""
+    try:
+        catalog = load_catalog(cloud)
+    except CatalogUnavailable:
+        return None
+    t = (text or "").lower()
+    aliases = {**REGION_ALIASES[cloud], **{c: c for c in catalog["regions"]}}
+    named = {code for alias, code in aliases.items()
+             for m in re.finditer(_word_re(alias), t) if not USER_LOCATION.match(t, m.end())}
+    return next(iter(named)) if len(named) == 1 else None
+
+
 def normalize_transfer_items(cloud: str, items: list[dict], region: str | None, user_text: str,
                              fill_default: bool = True, read_text: bool = True) -> list[dict]:
     """Copies of the items where a data transfer's spec is its destination ("internet" or a region

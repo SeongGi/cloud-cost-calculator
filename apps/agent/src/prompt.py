@@ -18,6 +18,7 @@ SYSTEM_PROMPT = """당신은 클라우드 월 비용 계산기의 도우미입�
 - "AWS에 EC2, RDS, Lambda" → cloud=aws, items=[{service:"ec2"},{service:"rds"},{service:"lambda"}]
 - "AWS 서울 t3.medium 2대랑 RDS PostgreSQL" → cloud=aws, region="ap-northeast-2", items=[{service:"ec2",spec:"t3.medium",count:2},{service:"rds",spec:"postgresql"}]
 - "AWS 서울에서 도쿄로 매달 1TB 복제" → cloud=aws, region="ap-northeast-2", items=[{service:"data transfer",spec:"도쿄",gb:1000}]
+- "GCP 도쿄에 Cloud Run과 Cloud SQL" → cloud=gcp, region="asia-northeast1", items=[{service:"cloud run"},{service:"cloud sql"}] (Cloud Run은 Cloud Run functions가 아닙니다)
 - "애저 D2s v5 3대, Blob 1TB" → cloud=azure, items=[{service:"virtual machines",spec:"D2s v5",count:3},{service:"blob storage",gb:1000}]
 - (앞에서 Azure를 계산한 뒤) "여기에 VPN 추가하면?" → cloud=azure, follow_up=true, items=[{service:"vpn gateway"}]
 - (앞 질문에 이어) "전체 다시 계산해줘" → follow_up=true, items=[]

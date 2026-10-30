@@ -12,8 +12,8 @@ from pydantic import BaseModel, Field, field_validator
 
 from langchain_core.messages import ToolMessage
 
-from pricing.engine import (CLOUDS, CatalogUnavailable, estimate, load_catalog, normalize_transfer_items, resolve_service,
-                            service_menu)
+from pricing.engine import (CLOUDS, CatalogUnavailable, estimate, load_catalog, normalize_transfer_items, region_in_text,
+                            resolve_service, service_menu)
 
 log = logging.getLogger(__name__)
 
@@ -43,6 +43,27 @@ def parse_items(raw: Any) -> list[dict]:
     if not isinstance(raw, list):
         raise ValueError("items는 목록이어야 합니다")
     return [Item.model_validate(x).model_dump() for x in raw]
+
+
+CLOUD_RUN_ALONE = re.compile(r"cloud\s*run(?!\s*(?:functions?|함수))", re.I)
+FUNCTION_WORDS = re.compile(r"functions?|함수", re.I)
+RUN_FUNCTIONS_NAME = re.compile(r"(?:google\s+)?cloud\s*run\s+functions?", re.I)
+
+
+def fix_cloud_run(cloud: str, items: list[dict], text: str) -> list[dict]:
+    """"Cloud Run" alone is the container service, but the model often sends "cloud run functions"."""
+    if cloud != "gcp" or not CLOUD_RUN_ALONE.search(text) or FUNCTION_WORDS.search(text):
+        return items
+    return [{**i, "service": "cloud run"} if RUN_FUNCTIONS_NAME.fullmatch(str(i.get("service", "")).strip()) else i
+            for i in items]
+
+
+def has_transfer(cloud: str, items: list[dict]) -> bool:
+    try:
+        catalog = load_catalog(cloud)
+    except CatalogUnavailable:
+        return False
+    return any(resolve_service(cloud, str(i.get("service", "")), catalog)[0] == "data_transfer" for i in items)
 
 
 def last_user_text(state: dict) -> str:
@@ -161,7 +182,7 @@ class EstimateArgs(BaseModel):
     items: list[Item] = Field(default_factory=list, description="계산할 서비스 목록. 이어지는 질문이면 새로 말한 서비스만 넣어도 된다")
     follow_up: bool | None = Field(default=None, description="앞에서 계산한 구성에 더하거나 바꾸거나 빼는 질문이면 true, 새 구성이면 false")
     remove: list[str] = Field(default_factory=list, description="이어지는 질문에서 빼라고 한 서비스 이름")
-    region: str | None = Field(default=None, description="사용자가 말한 리전만. 예: ap-northeast-2, koreacentral, asia-northeast3, 서울")
+    region: str | None = Field(default=None, description="사용자가 말한 리전만. 서울은 ap-northeast-2(AWS), koreacentral(Azure), asia-northeast3(GCP). 도쿄는 ap-northeast-1(AWS), japaneast(Azure), asia-northeast1(GCP)")
     state: Annotated[dict, InjectedState] = Field(default_factory=dict)
 
     @field_validator("items", mode="before")
@@ -186,7 +207,7 @@ def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | Non
              [i.model_dump(exclude_none=True) if isinstance(i, BaseModel) else i for i in items])
     text = last_user_text(state)
     try:
-        parsed = parse_items([i.model_dump() if isinstance(i, BaseModel) else i for i in items])
+        parsed = fix_cloud_run(cloud, parse_items([i.model_dump() if isinstance(i, BaseModel) else i for i in items]), text)
         said = named_clouds(text)
         # Each cloud keeps its own configuration in the conversation. A follow-up goes to the cloud
         # the user named; else to the cloud the model chose if it was estimated before; else to the
@@ -207,6 +228,10 @@ def estimate_cost(cloud: str, items: list[Item] | None = None, region: str | Non
         if merge:
             cloud = prev["cloud"]
             region = region or prev.get("region")
+        # The model copies a region from examples ("GCP 도쿄" sent as asia-northeast3), so a region the
+        # sentence names wins. Transfers are left alone: there a named region may be the destination.
+        if not has_transfer(cloud, parsed):
+            region = region_in_text(cloud, text) or region
         # Before merging only the model's own spec is read, plus the sentence when the user is adding a
         # line: otherwise an empty spec still means "only the quantity changes". Defaults come after.
         parsed = normalize_transfer_items(cloud, parsed, region, text, fill_default=False,
