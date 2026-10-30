@@ -143,6 +143,14 @@ def test_missing_spec_is_excluded_not_invented():
     assert r["total_cents"] == 0
 
 
+def test_common_previous_generation_size_is_priced():
+    # m5.large was missing once, so "EC2 m5.large 2대" dropped out of the total and the chart.
+    r = estimate("aws", [{"service": "ec2", "spec": "m5.large", "count": 2}], "서울")
+    line = r["lines"][0]
+    assert line["key"] == "ec2.m5.large" and line["included"] and "missing_spec" not in line
+    assert r["total_cents"] == 17228  # 0.118 × 730 × 2
+
+
 def test_unknown_service_and_region():
     r = estimate("aws", [{"service": "cloudfront"}], "eu-west-1")
     assert r["excluded"] == [{"service": "cloudfront", "reason": "가격표에 없는 서비스"}]

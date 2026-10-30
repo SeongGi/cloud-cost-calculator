@@ -1130,6 +1130,249 @@
         "step": 10
       }
     },
+    "ec2.c5.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:c5.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "c5.large instance (Linux, On-Demand)",
+        "ja": "c5.large インスタンス (Linux, オンデマンド)",
+        "ko": "c5.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "c5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:c5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.107 per On Demand Linux c5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "KB5V9BJ77S8AV7TK.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "KB5V9BJ77S8AV7TK",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1070000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "c5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:c5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.096 per On Demand Linux c5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "T5ZECHGMNCH9CDGT.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "T5ZECHGMNCH9CDGT",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0960000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "c5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:c5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.085 per On Demand Linux c5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "6U6GZ2DN4RFCJ7D9.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6U6GZ2DN4RFCJ7D9",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0850000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.c5.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:c5.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "c5.xlarge instance (Linux, On-Demand)",
+        "ja": "c5.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "c5.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "c5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:c5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.214 per On Demand Linux c5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "EP8EJMA4GKSUCMU6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EP8EJMA4GKSUCMU6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2140000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "c5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:c5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.192 per On Demand Linux c5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "YBWGSBF6QZ6AJWXB.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YBWGSBF6QZ6AJWXB",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1920000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "c5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:c5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.17 per On Demand Linux c5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "35AEEWH98DECPC35.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "35AEEWH98DECPC35",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1700000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.c6i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:c6i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "c6i.large instance (Linux, On-Demand)",
+        "ja": "c6i.large インスタンス (Linux, オンデマンド)",
+        "ko": "c6i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "c6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:c6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.107 per On Demand Linux c6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "YWJM42SBFH2YFKVN.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YWJM42SBFH2YFKVN",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1070000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "c6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:c6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.096 per On Demand Linux c6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "23MGE6DFM4A5NZ7M.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "23MGE6DFM4A5NZ7M",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0960000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "c6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:c6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.085 per On Demand Linux c6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "G34GXEYC28NK97K3.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "G34GXEYC28NK97K3",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0850000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
     "ec2.c7i.large": {
       "aws_query": {
         "expect": {
@@ -1200,6 +1443,492 @@
           "tier_begin": "0",
           "tier_end": "Inf",
           "usd": "0.0892500000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m5.2xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m5.2xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m5.2xlarge instance (Linux, On-Demand)",
+        "ja": "m5.2xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "m5.2xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m5.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m5.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.496 per On Demand Linux m5.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "WEMS88BYNHHUKWC8.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "WEMS88BYNHHUKWC8",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.4960000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m5.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m5.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.472 per On Demand Linux m5.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "DEHCSWHPKRSAJY9U.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "DEHCSWHPKRSAJY9U",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.4720000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m5.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m5.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.384 per On Demand Linux m5.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "ZH8KU2QB7FHAJJXW.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "ZH8KU2QB7FHAJJXW",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3840000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m5.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m5.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m5.large instance (Linux, On-Demand)",
+        "ja": "m5.large インスタンス (Linux, オンデマンド)",
+        "ko": "m5.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.124 per On Demand Linux m5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "USE46NRHP4S7UT6J.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "USE46NRHP4S7UT6J",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1240000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.118 per On Demand Linux m5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "EFB98K3UPBPJGD6V.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "EFB98K3UPBPJGD6V",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1180000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.096 per On Demand Linux m5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "6C86BEPQVG73ZGGR.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "6C86BEPQVG73ZGGR",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0960000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m5.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m5.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m5.xlarge instance (Linux, On-Demand)",
+        "ja": "m5.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "m5.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.248 per On Demand Linux m5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "3KYNGSJGJJ4XEFVU.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "3KYNGSJGJJ4XEFVU",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2480000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.236 per On Demand Linux m5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "2FN5PXDGXPZDCV43.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "2FN5PXDGXPZDCV43",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2360000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.192 per On Demand Linux m5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "5G4TA8Z4MUKE6MJB.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "5G4TA8Z4MUKE6MJB",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1920000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m6i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m6i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m6i.large instance (Linux, On-Demand)",
+        "ja": "m6i.large インスタンス (Linux, オンデマンド)",
+        "ko": "m6i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.124 per On Demand Linux m6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "45HHAZVC3X88ARQ6.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "45HHAZVC3X88ARQ6",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1240000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.118 per On Demand Linux m6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "YNF8U8R6NK3DHPTM.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YNF8U8R6NK3DHPTM",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1180000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.096 per On Demand Linux m6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "B8JJ44GS8MG4RPR4.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "B8JJ44GS8MG4RPR4",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0960000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m6i.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m6i.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m6i.xlarge instance (Linux, On-Demand)",
+        "ja": "m6i.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "m6i.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m6i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m6i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.248 per On Demand Linux m6i.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "YS6Q9PHBX8A4B83R.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YS6Q9PHBX8A4B83R",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2480000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m6i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m6i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.236 per On Demand Linux m6i.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "Q6HXHW4DPS5JVYN3.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "Q6HXHW4DPS5JVYN3",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2360000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m6i.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m6i.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.192 per On Demand Linux m6i.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "2UVH39HPDNC399X4.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "2UVH39HPDNC399X4",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1920000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.m7i.2xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:m7i.2xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "m7i.2xlarge instance (Linux, On-Demand)",
+        "ja": "m7i.2xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "m7i.2xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "m7i.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:m7i.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.5208 per On Demand Linux m7i.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "783Z5WZU6SKJD5HP.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "783Z5WZU6SKJD5HP",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.5208000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "m7i.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:m7i.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.4956 per On Demand Linux m7i.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "4KK9E7MX32C7VZZG.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "4KK9E7MX32C7VZZG",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.4956000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "m7i.2xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:m7i.2xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.4032 per On Demand Linux m7i.2xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "99TZRNZAZSFRSS24.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "99TZRNZAZSFRSS24",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.4032000000"
         }
       },
       "quantity_scale": 1,
@@ -1373,6 +2102,249 @@
         "step": 1
       }
     },
+    "ec2.r5.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:r5.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "r5.large instance (Linux, On-Demand)",
+        "ja": "r5.large インスタンス (Linux, オンデマンド)",
+        "ko": "r5.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "r5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:r5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.152 per On Demand Linux r5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "BBFY9H74SU6YSW3K.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "BBFY9H74SU6YSW3K",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1520000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "r5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:r5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.152 per On Demand Linux r5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "RZG8ZGBGC38SDDXZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "RZG8ZGBGC38SDDXZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1520000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "r5.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:r5.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.126 per On Demand Linux r5.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "NCTEFNHKJC398BJB.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NCTEFNHKJC398BJB",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1260000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.r5.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:r5.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "r5.xlarge instance (Linux, On-Demand)",
+        "ja": "r5.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "r5.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "r5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:r5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.304 per On Demand Linux r5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "Y75R84BY6B35VEBN.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "Y75R84BY6B35VEBN",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3040000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "r5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:r5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.304 per On Demand Linux r5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "JGHY7JDPX64CRY3F.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "JGHY7JDPX64CRY3F",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.3040000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "r5.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:r5.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.252 per On Demand Linux r5.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "TZG8KMRSS5ASP78Y.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "TZG8KMRSS5ASP78Y",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2520000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.r6i.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:r6i.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "r6i.large instance (Linux, On-Demand)",
+        "ja": "r6i.large インスタンス (Linux, オンデマンド)",
+        "ko": "r6i.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "r6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:r6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.152 per On Demand Linux r6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "YMY8SFUZH9SFQNT4.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "YMY8SFUZH9SFQNT4",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1520000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "r6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:r6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.152 per On Demand Linux r6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "NQVPCXQR68VNFKMK.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "NQVPCXQR68VNFKMK",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1520000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "r6i.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:r6i.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.126 per On Demand Linux r6i.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "7NQ3QTP3TBGV9X5A.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "7NQ3QTP3TBGV9X5A",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1260000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
     "ec2.r7i.large": {
       "aws_query": {
         "expect": {
@@ -1454,6 +2426,87 @@
         "step": 1
       }
     },
+    "ec2.t3.large": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:t3.large"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "t3.large instance (Linux, On-Demand)",
+        "ja": "t3.large インスタンス (Linux, オンデマンド)",
+        "ko": "t3.large 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "t3.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:t3.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1088 per On Demand Linux t3.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "BDT5TR37G2FCDKV2.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "BDT5TR37G2FCDKV2",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1088000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "t3.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:t3.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.104 per On Demand Linux t3.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "822X28N5YHCZG5KZ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "822X28N5YHCZG5KZ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1040000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "t3.large",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:t3.large"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.0832 per On Demand Linux t3.large Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "HBVJM3Q9S8K6MNPJ.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "HBVJM3Q9S8K6MNPJ",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.0832000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
     "ec2.t3.medium": {
       "aws_query": {
         "expect": {
@@ -1524,6 +2577,87 @@
           "tier_begin": "0",
           "tier_end": "Inf",
           "usd": "0.0416000000"
+        }
+      },
+      "quantity_scale": 1,
+      "quantity_unit": "count",
+      "service": "ec2",
+      "slider": {
+        "max": 50,
+        "min": 0,
+        "step": 1
+      }
+    },
+    "ec2.t3.xlarge": {
+      "aws_query": {
+        "expect": {
+          "aws_unit": "Hrs",
+          "product_family": "Compute Instance"
+        },
+        "filters": {
+          "capacitystatus": "Used",
+          "operatingSystem": "Linux",
+          "preInstalledSw": "NA",
+          "tenancy": "Shared",
+          "usagetype": "{prefix}BoxUsage:t3.xlarge"
+        },
+        "service_code": "AmazonEC2"
+      },
+      "hours": 730,
+      "label": {
+        "en": "t3.xlarge instance (Linux, On-Demand)",
+        "ja": "t3.xlarge インスタンス (Linux, オンデマンド)",
+        "ko": "t3.xlarge 인스턴스 (Linux, 온디맨드)"
+      },
+      "per": "hour",
+      "prices": {
+        "ap-northeast-1": {
+          "attributes": {
+            "instanceType": "t3.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN1-BoxUsage:t3.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.2176 per On Demand Linux t3.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "8VN3HX7E6Z8JVZ78.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "8VN3HX7E6Z8JVZ78",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2176000000"
+        },
+        "ap-northeast-2": {
+          "attributes": {
+            "instanceType": "t3.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "APN2-BoxUsage:t3.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.208 per On Demand Linux t3.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "B63NDMZ5NURV4FVB.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "B63NDMZ5NURV4FVB",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.2080000000"
+        },
+        "us-east-1": {
+          "attributes": {
+            "instanceType": "t3.xlarge",
+            "operation": "RunInstances",
+            "productFamily": "Compute Instance",
+            "usagetype": "BoxUsage:t3.xlarge"
+          },
+          "aws_unit": "Hrs",
+          "description": "$0.1664 per On Demand Linux t3.xlarge Instance Hour",
+          "published": "2026-10-27T19:30:04Z",
+          "rate_code": "RUFVJ4KVTVSSSHEU.JRTCKXETXF.6YS6EN2CT7",
+          "sku": "RUFVJ4KVTVSSSHEU",
+          "tier_begin": "0",
+          "tier_end": "Inf",
+          "usd": "0.1664000000"
         }
       },
       "quantity_scale": 1,

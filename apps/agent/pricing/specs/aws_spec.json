@@ -159,6 +159,314 @@
       },
       "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
     },
+    "ec2.t3.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "t3.large 인스턴스 (Linux, 온디맨드)",
+        "en": "t3.large instance (Linux, On-Demand)",
+        "ja": "t3.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:t3.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.t3.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "t3.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "t3.xlarge instance (Linux, On-Demand)",
+        "ja": "t3.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:t3.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m5.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "m5.large 인스턴스 (Linux, 온디맨드)",
+        "en": "m5.large instance (Linux, On-Demand)",
+        "ja": "m5.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m5.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m5.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "m5.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "m5.xlarge instance (Linux, On-Demand)",
+        "ja": "m5.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m5.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m5.2xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "m5.2xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "m5.2xlarge instance (Linux, On-Demand)",
+        "ja": "m5.2xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m5.2xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.c5.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "c5.large 인스턴스 (Linux, 온디맨드)",
+        "en": "c5.large instance (Linux, On-Demand)",
+        "ja": "c5.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:c5.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.c5.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "c5.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "c5.xlarge instance (Linux, On-Demand)",
+        "ja": "c5.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:c5.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.r5.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "r5.large 인스턴스 (Linux, 온디맨드)",
+        "en": "r5.large instance (Linux, On-Demand)",
+        "ja": "r5.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:r5.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.r5.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "r5.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "r5.xlarge instance (Linux, On-Demand)",
+        "ja": "r5.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:r5.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m6i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "m6i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "m6i.large instance (Linux, On-Demand)",
+        "ja": "m6i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m6i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m6i.xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "m6i.xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "m6i.xlarge instance (Linux, On-Demand)",
+        "ja": "m6i.xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m6i.xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.c6i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "c6i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "c6i.large instance (Linux, On-Demand)",
+        "ja": "c6i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:c6i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.r6i.large": {
+      "service": "ec2",
+      "label": {
+        "ko": "r6i.large 인스턴스 (Linux, 온디맨드)",
+        "en": "r6i.large instance (Linux, On-Demand)",
+        "ja": "r6i.large インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:r6i.large",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
+    "ec2.m7i.2xlarge": {
+      "service": "ec2",
+      "label": {
+        "ko": "m7i.2xlarge 인스턴스 (Linux, 온디맨드)",
+        "en": "m7i.2xlarge instance (Linux, On-Demand)",
+        "ja": "m7i.2xlarge インスタンス (Linux, オンデマンド)"
+      },
+      "quantity_unit": "count",
+      "per": "hour",
+      "quantity_scale": 1,
+      "hours": 730,
+      "slider": {"min": 0, "max": 50, "step": 1},
+      "service_code": "AmazonEC2",
+      "filters": {
+        "usagetype": "{prefix}BoxUsage:m7i.2xlarge",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "preInstalledSw": "NA",
+        "capacitystatus": "Used"
+      },
+      "expect": {"product_family": "Compute Instance", "aws_unit": "Hrs"}
+    },
     "ebs.gp3": {
       "service": "ebs",
       "label": {

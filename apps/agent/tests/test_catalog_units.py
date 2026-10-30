@@ -73,7 +73,7 @@ def test_gcp_unit_conversion():
 
 
 def test_catalogs_complete():
-    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (50, 35, 44)
+    assert (len(items("aws")), len(items("azure")), len(items("gcp"))) == (64, 35, 44)
     for cloud in ("aws", "azure", "gcp"):
         regions = json.loads((BUNDLED_DIR / f"{cloud}.json").read_text())["regions"]
         specs = json.loads((BUNDLED_DIR.parent / "specs" / f"{cloud}_spec.json").read_text())["specs"]
